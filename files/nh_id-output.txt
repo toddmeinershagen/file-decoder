@@ -1,0 +1,4382 @@
+BEGIN DATA
+objects|9
+RTM|nh_id|macro\nh_id.rtm|@0200N|8964
+MAP|nh_id|map\nh_id.map|@0200N|4758
+VW1|nh_id|map\nh_id.vw1|@0200N|12142
+VW2|nh_id|map\nh_id.vw2|@0200N|4233
+SRC_ADF|nhsrc|map\app\nhsrc.adf||8670
+DST_ADF|nh_id|map\app\nh_id.adf||3040
+TST_APP||||0
+UNKNOWN||||0
+FLD||||0
+;----------------------------------------
+;
+; spEDI*map 2.0 - MPL  code generator, Rel r3.0EV
+;
+; User: <not available>    Date: Thu Feb 09 20:05:21 2012
+;
+; Map Definition: New Hire File - ID (New Hire File - ID)
+;
+;                            Source       Destination         
+;                            ------       -----------         
+;        Name:             New Hire ===>> New Hire File       
+;        Desc: New Hire Source File       New Hire File - ID  
+; EDI Version:                                                
+;    EDI Desc:                                                
+;
+;----------------------------------------
+
+;----------------------------------------
+;
+; User code: Sln / Dln conditionals, FEL Code
+;
+;----------------------------------------
+let RTM_Employee_Detail_Record_EACH_0001( RTM_p0, RTM_p1, RTM_p2, RTM_p3, RTM_p4, RTM_p5 ) = {
+Let MI = left(RTM_p0,1)
+Let YR = right(RTM_p1,2)
+Let Hire_Date = RTM_p2++RTM_p3++RTM_p4
+
+Let eezip ="-"++RTM_p5
+
+}
+let RTM_SRC_Employee_Detail_Record_0002(  ) = {
+RETURN "1S"
+}
+let RTM_SRC_Employee_Detail_Record_0003( RTM_p0 ) = {
+RETURN RTM_p0
+}
+let RTM__EACH_0004( RTM_p0 ) = {
+Let erzip = "-"++RTM_p0
+}
+let RTM_SRC__0005(  ) = {
+RETURN "2S"
+}
+
+;----------------------------------------
+
+
+;----------------------------------------
+;
+; Driver code: for alpha this will manually
+; load the data file and the map definition.
+; Eventually this will be replaced with the
+; AppScan inbound/outbound queue support.
+;
+; (AppScan will also provide the name of the batch file
+; but until it is online, we'll have to make do
+; with deriving a name from the map-def: 'outbound\nh_id.dat'.)
+;
+;----------------------------------------
+
+LET RTM_RESULT = RUN_MAP("outbound\nh_id.dat")
+IF RTM_RESULT <> 1 THEN
+   ECHO "Unable to test map."
+   END 1
+ENDIF
+ECHO "Macro New Hire File - ID completed."
+END 0
+$RTIME:BEGIN
+@0200N
+33
+33
+NULL_REF
+New Hire File - ID
+New Hire File - ID
+0
+2048
+17
+nhsrc.adf
+17
+nh_id.adf
+0
+0
+6
+4132
+1
+/New Hire File - ID:33
+LIT_0
+16
+0
+0
+8228
+2
+/New Hire File - ID:33
+Hire_Date
+desc
+0
+0
+8228
+3
+/New Hire File - ID:33
+MI
+desc
+0
+0
+8228
+4
+/New Hire File - ID:33
+YR
+desc
+0
+0
+8228
+5
+/New Hire File - ID:33
+eezip
+desc
+0
+0
+8228
+6
+/New Hire File - ID:33
+erzip
+desc
+0
+0
+1
+32770
+7
+/New Hire File - ID:33
+Employer_Header_Record
+SLN Based on Employer_Header_Record(View container)
+0
+0
+0
+333
+333
+333
+333
+Employer_Header_Record
+Default_record
+2
+0
+18
+/New Hire:155/Employer_Header_Record:31
+18
+/New Hire File:292/Default_record:292
+32770
+8
+/New Hire File - ID:33/Employer_Header_Record:7
+Employee_Detail_Record
+SLN Based on Employee_Detail_Record(View container)
+0
+0
+0
+333
+333
+444
+6
+Let MI = left(EE_Middle_Name,1)
+Let YR = right(EE_Hire_Date_YYYY,2)
+Let Hire_Date = EE_Hire_Date_MM++EE_Hire_Date_DD++EE_Hire_Date_YYYY
+
+Let eezip ="-"++EE_Zip_plus_4
+
+RTM_Employee_Detail_Record_EACH_0001
+6
+1
+14
+14
+132
+0
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_Middle_Name:119
+2
+15
+17
+132
+0
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_Hire_Date_YYYY:126
+3
+16
+15
+132
+0
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_Hire_Date_MM:104
+3
+33
+15
+132
+0
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_Hire_Date_DD:125
+3
+50
+17
+132
+0
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_Hire_Date_YYYY:126
+5
+16
+13
+132
+0
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_Zip_plus_4:100
+333
+Employee_Detail_Record
+Detail_Record
+12
+0
+18
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88
+18
+/New Hire File:292/Default_record:292/Detail_Record:137
+32772
+9
+/New Hire File - ID:33/Employer_Header_Record:7/Employee_Detail_Record:8
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "1S"
+RTM_SRC_Employee_Detail_Record_0002
+0
+20
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/Record_ID:89
+20
+/New Hire File:292/Default_record:292/Detail_Record:137/Record_Identifier:138
+32772
+10
+/New Hire File - ID:33/Employer_Header_Record:7/Employee_Detail_Record:8
+
+
+0
+0
+1
+0
+333
+333
+20
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_SSN:123
+20
+/New Hire File:292/Default_record:292/Detail_Record:137/EE_SSN:281
+32772
+11
+/New Hire File - ID:33/Employer_Header_Record:7/Employee_Detail_Record:8
+
+
+0
+0
+1
+0
+333
+333
+20
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_Last_Name:116
+20
+/New Hire File:292/Default_record:292/Detail_Record:137/EE_Last_Name:236
+32772
+12
+/New Hire File - ID:33/Employer_Header_Record:7/Employee_Detail_Record:8
+
+
+0
+0
+1
+0
+333
+333
+20
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_First_Name:93
+20
+/New Hire File:292/Default_record:292/Detail_Record:137/EE_First_Name:238
+32772
+13
+/New Hire File - ID:33/Employer_Header_Record:7/Employee_Detail_Record:8
+
+
+0
+0
+1
+0
+333
+333
+8228
+/New Hire File - ID:33/MI:3
+20
+/New Hire File:292/Default_record:292/Detail_Record:137/EE_Middle_Initial:240
+32772
+14
+/New Hire File - ID:33/Employer_Header_Record:7/Employee_Detail_Record:8
+
+
+0
+0
+1
+0
+333
+333
+8228
+/New Hire File - ID:33/Hire_Date:2
+20
+/New Hire File:292/Default_record:292/Detail_Record:137/EE_Hire_Date:283
+32772
+15
+/New Hire File - ID:33/Employer_Header_Record:7/Employee_Detail_Record:8
+
+
+0
+0
+1
+0
+333
+333
+20
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_Address_1:95
+20
+/New Hire File:292/Default_record:292/Detail_Record:137/EE_Address_1:143
+32772
+16
+/New Hire File - ID:33/Employer_Header_Record:7/Employee_Detail_Record:8
+
+
+0
+0
+1
+0
+333
+333
+20
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_City:97
+20
+/New Hire File:292/Default_record:292/Detail_Record:137/EE_City:144
+32772
+17
+/New Hire File - ID:33/Employer_Header_Record:7/Employee_Detail_Record:8
+
+
+0
+0
+1
+0
+333
+333
+20
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_State:98
+20
+/New Hire File:292/Default_record:292/Detail_Record:137/EE_State:145
+32772
+18
+/New Hire File - ID:33/Employer_Header_Record:7/Employee_Detail_Record:8
+
+
+0
+0
+1
+0
+333
+333
+20
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_Zip:99
+20
+/New Hire File:292/Default_record:292/Detail_Record:137/EE_Zip_Code:146
+32772
+19
+/New Hire File - ID:33/Employer_Header_Record:7/Employee_Detail_Record:8
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN ../../Employer_Header_Record/ER_FEIN
+RTM_SRC_Employee_Detail_Record_0003
+1
+1
+7
+36
+132
+0
+/New Hire:155/Employer_Header_Record:31/ER_FEIN:36
+20
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/Record_ID:89
+20
+/New Hire File:292/Default_record:292/Detail_Record:137/ER_FEIN:279
+32772
+20
+/New Hire File - ID:33/Employer_Header_Record:7/Employee_Detail_Record:8
+
+
+0
+0
+1
+0
+333
+333
+4132
+/New Hire File - ID:33/LIT_0:1
+20
+/New Hire File:292/Default_record:292/Detail_Record:137/EE_Work_State_Code:215
+32770
+21
+/New Hire File - ID:33/Employer_Header_Record:7
+
+SLN Based on <NULL UNIT>
+0
+0
+0
+333
+333
+444
+1
+Let erzip = "-"++ER_Zip_plus_4
+RTM__EACH_0004
+1
+1
+17
+13
+132
+0
+/New Hire:155/Employer_Header_Record:31/ER_Zip_plus_4:47
+333
+
+ER_Record
+9
+0
+0
+NULL_REF
+18
+/New Hire File:292/Default_record:292/ER_Record:266
+32772
+22
+/New Hire File - ID:33/Employer_Header_Record:7/:21
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "2S"
+RTM_SRC__0005
+0
+20
+/New Hire:155/Employer_Header_Record:31/Record_ID:33
+20
+/New Hire File:292/Default_record:292/ER_Record:266/Record_Identifier:267
+32772
+23
+/New Hire File - ID:33/Employer_Header_Record:7/:21
+
+
+0
+0
+1
+0
+333
+333
+20
+/New Hire:155/Employer_Header_Record:31/ER_State_Unemployment_ID:57
+20
+/New Hire File:292/Default_record:292/ER_Record:266/ID_SUI_Number:275
+32772
+24
+/New Hire File - ID:33/Employer_Header_Record:7/:21
+
+
+0
+0
+1
+0
+333
+333
+20
+/New Hire:155/Employer_Header_Record:31/ER_FEIN:36
+20
+/New Hire File:292/Default_record:292/ER_Record:266/ER_FEIN:277
+32772
+25
+/New Hire File - ID:33/Employer_Header_Record:7/:21
+
+
+0
+0
+1
+0
+333
+333
+20
+/New Hire:155/Employer_Header_Record:31/ER_Name:37
+20
+/New Hire File:292/Default_record:292/ER_Record:266/ER_Name:268
+32772
+26
+/New Hire File - ID:33/Employer_Header_Record:7/:21
+
+
+0
+0
+1
+0
+333
+333
+20
+/New Hire:155/Employer_Header_Record:31/ER_Address_1:39
+20
+/New Hire File:292/Default_record:292/ER_Record:266/ER_Address:287
+32772
+27
+/New Hire File - ID:33/Employer_Header_Record:7/:21
+
+
+0
+0
+1
+0
+333
+333
+20
+/New Hire:155/Employer_Header_Record:31/ER_City:43
+20
+/New Hire File:292/Default_record:292/ER_Record:266/ER_City:288
+32772
+28
+/New Hire File - ID:33/Employer_Header_Record:7/:21
+
+
+0
+0
+1
+0
+333
+333
+20
+/New Hire:155/Employer_Header_Record:31/ER_State:44
+20
+/New Hire File:292/Default_record:292/ER_Record:266/ER_State:289
+32772
+29
+/New Hire File - ID:33/Employer_Header_Record:7/:21
+
+
+0
+0
+1
+0
+333
+333
+20
+/New Hire:155/Employer_Header_Record:31/ER_Zip:45
+20
+/New Hire File:292/Default_record:292/ER_Record:266/ER_Zip:290
+32772
+30
+/New Hire File - ID:33/Employer_Header_Record:7/:21
+
+
+0
+0
+1
+0
+333
+333
+8228
+/New Hire File - ID:33/erzip:6
+20
+/New Hire File:292/Default_record:292/ER_Record:266/ER_Zip_Extension:291
+$RTIME:END
+@0200N
+33
+7
+NULL_REF
+New Hire File - ID
+New Hire File - ID
+0
+2048
+nh_id.vw1
+nh_id.vw2
+0
+0
+6
+4132
+5
+/New Hire File - ID:7
+LIT_0
+16
+0
+0
+8228
+3
+/New Hire File - ID:7
+Hire_Date
+desc
+0
+0
+8228
+2
+/New Hire File - ID:7
+MI
+desc
+0
+0
+8228
+4
+/New Hire File - ID:7
+YR
+desc
+0
+0
+8228
+6
+/New Hire File - ID:7
+eezip
+desc
+0
+0
+8228
+7
+/New Hire File - ID:7
+erzip
+desc
+0
+0
+21
+36
+1
+/New Hire File - ID:7
+Map Link
+
+0
+0
+
+"1S"
+1
+0
+0
+6
+Let MI = left(EE_Middle_Name,1)
+Let YR = right(EE_Hire_Date_YYYY,2)
+Let Hire_Date = EE_Hire_Date_MM++EE_Hire_Date_DD++EE_Hire_Date_YYYY
+
+Let eezip ="-"++EE_Zip_plus_4
+
+0
+132
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43/Record_ID:44
+132
+/New Hire File - ID:56/Default_record:1/Detail_Record:2/Record_Identifier:3
+36
+1
+/New Hire File - ID:7
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43/EE_SSN:57
+132
+/New Hire File - ID:56/Default_record:1/Detail_Record:2/EE_SSN:4
+36
+1
+/New Hire File - ID:7
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43/EE_Last_Name:49
+132
+/New Hire File - ID:56/Default_record:1/Detail_Record:2/EE_Last_Name:5
+36
+1
+/New Hire File - ID:7
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43/EE_First_Name:47
+132
+/New Hire File - ID:56/Default_record:1/Detail_Record:2/EE_First_Name:6
+36
+1
+/New Hire File - ID:7
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+8228
+/New Hire File - ID:7/MI:2
+132
+/New Hire File - ID:56/Default_record:1/Detail_Record:2/EE_Middle_Initial:7
+36
+1
+/New Hire File - ID:7
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+8228
+/New Hire File - ID:7/Hire_Date:3
+132
+/New Hire File - ID:56/Default_record:1/Detail_Record:2/EE_Hire_Date:8
+36
+1
+/New Hire File - ID:7
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43/EE_Address_1:50
+132
+/New Hire File - ID:56/Default_record:1/Detail_Record:2/EE_Address_1:9
+36
+1
+/New Hire File - ID:7
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43/EE_City:53
+132
+/New Hire File - ID:56/Default_record:1/Detail_Record:2/EE_City:10
+36
+1
+/New Hire File - ID:7
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43/EE_State:54
+132
+/New Hire File - ID:56/Default_record:1/Detail_Record:2/EE_State:11
+36
+1
+/New Hire File - ID:7
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43/EE_Zip:55
+132
+/New Hire File - ID:56/Default_record:1/Detail_Record:2/EE_Zip_Code:12
+36
+1
+/New Hire File - ID:7
+Map Link
+
+0
+0
+
+../../Employer_Header_Record/ER_FEIN
+1
+0
+0
+0
+0
+132
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43/Record_ID:44
+132
+/New Hire File - ID:56/Default_record:1/Detail_Record:2/ER_FEIN:14
+36
+1
+/New Hire File - ID:7
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+4132
+/New Hire File - ID:7/LIT_0:5
+132
+/New Hire File - ID:56/Default_record:1/Detail_Record:2/EE_Work_State_Code:16
+36
+1
+/New Hire File - ID:7
+Map Link
+
+0
+0
+
+"2S"
+1
+0
+0
+0
+0
+132
+/New Hire File - ID:80/Employer_Header_Record:20/Record_ID:21
+132
+/New Hire File - ID:56/Default_record:1/ER_Record:18/Record_Identifier:19
+36
+1
+/New Hire File - ID:7
+Map Link
+
+0
+0
+
+
+1
+0
+0
+1
+Let erzip = "-"++ER_Zip_plus_4
+0
+132
+/New Hire File - ID:80/Employer_Header_Record:20/ER_State_Unemployment_ID:37
+132
+/New Hire File - ID:56/Default_record:1/ER_Record:18/ID_SUI_Number:20
+36
+1
+/New Hire File - ID:7
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/New Hire File - ID:80/Employer_Header_Record:20/ER_FEIN:24
+132
+/New Hire File - ID:56/Default_record:1/ER_Record:18/ER_FEIN:21
+36
+1
+/New Hire File - ID:7
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/New Hire File - ID:80/Employer_Header_Record:20/ER_Name:25
+132
+/New Hire File - ID:56/Default_record:1/ER_Record:18/ER_Name:22
+36
+1
+/New Hire File - ID:7
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/New Hire File - ID:80/Employer_Header_Record:20/ER_Address_1:27
+132
+/New Hire File - ID:56/Default_record:1/ER_Record:18/ER_Address:23
+36
+1
+/New Hire File - ID:7
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/New Hire File - ID:80/Employer_Header_Record:20/ER_City:29
+132
+/New Hire File - ID:56/Default_record:1/ER_Record:18/ER_City:24
+36
+1
+/New Hire File - ID:7
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/New Hire File - ID:80/Employer_Header_Record:20/ER_State:30
+132
+/New Hire File - ID:56/Default_record:1/ER_Record:18/ER_State:25
+36
+1
+/New Hire File - ID:7
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/New Hire File - ID:80/Employer_Header_Record:20/ER_Zip:31
+132
+/New Hire File - ID:56/Default_record:1/ER_Record:18/ER_Zip:26
+36
+1
+/New Hire File - ID:7
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+8228
+/New Hire File - ID:7/erzip:7
+132
+/New Hire File - ID:56/Default_record:1/ER_Record:18/ER_Zip_Extension:27
+@0200N
+129
+80
+NULL_REF
+New Hire File - ID
+View of: New Hire File - ID
+0
+0
+17
+nhsrc.adf
+nh_id.vw1
+3
+130
+1
+/New Hire File - ID:80
+File_Header
+
+0
+16
+/New Hire:155/File_Header:2
+
+1
+18
+132
+2
+/New Hire File - ID:80/File_Header:1
+Record_ID
+
+0
+16
+/New Hire:155/File_Header:2/Record_ID:3
+
+
+132
+3
+/New Hire File - ID:80/File_Header:1
+Partner_ID
+
+0
+16
+/New Hire:155/File_Header:2/Partner_ID:4
+
+
+132
+4
+/New Hire File - ID:80/File_Header:1
+Process_Date_MM
+
+0
+16
+/New Hire:155/File_Header:2/Process_Date_MM:5
+
+
+132
+5
+/New Hire File - ID:80/File_Header:1
+Process_Date_DD
+
+0
+16
+/New Hire:155/File_Header:2/Process_Date_DD:7
+
+
+132
+6
+/New Hire File - ID:80/File_Header:1
+Process_Date_YYYY
+
+0
+16
+/New Hire:155/File_Header:2/Process_Date_YYYY:8
+
+
+132
+7
+/New Hire File - ID:80/File_Header:1
+Batch_Number
+
+0
+16
+/New Hire:155/File_Header:2/Batch_Number:9
+
+
+132
+8
+/New Hire File - ID:80/File_Header:1
+File_Count_ER
+
+0
+16
+/New Hire:155/File_Header:2/File_Count_ER:10
+
+
+132
+9
+/New Hire File - ID:80/File_Header:1
+File_Count_New_Hires
+
+0
+16
+/New Hire:155/File_Header:2/File_Count_New_Hires:12
+
+
+132
+10
+/New Hire File - ID:80/File_Header:1
+Transmitter_FEIN
+
+0
+16
+/New Hire:155/File_Header:2/Transmitter_FEIN:13
+
+
+132
+11
+/New Hire File - ID:80/File_Header:1
+Transmitter_Name
+
+0
+16
+/New Hire:155/File_Header:2/Transmitter_Name:15
+
+
+132
+12
+/New Hire File - ID:80/File_Header:1
+Transmitter_Address
+
+0
+16
+/New Hire:155/File_Header:2/Transmitter_Address:17
+
+
+132
+13
+/New Hire File - ID:80/File_Header:1
+Transmitter_City
+
+0
+16
+/New Hire:155/File_Header:2/Transmitter_City:19
+
+
+132
+14
+/New Hire File - ID:80/File_Header:1
+Transmitter_State
+
+0
+16
+/New Hire:155/File_Header:2/Transmitter_State:21
+
+
+132
+15
+/New Hire File - ID:80/File_Header:1
+Transmitter_Zip_plus_4
+
+0
+16
+/New Hire:155/File_Header:2/Transmitter_Zip_plus_4:23
+
+
+132
+16
+/New Hire File - ID:80/File_Header:1
+Transmitter_Contact_Name
+
+0
+16
+/New Hire:155/File_Header:2/Transmitter_Contact_Name:25
+
+
+132
+17
+/New Hire File - ID:80/File_Header:1
+Transmitter_Phone_Number
+
+0
+16
+/New Hire:155/File_Header:2/Transmitter_Phone_Number:27
+
+
+132
+18
+/New Hire File - ID:80/File_Header:1
+Transmitter_Fax_Number
+
+0
+16
+/New Hire:155/File_Header:2/Transmitter_Fax_Number:29
+
+
+132
+19
+/New Hire File - ID:80/File_Header:1
+Carriage_Return
+
+0
+16
+/New Hire:155/File_Header:2/Carriage_Return:111
+
+
+130
+20
+/New Hire File - ID:80
+Employer_Header_Record
+
+0
+16
+/New Hire:155/Employer_Header_Record:31
+
+1
+24
+132
+21
+/New Hire File - ID:80/Employer_Header_Record:20
+Record_ID
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/Record_ID:33
+
+
+132
+22
+/New Hire File - ID:80/Employer_Header_Record:20
+Paycor_Client_Number
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/Paycor_Client_Number:34
+
+
+132
+23
+/New Hire File - ID:80/Employer_Header_Record:20
+ER_Count_New_Hires
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/ER_Count_New_Hires:35
+
+
+132
+24
+/New Hire File - ID:80/Employer_Header_Record:20
+ER_FEIN
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/ER_FEIN:36
+
+
+132
+25
+/New Hire File - ID:80/Employer_Header_Record:20
+ER_Name
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/ER_Name:37
+
+
+132
+26
+/New Hire File - ID:80/Employer_Header_Record:20
+ER_DBA_Name
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/ER_DBA_Name:38
+
+
+132
+27
+/New Hire File - ID:80/Employer_Header_Record:20
+ER_Address_1
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/ER_Address_1:39
+
+
+132
+28
+/New Hire File - ID:80/Employer_Header_Record:20
+ER_Address_2
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/ER_Address_2:41
+
+
+132
+29
+/New Hire File - ID:80/Employer_Header_Record:20
+ER_City
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/ER_City:43
+
+
+132
+30
+/New Hire File - ID:80/Employer_Header_Record:20
+ER_State
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/ER_State:44
+
+
+132
+31
+/New Hire File - ID:80/Employer_Header_Record:20
+ER_Zip
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/ER_Zip:45
+
+
+132
+32
+/New Hire File - ID:80/Employer_Header_Record:20
+ER_Zip_plus_4
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/ER_Zip_plus_4:47
+
+
+132
+33
+/New Hire File - ID:80/Employer_Header_Record:20
+ER_Postal_Code
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/ER_Postal_Code:49
+
+
+132
+34
+/New Hire File - ID:80/Employer_Header_Record:20
+ER_Country_Name
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/ER_Country_Name:51
+
+
+132
+35
+/New Hire File - ID:80/Employer_Header_Record:20
+ER_Country_Code
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/ER_Country_Code:53
+
+
+132
+36
+/New Hire File - ID:80/Employer_Header_Record:20
+ER_State_ID
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/ER_State_ID:55
+
+
+132
+37
+/New Hire File - ID:80/Employer_Header_Record:20
+ER_State_Unemployment_ID
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/ER_State_Unemployment_ID:57
+
+
+132
+38
+/New Hire File - ID:80/Employer_Header_Record:20
+ER_Phone_Number_Area_Code
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/ER_Phone_Number_Area_Code:59
+
+
+132
+39
+/New Hire File - ID:80/Employer_Header_Record:20
+ER_Phone_Number
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/ER_Phone_Number:61
+
+
+132
+40
+/New Hire File - ID:80/Employer_Header_Record:20
+ER_Contact_Name_First
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/ER_Contact_Name_First:63
+
+
+132
+41
+/New Hire File - ID:80/Employer_Header_Record:20
+ER_Contact_Name_Last
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/ER_Contact_Name_Last:65
+
+
+132
+42
+/New Hire File - ID:80/Employer_Header_Record:20
+Carriage_Return
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/Carriage_Return:113
+
+
+130
+43
+/New Hire File - ID:80/Employer_Header_Record:20
+Employee_Detail_Record
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88
+
+1
+30
+132
+44
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43
+Record_ID
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/Record_ID:89
+
+
+132
+45
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43
+Paycor_Client_Number
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/Paycor_Client_Number:90
+
+
+132
+46
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43
+EE_Number
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_Number:91
+
+
+132
+47
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43
+EE_First_Name
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_First_Name:93
+
+
+132
+48
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43
+EE_Middle_Name
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_Middle_Name:119
+
+
+132
+49
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43
+EE_Last_Name
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_Last_Name:116
+
+
+132
+50
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43
+EE_Address_1
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_Address_1:95
+
+
+132
+51
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43
+EE_Address_2
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_Address_2:96
+
+
+132
+52
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43
+EE_Address_Suite
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_Address_Suite:121
+
+
+132
+53
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43
+EE_City
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_City:97
+
+
+132
+54
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43
+EE_State
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_State:98
+
+
+132
+55
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43
+EE_Zip
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_Zip:99
+
+
+132
+56
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43
+EE_Zip_plus_4
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_Zip_plus_4:100
+
+
+132
+57
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43
+EE_SSN
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_SSN:123
+
+
+132
+58
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43
+EE_Postal_Code
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_Postal_Code:101
+
+
+132
+59
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43
+EE_Country_Name
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_Country_Name:102
+
+
+132
+60
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43
+EE_Country_Code
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_Country_Code:103
+
+
+132
+61
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43
+EE_Hire_Date_MM
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_Hire_Date_MM:104
+
+
+132
+62
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43
+EE_Hire_Date_DD
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_Hire_Date_DD:125
+
+
+132
+63
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43
+EE_Hire_Date_YYYY
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_Hire_Date_YYYY:126
+
+
+132
+64
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43
+EE_Birth_Date_MM
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_Birth_Date_MM:128
+
+
+132
+65
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43
+EE_Birth_Date_DD
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_Birth_Date_DD:130
+
+
+132
+66
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43
+EE_Birth_Date_YYYY
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_Birth_Date_YYYY:131
+
+
+132
+67
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43
+EE_Salary
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_Salary:132
+
+
+132
+68
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43
+EE_Pay_Frequency
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_Pay_Frequency:134
+
+
+132
+69
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43
+EE_State_of_Hire
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_State_of_Hire:105
+
+
+132
+70
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43
+EE_Job_Title
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_Job_Title:106
+
+
+132
+71
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43
+EE_Newhire_Rehire_Indicator
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_Newhire_Rehire_Indicator:107
+
+
+132
+72
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43
+EE_Independent_Contractor_Indicator
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/EE_Independent_Contractor_Indicator:136
+
+
+132
+73
+/New Hire File - ID:80/Employer_Header_Record:20/Employee_Detail_Record:43
+Carriage_Return
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88/Carriage_Return:114
+
+
+130
+74
+/New Hire File - ID:80/Employer_Header_Record:20
+ER_Trailer_Record
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/ER_Trailer_Record:138
+
+1
+2
+132
+75
+/New Hire File - ID:80/Employer_Header_Record:20/ER_Trailer_Record:74
+Record_ID
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/ER_Trailer_Record:138/Record_ID:140
+
+
+132
+76
+/New Hire File - ID:80/Employer_Header_Record:20/ER_Trailer_Record:74
+Carriage_Return
+
+0
+16
+/New Hire:155/Employer_Header_Record:31/ER_Trailer_Record:138/Carriage_Return:142
+
+
+130
+111
+/New Hire File - ID:80
+File_Trailer_Record
+
+0
+16
+/New Hire:155/File_Trailer_Record:146
+
+1
+2
+132
+112
+/New Hire File - ID:80/File_Trailer_Record:111
+Record_ID
+
+0
+16
+/New Hire:155/File_Trailer_Record:146/Record_ID:147
+
+
+132
+113
+/New Hire File - ID:80/File_Trailer_Record:111
+Carriage_Return
+
+0
+16
+/New Hire:155/File_Trailer_Record:146/Carriage_Return:148
+
+
+@0200N
+129
+56
+NULL_REF
+New Hire File - ID
+View of: New Hire File - ID
+0
+0
+17
+nh_id.adf
+nh_id.vw2
+1
+130
+1
+/New Hire File - ID:56
+Default_record
+
+0
+16
+/New Hire File:292/Default_record:292
+
+1
+2
+130
+2
+/New Hire File - ID:56/Default_record:1
+Detail_Record
+
+0
+16
+/New Hire File:292/Default_record:292/Detail_Record:137
+
+1
+15
+132
+3
+/New Hire File - ID:56/Default_record:1/Detail_Record:2
+Record_Identifier
+
+0
+16
+/New Hire File:292/Default_record:292/Detail_Record:137/Record_Identifier:138
+
+
+132
+4
+/New Hire File - ID:56/Default_record:1/Detail_Record:2
+EE_SSN
+
+0
+16
+/New Hire File:292/Default_record:292/Detail_Record:137/EE_SSN:281
+
+
+132
+5
+/New Hire File - ID:56/Default_record:1/Detail_Record:2
+EE_Last_Name
+
+0
+16
+/New Hire File:292/Default_record:292/Detail_Record:137/EE_Last_Name:236
+
+
+132
+6
+/New Hire File - ID:56/Default_record:1/Detail_Record:2
+EE_First_Name
+
+0
+16
+/New Hire File:292/Default_record:292/Detail_Record:137/EE_First_Name:238
+
+
+132
+7
+/New Hire File - ID:56/Default_record:1/Detail_Record:2
+EE_Middle_Initial
+
+0
+16
+/New Hire File:292/Default_record:292/Detail_Record:137/EE_Middle_Initial:240
+
+
+132
+8
+/New Hire File - ID:56/Default_record:1/Detail_Record:2
+EE_Hire_Date
+
+0
+16
+/New Hire File:292/Default_record:292/Detail_Record:137/EE_Hire_Date:283
+
+
+132
+9
+/New Hire File - ID:56/Default_record:1/Detail_Record:2
+EE_Address_1
+
+0
+16
+/New Hire File:292/Default_record:292/Detail_Record:137/EE_Address_1:143
+
+
+132
+10
+/New Hire File - ID:56/Default_record:1/Detail_Record:2
+EE_City
+
+0
+16
+/New Hire File:292/Default_record:292/Detail_Record:137/EE_City:144
+
+
+132
+11
+/New Hire File - ID:56/Default_record:1/Detail_Record:2
+EE_State
+
+0
+16
+/New Hire File:292/Default_record:292/Detail_Record:137/EE_State:145
+
+
+132
+12
+/New Hire File - ID:56/Default_record:1/Detail_Record:2
+EE_Zip_Code
+
+0
+16
+/New Hire File:292/Default_record:292/Detail_Record:137/EE_Zip_Code:146
+
+
+132
+13
+/New Hire File - ID:56/Default_record:1/Detail_Record:2
+EE_Zip_Code_Extension
+
+0
+16
+/New Hire File:292/Default_record:292/Detail_Record:137/EE_Zip_Code_Extension:285
+
+
+132
+14
+/New Hire File - ID:56/Default_record:1/Detail_Record:2
+ER_FEIN
+
+0
+16
+/New Hire File:292/Default_record:292/Detail_Record:137/ER_FEIN:279
+
+
+132
+15
+/New Hire File - ID:56/Default_record:1/Detail_Record:2
+Filler
+
+0
+16
+/New Hire File:292/Default_record:292/Detail_Record:137/Filler:246
+
+
+132
+16
+/New Hire File - ID:56/Default_record:1/Detail_Record:2
+EE_Work_State_Code
+
+0
+16
+/New Hire File:292/Default_record:292/Detail_Record:137/EE_Work_State_Code:215
+
+
+132
+17
+/New Hire File - ID:56/Default_record:1/Detail_Record:2
+Filler_2
+
+0
+16
+/New Hire File:292/Default_record:292/Detail_Record:137/Filler_2:150
+
+
+130
+18
+/New Hire File - ID:56/Default_record:1
+ER_Record
+
+0
+16
+/New Hire File:292/Default_record:292/ER_Record:266
+
+1
+10
+132
+19
+/New Hire File - ID:56/Default_record:1/ER_Record:18
+Record_Identifier
+
+0
+16
+/New Hire File:292/Default_record:292/ER_Record:266/Record_Identifier:267
+
+
+132
+20
+/New Hire File - ID:56/Default_record:1/ER_Record:18
+ID_SUI_Number
+
+0
+16
+/New Hire File:292/Default_record:292/ER_Record:266/ID_SUI_Number:275
+
+
+132
+21
+/New Hire File - ID:56/Default_record:1/ER_Record:18
+ER_FEIN
+
+0
+16
+/New Hire File:292/Default_record:292/ER_Record:266/ER_FEIN:277
+
+
+132
+22
+/New Hire File - ID:56/Default_record:1/ER_Record:18
+ER_Name
+
+0
+16
+/New Hire File:292/Default_record:292/ER_Record:266/ER_Name:268
+
+
+132
+23
+/New Hire File - ID:56/Default_record:1/ER_Record:18
+ER_Address
+
+0
+16
+/New Hire File:292/Default_record:292/ER_Record:266/ER_Address:287
+
+
+132
+24
+/New Hire File - ID:56/Default_record:1/ER_Record:18
+ER_City
+
+0
+16
+/New Hire File:292/Default_record:292/ER_Record:266/ER_City:288
+
+
+132
+25
+/New Hire File - ID:56/Default_record:1/ER_Record:18
+ER_State
+
+0
+16
+/New Hire File:292/Default_record:292/ER_Record:266/ER_State:289
+
+
+132
+26
+/New Hire File - ID:56/Default_record:1/ER_Record:18
+ER_Zip
+
+0
+16
+/New Hire File:292/Default_record:292/ER_Record:266/ER_Zip:290
+
+
+132
+27
+/New Hire File - ID:56/Default_record:1/ER_Record:18
+ER_Zip_Extension
+
+0
+16
+/New Hire File:292/Default_record:292/ER_Record:266/ER_Zip_Extension:291
+
+
+132
+28
+/New Hire File - ID:56/Default_record:1/ER_Record:18
+Filler
+
+0
+16
+/New Hire File:292/Default_record:292/ER_Record:266/Filler:270
+
+
+@0200N
+17
+155
+NULL_REF
+New Hire
+New Hire Source File
+0
+0
+2
+10
+2
+44
+0
+0
+0
+4
+PARTNER
+
+4
+APPKEY1
+
+0
+APPKEY2
+
+0
+APPKEY3
+
+0
+newhire.app
+1
+46
+3
+18
+2
+/New Hire:155
+File_Header
+
+0
+16
+2
+10
+1
+1
+18
+20
+3
+/New Hire:155/File_Header:2
+Record_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+4
+/New Hire:155/File_Header:2
+Partner_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+5
+/New Hire:155/File_Header:2
+Process_Date_MM
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+7
+/New Hire:155/File_Header:2
+Process_Date_DD
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+8
+/New Hire:155/File_Header:2
+Process_Date_YYYY
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+9
+/New Hire:155/File_Header:2
+Batch_Number
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+10
+/New Hire:155/File_Header:2
+File_Count_ER
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+12
+/New Hire:155/File_Header:2
+File_Count_New_Hires
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+13
+/New Hire:155/File_Header:2
+Transmitter_FEIN
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+15
+/New Hire:155/File_Header:2
+Transmitter_Name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+17
+/New Hire:155/File_Header:2
+Transmitter_Address
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+19
+/New Hire:155/File_Header:2
+Transmitter_City
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+21
+/New Hire:155/File_Header:2
+Transmitter_State
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+23
+/New Hire:155/File_Header:2
+Transmitter_Zip_plus_4
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+25
+/New Hire:155/File_Header:2
+Transmitter_Contact_Name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+27
+/New Hire:155/File_Header:2
+Transmitter_Phone_Number
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+29
+/New Hire:155/File_Header:2
+Transmitter_Fax_Number
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+111
+/New Hire:155/File_Header:2
+Carriage_Return
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+31
+/New Hire:155
+Employer_Header_Record
+
+0
+16
+2
+10
+1
+0
+24
+20
+33
+/New Hire:155/Employer_Header_Record:31
+Record_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+34
+/New Hire:155/Employer_Header_Record:31
+Paycor_Client_Number
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+35
+/New Hire:155/Employer_Header_Record:31
+ER_Count_New_Hires
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+36
+/New Hire:155/Employer_Header_Record:31
+ER_FEIN
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+37
+/New Hire:155/Employer_Header_Record:31
+ER_Name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+38
+/New Hire:155/Employer_Header_Record:31
+ER_DBA_Name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+39
+/New Hire:155/Employer_Header_Record:31
+ER_Address_1
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+41
+/New Hire:155/Employer_Header_Record:31
+ER_Address_2
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+43
+/New Hire:155/Employer_Header_Record:31
+ER_City
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+44
+/New Hire:155/Employer_Header_Record:31
+ER_State
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+45
+/New Hire:155/Employer_Header_Record:31
+ER_Zip
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+47
+/New Hire:155/Employer_Header_Record:31
+ER_Zip_plus_4
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+49
+/New Hire:155/Employer_Header_Record:31
+ER_Postal_Code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+51
+/New Hire:155/Employer_Header_Record:31
+ER_Country_Name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+53
+/New Hire:155/Employer_Header_Record:31
+ER_Country_Code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+55
+/New Hire:155/Employer_Header_Record:31
+ER_State_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+57
+/New Hire:155/Employer_Header_Record:31
+ER_State_Unemployment_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+59
+/New Hire:155/Employer_Header_Record:31
+ER_Phone_Number_Area_Code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+61
+/New Hire:155/Employer_Header_Record:31
+ER_Phone_Number
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+63
+/New Hire:155/Employer_Header_Record:31
+ER_Contact_Name_First
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+65
+/New Hire:155/Employer_Header_Record:31
+ER_Contact_Name_Last
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+113
+/New Hire:155/Employer_Header_Record:31
+Carriage_Return
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+88
+/New Hire:155/Employer_Header_Record:31
+Employee_Detail_Record
+
+0
+16
+2
+10
+1
+0
+34
+20
+89
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88
+Record_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+90
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88
+Paycor_Client_Number
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+91
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88
+EE_Number
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+93
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88
+EE_First_Name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+119
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88
+EE_Middle_Name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+116
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88
+EE_Last_Name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+95
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88
+EE_Address_1
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+96
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88
+EE_Address_2
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+121
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88
+EE_Address_Suite
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+97
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88
+EE_City
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+98
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88
+EE_State
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+99
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88
+EE_Zip
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+100
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88
+EE_Zip_plus_4
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+123
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88
+EE_SSN
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+101
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88
+EE_Postal_Code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+102
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88
+EE_Country_Name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+103
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88
+EE_Country_Code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+104
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88
+EE_Hire_Date_MM
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+125
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88
+EE_Hire_Date_DD
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+126
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88
+EE_Hire_Date_YYYY
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+128
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88
+EE_Birth_Date_MM
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+130
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88
+EE_Birth_Date_DD
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+131
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88
+EE_Birth_Date_YYYY
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+132
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88
+EE_Salary
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+134
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88
+EE_Pay_Frequency
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+105
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88
+EE_State_of_Hire
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+106
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88
+EE_Job_Title
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+107
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88
+EE_Newhire_Rehire_Indicator
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+136
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88
+EE_Independent_Contractor_Indicator
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+150
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88
+Dependent_Ins_Eligibility_Indicator
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+152
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88
+Eligible_Dependent_Ins_Date_MM
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+154
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88
+Eligible_Dependent_Ins_Date_DD
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+155
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88
+Eligible_Dependent_Ins_Date_YYYY
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+114
+/New Hire:155/Employer_Header_Record:31/Employee_Detail_Record:88
+Carriage_Return
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+138
+/New Hire:155/Employer_Header_Record:31
+ER_Trailer_Record
+
+0
+16
+2
+10
+1
+0
+2
+20
+140
+/New Hire:155/Employer_Header_Record:31/ER_Trailer_Record:138
+Record_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+142
+/New Hire:155/Employer_Header_Record:31/ER_Trailer_Record:138
+Carriage_Return
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+146
+/New Hire:155
+File_Trailer_Record
+
+0
+16
+2
+10
+1
+1
+2
+20
+147
+/New Hire:155/File_Trailer_Record:146
+Record_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+148
+/New Hire:155/File_Trailer_Record:146
+Carriage_Return
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+@0200N
+17
+292
+NULL_REF
+New Hire File
+New Hire File - ID 
+0
+0
+2
+10
+1
+0
+10
+0
+0
+0
+4
+PARTNER
+
+0
+APPKEY1
+
+0
+APPKEY2
+
+0
+APPKEY3
+
+0
+newhire.app
+1
+46
+1
+18
+292
+/New Hire File:292
+Default_record
+
+0
+16
+0
+0
+0
+2
+18
+137
+/New Hire File:292/Default_record:292
+Detail_Record
+
+0
+16
+2
+10
+1
+0
+15
+20
+138
+/New Hire File:292/Default_record:292/Detail_Record:137
+Record_Identifier
+
+0
+16
+0
+1
+0
+2
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+281
+/New Hire File:292/Default_record:292/Detail_Record:137
+EE_SSN
+
+0
+16
+0
+1
+0
+9
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+236
+/New Hire File:292/Default_record:292/Detail_Record:137
+EE_Last_Name
+
+0
+16
+0
+1
+0
+20
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+238
+/New Hire File:292/Default_record:292/Detail_Record:137
+EE_First_Name
+
+0
+16
+0
+1
+0
+15
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+240
+/New Hire File:292/Default_record:292/Detail_Record:137
+EE_Middle_Initial
+
+0
+16
+0
+1
+0
+1
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+283
+/New Hire File:292/Default_record:292/Detail_Record:137
+EE_Hire_Date
+
+0
+16
+0
+1
+0
+8
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+143
+/New Hire File:292/Default_record:292/Detail_Record:137
+EE_Address_1
+
+0
+16
+0
+1
+0
+29
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+144
+/New Hire File:292/Default_record:292/Detail_Record:137
+EE_City
+
+0
+16
+0
+1
+0
+18
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+145
+/New Hire File:292/Default_record:292/Detail_Record:137
+EE_State
+
+0
+16
+0
+1
+0
+2
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+146
+/New Hire File:292/Default_record:292/Detail_Record:137
+EE_Zip_Code
+
+0
+16
+0
+1
+0
+5
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+285
+/New Hire File:292/Default_record:292/Detail_Record:137
+EE_Zip_Code_Extension
+
+0
+16
+0
+1
+0
+5
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+279
+/New Hire File:292/Default_record:292/Detail_Record:137
+ER_FEIN
+
+0
+16
+0
+1
+0
+9
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+246
+/New Hire File:292/Default_record:292/Detail_Record:137
+Filler
+
+0
+16
+0
+1
+0
+1
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+215
+/New Hire File:292/Default_record:292/Detail_Record:137
+EE_Work_State_Code
+
+0
+16
+0
+1
+0
+2
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+150
+/New Hire File:292/Default_record:292/Detail_Record:137
+Filler_2
+
+0
+16
+0
+1
+0
+2
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+266
+/New Hire File:292/Default_record:292
+ER_Record
+
+0
+16
+2
+10
+1
+1
+10
+20
+267
+/New Hire File:292/Default_record:292/ER_Record:266
+Record_Identifier
+
+0
+16
+0
+1
+0
+2
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+275
+/New Hire File:292/Default_record:292/ER_Record:266
+ID_SUI_Number
+
+0
+16
+0
+1
+0
+10
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+277
+/New Hire File:292/Default_record:292/ER_Record:266
+ER_FEIN
+
+0
+16
+0
+1
+0
+9
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+268
+/New Hire File:292/Default_record:292/ER_Record:266
+ER_Name
+
+0
+16
+0
+1
+0
+20
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+287
+/New Hire File:292/Default_record:292/ER_Record:266
+ER_Address
+
+0
+16
+0
+1
+0
+29
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+288
+/New Hire File:292/Default_record:292/ER_Record:266
+ER_City
+
+0
+16
+0
+1
+0
+18
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+289
+/New Hire File:292/Default_record:292/ER_Record:266
+ER_State
+
+0
+16
+0
+1
+0
+2
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+290
+/New Hire File:292/Default_record:292/ER_Record:266
+ER_Zip
+
+0
+16
+0
+1
+0
+5
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+291
+/New Hire File:292/Default_record:292/ER_Record:266
+ER_Zip_Extension
+
+0
+16
+0
+1
+0
+5
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+270
+/New Hire File:292/Default_record:292/ER_Record:266
+Filler
+
+0
+16
+0
+1
+0
+28
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+END DATA
+
+                        
