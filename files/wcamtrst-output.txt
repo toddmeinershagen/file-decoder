@@ -1,0 +1,5388 @@
+BEGIN DATA
+objects|9
+RTM|wcamtrst|macro\wcamtrst.rtm|@0200N|14755
+MAP|wcamtrst|map\wcamtrst.map|@0200N|8644
+VW1|wcamtrst|map\wcamtrst.vw1|@0200N|8259
+VW2|wcamtrst|map\wcamtrst.vw2|@0200N|5067
+SRC_ADF|wcasrc|map\app\wcasrc.adf||6125
+DST_ADF|wcamtrst|map\app\wcamtrst.adf||3879
+TST_APP||||0
+UNKNOWN||||0
+FLD||||0
+;----------------------------------------
+;
+; spEDI*map 2.0 - MPL  code generator, Rel r3.0EV
+;
+; User: <not available>    Date: Thu Jul 11 13:18:52 2019
+;
+; Map Definition: Workers Comp AmTrust (Workers Comp File)
+;
+;                            Source       Destination         
+;                            ------       -----------         
+;        Name:    Workers Comp file ===>> AmTrust WCA File    
+;        Desc:    Workers Comp file       Workers comp file   
+; EDI Version:                                                
+;    EDI Desc:                                                
+;
+;----------------------------------------
+
+;----------------------------------------
+;
+; User code: Sln / Dln conditionals, FEL Code
+;
+;----------------------------------------
+let RTM_SRC_Batch_Header_0001(  ) = {
+RETURN "Version"
+}
+let RTM_SRC_Batch_Header_0002(  ) = {
+RETURN "Activity"
+}
+let RTM_SRC_Batch_Header_0003(  ) = {
+RETURN "Error ID"
+}
+let RTM_SRC_Batch_Header_0004(  ) = {
+RETURN "Payroll Company ID"
+}
+let RTM_SRC_Batch_Header_0005(  ) = {
+RETURN "Policy"
+}
+let RTM_SRC_Batch_Header_0006(  ) = {
+RETURN "Insured Name"
+}
+let RTM_SRC_Batch_Header_0007(  ) = {
+RETURN "Policy  Effective Date"
+}
+let RTM_SRC_Batch_Header_0008(  ) = {
+RETURN "State"
+}
+let RTM_SRC_Batch_Header_0009(  ) = {
+RETURN "Class Code"
+}
+let RTM_SRC_Batch_Header_0010(  ) = {
+RETURN "Payroll Period Start"
+}
+let RTM_SRC_Batch_Header_0011(  ) = {
+RETURN "Payroll Period End"
+}
+let RTM_SRC_Batch_Header_0012(  ) = {
+RETURN "Check Date"
+}
+let RTM_SRC_Batch_Header_0013(  ) = {
+RETURN "Gross Payroll"
+}
+let RTM_SRC_Batch_Header_0014(  ) = {
+RETURN "Excluded Payroll"
+}
+let RTM_SRC_Batch_Header_0015(  ) = {
+RETURN "Subject Payroll"
+}
+let RTM_SRC_Batch_Header_0016(  ) = {
+RETURN "Net Rate"
+}
+let RTM_SRC_Batch_Header_0017(  ) = {
+RETURN "Premium Paid"
+}
+let RTM_SRC_Batch_Header_0018(  ) = {
+RETURN "Scheduled Desc"
+}
+let RTM_SRC_Batch_Header_0019(  ) = {
+RETURN "Insured FEIN"
+}
+let RTM_SRC_Batch_Header_0020(  ) = {
+RETURN "Client ID"
+}
+let RTM_SRC_Batch_Header_0021(  ) = {
+RETURN "Location Code"
+}
+let RTM_Detail_Record_EACH_0022( RTM_p0, RTM_p1, RTM_p2, RTM_p3, RTM_p4, RTM_p5, RTM_p6, RTM_p7, RTM_p8, RTM_p9, RTM_p10, RTM_p11 ) = {
+Let BDMM = left(right(RTM_p0,4),2)
+Let BDDD = right(RTM_p1,2)
+Let BDYYYY = left(RTM_p2,4)
+Let Begin_Dt = BDMM++"/"++BDDD++"/"++BDYYYY
+
+Let EDMM = left(right(RTM_p3,4),2)
+Let EDDD = right(RTM_p4,2)
+Let EDYYYY = left(RTM_p5,4)
+Let End_Dt = EDMM++"/"++EDDD++"/"++EDYYYY
+
+Let CDMM = left(right(RTM_p6,4),2)
+Let CDDD = right(RTM_p7,2)
+Let CDYYYY = left(RTM_p8,4)
+Let Check_Dt = CDMM++"/"++CDDD++"/"++CDYYYY
+Let E_MM = right(left(RTM_p9,6),2)
+Let E_DD = right(RTM_p10,2)
+Let E_YYYY = left(RTM_p11,4)
+
+Let E_Date = E_MM++"/"++E_DD++"/"++E_YYYY
+}
+let RTM_SRC_Detail_Record_0023(  ) = {
+RETURN "Payo Summary 1.0.0"
+}
+let RTM_SRC_Detail_Record_0024(  ) = {
+RETURN "Transmission"
+}
+let RTM_SRC_Detail_Record_0025(  ) = {
+RETURN "24"
+}
+let RTM_SRC_Detail_Record_0026(  ) = {
+RETURN E_Date
+}
+
+;----------------------------------------
+
+
+;----------------------------------------
+;
+; Driver code: for alpha this will manually
+; load the data file and the map definition.
+; Eventually this will be replaced with the
+; AppScan inbound/outbound queue support.
+;
+; (AppScan will also provide the name of the batch file
+; but until it is online, we'll have to make do
+; with deriving a name from the map-def: 'outbound\wcamtrst.dat'.)
+;
+;----------------------------------------
+
+LET RTM_RESULT = RUN_MAP("outbound\wcamtrst.dat")
+IF RTM_RESULT <> 1 THEN
+   ECHO "Unable to test map."
+   END 1
+ENDIF
+ECHO "Macro Workers Comp AmTrust completed."
+END 0
+$RTIME:BEGIN
+@0200N
+33
+64
+NULL_REF
+Workers Comp AmTrust
+Workers Comp File
+0
+2048
+17
+wcasrc.adf
+17
+wcamtrst.adf
+0
+0
+20
+8228
+1
+/Workers Comp AmTrust:64
+BDDD
+desc
+0
+0
+8228
+2
+/Workers Comp AmTrust:64
+BDMM
+desc
+0
+0
+8228
+3
+/Workers Comp AmTrust:64
+BDYYYY
+desc
+0
+0
+8228
+4
+/Workers Comp AmTrust:64
+Begin_Dt
+desc
+0
+0
+8228
+5
+/Workers Comp AmTrust:64
+CDDD
+desc
+0
+0
+8228
+6
+/Workers Comp AmTrust:64
+CDMM
+desc
+0
+0
+8228
+7
+/Workers Comp AmTrust:64
+CDYYYY
+desc
+0
+0
+8228
+8
+/Workers Comp AmTrust:64
+Check_Dt
+desc
+0
+0
+8228
+9
+/Workers Comp AmTrust:64
+Date
+desc
+0
+0
+8228
+10
+/Workers Comp AmTrust:64
+EDDD
+desc
+0
+0
+8228
+11
+/Workers Comp AmTrust:64
+EDMM
+desc
+0
+0
+8228
+12
+/Workers Comp AmTrust:64
+EDYYYY
+desc
+0
+0
+8228
+13
+/Workers Comp AmTrust:64
+E_DD
+desc
+0
+0
+8228
+14
+/Workers Comp AmTrust:64
+E_Date
+desc
+0
+0
+8228
+15
+/Workers Comp AmTrust:64
+E_MM
+desc
+0
+0
+8228
+16
+/Workers Comp AmTrust:64
+E_YYYY
+desc
+0
+0
+8228
+17
+/Workers Comp AmTrust:64
+End_Dt
+desc
+0
+0
+8228
+18
+/Workers Comp AmTrust:64
+Month
+desc
+0
+0
+8228
+19
+/Workers Comp AmTrust:64
+Month_Year
+desc
+0
+0
+8228
+20
+/Workers Comp AmTrust:64
+Year
+desc
+0
+0
+2
+32770
+21
+/Workers Comp AmTrust:64
+Batch_Header
+SLN Based on Batch_Header(View container)
+0
+0
+0
+333
+333
+333
+333
+Batch_Header
+Header_2
+21
+0
+18
+/Workers Comp file:123/Batch_Header:7
+18
+/AmTrust WCA File:98/Header_2:22
+32772
+22
+/Workers Comp AmTrust:64/Batch_Header:21
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "Version"
+RTM_SRC_Batch_Header_0001
+0
+20
+/Workers Comp file:123/Batch_Header:7/Record_ID:9
+20
+/AmTrust WCA File:98/Header_2:22/Version:84
+32772
+23
+/Workers Comp AmTrust:64/Batch_Header:21
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "Activity"
+RTM_SRC_Batch_Header_0002
+0
+20
+/Workers Comp file:123/Batch_Header:7/Record_ID:9
+20
+/AmTrust WCA File:98/Header_2:22/Activity:83
+32772
+24
+/Workers Comp AmTrust:64/Batch_Header:21
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "Error ID"
+RTM_SRC_Batch_Header_0003
+0
+20
+/Workers Comp file:123/Batch_Header:7/Record_ID:9
+20
+/AmTrust WCA File:98/Header_2:22/Error_ID:82
+32772
+25
+/Workers Comp AmTrust:64/Batch_Header:21
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "Payroll Company ID"
+RTM_SRC_Batch_Header_0004
+0
+20
+/Workers Comp file:123/Batch_Header:7/Record_ID:9
+20
+/AmTrust WCA File:98/Header_2:22/Payroll_Comp_ID:81
+32772
+26
+/Workers Comp AmTrust:64/Batch_Header:21
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "Policy"
+RTM_SRC_Batch_Header_0005
+0
+20
+/Workers Comp file:123/Batch_Header:7/Record_ID:9
+20
+/AmTrust WCA File:98/Header_2:22/Policy:24
+32772
+27
+/Workers Comp AmTrust:64/Batch_Header:21
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "Insured Name"
+RTM_SRC_Batch_Header_0006
+0
+20
+/Workers Comp file:123/Batch_Header:7/Record_ID:9
+20
+/AmTrust WCA File:98/Header_2:22/Insured_Name:26
+32772
+28
+/Workers Comp AmTrust:64/Batch_Header:21
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "Policy  Effective Date"
+RTM_SRC_Batch_Header_0007
+0
+20
+/Workers Comp file:123/Batch_Header:7/Record_ID:9
+20
+/AmTrust WCA File:98/Header_2:22/Policy_Eff_Date:27
+32772
+29
+/Workers Comp AmTrust:64/Batch_Header:21
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "State"
+RTM_SRC_Batch_Header_0008
+0
+20
+/Workers Comp file:123/Batch_Header:7/Record_ID:9
+20
+/AmTrust WCA File:98/Header_2:22/State:28
+32772
+30
+/Workers Comp AmTrust:64/Batch_Header:21
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "Class Code"
+RTM_SRC_Batch_Header_0009
+0
+20
+/Workers Comp file:123/Batch_Header:7/Record_ID:9
+20
+/AmTrust WCA File:98/Header_2:22/Class:30
+32772
+31
+/Workers Comp AmTrust:64/Batch_Header:21
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "Payroll Period Start"
+RTM_SRC_Batch_Header_0010
+0
+20
+/Workers Comp file:123/Batch_Header:7/Record_ID:9
+20
+/AmTrust WCA File:98/Header_2:22/Begin_Date:66
+32772
+32
+/Workers Comp AmTrust:64/Batch_Header:21
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "Payroll Period End"
+RTM_SRC_Batch_Header_0011
+0
+20
+/Workers Comp file:123/Batch_Header:7/Record_ID:9
+20
+/AmTrust WCA File:98/Header_2:22/End_Date:68
+32772
+33
+/Workers Comp AmTrust:64/Batch_Header:21
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "Check Date"
+RTM_SRC_Batch_Header_0012
+0
+20
+/Workers Comp file:123/Batch_Header:7/Record_ID:9
+20
+/AmTrust WCA File:98/Header_2:22/Check_Date:69
+32772
+34
+/Workers Comp AmTrust:64/Batch_Header:21
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "Gross Payroll"
+RTM_SRC_Batch_Header_0013
+0
+20
+/Workers Comp file:123/Batch_Header:7/Record_ID:9
+20
+/AmTrust WCA File:98/Header_2:22/Gross:32
+32772
+35
+/Workers Comp AmTrust:64/Batch_Header:21
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "Excluded Payroll"
+RTM_SRC_Batch_Header_0014
+0
+20
+/Workers Comp file:123/Batch_Header:7/Record_ID:9
+20
+/AmTrust WCA File:98/Header_2:22/Excluded:34
+32772
+36
+/Workers Comp AmTrust:64/Batch_Header:21
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "Subject Payroll"
+RTM_SRC_Batch_Header_0015
+0
+20
+/Workers Comp file:123/Batch_Header:7/Record_ID:9
+20
+/AmTrust WCA File:98/Header_2:22/Subject:35
+32772
+37
+/Workers Comp AmTrust:64/Batch_Header:21
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "Net Rate"
+RTM_SRC_Batch_Header_0016
+0
+20
+/Workers Comp file:123/Batch_Header:7/Record_ID:9
+20
+/AmTrust WCA File:98/Header_2:22/Net:36
+32772
+38
+/Workers Comp AmTrust:64/Batch_Header:21
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "Premium Paid"
+RTM_SRC_Batch_Header_0017
+0
+20
+/Workers Comp file:123/Batch_Header:7/Record_ID:9
+20
+/AmTrust WCA File:98/Header_2:22/Premium:37
+32772
+39
+/Workers Comp AmTrust:64/Batch_Header:21
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "Scheduled Desc"
+RTM_SRC_Batch_Header_0018
+0
+20
+/Workers Comp file:123/Batch_Header:7/Record_ID:9
+20
+/AmTrust WCA File:98/Header_2:22/Scheduled:38
+32772
+40
+/Workers Comp AmTrust:64/Batch_Header:21
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "Insured FEIN"
+RTM_SRC_Batch_Header_0019
+0
+20
+/Workers Comp file:123/Batch_Header:7/Record_ID:9
+20
+/AmTrust WCA File:98/Header_2:22/Insd_FEIN:39
+32772
+41
+/Workers Comp AmTrust:64/Batch_Header:21
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "Client ID"
+RTM_SRC_Batch_Header_0020
+0
+20
+/Workers Comp file:123/Batch_Header:7/Record_ID:9
+20
+/AmTrust WCA File:98/Header_2:22/Client_ID:96
+32772
+42
+/Workers Comp AmTrust:64/Batch_Header:21
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "Location Code"
+RTM_SRC_Batch_Header_0021
+0
+20
+/Workers Comp file:123/Batch_Header:7/Record_ID:9
+20
+/AmTrust WCA File:98/Header_2:22/Location_Code:98
+32770
+43
+/Workers Comp AmTrust:64
+Detail_Record
+SLN Based on Detail_Record(View container)
+0
+0
+0
+333
+333
+444
+19
+Let BDMM = left(right(Begin_Date,4),2)
+Let BDDD = right(Begin_Date,2)
+Let BDYYYY = left(Begin_Date,4)
+Let Begin_Dt = BDMM++"/"++BDDD++"/"++BDYYYY
+
+Let EDMM = left(right(End_Date,4),2)
+Let EDDD = right(End_Date,2)
+Let EDYYYY = left(End_Date,4)
+Let End_Dt = EDMM++"/"++EDDD++"/"++EDYYYY
+
+Let CDMM = left(right(Check_Date,4),2)
+Let CDDD = right(Check_Date,2)
+Let CDYYYY = left(Check_Date,4)
+Let Check_Dt = CDMM++"/"++CDDD++"/"++CDYYYY
+Let E_MM = right(left(Policy_Effective_Date,6),2)
+Let E_DD = right(Policy_Effective_Date,2)
+Let E_YYYY = left(Policy_Effective_Date,4)
+
+Let E_Date = E_MM++"/"++E_DD++"/"++E_YYYY
+RTM_Detail_Record_EACH_0022
+12
+1
+22
+10
+132
+0
+/Workers Comp file:123/Detail_Record:14/Begin_Date:40
+2
+17
+10
+132
+0
+/Workers Comp file:123/Detail_Record:14/Begin_Date:40
+3
+18
+10
+132
+0
+/Workers Comp file:123/Detail_Record:14/Begin_Date:40
+6
+22
+8
+132
+0
+/Workers Comp file:123/Detail_Record:14/End_Date:45
+7
+17
+8
+132
+0
+/Workers Comp file:123/Detail_Record:14/End_Date:45
+8
+18
+8
+132
+0
+/Workers Comp file:123/Detail_Record:14/End_Date:45
+11
+22
+10
+132
+0
+/Workers Comp file:123/Detail_Record:14/Check_Date:42
+12
+17
+10
+132
+0
+/Workers Comp file:123/Detail_Record:14/Check_Date:42
+13
+18
+10
+132
+0
+/Workers Comp file:123/Detail_Record:14/Check_Date:42
+15
+22
+21
+132
+0
+/Workers Comp file:123/Detail_Record:14/Policy_Effective_Date:20
+16
+17
+21
+132
+0
+/Workers Comp file:123/Detail_Record:14/Policy_Effective_Date:20
+17
+18
+21
+132
+0
+/Workers Comp file:123/Detail_Record:14/Policy_Effective_Date:20
+333
+Detail_Record
+Detail_Record
+18
+0
+18
+/Workers Comp file:123/Detail_Record:14
+18
+/AmTrust WCA File:98/Detail_Record:6
+32772
+44
+/Workers Comp AmTrust:64/Detail_Record:43
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "Payo Summary 1.0.0"
+RTM_SRC_Detail_Record_0023
+0
+20
+/Workers Comp file:123/Detail_Record:14/Record_ID:16
+20
+/AmTrust WCA File:98/Detail_Record:6/Version:85
+32772
+45
+/Workers Comp AmTrust:64/Detail_Record:43
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "Transmission"
+RTM_SRC_Detail_Record_0024
+0
+20
+/Workers Comp file:123/Detail_Record:14/Record_ID:16
+20
+/AmTrust WCA File:98/Detail_Record:6/Activity:87
+32772
+46
+/Workers Comp AmTrust:64/Detail_Record:43
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "24"
+RTM_SRC_Detail_Record_0025
+0
+20
+/Workers Comp file:123/Detail_Record:14/Record_ID:16
+20
+/AmTrust WCA File:98/Detail_Record:6/Payroll_Comp_ID:91
+32772
+47
+/Workers Comp AmTrust:64/Detail_Record:43
+
+
+0
+0
+1
+0
+333
+333
+20
+/Workers Comp file:123/Detail_Record:14/Policy_Number:19
+20
+/AmTrust WCA File:98/Detail_Record:6/Policy:8
+32772
+48
+/Workers Comp AmTrust:64/Detail_Record:43
+
+
+0
+0
+1
+0
+333
+333
+20
+/Workers Comp file:123/Detail_Record:14/Insured_Name:35
+20
+/AmTrust WCA File:98/Detail_Record:6/Insured_Name:9
+32772
+49
+/Workers Comp AmTrust:64/Detail_Record:43
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN E_Date
+RTM_SRC_Detail_Record_0026
+0
+20
+/Workers Comp file:123/Detail_Record:14/Policy_Effective_Date:20
+20
+/AmTrust WCA File:98/Detail_Record:6/Policy_Effective_Date:10
+32772
+50
+/Workers Comp AmTrust:64/Detail_Record:43
+
+
+0
+0
+1
+0
+333
+333
+20
+/Workers Comp file:123/Detail_Record:14/State:36
+20
+/AmTrust WCA File:98/Detail_Record:6/State:11
+32772
+51
+/Workers Comp AmTrust:64/Detail_Record:43
+
+
+0
+0
+1
+0
+333
+333
+20
+/Workers Comp file:123/Detail_Record:14/Class_Code:38
+20
+/AmTrust WCA File:98/Detail_Record:6/Class_Code:12
+32772
+52
+/Workers Comp AmTrust:64/Detail_Record:43
+
+
+0
+0
+1
+0
+333
+333
+8228
+/Workers Comp AmTrust:64/Begin_Dt:4
+20
+/AmTrust WCA File:98/Detail_Record:6/Begin_Date:71
+32772
+53
+/Workers Comp AmTrust:64/Detail_Record:43
+
+
+0
+0
+1
+0
+333
+333
+8228
+/Workers Comp AmTrust:64/End_Dt:17
+20
+/AmTrust WCA File:98/Detail_Record:6/End_Date:73
+32772
+54
+/Workers Comp AmTrust:64/Detail_Record:43
+
+
+0
+0
+1
+0
+333
+333
+8228
+/Workers Comp AmTrust:64/Check_Dt:8
+20
+/AmTrust WCA File:98/Detail_Record:6/Check_Date:75
+32772
+55
+/Workers Comp AmTrust:64/Detail_Record:43
+
+
+0
+0
+1
+0
+333
+333
+20
+/Workers Comp file:123/Detail_Record:14/Gross_Pay_Amount:21
+20
+/AmTrust WCA File:98/Detail_Record:6/Gross_Payroll:13
+32772
+56
+/Workers Comp AmTrust:64/Detail_Record:43
+
+
+0
+0
+1
+0
+333
+333
+20
+/Workers Comp file:123/Detail_Record:14/Excluded_Payroll:47
+20
+/AmTrust WCA File:98/Detail_Record:6/Excluded_Payroll:14
+32772
+57
+/Workers Comp AmTrust:64/Detail_Record:43
+
+
+0
+0
+1
+0
+333
+333
+20
+/Workers Comp file:123/Detail_Record:14/Subject_Payroll:49
+20
+/AmTrust WCA File:98/Detail_Record:6/Subject_Payroll:15
+32772
+58
+/Workers Comp AmTrust:64/Detail_Record:43
+
+
+0
+0
+1
+0
+333
+333
+20
+/Workers Comp file:123/Detail_Record:14/NCCI_Rate:76
+20
+/AmTrust WCA File:98/Detail_Record:6/Net_Rate:16
+32772
+59
+/Workers Comp AmTrust:64/Detail_Record:43
+
+
+0
+0
+1
+0
+333
+333
+20
+/Workers Comp file:123/Detail_Record:14/WC_Premium_Paid:74
+20
+/AmTrust WCA File:98/Detail_Record:6/Premium_Paid:17
+32772
+60
+/Workers Comp AmTrust:64/Detail_Record:43
+
+
+0
+0
+1
+0
+333
+333
+20
+/Workers Comp file:123/Detail_Record:14/FEIN:53
+20
+/AmTrust WCA File:98/Detail_Record:6/Insured_FEIN:19
+32772
+61
+/Workers Comp AmTrust:64/Detail_Record:43
+
+
+0
+0
+1
+0
+333
+333
+20
+/Workers Comp file:123/Detail_Record:14/Invoice_ID:17
+20
+/AmTrust WCA File:98/Detail_Record:6/Client_ID:93
+$RTIME:END
+@0200N
+33
+23
+NULL_REF
+Workers Comp AmTrust
+Workers Comp File
+0
+2048
+wcamtrst.vw1
+wcamtrst.vw2
+0
+0
+20
+8228
+14
+/Workers Comp AmTrust:23
+BDDD
+desc
+0
+0
+8228
+13
+/Workers Comp AmTrust:23
+BDMM
+desc
+0
+0
+8228
+12
+/Workers Comp AmTrust:23
+BDYYYY
+desc
+0
+0
+8228
+11
+/Workers Comp AmTrust:23
+Begin_Dt
+desc
+0
+0
+8228
+19
+/Workers Comp AmTrust:23
+CDDD
+desc
+0
+0
+8228
+20
+/Workers Comp AmTrust:23
+CDMM
+desc
+0
+0
+8228
+22
+/Workers Comp AmTrust:23
+CDYYYY
+desc
+0
+0
+8228
+21
+/Workers Comp AmTrust:23
+Check_Dt
+desc
+0
+0
+8228
+2
+/Workers Comp AmTrust:23
+Date
+desc
+0
+0
+8228
+18
+/Workers Comp AmTrust:23
+EDDD
+desc
+0
+0
+8228
+17
+/Workers Comp AmTrust:23
+EDMM
+desc
+0
+0
+8228
+16
+/Workers Comp AmTrust:23
+EDYYYY
+desc
+0
+0
+8228
+9
+/Workers Comp AmTrust:23
+E_DD
+desc
+0
+0
+8228
+6
+/Workers Comp AmTrust:23
+E_Date
+desc
+0
+0
+8228
+8
+/Workers Comp AmTrust:23
+E_MM
+desc
+0
+0
+8228
+10
+/Workers Comp AmTrust:23
+E_YYYY
+desc
+0
+0
+8228
+15
+/Workers Comp AmTrust:23
+End_Dt
+desc
+0
+0
+8228
+4
+/Workers Comp AmTrust:23
+Month
+desc
+0
+0
+8228
+5
+/Workers Comp AmTrust:23
+Month_Year
+desc
+0
+0
+8228
+3
+/Workers Comp AmTrust:23
+Year
+desc
+0
+0
+39
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+"Version"
+1
+0
+0
+0
+0
+132
+/Workers Comp AmTrust:66/Batch_Header:9/Record_ID:10
+132
+/Workers Comp AmTrust:39/Header_2:5/Version:28
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+"Activity"
+1
+0
+0
+0
+0
+132
+/Workers Comp AmTrust:66/Batch_Header:9/Record_ID:10
+132
+/Workers Comp AmTrust:39/Header_2:5/Activity:29
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+"Error ID"
+1
+0
+0
+0
+0
+132
+/Workers Comp AmTrust:66/Batch_Header:9/Record_ID:10
+132
+/Workers Comp AmTrust:39/Header_2:5/Error_ID:30
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+"Payroll Company ID"
+1
+0
+0
+0
+0
+132
+/Workers Comp AmTrust:66/Batch_Header:9/Record_ID:10
+132
+/Workers Comp AmTrust:39/Header_2:5/Payroll_Comp_ID:31
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+"Policy"
+1
+0
+0
+0
+0
+132
+/Workers Comp AmTrust:66/Batch_Header:9/Record_ID:10
+132
+/Workers Comp AmTrust:39/Header_2:5/Policy:6
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+"Insured Name"
+1
+0
+0
+0
+0
+132
+/Workers Comp AmTrust:66/Batch_Header:9/Record_ID:10
+132
+/Workers Comp AmTrust:39/Header_2:5/Insured_Name:7
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+"Policy  Effective Date"
+1
+0
+0
+0
+0
+132
+/Workers Comp AmTrust:66/Batch_Header:9/Record_ID:10
+132
+/Workers Comp AmTrust:39/Header_2:5/Policy_Eff_Date:8
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+"State"
+1
+0
+0
+0
+0
+132
+/Workers Comp AmTrust:66/Batch_Header:9/Record_ID:10
+132
+/Workers Comp AmTrust:39/Header_2:5/State:9
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+"Class Code"
+1
+0
+0
+0
+0
+132
+/Workers Comp AmTrust:66/Batch_Header:9/Record_ID:10
+132
+/Workers Comp AmTrust:39/Header_2:5/Class:10
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+"Payroll Period Start"
+1
+0
+0
+0
+0
+132
+/Workers Comp AmTrust:66/Batch_Header:9/Record_ID:10
+132
+/Workers Comp AmTrust:39/Header_2:5/Begin_Date:19
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+"Payroll Period End"
+1
+0
+0
+0
+0
+132
+/Workers Comp AmTrust:66/Batch_Header:9/Record_ID:10
+132
+/Workers Comp AmTrust:39/Header_2:5/End_Date:20
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+"Check Date"
+1
+0
+0
+0
+0
+132
+/Workers Comp AmTrust:66/Batch_Header:9/Record_ID:10
+132
+/Workers Comp AmTrust:39/Header_2:5/Check_Date:21
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+"Gross Payroll"
+1
+0
+0
+0
+0
+132
+/Workers Comp AmTrust:66/Batch_Header:9/Record_ID:10
+132
+/Workers Comp AmTrust:39/Header_2:5/Gross:11
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+"Excluded Payroll"
+1
+0
+0
+0
+0
+132
+/Workers Comp AmTrust:66/Batch_Header:9/Record_ID:10
+132
+/Workers Comp AmTrust:39/Header_2:5/Excluded:12
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+"Subject Payroll"
+1
+0
+0
+0
+0
+132
+/Workers Comp AmTrust:66/Batch_Header:9/Record_ID:10
+132
+/Workers Comp AmTrust:39/Header_2:5/Subject:13
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+"Net Rate"
+1
+0
+0
+0
+0
+132
+/Workers Comp AmTrust:66/Batch_Header:9/Record_ID:10
+132
+/Workers Comp AmTrust:39/Header_2:5/Blank5:14
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+"Premium Paid"
+1
+0
+0
+0
+0
+132
+/Workers Comp AmTrust:66/Batch_Header:9/Record_ID:10
+132
+/Workers Comp AmTrust:39/Header_2:5/Premium:15
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+"Scheduled Desc"
+1
+0
+0
+0
+0
+132
+/Workers Comp AmTrust:66/Batch_Header:9/Record_ID:10
+132
+/Workers Comp AmTrust:39/Header_2:5/Scheduled:16
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+"Insured FEIN"
+1
+0
+0
+0
+0
+132
+/Workers Comp AmTrust:66/Batch_Header:9/Record_ID:10
+132
+/Workers Comp AmTrust:39/Header_2:5/Insd_FEIN:17
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+"Client ID"
+1
+0
+0
+0
+0
+132
+/Workers Comp AmTrust:66/Batch_Header:9/Record_ID:10
+132
+/Workers Comp AmTrust:39/Header_2:5/Client_ID:36
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+"Location Code"
+1
+0
+0
+0
+0
+132
+/Workers Comp AmTrust:66/Batch_Header:9/Record_ID:10
+132
+/Workers Comp AmTrust:39/Header_2:5/Location_Code:37
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+"Payo Summary 1.0.0"
+1
+0
+0
+14
+Let BDMM = left(right(Begin_Date,4),2)
+Let BDDD = right(Begin_Date,2)
+Let BDYYYY = left(Begin_Date,4)
+Let Begin_Dt = BDMM++"/"++BDDD++"/"++BDYYYY
+
+Let EDMM = left(right(End_Date,4),2)
+Let EDDD = right(End_Date,2)
+Let EDYYYY = left(End_Date,4)
+Let End_Dt = EDMM++"/"++EDDD++"/"++EDYYYY
+
+Let CDMM = left(right(Check_Date,4),2)
+Let CDDD = right(Check_Date,2)
+Let CDYYYY = left(Check_Date,4)
+Let Check_Dt = CDMM++"/"++CDDD++"/"++CDYYYY
+0
+132
+/Workers Comp AmTrust:66/Detail_Record:19/Record_ID:20
+132
+/Workers Comp AmTrust:39/Detail_Record:31/Version:32
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+"Transmission"
+1
+0
+0
+0
+0
+132
+/Workers Comp AmTrust:66/Detail_Record:19/Record_ID:20
+132
+/Workers Comp AmTrust:39/Detail_Record:31/Activity:33
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+"24"
+1
+0
+0
+0
+0
+132
+/Workers Comp AmTrust:66/Detail_Record:19/Record_ID:20
+132
+/Workers Comp AmTrust:39/Detail_Record:31/Payroll_Comp_ID:35
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/Workers Comp AmTrust:66/Detail_Record:19/Policy_Number:23
+132
+/Workers Comp AmTrust:39/Detail_Record:31/Policy:32
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/Workers Comp AmTrust:66/Detail_Record:19/Insured_Name:33
+132
+/Workers Comp AmTrust:39/Detail_Record:31/Insured_Name:33
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+E_Date
+1
+0
+0
+5
+Let E_MM = right(left(Policy_Effective_Date,6),2)
+Let E_DD = right(Policy_Effective_Date,2)
+Let E_YYYY = left(Policy_Effective_Date,4)
+
+Let E_Date = E_MM++"/"++E_DD++"/"++E_YYYY
+0
+132
+/Workers Comp AmTrust:66/Detail_Record:19/Policy_Effective_Date:24
+132
+/Workers Comp AmTrust:39/Detail_Record:31/Policy_Effective_Date:34
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/Workers Comp AmTrust:66/Detail_Record:19/State:34
+132
+/Workers Comp AmTrust:39/Detail_Record:31/State:35
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/Workers Comp AmTrust:66/Detail_Record:19/Class_Code:35
+132
+/Workers Comp AmTrust:39/Detail_Record:31/Class_Code:36
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+8228
+/Workers Comp AmTrust:23/Begin_Dt:11
+132
+/Workers Comp AmTrust:39/Detail_Record:31/Begin_Date:22
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+8228
+/Workers Comp AmTrust:23/End_Dt:15
+132
+/Workers Comp AmTrust:39/Detail_Record:31/End_Date:23
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+8228
+/Workers Comp AmTrust:23/Check_Dt:21
+132
+/Workers Comp AmTrust:39/Detail_Record:31/Check_Date:24
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/Workers Comp AmTrust:66/Detail_Record:19/Gross_Pay_Amount:25
+132
+/Workers Comp AmTrust:39/Detail_Record:31/Gross_Payroll:37
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/Workers Comp AmTrust:66/Detail_Record:19/Excluded_Payroll:40
+132
+/Workers Comp AmTrust:39/Detail_Record:31/Excluded_Payroll:38
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/Workers Comp AmTrust:66/Detail_Record:19/Subject_Payroll:41
+132
+/Workers Comp AmTrust:39/Detail_Record:31/Subject_Payroll:39
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/Workers Comp AmTrust:66/Detail_Record:19/NCCI_Rate:36
+132
+/Workers Comp AmTrust:39/Detail_Record:31/Net_Rate:40
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/Workers Comp AmTrust:66/Detail_Record:19/WC_Premium_Paid:27
+132
+/Workers Comp AmTrust:39/Detail_Record:31/Premium_Paid:41
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/Workers Comp AmTrust:66/Detail_Record:19/FEIN:42
+132
+/Workers Comp AmTrust:39/Detail_Record:31/Insured_FEIN:43
+36
+1
+/Workers Comp AmTrust:23
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/Workers Comp AmTrust:66/Detail_Record:19/Invoice_ID:21
+132
+/Workers Comp AmTrust:39/Detail_Record:31/Client_ID:38
+@0200N
+129
+66
+NULL_REF
+Workers Comp AmTrust
+View of: Workers Comp File
+0
+0
+17
+wcasrc.adf
+wcamtrst.vw1
+5
+130
+1
+/Workers Comp AmTrust:66
+Header_Record
+
+0
+16
+/Workers Comp file:123/Header_Record:2
+
+1
+7
+132
+2
+/Workers Comp AmTrust:66/Header_Record:1
+Record_ID
+
+0
+16
+/Workers Comp file:123/Header_Record:2/Record_ID:3
+
+
+132
+3
+/Workers Comp AmTrust:66/Header_Record:1
+Partner_ID
+
+0
+16
+/Workers Comp file:123/Header_Record:2/Partner_ID:4
+
+
+132
+4
+/Workers Comp AmTrust:66/Header_Record:1
+Future_Field_1
+
+0
+16
+/Workers Comp file:123/Header_Record:2/Future_Field_1:114
+
+
+132
+5
+/Workers Comp AmTrust:66/Header_Record:1
+Future_Field_2
+
+0
+16
+/Workers Comp file:123/Header_Record:2/Future_Field_2:116
+
+
+132
+6
+/Workers Comp AmTrust:66/Header_Record:1
+Future_Field_3
+
+0
+16
+/Workers Comp file:123/Header_Record:2/Future_Field_3:118
+
+
+132
+7
+/Workers Comp AmTrust:66/Header_Record:1
+Future_Field_4
+
+0
+16
+/Workers Comp file:123/Header_Record:2/Future_Field_4:120
+
+
+132
+8
+/Workers Comp AmTrust:66/Header_Record:1
+Future_Field_5
+
+0
+16
+/Workers Comp file:123/Header_Record:2/Future_Field_5:122
+
+
+130
+9
+/Workers Comp AmTrust:66
+Batch_Header
+
+0
+16
+/Workers Comp file:123/Batch_Header:7
+
+1
+9
+132
+10
+/Workers Comp AmTrust:66/Batch_Header:9
+Record_ID
+
+0
+16
+/Workers Comp file:123/Batch_Header:7/Record_ID:9
+
+
+132
+11
+/Workers Comp AmTrust:66/Batch_Header:9
+Batch_Net_Amount
+
+0
+16
+/Workers Comp file:123/Batch_Header:7/Batch_Net_Amount:10
+
+
+132
+12
+/Workers Comp AmTrust:66/Batch_Header:9
+Batch_Net_Amount_Sign
+
+0
+16
+/Workers Comp file:123/Batch_Header:7/Batch_Net_Amount_Sign:11
+
+
+132
+13
+/Workers Comp AmTrust:66/Batch_Header:9
+Batch_Count
+
+0
+16
+/Workers Comp file:123/Batch_Header:7/Batch_Count:12
+
+
+132
+14
+/Workers Comp AmTrust:66/Batch_Header:9
+Future_Field_1
+
+0
+16
+/Workers Comp file:123/Batch_Header:7/Future_Field_1:104
+
+
+132
+15
+/Workers Comp AmTrust:66/Batch_Header:9
+Future_Field_2
+
+0
+16
+/Workers Comp file:123/Batch_Header:7/Future_Field_2:106
+
+
+132
+16
+/Workers Comp AmTrust:66/Batch_Header:9
+Future_Field_3
+
+0
+16
+/Workers Comp file:123/Batch_Header:7/Future_Field_3:108
+
+
+132
+17
+/Workers Comp AmTrust:66/Batch_Header:9
+Future_Field_4
+
+0
+16
+/Workers Comp file:123/Batch_Header:7/Future_Field_4:110
+
+
+132
+18
+/Workers Comp AmTrust:66/Batch_Header:9
+Future_Field_5
+
+0
+16
+/Workers Comp file:123/Batch_Header:7/Future_Field_5:112
+
+
+130
+19
+/Workers Comp AmTrust:66
+Detail_Record
+
+0
+16
+/Workers Comp file:123/Detail_Record:14
+
+1
+29
+132
+20
+/Workers Comp AmTrust:66/Detail_Record:19
+Record_ID
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Record_ID:16
+
+
+132
+21
+/Workers Comp AmTrust:66/Detail_Record:19
+Invoice_ID
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Invoice_ID:17
+
+
+132
+22
+/Workers Comp AmTrust:66/Detail_Record:19
+TPC_Policy_Symbol
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/TPC_Policy_Symbol:18
+
+
+132
+23
+/Workers Comp AmTrust:66/Detail_Record:19
+Policy_Number
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Policy_Number:19
+
+
+132
+24
+/Workers Comp AmTrust:66/Detail_Record:19
+Policy_Effective_Date
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Policy_Effective_Date:20
+
+
+132
+25
+/Workers Comp AmTrust:66/Detail_Record:19
+Gross_Pay_Amount
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Gross_Pay_Amount:21
+
+
+132
+26
+/Workers Comp AmTrust:66/Detail_Record:19
+Gross_Pay_Amount_Sign
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Gross_Pay_Amount_Sign:23
+
+
+132
+27
+/Workers Comp AmTrust:66/Detail_Record:19
+WC_Premium_Paid
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/WC_Premium_Paid:74
+
+
+132
+66
+/Workers Comp AmTrust:66/Detail_Record:19
+WC_Premium_Paid_Sign
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/WC_Premium_Paid_Sign:123
+
+
+132
+28
+/Workers Comp AmTrust:66/Detail_Record:19
+Commision_Rate
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Commision_Rate:25
+
+
+132
+29
+/Workers Comp AmTrust:66/Detail_Record:19
+Commission_Amount
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Commission_Amount:27
+
+
+132
+30
+/Workers Comp AmTrust:66/Detail_Record:19
+Commission_Amount_Sign
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Commission_Amount_Sign:29
+
+
+132
+31
+/Workers Comp AmTrust:66/Detail_Record:19
+Net_Pay_Amount
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Net_Pay_Amount:31
+
+
+132
+32
+/Workers Comp AmTrust:66/Detail_Record:19
+Net_Pay_Amount_Sign
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Net_Pay_Amount_Sign:33
+
+
+132
+33
+/Workers Comp AmTrust:66/Detail_Record:19
+Insured_Name
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Insured_Name:35
+
+
+132
+34
+/Workers Comp AmTrust:66/Detail_Record:19
+State
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/State:36
+
+
+132
+35
+/Workers Comp AmTrust:66/Detail_Record:19
+Class_Code
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Class_Code:38
+
+
+132
+36
+/Workers Comp AmTrust:66/Detail_Record:19
+NCCI_Rate
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/NCCI_Rate:76
+
+
+132
+37
+/Workers Comp AmTrust:66/Detail_Record:19
+Begin_Date
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Begin_Date:40
+
+
+132
+38
+/Workers Comp AmTrust:66/Detail_Record:19
+End_Date
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/End_Date:45
+
+
+132
+39
+/Workers Comp AmTrust:66/Detail_Record:19
+Check_Date
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Check_Date:42
+
+
+132
+40
+/Workers Comp AmTrust:66/Detail_Record:19
+Excluded_Payroll
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Excluded_Payroll:47
+
+
+132
+41
+/Workers Comp AmTrust:66/Detail_Record:19
+Subject_Payroll
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Subject_Payroll:49
+
+
+132
+42
+/Workers Comp AmTrust:66/Detail_Record:19
+FEIN
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/FEIN:53
+
+
+132
+43
+/Workers Comp AmTrust:66/Detail_Record:19
+Future_Field_1
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Future_Field_1:94
+
+
+132
+44
+/Workers Comp AmTrust:66/Detail_Record:19
+Future_Field_2
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Future_Field_2:96
+
+
+132
+45
+/Workers Comp AmTrust:66/Detail_Record:19
+Future_Field_3
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Future_Field_3:98
+
+
+132
+46
+/Workers Comp AmTrust:66/Detail_Record:19
+Future_Field_4
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Future_Field_4:100
+
+
+132
+47
+/Workers Comp AmTrust:66/Detail_Record:19
+Future_Field_5
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Future_Field_5:102
+
+
+130
+77
+/Workers Comp AmTrust:66
+Batch_Trailer
+
+0
+16
+/Workers Comp file:123/Batch_Trailer:56
+
+1
+6
+132
+78
+/Workers Comp AmTrust:66/Batch_Trailer:77
+Record_ID
+
+0
+16
+/Workers Comp file:123/Batch_Trailer:56/Record_ID:58
+
+
+132
+79
+/Workers Comp AmTrust:66/Batch_Trailer:77
+Future_Field_1
+
+0
+16
+/Workers Comp file:123/Batch_Trailer:56/Future_Field_1:84
+
+
+132
+80
+/Workers Comp AmTrust:66/Batch_Trailer:77
+Future_Field_2
+
+0
+16
+/Workers Comp file:123/Batch_Trailer:56/Future_Field_2:86
+
+
+132
+81
+/Workers Comp AmTrust:66/Batch_Trailer:77
+Future_Field_3
+
+0
+16
+/Workers Comp file:123/Batch_Trailer:56/Future_Field_3:88
+
+
+132
+82
+/Workers Comp AmTrust:66/Batch_Trailer:77
+Future_Field_4
+
+0
+16
+/Workers Comp file:123/Batch_Trailer:56/Future_Field_4:90
+
+
+132
+83
+/Workers Comp AmTrust:66/Batch_Trailer:77
+Future_Field_5
+
+0
+16
+/Workers Comp file:123/Batch_Trailer:56/Future_Field_5:92
+
+
+130
+84
+/Workers Comp AmTrust:66
+File_Trailer
+
+0
+16
+/Workers Comp file:123/File_Trailer:60
+
+1
+9
+132
+85
+/Workers Comp AmTrust:66/File_Trailer:84
+Record_ID
+
+0
+16
+/Workers Comp file:123/File_Trailer:60/Record_ID:62
+
+
+132
+86
+/Workers Comp AmTrust:66/File_Trailer:84
+Batch_Count
+
+0
+16
+/Workers Comp file:123/File_Trailer:60/Batch_Count:63
+
+
+132
+87
+/Workers Comp AmTrust:66/File_Trailer:84
+Batch_Amount
+
+0
+16
+/Workers Comp file:123/File_Trailer:60/Batch_Amount:65
+
+
+132
+88
+/Workers Comp AmTrust:66/File_Trailer:84
+Batch_Amount_Sign
+
+0
+16
+/Workers Comp file:123/File_Trailer:60/Batch_Amount_Sign:67
+
+
+132
+89
+/Workers Comp AmTrust:66/File_Trailer:84
+Future_Field_1
+
+0
+16
+/Workers Comp file:123/File_Trailer:60/Future_Field_1:77
+
+
+132
+90
+/Workers Comp AmTrust:66/File_Trailer:84
+Future_Field_2
+
+0
+16
+/Workers Comp file:123/File_Trailer:60/Future_Field_2:79
+
+
+132
+91
+/Workers Comp AmTrust:66/File_Trailer:84
+Future_Field_3
+
+0
+16
+/Workers Comp file:123/File_Trailer:60/Future_Field_3:80
+
+
+132
+92
+/Workers Comp AmTrust:66/File_Trailer:84
+Future_Field_4
+
+0
+16
+/Workers Comp file:123/File_Trailer:60/Future_Field_4:81
+
+
+132
+93
+/Workers Comp AmTrust:66/File_Trailer:84
+Future_Field_5
+
+0
+16
+/Workers Comp file:123/File_Trailer:60/Future_Field_5:82
+
+
+@0200N
+129
+39
+NULL_REF
+Workers Comp AmTrust
+View of: Workers Comp File
+0
+0
+17
+wcamtrst.adf
+wcamtrst.vw2
+2
+130
+5
+/Workers Comp AmTrust:39
+Header_2
+
+0
+16
+/AmTrust WCA File:98/Header_2:22
+
+1
+21
+132
+28
+/Workers Comp AmTrust:39/Header_2:5
+Version
+
+0
+16
+/AmTrust WCA File:98/Header_2:22/Version:84
+
+
+132
+29
+/Workers Comp AmTrust:39/Header_2:5
+Activity
+
+0
+16
+/AmTrust WCA File:98/Header_2:22/Activity:83
+
+
+132
+30
+/Workers Comp AmTrust:39/Header_2:5
+Error_ID
+
+0
+16
+/AmTrust WCA File:98/Header_2:22/Error_ID:82
+
+
+132
+31
+/Workers Comp AmTrust:39/Header_2:5
+Payroll_Comp_ID
+
+0
+16
+/AmTrust WCA File:98/Header_2:22/Payroll_Comp_ID:81
+
+
+132
+6
+/Workers Comp AmTrust:39/Header_2:5
+Policy
+
+0
+16
+/AmTrust WCA File:98/Header_2:22/Policy:24
+
+
+132
+7
+/Workers Comp AmTrust:39/Header_2:5
+Insured_Name
+
+0
+16
+/AmTrust WCA File:98/Header_2:22/Insured_Name:26
+
+
+132
+8
+/Workers Comp AmTrust:39/Header_2:5
+Policy_Eff_Date
+
+0
+16
+/AmTrust WCA File:98/Header_2:22/Policy_Eff_Date:27
+
+
+132
+9
+/Workers Comp AmTrust:39/Header_2:5
+State
+
+0
+16
+/AmTrust WCA File:98/Header_2:22/State:28
+
+
+132
+10
+/Workers Comp AmTrust:39/Header_2:5
+Class
+
+0
+16
+/AmTrust WCA File:98/Header_2:22/Class:30
+
+
+132
+19
+/Workers Comp AmTrust:39/Header_2:5
+Begin_Date
+
+0
+16
+/AmTrust WCA File:98/Header_2:22/Begin_Date:66
+
+
+132
+20
+/Workers Comp AmTrust:39/Header_2:5
+End_Date
+
+0
+16
+/AmTrust WCA File:98/Header_2:22/End_Date:68
+
+
+132
+21
+/Workers Comp AmTrust:39/Header_2:5
+Check_Date
+
+0
+16
+/AmTrust WCA File:98/Header_2:22/Check_Date:69
+
+
+132
+11
+/Workers Comp AmTrust:39/Header_2:5
+Gross
+
+0
+16
+/AmTrust WCA File:98/Header_2:22/Gross:32
+
+
+132
+12
+/Workers Comp AmTrust:39/Header_2:5
+Excluded
+
+0
+16
+/AmTrust WCA File:98/Header_2:22/Excluded:34
+
+
+132
+13
+/Workers Comp AmTrust:39/Header_2:5
+Subject
+
+0
+16
+/AmTrust WCA File:98/Header_2:22/Subject:35
+
+
+132
+14
+/Workers Comp AmTrust:39/Header_2:5
+Blank5
+
+0
+16
+/AmTrust WCA File:98/Header_2:22/Net:36
+
+
+132
+15
+/Workers Comp AmTrust:39/Header_2:5
+Premium
+
+0
+16
+/AmTrust WCA File:98/Header_2:22/Premium:37
+
+
+132
+16
+/Workers Comp AmTrust:39/Header_2:5
+Scheduled
+
+0
+16
+/AmTrust WCA File:98/Header_2:22/Scheduled:38
+
+
+132
+17
+/Workers Comp AmTrust:39/Header_2:5
+Insd_FEIN
+
+0
+16
+/AmTrust WCA File:98/Header_2:22/Insd_FEIN:39
+
+
+132
+36
+/Workers Comp AmTrust:39/Header_2:5
+Client_ID
+
+0
+16
+/AmTrust WCA File:98/Header_2:22/Client_ID:96
+
+
+132
+37
+/Workers Comp AmTrust:39/Header_2:5
+Location_Code
+
+0
+16
+/AmTrust WCA File:98/Header_2:22/Location_Code:98
+
+
+130
+31
+/Workers Comp AmTrust:39
+Detail_Record
+
+0
+16
+/AmTrust WCA File:98/Detail_Record:6
+
+1
+21
+132
+32
+/Workers Comp AmTrust:39/Detail_Record:31
+Version
+
+0
+16
+/AmTrust WCA File:98/Detail_Record:6/Version:85
+
+
+132
+33
+/Workers Comp AmTrust:39/Detail_Record:31
+Activity
+
+0
+16
+/AmTrust WCA File:98/Detail_Record:6/Activity:87
+
+
+132
+34
+/Workers Comp AmTrust:39/Detail_Record:31
+Error_ID
+
+0
+16
+/AmTrust WCA File:98/Detail_Record:6/Error_ID:89
+
+
+132
+35
+/Workers Comp AmTrust:39/Detail_Record:31
+Payroll_Comp_ID
+
+0
+16
+/AmTrust WCA File:98/Detail_Record:6/Payroll_Comp_ID:91
+
+
+132
+32
+/Workers Comp AmTrust:39/Detail_Record:31
+Policy
+
+0
+16
+/AmTrust WCA File:98/Detail_Record:6/Policy:8
+
+
+132
+33
+/Workers Comp AmTrust:39/Detail_Record:31
+Insured_Name
+
+0
+16
+/AmTrust WCA File:98/Detail_Record:6/Insured_Name:9
+
+
+132
+34
+/Workers Comp AmTrust:39/Detail_Record:31
+Policy_Effective_Date
+
+0
+16
+/AmTrust WCA File:98/Detail_Record:6/Policy_Effective_Date:10
+
+
+132
+35
+/Workers Comp AmTrust:39/Detail_Record:31
+State
+
+0
+16
+/AmTrust WCA File:98/Detail_Record:6/State:11
+
+
+132
+36
+/Workers Comp AmTrust:39/Detail_Record:31
+Class_Code
+
+0
+16
+/AmTrust WCA File:98/Detail_Record:6/Class_Code:12
+
+
+132
+22
+/Workers Comp AmTrust:39/Detail_Record:31
+Begin_Date
+
+0
+16
+/AmTrust WCA File:98/Detail_Record:6/Begin_Date:71
+
+
+132
+23
+/Workers Comp AmTrust:39/Detail_Record:31
+End_Date
+
+0
+16
+/AmTrust WCA File:98/Detail_Record:6/End_Date:73
+
+
+132
+24
+/Workers Comp AmTrust:39/Detail_Record:31
+Check_Date
+
+0
+16
+/AmTrust WCA File:98/Detail_Record:6/Check_Date:75
+
+
+132
+37
+/Workers Comp AmTrust:39/Detail_Record:31
+Gross_Payroll
+
+0
+16
+/AmTrust WCA File:98/Detail_Record:6/Gross_Payroll:13
+
+
+132
+38
+/Workers Comp AmTrust:39/Detail_Record:31
+Excluded_Payroll
+
+0
+16
+/AmTrust WCA File:98/Detail_Record:6/Excluded_Payroll:14
+
+
+132
+39
+/Workers Comp AmTrust:39/Detail_Record:31
+Subject_Payroll
+
+0
+16
+/AmTrust WCA File:98/Detail_Record:6/Subject_Payroll:15
+
+
+132
+40
+/Workers Comp AmTrust:39/Detail_Record:31
+Net_Rate
+
+0
+16
+/AmTrust WCA File:98/Detail_Record:6/Net_Rate:16
+
+
+132
+41
+/Workers Comp AmTrust:39/Detail_Record:31
+Premium_Paid
+
+0
+16
+/AmTrust WCA File:98/Detail_Record:6/Premium_Paid:17
+
+
+132
+42
+/Workers Comp AmTrust:39/Detail_Record:31
+Scheduled_Description
+
+0
+16
+/AmTrust WCA File:98/Detail_Record:6/Scheduled_Description:18
+
+
+132
+43
+/Workers Comp AmTrust:39/Detail_Record:31
+Insured_FEIN
+
+0
+16
+/AmTrust WCA File:98/Detail_Record:6/Insured_FEIN:19
+
+
+132
+38
+/Workers Comp AmTrust:39/Detail_Record:31
+Client_ID
+
+0
+16
+/AmTrust WCA File:98/Detail_Record:6/Client_ID:93
+
+
+132
+39
+/Workers Comp AmTrust:39/Detail_Record:31
+Location_Code
+
+0
+16
+/AmTrust WCA File:98/Detail_Record:6/Location_Code:94
+
+
+@0200N
+17
+123
+NULL_REF
+Workers Comp file
+Workers Comp file
+0
+0
+2
+10
+2
+44
+0
+0
+0
+4
+PARTNER
+
+4
+APPKEY1
+
+0
+APPKEY2
+
+0
+APPKEY3
+
+0
+wca.app
+1
+46
+5
+18
+2
+/Workers Comp file:123
+Header_Record
+
+0
+16
+2
+10
+1
+1
+7
+20
+3
+/Workers Comp file:123/Header_Record:2
+Record_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+1
+2
+0
+0
+0
+20
+4
+/Workers Comp file:123/Header_Record:2
+Partner_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+114
+/Workers Comp file:123/Header_Record:2
+Future_Field_1
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+116
+/Workers Comp file:123/Header_Record:2
+Future_Field_2
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+118
+/Workers Comp file:123/Header_Record:2
+Future_Field_3
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+120
+/Workers Comp file:123/Header_Record:2
+Future_Field_4
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+122
+/Workers Comp file:123/Header_Record:2
+Future_Field_5
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+7
+/Workers Comp file:123
+Batch_Header
+
+0
+16
+2
+10
+1
+0
+9
+20
+9
+/Workers Comp file:123/Batch_Header:7
+Record_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+2
+2
+0
+0
+0
+20
+10
+/Workers Comp file:123/Batch_Header:7
+Batch_Net_Amount
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+11
+/Workers Comp file:123/Batch_Header:7
+Batch_Net_Amount_Sign
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+12
+/Workers Comp file:123/Batch_Header:7
+Batch_Count
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+104
+/Workers Comp file:123/Batch_Header:7
+Future_Field_1
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+106
+/Workers Comp file:123/Batch_Header:7
+Future_Field_2
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+108
+/Workers Comp file:123/Batch_Header:7
+Future_Field_3
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+110
+/Workers Comp file:123/Batch_Header:7
+Future_Field_4
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+112
+/Workers Comp file:123/Batch_Header:7
+Future_Field_5
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+14
+/Workers Comp file:123
+Detail_Record
+
+0
+16
+2
+10
+0
+0
+29
+20
+16
+/Workers Comp file:123/Detail_Record:14
+Record_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+3
+2
+0
+0
+0
+20
+17
+/Workers Comp file:123/Detail_Record:14
+Invoice_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+18
+/Workers Comp file:123/Detail_Record:14
+TPC_Policy_Symbol
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+19
+/Workers Comp file:123/Detail_Record:14
+Policy_Number
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+20
+/Workers Comp file:123/Detail_Record:14
+Policy_Effective_Date
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+21
+/Workers Comp file:123/Detail_Record:14
+Gross_Pay_Amount
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+23
+/Workers Comp file:123/Detail_Record:14
+Gross_Pay_Amount_Sign
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+74
+/Workers Comp file:123/Detail_Record:14
+WC_Premium_Paid
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+123
+/Workers Comp file:123/Detail_Record:14
+WC_Premium_Paid_Sign
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+25
+/Workers Comp file:123/Detail_Record:14
+Commision_Rate
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+27
+/Workers Comp file:123/Detail_Record:14
+Commission_Amount
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+29
+/Workers Comp file:123/Detail_Record:14
+Commission_Amount_Sign
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+31
+/Workers Comp file:123/Detail_Record:14
+Net_Pay_Amount
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+33
+/Workers Comp file:123/Detail_Record:14
+Net_Pay_Amount_Sign
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+35
+/Workers Comp file:123/Detail_Record:14
+Insured_Name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+36
+/Workers Comp file:123/Detail_Record:14
+State
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+38
+/Workers Comp file:123/Detail_Record:14
+Class_Code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+76
+/Workers Comp file:123/Detail_Record:14
+NCCI_Rate
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+40
+/Workers Comp file:123/Detail_Record:14
+Begin_Date
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+45
+/Workers Comp file:123/Detail_Record:14
+End_Date
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+42
+/Workers Comp file:123/Detail_Record:14
+Check_Date
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+47
+/Workers Comp file:123/Detail_Record:14
+Excluded_Payroll
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+49
+/Workers Comp file:123/Detail_Record:14
+Subject_Payroll
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+53
+/Workers Comp file:123/Detail_Record:14
+FEIN
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+94
+/Workers Comp file:123/Detail_Record:14
+Future_Field_1
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+96
+/Workers Comp file:123/Detail_Record:14
+Future_Field_2
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+98
+/Workers Comp file:123/Detail_Record:14
+Future_Field_3
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+100
+/Workers Comp file:123/Detail_Record:14
+Future_Field_4
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+102
+/Workers Comp file:123/Detail_Record:14
+Future_Field_5
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+56
+/Workers Comp file:123
+Batch_Trailer
+
+0
+16
+2
+10
+0
+0
+6
+20
+58
+/Workers Comp file:123/Batch_Trailer:56
+Record_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+4
+2
+0
+0
+0
+20
+84
+/Workers Comp file:123/Batch_Trailer:56
+Future_Field_1
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+86
+/Workers Comp file:123/Batch_Trailer:56
+Future_Field_2
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+88
+/Workers Comp file:123/Batch_Trailer:56
+Future_Field_3
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+90
+/Workers Comp file:123/Batch_Trailer:56
+Future_Field_4
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+92
+/Workers Comp file:123/Batch_Trailer:56
+Future_Field_5
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+60
+/Workers Comp file:123
+File_Trailer
+
+0
+16
+2
+10
+0
+0
+9
+20
+62
+/Workers Comp file:123/File_Trailer:60
+Record_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+5
+2
+0
+0
+0
+20
+63
+/Workers Comp file:123/File_Trailer:60
+Batch_Count
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+65
+/Workers Comp file:123/File_Trailer:60
+Batch_Amount
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+67
+/Workers Comp file:123/File_Trailer:60
+Batch_Amount_Sign
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+77
+/Workers Comp file:123/File_Trailer:60
+Future_Field_1
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+79
+/Workers Comp file:123/File_Trailer:60
+Future_Field_2
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+80
+/Workers Comp file:123/File_Trailer:60
+Future_Field_3
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+81
+/Workers Comp file:123/File_Trailer:60
+Future_Field_4
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+82
+/Workers Comp file:123/File_Trailer:60
+Future_Field_5
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+@0200N
+17
+98
+NULL_REF
+AmTrust WCA File
+Workers comp file 
+0
+0
+2
+10
+2
+44
+0
+0
+0
+4
+PARTNER
+
+0
+APPKEY1
+
+0
+APPKEY2
+
+0
+APPKEY3
+
+0
+wca.app
+1
+46
+2
+18
+22
+/AmTrust WCA File:98
+Header_2
+
+0
+16
+2
+10
+0
+0
+21
+20
+84
+/AmTrust WCA File:98/Header_2:22
+Version
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+83
+/AmTrust WCA File:98/Header_2:22
+Activity
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+82
+/AmTrust WCA File:98/Header_2:22
+Error_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+81
+/AmTrust WCA File:98/Header_2:22
+Payroll_Comp_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+24
+/AmTrust WCA File:98/Header_2:22
+Policy
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+26
+/AmTrust WCA File:98/Header_2:22
+Insured_Name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+27
+/AmTrust WCA File:98/Header_2:22
+Policy_Eff_Date
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+28
+/AmTrust WCA File:98/Header_2:22
+State
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+30
+/AmTrust WCA File:98/Header_2:22
+Class
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+66
+/AmTrust WCA File:98/Header_2:22
+Begin_Date
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+68
+/AmTrust WCA File:98/Header_2:22
+End_Date
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+69
+/AmTrust WCA File:98/Header_2:22
+Check_Date
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+32
+/AmTrust WCA File:98/Header_2:22
+Gross
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+34
+/AmTrust WCA File:98/Header_2:22
+Excluded
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+35
+/AmTrust WCA File:98/Header_2:22
+Subject
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+36
+/AmTrust WCA File:98/Header_2:22
+Net
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+37
+/AmTrust WCA File:98/Header_2:22
+Premium
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+38
+/AmTrust WCA File:98/Header_2:22
+Scheduled
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+39
+/AmTrust WCA File:98/Header_2:22
+Insd_FEIN
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+96
+/AmTrust WCA File:98/Header_2:22
+Client_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+34
+34
+0
+20
+98
+/AmTrust WCA File:98/Header_2:22
+Location_Code
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+34
+34
+0
+18
+6
+/AmTrust WCA File:98
+Detail_Record
+
+0
+16
+2
+10
+1
+0
+21
+20
+85
+/AmTrust WCA File:98/Detail_Record:6
+Version
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+87
+/AmTrust WCA File:98/Detail_Record:6
+Activity
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+89
+/AmTrust WCA File:98/Detail_Record:6
+Error_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+91
+/AmTrust WCA File:98/Detail_Record:6
+Payroll_Comp_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+8
+/AmTrust WCA File:98/Detail_Record:6
+Policy
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+3
+34
+34
+0
+20
+9
+/AmTrust WCA File:98/Detail_Record:6
+Insured_Name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+10
+/AmTrust WCA File:98/Detail_Record:6
+Policy_Effective_Date
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+11
+/AmTrust WCA File:98/Detail_Record:6
+State
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+12
+/AmTrust WCA File:98/Detail_Record:6
+Class_Code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+34
+34
+0
+20
+71
+/AmTrust WCA File:98/Detail_Record:6
+Begin_Date
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+73
+/AmTrust WCA File:98/Detail_Record:6
+End_Date
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+75
+/AmTrust WCA File:98/Detail_Record:6
+Check_Date
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+13
+/AmTrust WCA File:98/Detail_Record:6
+Gross_Payroll
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+14
+/AmTrust WCA File:98/Detail_Record:6
+Excluded_Payroll
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+15
+/AmTrust WCA File:98/Detail_Record:6
+Subject_Payroll
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+16
+/AmTrust WCA File:98/Detail_Record:6
+Net_Rate
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+17
+/AmTrust WCA File:98/Detail_Record:6
+Premium_Paid
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+18
+/AmTrust WCA File:98/Detail_Record:6
+Scheduled_Description
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+19
+/AmTrust WCA File:98/Detail_Record:6
+Insured_FEIN
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+34
+34
+0
+20
+93
+/AmTrust WCA File:98/Detail_Record:6
+Client_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+34
+34
+0
+20
+94
+/AmTrust WCA File:98/Detail_Record:6
+Location_Code
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+34
+34
+0
+END DATA
+                     

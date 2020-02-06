@@ -1,0 +1,3276 @@
+BEGIN DATA
+objects|9
+RTM|w3cinc|macro\w3cinc.rtm|@0200N|6177
+MAP|w3cinc|map\w3cinc.map|@0200N|3631
+VW1|w3cinc|map\w3cinc.vw1|@0200N|4740
+VW2|w3cinc|map\w3cinc.vw2|@0200N|3067
+SRC_ADF|w3src|map\app\w3src.adf||3874
+DST_ADF|w3cinc|map\app\w3cinc.adf||2544
+TST_APP||||0
+UNKNOWN||||0
+FLD||||0
+;----------------------------------------
+;
+; spEDI*map 2.0 - MPL  code generator, Rel r3.0EV
+;
+; User: <not available>    Date: Wed Jan 06 14:38:26 2010
+;
+; Map Definition: Cincinnati W3 (Cincinnati W3)
+;
+;                            Source       Destination         
+;                            ------       -----------         
+;        Name:            W3 source ===>> W3 source           
+;        Desc:            W3 source       W3 source           
+; EDI Version:                                                
+;    EDI Desc:                                                
+;
+;----------------------------------------
+
+;----------------------------------------
+;
+; User code: Sln / Dln conditionals, FEL Code
+;
+;----------------------------------------
+let RTM_Header_record_EACH_0001( RTM_p0, RTM_p1, RTM_p2 ) = {
+Let Date = RTM_p0++RTM_p1++RTM_p2
+}
+
+;----------------------------------------
+
+
+;----------------------------------------
+;
+; Driver code: for alpha this will manually
+; load the data file and the map definition.
+; Eventually this will be replaced with the
+; AppScan inbound/outbound queue support.
+;
+; (AppScan will also provide the name of the batch file
+; but until it is online, we'll have to make do
+; with deriving a name from the map-def: 'outbound\w3cinc.dat'.)
+;
+;----------------------------------------
+
+LET RTM_RESULT = RUN_MAP("outbound\w3cinc.dat")
+IF RTM_RESULT <> 1 THEN
+   ECHO "Unable to test map."
+   END 1
+ENDIF
+ECHO "Macro Cincinnati W3 completed."
+END 0
+$RTIME:BEGIN
+@0200N
+33
+27
+NULL_REF
+Cincinnati W3
+Cincinnati W3
+0
+2048
+17
+w3src.adf
+17
+w3cinc.adf
+0
+0
+2
+4132
+1
+/Cincinnati W3:27
+LIT_0
+6
+0
+0
+8228
+2
+/Cincinnati W3:27
+Date
+desc
+0
+0
+3
+32770
+3
+/Cincinnati W3:27
+Header_record
+SLN Based on Header_record(View container)
+0
+0
+0
+333
+333
+444
+1
+Let Date = File_Date_CCYY++File_Date_MM++File_Date_DD
+RTM_Header_record_EACH_0001
+3
+1
+11
+14
+132
+0
+/W3 source:110/Header_record:2/File_Date_CCYY:47
+1
+27
+12
+132
+0
+/W3 source:110/Header_record:2/File_Date_MM:44
+1
+41
+12
+132
+0
+/W3 source:110/Header_record:2/File_Date_DD:46
+333
+Header_record
+Header_record
+3
+0
+18
+/W3 source:110/Header_record:2
+18
+/W3 source:114/Header_record:2
+32772
+4
+/Cincinnati W3:27/Header_record:3
+
+
+0
+0
+1
+0
+333
+333
+20
+/W3 source:110/Header_record:2/Record_ID:3
+20
+/W3 source:114/Header_record:2/Record_ID:3
+32772
+5
+/Cincinnati W3:27/Header_record:3
+
+
+0
+0
+1
+0
+333
+333
+8228
+/Cincinnati W3:27/Date:2
+20
+/W3 source:114/Header_record:2/File_Date_CCYY_MM_DD:47
+32772
+6
+/Cincinnati W3:27/Header_record:3
+
+
+0
+0
+1
+0
+333
+333
+4132
+/Cincinnati W3:27/LIT_0:1
+20
+/W3 source:114/Header_record:2/Transaction_Source:112
+32770
+7
+/Cincinnati W3:27
+Detail_record
+SLN Based on Detail_record(View container)
+0
+0
+0
+333
+333
+333
+333
+Detail_record
+Detail_record
+17
+0
+18
+/W3 source:110/Detail_record:15
+18
+/W3 source:114/Detail_record:15
+32772
+8
+/Cincinnati W3:27/Detail_record:7
+
+
+0
+0
+1
+0
+333
+333
+20
+/W3 source:110/Detail_record:15/Record_ID:28
+20
+/W3 source:114/Detail_record:15/Record_ID:28
+32772
+9
+/Cincinnati W3:27/Detail_record:7
+
+
+0
+0
+1
+0
+333
+333
+20
+/W3 source:110/Detail_record:15/Tax_Acct_Number:18
+20
+/W3 source:114/Detail_record:15/Tax_Acct_Number:18
+32772
+10
+/Cincinnati W3:27/Detail_record:7
+
+
+0
+0
+1
+0
+333
+333
+8228
+/Cincinnati W3:27/Date:2
+20
+/W3 source:114/Detail_record:15/File_Date_YYYYMMDD:74
+32772
+11
+/Cincinnati W3:27/Detail_record:7
+
+
+0
+0
+1
+0
+333
+333
+20
+/W3 source:110/Detail_record:15/Tax_Year:19
+20
+/W3 source:114/Detail_record:15/Tax_Year:19
+32772
+12
+/Cincinnati W3:27/Detail_record:7
+
+
+0
+0
+1
+0
+333
+333
+20
+/W3 source:110/Detail_record:15/Federal_ID:20
+20
+/W3 source:114/Detail_record:15/Federal_ID:20
+32772
+13
+/Cincinnati W3:27/Detail_record:7
+
+
+0
+0
+1
+0
+333
+333
+20
+/W3 source:110/Detail_record:15/Client_Name:21
+20
+/W3 source:114/Detail_record:15/Client_Name:21
+32772
+14
+/Cincinnati W3:27/Detail_record:7
+
+
+0
+0
+1
+0
+333
+333
+20
+/W3 source:110/Detail_record:15/Client_City:22
+20
+/W3 source:114/Detail_record:15/Client_City:22
+32772
+15
+/Cincinnati W3:27/Detail_record:7
+
+
+0
+0
+1
+0
+333
+333
+20
+/W3 source:110/Detail_record:15/Total_number_W2s:56
+20
+/W3 source:114/Detail_record:15/Total_number_W2s:56
+32772
+16
+/Cincinnati W3:27/Detail_record:7
+
+
+0
+0
+1
+0
+333
+333
+20
+/W3 source:110/Detail_record:15/Taxable_Wages:66
+20
+/W3 source:114/Detail_record:15/Taxable_Wages:66
+32772
+17
+/Cincinnati W3:27/Detail_record:7
+
+
+0
+0
+1
+0
+333
+333
+20
+/W3 source:110/Detail_record:15/Credits:82
+20
+/W3 source:114/Detail_record:15/Credits:82
+32772
+18
+/Cincinnati W3:27/Detail_record:7
+
+
+0
+0
+1
+0
+333
+333
+20
+/W3 source:110/Detail_record:15/Total_Tax:84
+20
+/W3 source:114/Detail_record:15/Total_Tax:84
+32772
+19
+/Cincinnati W3:27/Detail_record:7
+
+
+0
+0
+1
+0
+333
+333
+20
+/W3 source:110/Detail_record:15/Withholding_Deposits:85
+20
+/W3 source:114/Detail_record:15/Withholding_Deposits:85
+32772
+20
+/Cincinnati W3:27/Detail_record:7
+
+
+0
+0
+1
+0
+333
+333
+20
+/W3 source:110/Detail_record:15/Amount_paid_with_Return:86
+20
+/W3 source:114/Detail_record:15/Amount_paid_with_Return:86
+32772
+21
+/Cincinnati W3:27/Detail_record:7
+
+
+0
+0
+1
+0
+333
+333
+20
+/W3 source:110/Detail_record:15/Qtr1_Withholding:90
+20
+/W3 source:114/Detail_record:15/Qtr1_Withholding:90
+32772
+22
+/Cincinnati W3:27/Detail_record:7
+
+
+0
+0
+1
+0
+333
+333
+20
+/W3 source:110/Detail_record:15/Qtr2_Withholding:106
+20
+/W3 source:114/Detail_record:15/Qtr2_Withholding:106
+32772
+23
+/Cincinnati W3:27/Detail_record:7
+
+
+0
+0
+1
+0
+333
+333
+20
+/W3 source:110/Detail_record:15/Qtr3_Withholding:104
+20
+/W3 source:114/Detail_record:15/Qtr3_Withholding:104
+32772
+24
+/Cincinnati W3:27/Detail_record:7
+
+
+0
+0
+1
+0
+333
+333
+20
+/W3 source:110/Detail_record:15/Qtr4_Withholding:108
+20
+/W3 source:114/Detail_record:15/Qtr4_Withholding:108
+32770
+25
+/Cincinnati W3:27
+Trailer_record
+SLN Based on Trailer_record(View container)
+0
+0
+0
+333
+333
+333
+333
+Trailer_record
+Trailer_record
+2
+0
+18
+/W3 source:110/Trailer_record:29
+18
+/W3 source:114/Trailer_record:29
+32772
+26
+/Cincinnati W3:27/Trailer_record:25
+
+
+0
+0
+1
+0
+333
+333
+20
+/W3 source:110/Trailer_record:29/Record_ID:38
+20
+/W3 source:114/Trailer_record:29/Record_ID:38
+32772
+27
+/Cincinnati W3:27/Trailer_record:25
+
+
+0
+0
+1
+0
+333
+333
+20
+/W3 source:110/Trailer_record:29/Record_Count:39
+20
+/W3 source:114/Trailer_record:29/Total_Records:39
+$RTIME:END
+@0200N
+33
+3
+NULL_REF
+Cincinnati W3
+Cincinnati W3
+0
+2048
+w3cinc.vw1
+w3cinc.vw2
+0
+0
+2
+4132
+3
+/Cincinnati W3:3
+LIT_0
+6
+0
+0
+8228
+2
+/Cincinnati W3:3
+Date
+desc
+0
+0
+22
+36
+1
+/Cincinnati W3:3
+Map Link
+
+0
+0
+
+
+1
+0
+0
+1
+Let Date = File_Date_CCYY++File_Date_MM++File_Date_DD
+0
+132
+/Cincinnati W3:43/Header_record:1/Record_ID:2
+132
+/Cincinnati W3:28/Header_record:2/Record_ID:3
+36
+1
+/Cincinnati W3:3
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+8228
+/Cincinnati W3:3/Date:2
+132
+/Cincinnati W3:28/Header_record:2/File_Date_CCYY_MM_DD:4
+36
+1
+/Cincinnati W3:3
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+4132
+/Cincinnati W3:3/LIT_0:3
+132
+/Cincinnati W3:28/Header_record:2/Transaction_Source:6
+36
+1
+/Cincinnati W3:3
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/Cincinnati W3:43/Detail_record:8/Record_ID:9
+132
+/Cincinnati W3:28/Detail_record:7/Record_ID:8
+36
+1
+/Cincinnati W3:3
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/Cincinnati W3:43/Detail_record:8/Tax_Acct_Number:10
+132
+/Cincinnati W3:28/Detail_record:7/Tax_Acct_Number:9
+36
+1
+/Cincinnati W3:3
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+8228
+/Cincinnati W3:3/Date:2
+132
+/Cincinnati W3:28/Detail_record:7/File_Date_YYYYMMDD:10
+36
+1
+/Cincinnati W3:3
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/Cincinnati W3:43/Detail_record:8/Tax_Year:14
+132
+/Cincinnati W3:28/Detail_record:7/Tax_Year:11
+36
+1
+/Cincinnati W3:3
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/Cincinnati W3:43/Detail_record:8/Federal_ID:15
+132
+/Cincinnati W3:28/Detail_record:7/Federal_ID:12
+36
+1
+/Cincinnati W3:3
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/Cincinnati W3:43/Detail_record:8/Client_Name:16
+132
+/Cincinnati W3:28/Detail_record:7/Client_Name:13
+36
+1
+/Cincinnati W3:3
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/Cincinnati W3:43/Detail_record:8/Client_City:17
+132
+/Cincinnati W3:28/Detail_record:7/Client_City:14
+36
+1
+/Cincinnati W3:3
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/Cincinnati W3:43/Detail_record:8/Total_number_W2s:18
+132
+/Cincinnati W3:28/Detail_record:7/Total_number_W2s:15
+36
+1
+/Cincinnati W3:3
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/Cincinnati W3:43/Detail_record:8/Taxable_Wages:19
+132
+/Cincinnati W3:28/Detail_record:7/Taxable_Wages:16
+36
+1
+/Cincinnati W3:3
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/Cincinnati W3:43/Detail_record:8/Credits:20
+132
+/Cincinnati W3:28/Detail_record:7/Credits:17
+36
+1
+/Cincinnati W3:3
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/Cincinnati W3:43/Detail_record:8/Total_Tax:21
+132
+/Cincinnati W3:28/Detail_record:7/Total_Tax:18
+36
+1
+/Cincinnati W3:3
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/Cincinnati W3:43/Detail_record:8/Withholding_Deposits:22
+132
+/Cincinnati W3:28/Detail_record:7/Withholding_Deposits:19
+36
+1
+/Cincinnati W3:3
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/Cincinnati W3:43/Detail_record:8/Amount_paid_with_Return:23
+132
+/Cincinnati W3:28/Detail_record:7/Amount_paid_with_Return:20
+36
+1
+/Cincinnati W3:3
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/Cincinnati W3:43/Detail_record:8/Qtr1_Withholding:27
+132
+/Cincinnati W3:28/Detail_record:7/Qtr1_Withholding:21
+36
+1
+/Cincinnati W3:3
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/Cincinnati W3:43/Detail_record:8/Qtr2_Withholding:31
+132
+/Cincinnati W3:28/Detail_record:7/Qtr2_Withholding:22
+36
+1
+/Cincinnati W3:3
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/Cincinnati W3:43/Detail_record:8/Qtr3_Withholding:35
+132
+/Cincinnati W3:28/Detail_record:7/Qtr3_Withholding:23
+36
+1
+/Cincinnati W3:3
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/Cincinnati W3:43/Detail_record:8/Qtr4_Withholding:39
+132
+/Cincinnati W3:28/Detail_record:7/Qtr4_Withholding:24
+36
+1
+/Cincinnati W3:3
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/Cincinnati W3:43/Trailer_record:40/Record_ID:41
+132
+/Cincinnati W3:28/Trailer_record:25/Record_ID:26
+36
+1
+/Cincinnati W3:3
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/Cincinnati W3:43/Trailer_record:40/Record_Count:42
+132
+/Cincinnati W3:28/Trailer_record:25/Total_Records:28
+@0200N
+129
+43
+NULL_REF
+Cincinnati W3
+View of: Cincinnati W3
+0
+0
+17
+w3src.adf
+w3cinc.vw1
+3
+130
+1
+/Cincinnati W3:43
+Header_record
+
+0
+16
+/W3 source:110/Header_record:2
+
+1
+6
+132
+2
+/Cincinnati W3:43/Header_record:1
+Record_ID
+
+0
+16
+/W3 source:110/Header_record:2/Record_ID:3
+
+
+132
+3
+/Cincinnati W3:43/Header_record:1
+Partner_ID
+
+0
+16
+/W3 source:110/Header_record:2/Partner_ID:7
+
+
+132
+4
+/Cincinnati W3:43/Header_record:1
+File_Date_MM
+
+0
+16
+/W3 source:110/Header_record:2/File_Date_MM:44
+
+
+132
+5
+/Cincinnati W3:43/Header_record:1
+File_Date_DD
+
+0
+16
+/W3 source:110/Header_record:2/File_Date_DD:46
+
+
+132
+6
+/Cincinnati W3:43/Header_record:1
+File_Date_CCYY
+
+0
+16
+/W3 source:110/Header_record:2/File_Date_CCYY:47
+
+
+132
+7
+/Cincinnati W3:43/Header_record:1
+Due_Date
+YYYY-MM-DD
+0
+16
+/W3 source:110/Header_record:2/Due_Date:110
+
+
+130
+8
+/Cincinnati W3:43
+Detail_record
+
+0
+16
+/W3 source:110/Detail_record:15
+
+1
+31
+132
+9
+/Cincinnati W3:43/Detail_record:8
+Record_ID
+
+0
+16
+/W3 source:110/Detail_record:15/Record_ID:28
+
+
+132
+10
+/Cincinnati W3:43/Detail_record:8
+Tax_Acct_Number
+
+0
+16
+/W3 source:110/Detail_record:15/Tax_Acct_Number:18
+
+
+132
+11
+/Cincinnati W3:43/Detail_record:8
+File_Date_MM
+
+0
+16
+/W3 source:110/Detail_record:15/File_Date_MM:74
+
+
+132
+12
+/Cincinnati W3:43/Detail_record:8
+File_Date_DD
+
+0
+16
+/W3 source:110/Detail_record:15/File_Date_DD:76
+
+
+132
+13
+/Cincinnati W3:43/Detail_record:8
+File_Date_CCYY
+
+0
+16
+/W3 source:110/Detail_record:15/File_Date_CCYY:78
+
+
+132
+14
+/Cincinnati W3:43/Detail_record:8
+Tax_Year
+YYYY
+0
+16
+/W3 source:110/Detail_record:15/Tax_Year:19
+
+
+132
+15
+/Cincinnati W3:43/Detail_record:8
+Federal_ID
+
+0
+16
+/W3 source:110/Detail_record:15/Federal_ID:20
+
+
+132
+16
+/Cincinnati W3:43/Detail_record:8
+Client_Name
+
+0
+16
+/W3 source:110/Detail_record:15/Client_Name:21
+
+
+132
+17
+/Cincinnati W3:43/Detail_record:8
+Client_City
+
+0
+16
+/W3 source:110/Detail_record:15/Client_City:22
+
+
+132
+18
+/Cincinnati W3:43/Detail_record:8
+Total_number_W2s
+
+0
+16
+/W3 source:110/Detail_record:15/Total_number_W2s:56
+
+
+132
+19
+/Cincinnati W3:43/Detail_record:8
+Taxable_Wages
+
+0
+16
+/W3 source:110/Detail_record:15/Taxable_Wages:66
+
+
+132
+20
+/Cincinnati W3:43/Detail_record:8
+Credits
+
+0
+16
+/W3 source:110/Detail_record:15/Credits:82
+
+
+132
+21
+/Cincinnati W3:43/Detail_record:8
+Total_Tax
+
+0
+16
+/W3 source:110/Detail_record:15/Total_Tax:84
+
+
+132
+22
+/Cincinnati W3:43/Detail_record:8
+Withholding_Deposits
+
+0
+16
+/W3 source:110/Detail_record:15/Withholding_Deposits:85
+
+
+132
+23
+/Cincinnati W3:43/Detail_record:8
+Amount_paid_with_Return
+
+0
+16
+/W3 source:110/Detail_record:15/Amount_paid_with_Return:86
+
+
+132
+24
+/Cincinnati W3:43/Detail_record:8
+Jan_Withholding
+
+0
+16
+/W3 source:110/Detail_record:15/Jan_Withholding:87
+
+
+132
+25
+/Cincinnati W3:43/Detail_record:8
+Feb_Withholding
+
+0
+16
+/W3 source:110/Detail_record:15/Feb_Withholding:88
+
+
+132
+26
+/Cincinnati W3:43/Detail_record:8
+Mar_Withholding
+
+0
+16
+/W3 source:110/Detail_record:15/Mar_Withholding:89
+
+
+132
+27
+/Cincinnati W3:43/Detail_record:8
+Qtr1_Withholding
+
+0
+16
+/W3 source:110/Detail_record:15/Qtr1_Withholding:90
+
+
+132
+28
+/Cincinnati W3:43/Detail_record:8
+Apr_Withholding
+
+0
+16
+/W3 source:110/Detail_record:15/Apr_Withholding:91
+
+
+132
+29
+/Cincinnati W3:43/Detail_record:8
+May_Withholding
+
+0
+16
+/W3 source:110/Detail_record:15/May_Withholding:92
+
+
+132
+30
+/Cincinnati W3:43/Detail_record:8
+Jun_Withholding
+
+0
+16
+/W3 source:110/Detail_record:15/Jun_Withholding:93
+
+
+132
+31
+/Cincinnati W3:43/Detail_record:8
+Qtr2_Withholding
+
+0
+16
+/W3 source:110/Detail_record:15/Qtr2_Withholding:106
+
+
+132
+32
+/Cincinnati W3:43/Detail_record:8
+Jul_Withholding
+
+0
+16
+/W3 source:110/Detail_record:15/Jul_Withholding:94
+
+
+132
+33
+/Cincinnati W3:43/Detail_record:8
+Aug_Withholding
+
+0
+16
+/W3 source:110/Detail_record:15/Aug_Withholding:96
+
+
+132
+34
+/Cincinnati W3:43/Detail_record:8
+Sep_Withholding
+
+0
+16
+/W3 source:110/Detail_record:15/Sep_Withholding:97
+
+
+132
+35
+/Cincinnati W3:43/Detail_record:8
+Qtr3_Withholding
+
+0
+16
+/W3 source:110/Detail_record:15/Qtr3_Withholding:104
+
+
+132
+36
+/Cincinnati W3:43/Detail_record:8
+Oct_Withholding
+
+0
+16
+/W3 source:110/Detail_record:15/Oct_Withholding:98
+
+
+132
+37
+/Cincinnati W3:43/Detail_record:8
+Nov_Withholding
+
+0
+16
+/W3 source:110/Detail_record:15/Nov_Withholding:99
+
+
+132
+38
+/Cincinnati W3:43/Detail_record:8
+Dec_Withholding
+
+0
+16
+/W3 source:110/Detail_record:15/Dec_Withholding:100
+
+
+132
+39
+/Cincinnati W3:43/Detail_record:8
+Qtr4_Withholding
+
+0
+16
+/W3 source:110/Detail_record:15/Qtr4_Withholding:108
+
+
+130
+40
+/Cincinnati W3:43
+Trailer_record
+
+0
+16
+/W3 source:110/Trailer_record:29
+
+1
+2
+132
+41
+/Cincinnati W3:43/Trailer_record:40
+Record_ID
+
+0
+16
+/W3 source:110/Trailer_record:29/Record_ID:38
+
+
+132
+42
+/Cincinnati W3:43/Trailer_record:40
+Record_Count
+
+0
+16
+/W3 source:110/Trailer_record:29/Record_Count:39
+
+
+@0200N
+129
+28
+NULL_REF
+Cincinnati W3
+View of: Cincinnati W3
+0
+0
+17
+w3cinc.adf
+w3cinc.vw2
+3
+130
+2
+/Cincinnati W3:28
+Header_record
+
+0
+16
+/W3 source:114/Header_record:2
+
+1
+4
+132
+3
+/Cincinnati W3:28/Header_record:2
+Record_ID
+
+0
+16
+/W3 source:114/Header_record:2/Record_ID:3
+
+
+132
+4
+/Cincinnati W3:28/Header_record:2
+File_Date_CCYY_MM_DD
+
+0
+16
+/W3 source:114/Header_record:2/File_Date_CCYY_MM_DD:47
+
+
+132
+5
+/Cincinnati W3:28/Header_record:2
+Filler_Zeroes
+
+0
+16
+/W3 source:114/Header_record:2/Filler_Zeroes:110
+
+
+132
+6
+/Cincinnati W3:28/Header_record:2
+Transaction_Source
+
+0
+16
+/W3 source:114/Header_record:2/Transaction_Source:112
+
+
+130
+7
+/Cincinnati W3:28
+Detail_record
+
+0
+16
+/W3 source:114/Detail_record:15
+
+1
+17
+132
+8
+/Cincinnati W3:28/Detail_record:7
+Record_ID
+
+0
+16
+/W3 source:114/Detail_record:15/Record_ID:28
+
+
+132
+9
+/Cincinnati W3:28/Detail_record:7
+Tax_Acct_Number
+
+0
+16
+/W3 source:114/Detail_record:15/Tax_Acct_Number:18
+
+
+132
+10
+/Cincinnati W3:28/Detail_record:7
+File_Date_YYYYMMDD
+
+0
+16
+/W3 source:114/Detail_record:15/File_Date_YYYYMMDD:74
+
+
+132
+11
+/Cincinnati W3:28/Detail_record:7
+Tax_Year
+YYYY
+0
+16
+/W3 source:114/Detail_record:15/Tax_Year:19
+
+
+132
+12
+/Cincinnati W3:28/Detail_record:7
+Federal_ID
+
+0
+16
+/W3 source:114/Detail_record:15/Federal_ID:20
+
+
+132
+13
+/Cincinnati W3:28/Detail_record:7
+Client_Name
+
+0
+16
+/W3 source:114/Detail_record:15/Client_Name:21
+
+
+132
+14
+/Cincinnati W3:28/Detail_record:7
+Client_City
+
+0
+16
+/W3 source:114/Detail_record:15/Client_City:22
+
+
+132
+15
+/Cincinnati W3:28/Detail_record:7
+Total_number_W2s
+
+0
+16
+/W3 source:114/Detail_record:15/Total_number_W2s:56
+
+
+132
+16
+/Cincinnati W3:28/Detail_record:7
+Taxable_Wages
+
+0
+16
+/W3 source:114/Detail_record:15/Taxable_Wages:66
+
+
+132
+17
+/Cincinnati W3:28/Detail_record:7
+Credits
+
+0
+16
+/W3 source:114/Detail_record:15/Credits:82
+
+
+132
+18
+/Cincinnati W3:28/Detail_record:7
+Total_Tax
+
+0
+16
+/W3 source:114/Detail_record:15/Total_Tax:84
+
+
+132
+19
+/Cincinnati W3:28/Detail_record:7
+Withholding_Deposits
+
+0
+16
+/W3 source:114/Detail_record:15/Withholding_Deposits:85
+
+
+132
+20
+/Cincinnati W3:28/Detail_record:7
+Amount_paid_with_Return
+
+0
+16
+/W3 source:114/Detail_record:15/Amount_paid_with_Return:86
+
+
+132
+21
+/Cincinnati W3:28/Detail_record:7
+Qtr1_Withholding
+
+0
+16
+/W3 source:114/Detail_record:15/Qtr1_Withholding:90
+
+
+132
+22
+/Cincinnati W3:28/Detail_record:7
+Qtr2_Withholding
+
+0
+16
+/W3 source:114/Detail_record:15/Qtr2_Withholding:106
+
+
+132
+23
+/Cincinnati W3:28/Detail_record:7
+Qtr3_Withholding
+
+0
+16
+/W3 source:114/Detail_record:15/Qtr3_Withholding:104
+
+
+132
+24
+/Cincinnati W3:28/Detail_record:7
+Qtr4_Withholding
+
+0
+16
+/W3 source:114/Detail_record:15/Qtr4_Withholding:108
+
+
+130
+25
+/Cincinnati W3:28
+Trailer_record
+
+0
+16
+/W3 source:114/Trailer_record:29
+
+1
+3
+132
+26
+/Cincinnati W3:28/Trailer_record:25
+Record_ID
+
+0
+16
+/W3 source:114/Trailer_record:29/Record_ID:38
+
+
+132
+27
+/Cincinnati W3:28/Trailer_record:25
+Filler_Zeroes
+
+0
+16
+/W3 source:114/Trailer_record:29/Filler_Zeroes:114
+
+
+132
+28
+/Cincinnati W3:28/Trailer_record:25
+Total_Records
+
+0
+16
+/W3 source:114/Trailer_record:29/Total_Records:39
+
+
+@0200N
+17
+110
+NULL_REF
+W3 source
+W3 source
+0
+0
+2
+10
+2
+44
+0
+0
+0
+4
+PARTNER
+
+7
+APPKEY1
+
+0
+APPKEY2
+
+0
+APPKEY3
+
+0
+tax.app
+1
+46
+3
+18
+2
+/W3 source:110
+Header_record
+
+0
+16
+2
+10
+1
+1
+6
+20
+3
+/W3 source:110/Header_record:2
+Record_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+7
+/W3 source:110/Header_record:2
+Partner_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+44
+/W3 source:110/Header_record:2
+File_Date_MM
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+46
+/W3 source:110/Header_record:2
+File_Date_DD
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+47
+/W3 source:110/Header_record:2
+File_Date_CCYY
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+110
+/W3 source:110/Header_record:2
+Due_Date
+YYYY-MM-DD
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+15
+/W3 source:110
+Detail_record
+
+0
+16
+2
+10
+1
+1
+31
+20
+28
+/W3 source:110/Detail_record:15
+Record_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+18
+/W3 source:110/Detail_record:15
+Tax_Acct_Number
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+74
+/W3 source:110/Detail_record:15
+File_Date_MM
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+76
+/W3 source:110/Detail_record:15
+File_Date_DD
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+78
+/W3 source:110/Detail_record:15
+File_Date_CCYY
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+19
+/W3 source:110/Detail_record:15
+Tax_Year
+YYYY
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+20
+/W3 source:110/Detail_record:15
+Federal_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+21
+/W3 source:110/Detail_record:15
+Client_Name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+22
+/W3 source:110/Detail_record:15
+Client_City
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+56
+/W3 source:110/Detail_record:15
+Total_number_W2s
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+66
+/W3 source:110/Detail_record:15
+Taxable_Wages
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+82
+/W3 source:110/Detail_record:15
+Credits
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+84
+/W3 source:110/Detail_record:15
+Total_Tax
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+85
+/W3 source:110/Detail_record:15
+Withholding_Deposits
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+86
+/W3 source:110/Detail_record:15
+Amount_paid_with_Return
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+87
+/W3 source:110/Detail_record:15
+Jan_Withholding
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+88
+/W3 source:110/Detail_record:15
+Feb_Withholding
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+89
+/W3 source:110/Detail_record:15
+Mar_Withholding
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+90
+/W3 source:110/Detail_record:15
+Qtr1_Withholding
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+91
+/W3 source:110/Detail_record:15
+Apr_Withholding
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+92
+/W3 source:110/Detail_record:15
+May_Withholding
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+93
+/W3 source:110/Detail_record:15
+Jun_Withholding
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+106
+/W3 source:110/Detail_record:15
+Qtr2_Withholding
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+94
+/W3 source:110/Detail_record:15
+Jul_Withholding
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+96
+/W3 source:110/Detail_record:15
+Aug_Withholding
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+97
+/W3 source:110/Detail_record:15
+Sep_Withholding
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+104
+/W3 source:110/Detail_record:15
+Qtr3_Withholding
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+98
+/W3 source:110/Detail_record:15
+Oct_Withholding
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+99
+/W3 source:110/Detail_record:15
+Nov_Withholding
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+100
+/W3 source:110/Detail_record:15
+Dec_Withholding
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+108
+/W3 source:110/Detail_record:15
+Qtr4_Withholding
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+18
+29
+/W3 source:110
+Trailer_record
+
+0
+16
+2
+10
+1
+1
+2
+20
+38
+/W3 source:110/Trailer_record:29
+Record_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+39
+/W3 source:110/Trailer_record:29
+Record_Count
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+@0200N
+17
+114
+NULL_REF
+W3 source
+W3 source
+0
+0
+2
+10
+1
+0
+10
+0
+0
+0
+4
+PARTNER
+
+0
+APPKEY1
+
+0
+APPKEY2
+
+0
+APPKEY3
+
+0
+tax.app
+1
+46
+3
+18
+2
+/W3 source:114
+Header_record
+
+0
+16
+2
+10
+1
+1
+4
+20
+3
+/W3 source:114/Header_record:2
+Record_ID
+
+0
+16
+0
+1
+0
+1
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+47
+/W3 source:114/Header_record:2
+File_Date_CCYY_MM_DD
+
+0
+16
+0
+1
+0
+8
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+110
+/W3 source:114/Header_record:2
+Filler_Zeroes
+
+0
+16
+0
+1
+0
+196
+3
+48
+1
+0
+0
+
+0
+0
+0
+0
+0
+0
+0
+0
++
+-
+20
+112
+/W3 source:114/Header_record:2
+Transaction_Source
+
+0
+16
+0
+1
+0
+1
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+15
+/W3 source:114
+Detail_record
+
+0
+16
+2
+10
+1
+1
+17
+20
+28
+/W3 source:114/Detail_record:15
+Record_ID
+
+0
+16
+0
+1
+0
+1
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+18
+/W3 source:114/Detail_record:15
+Tax_Acct_Number
+
+0
+16
+0
+1
+0
+10
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+74
+/W3 source:114/Detail_record:15
+File_Date_YYYYMMDD
+
+0
+16
+0
+1
+0
+8
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+19
+/W3 source:114/Detail_record:15
+Tax_Year
+YYYY
+0
+16
+0
+1
+0
+4
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+20
+/W3 source:114/Detail_record:15
+Federal_ID
+
+0
+16
+0
+1
+0
+9
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+21
+/W3 source:114/Detail_record:15
+Client_Name
+
+0
+16
+0
+1
+0
+40
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+22
+/W3 source:114/Detail_record:15
+Client_City
+
+0
+16
+0
+1
+0
+30
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+56
+/W3 source:114/Detail_record:15
+Total_number_W2s
+
+0
+16
+0
+1
+0
+5
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+0
+0
+0
++
+-
+20
+66
+/W3 source:114/Detail_record:15
+Taxable_Wages
+
+0
+16
+0
+1
+0
+11
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+1
+2
+0
+0
++
+-
+20
+82
+/W3 source:114/Detail_record:15
+Credits
+
+0
+16
+0
+1
+0
+11
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+1
+2
+0
+0
++
+-
+20
+84
+/W3 source:114/Detail_record:15
+Total_Tax
+
+0
+16
+0
+1
+0
+11
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+1
+2
+0
+0
++
+-
+20
+85
+/W3 source:114/Detail_record:15
+Withholding_Deposits
+
+0
+16
+0
+1
+0
+11
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+1
+2
+0
+0
++
+-
+20
+86
+/W3 source:114/Detail_record:15
+Amount_paid_with_Return
+
+0
+16
+0
+1
+0
+11
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+1
+2
+0
+0
++
+-
+20
+90
+/W3 source:114/Detail_record:15
+Qtr1_Withholding
+
+0
+16
+0
+1
+0
+11
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+1
+2
+0
+0
++
+-
+20
+106
+/W3 source:114/Detail_record:15
+Qtr2_Withholding
+
+0
+16
+0
+1
+0
+11
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+1
+2
+0
+0
++
+-
+20
+104
+/W3 source:114/Detail_record:15
+Qtr3_Withholding
+
+0
+16
+0
+1
+0
+11
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+1
+2
+0
+0
++
+-
+20
+108
+/W3 source:114/Detail_record:15
+Qtr4_Withholding
+
+0
+16
+0
+1
+0
+11
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+1
+2
+0
+0
++
+-
+18
+29
+/W3 source:114
+Trailer_record
+
+0
+16
+2
+10
+1
+1
+3
+20
+38
+/W3 source:114/Trailer_record:29
+Record_ID
+
+0
+16
+0
+1
+0
+1
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+114
+/W3 source:114/Trailer_record:29
+Filler_Zeroes
+
+0
+16
+0
+1
+0
+199
+3
+48
+1
+0
+0
+
+0
+0
+0
+0
+0
+0
+0
+0
++
+-
+20
+39
+/W3 source:114/Trailer_record:29
+Total_Records
+
+0
+16
+0
+1
+0
+6
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+1
+0
+0
+0
++
+-
+END DATA
+               

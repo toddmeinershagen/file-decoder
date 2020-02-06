@@ -1,0 +1,14272 @@
+BEGIN DATA
+objects|9
+RTM|schdb-ga|macro\schdb-ga.rtm|@0200N|25666
+MAP|schdb-ga|map\schdb-ga.map|@0200N|21586
+VW1|schdb-ga|map\schdb-ga.vw1|@0200N|19145
+VW2|schdb-ga|map\schdb-ga.vw2|@0200N|15980
+SRC_ADF|schdbsrc|map\app\schdbsrc.adf||16198
+DST_ADF|schdb-ga|map\app\schdb-ga.adf||13544
+TST_APP||||0
+UNKNOWN||||0
+FLD||||0
+;----------------------------------------
+;
+; spEDI*map 2.0 - MPL  code generator, Rel r3.0EV
+;
+; User: <not available>    Date: Thu Sep 15 09:07:39 2011
+;
+; Map Definition: GA Schedule B (GA Schedule B)
+;
+;                            Source       Destination         
+;                            ------       -----------         
+;        Name: Shcedule B source fi ===>> Shcedule B GA       
+;        Desc: Shcedule B source fi       Shcedule B GA       
+; EDI Version:                                                
+;    EDI Desc:                                                
+;
+;----------------------------------------
+
+;----------------------------------------
+;
+; User code: Sln / Dln conditionals, FEL Code
+;
+;----------------------------------------
+
+;----------------------------------------
+
+
+;----------------------------------------
+;
+; Driver code: for alpha this will manually
+; load the data file and the map definition.
+; Eventually this will be replaced with the
+; AppScan inbound/outbound queue support.
+;
+; (AppScan will also provide the name of the batch file
+; but until it is online, we'll have to make do
+; with deriving a name from the map-def: 'outbound\schdb-ga.dat'.)
+;
+;----------------------------------------
+
+LET RTM_RESULT = RUN_MAP("outbound\schdb-ga.dat")
+IF RTM_RESULT <> 1 THEN
+   ECHO "Unable to test map."
+   END 1
+ENDIF
+ECHO "Macro GA Schedule B completed."
+END 0
+$RTIME:BEGIN
+@0200N
+33
+133
+NULL_REF
+GA Schedule B
+GA Schedule B
+0
+2048
+17
+schdbsrc.adf
+17
+schdb-ga.adf
+0
+0
+0
+1
+32770
+1
+/GA Schedule B:133
+G7_Record
+SLN Based on G7_Record(View container)
+0
+0
+0
+333
+333
+333
+333
+G7_Record
+G7_Record
+130
+0
+18
+/Shcedule B source file:190/G7_Record:28
+18
+/Shcedule B GA:197/G7_Record:28
+32772
+2
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/Tax_Period_End:30
+20
+/Shcedule B GA:197/G7_Record:28/Tax_Period_End:30
+32772
+3
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SoftwareID:31
+20
+/Shcedule B GA:197/G7_Record:28/SoftwareID:31
+32772
+4
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/Software_Version:32
+20
+/Shcedule B GA:197/G7_Record:28/Software_Version:32
+32772
+5
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/Amended_Return_Indicator:33
+20
+/Shcedule B GA:197/G7_Record:28/Amended_Return_Indicator:33
+32772
+6
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/TIN:34
+20
+/Shcedule B GA:197/G7_Record:28/TIN:34
+32772
+7
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/State_EIN:35
+20
+/Shcedule B GA:197/G7_Record:28/State_EIN:35
+32772
+8
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/Due_Date:36
+20
+/Shcedule B GA:197/G7_Record:28/Due_Date:36
+32772
+9
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/Form:37
+20
+/Shcedule B GA:197/G7_Record:28/Form:37
+32772
+10
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/Additonal_Tax_Adj_Month1:38
+20
+/Shcedule B GA:197/G7_Record:28/Additonal_Tax_Adj_Month1:38
+32772
+11
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/Over_Payment_adj_Month1:43
+20
+/Shcedule B GA:197/G7_Record:28/Over_Payment_adj_Month1:191
+32772
+12
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/Clean_Energy_Credit_Month1:39
+20
+/Shcedule B GA:197/G7_Record:28/Clean_Energy_Credit_Month1:39
+32772
+13
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/Film_Credit_Month1:40
+20
+/Shcedule B GA:197/G7_Record:28/Film_Credit_Month1:40
+32772
+14
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/Headquarters_Credit_Month1:41
+20
+/Shcedule B GA:197/G7_Record:28/Headquarters_Credit_Month1:41
+32772
+15
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/Job_Tax_Credit_Month1:42
+20
+/Shcedule B GA:197/G7_Record:28/Job_Tax_Credit_Month1:42
+32772
+16
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/Additonal_Tax_Adj_Month2:45
+20
+/Shcedule B GA:197/G7_Record:28/Additonal_Tax_Adj_Month2:45
+32772
+17
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/Over_Payment_adj_Month2:55
+20
+/Shcedule B GA:197/G7_Record:28/Over_Payment_adj_Month2:193
+32772
+18
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/Clean_Energy_Credit_Month2:47
+20
+/Shcedule B GA:197/G7_Record:28/Clean_Energy_Credit_Month2:47
+32772
+19
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/Film_Credit_Month2:49
+20
+/Shcedule B GA:197/G7_Record:28/Film_Credit_Month2:49
+32772
+20
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/Headquarters_Credit_Month2:51
+20
+/Shcedule B GA:197/G7_Record:28/Headquarters_Credit_Month2:51
+32772
+21
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/Job_Tax_Credit_Month2:53
+20
+/Shcedule B GA:197/G7_Record:28/Job_Tax_Credit_Month2:53
+32772
+22
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/Additonal_Tax_Adj_Month3:57
+20
+/Shcedule B GA:197/G7_Record:28/Additonal_Tax_Adj_Month3:57
+32772
+23
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/Over_Payment_adj_Month3:67
+20
+/Shcedule B GA:197/G7_Record:28/Over_Payment_adj_Month3:195
+32772
+24
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/Clean_Energy_Credit_Month3:59
+20
+/Shcedule B GA:197/G7_Record:28/Clean_Energy_Credit_Month3:59
+32772
+25
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/Film_Credit_Month3:61
+20
+/Shcedule B GA:197/G7_Record:28/Film_Credit_Month3:61
+32772
+26
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/Headquarters_Credit_Month3:63
+20
+/Shcedule B GA:197/G7_Record:28/Headquarters_Credit_Month3:63
+32772
+27
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/Job_Tax_Credit_Month3:65
+20
+/Shcedule B GA:197/G7_Record:28/Job_Tax_Credit_Month3:65
+32772
+28
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/Month_1_Liability:68
+20
+/Shcedule B GA:197/G7_Record:28/Month_1_Liability:68
+32772
+29
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/Month_2_Liability:70
+20
+/Shcedule B GA:197/G7_Record:28/Month_2_Liability:70
+32772
+30
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/Month_3_Liability:71
+20
+/Shcedule B GA:197/G7_Record:28/Month_3_Liability:71
+32772
+31
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/Quarterly_Total:185
+20
+/Shcedule B GA:197/G7_Record:28/Quarterly_Total:197
+32772
+32
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day1:72
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day1:72
+32772
+33
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day2:74
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day2:74
+32772
+34
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day3:75
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day3:75
+32772
+35
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day4:76
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day4:76
+32772
+36
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day5:77
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day5:77
+32772
+37
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day6:78
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day6:78
+32772
+38
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day7:79
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day7:79
+32772
+39
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day8:80
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day8:80
+32772
+40
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day9:81
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day9:81
+32772
+41
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day10:82
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day10:82
+32772
+42
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day11:83
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day11:83
+32772
+43
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day12:84
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day12:84
+32772
+44
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day13:85
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day13:85
+32772
+45
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day14:86
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day14:86
+32772
+46
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day15:87
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day15:87
+32772
+47
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day16:88
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day16:88
+32772
+48
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day17:89
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day17:89
+32772
+49
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day18:90
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day18:90
+32772
+50
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day19:91
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day19:91
+32772
+51
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day20:92
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day20:92
+32772
+52
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day21:93
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day21:93
+32772
+53
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day22:94
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day22:94
+32772
+54
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day23:95
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day23:95
+32772
+55
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day24:96
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day24:96
+32772
+56
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day25:97
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day25:97
+32772
+57
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day26:98
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day26:98
+32772
+58
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day27:99
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day27:99
+32772
+59
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day28:100
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day28:100
+32772
+60
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day29:101
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day29:101
+32772
+61
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day30:103
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day30:103
+32772
+62
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day31:104
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day31:104
+32772
+63
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/Total_Month_1_Liability:106
+20
+/Shcedule B GA:197/G7_Record:28/Total_Month_1_Liability:106
+32772
+64
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/Total_Month_1_Deposits:108
+20
+/Shcedule B GA:197/G7_Record:28/Total_Month_1_Deposits:108
+32772
+65
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day1:110
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day1:110
+32772
+66
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day2:112
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day2:112
+32772
+67
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day3:113
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day3:113
+32772
+68
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day4:114
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day4:114
+32772
+69
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day5:115
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day5:115
+32772
+70
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day6:116
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day6:116
+32772
+71
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day7:117
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day7:117
+32772
+72
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day8:118
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day8:118
+32772
+73
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day9:119
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day9:119
+32772
+74
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day10:120
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day10:120
+32772
+75
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day11:121
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day11:121
+32772
+76
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day12:122
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day12:122
+32772
+77
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day13:123
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day13:123
+32772
+78
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day14:124
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day14:124
+32772
+79
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day15:125
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day15:125
+32772
+80
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day16:126
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day16:126
+32772
+81
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day17:127
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day17:127
+32772
+82
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day18:128
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day18:128
+32772
+83
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day19:129
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day19:129
+32772
+84
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day20:130
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day20:130
+32772
+85
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day21:131
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day21:131
+32772
+86
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day22:132
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day22:132
+32772
+87
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day23:133
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day23:133
+32772
+88
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day24:134
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day24:134
+32772
+89
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day25:135
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day25:135
+32772
+90
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day26:136
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day26:136
+32772
+91
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day27:137
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day27:137
+32772
+92
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day28:138
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day28:138
+32772
+93
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day29:139
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day29:139
+32772
+94
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day30:140
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day30:140
+32772
+95
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day31:141
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day31:141
+32772
+96
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/Total_Month_2_Liability:143
+20
+/Shcedule B GA:197/G7_Record:28/Total_Month_2_Liability:143
+32772
+97
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/Total_Month_2_Deposits:145
+20
+/Shcedule B GA:197/G7_Record:28/Total_Month_2_Deposits:145
+32772
+98
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day1:147
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day1:147
+32772
+99
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day2:149
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day2:149
+32772
+100
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day3:150
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day3:150
+32772
+101
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day4:151
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day4:151
+32772
+102
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day5:152
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day5:152
+32772
+103
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day6:153
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day6:153
+32772
+104
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day7:154
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day7:154
+32772
+105
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day8:155
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day8:155
+32772
+106
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day9:156
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day9:156
+32772
+107
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day10:157
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day10:157
+32772
+108
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day11:158
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day11:158
+32772
+109
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day12:159
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day12:159
+32772
+110
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day13:160
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day13:160
+32772
+111
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day14:161
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day14:161
+32772
+112
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day15:162
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day15:162
+32772
+113
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day16:163
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day16:163
+32772
+114
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day17:164
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day17:164
+32772
+115
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day18:165
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day18:165
+32772
+116
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day19:166
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day19:166
+32772
+117
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day20:167
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day20:167
+32772
+118
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day21:168
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day21:168
+32772
+119
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day22:169
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day22:169
+32772
+120
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day23:170
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day23:170
+32772
+121
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day24:171
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day24:171
+32772
+122
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day25:172
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day25:172
+32772
+123
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day26:173
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day26:173
+32772
+124
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day27:174
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day27:174
+32772
+125
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day28:175
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day28:175
+32772
+126
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day29:177
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day29:177
+32772
+127
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day30:178
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day30:178
+32772
+128
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day31:179
+20
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day31:179
+32772
+129
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/Total_Month_3_Liability:181
+20
+/Shcedule B GA:197/G7_Record:28/Total_Month_3_Liability:181
+32772
+130
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/Total_Month_3_Deposits:183
+20
+/Shcedule B GA:197/G7_Record:28/Total_Month_3_Deposits:183
+32772
+131
+/GA Schedule B:133/G7_Record:1
+
+
+0
+0
+1
+0
+333
+333
+20
+/Shcedule B source file:190/G7_Record:28/Amount_Paid:187
+20
+/Shcedule B GA:197/G7_Record:28/Amount_Paid:187
+$RTIME:END
+@0200N
+33
+1
+NULL_REF
+GA Schedule B
+GA Schedule B
+0
+2048
+schdb-ga.vw1
+schdb-ga.vw2
+0
+0
+0
+130
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/Tax_Period_End:17
+132
+/GA Schedule B:137/G7_Record:2/Tax_Period_End:3
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SoftwareID:18
+132
+/GA Schedule B:137/G7_Record:2/SoftwareID:4
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/Software_Version:19
+132
+/GA Schedule B:137/G7_Record:2/Software_Version:5
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/Amended_Return_Indicator:20
+132
+/GA Schedule B:137/G7_Record:2/Amended_Return_Indicator:6
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/TIN:21
+132
+/GA Schedule B:137/G7_Record:2/TIN:7
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/State_EIN:22
+132
+/GA Schedule B:137/G7_Record:2/State_EIN:8
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/Due_Date:23
+132
+/GA Schedule B:137/G7_Record:2/Due_Date:9
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/Form:24
+132
+/GA Schedule B:137/G7_Record:2/Form:10
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/Additonal_Tax_Adj_Month1:25
+132
+/GA Schedule B:137/G7_Record:2/Additonal_Tax_Adj_Month1:11
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/Over_Payment_adj_Month1:30
+132
+/GA Schedule B:137/G7_Record:2/Over_Payment_adj_Month1:134
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/Clean_Energy_Credit_Month1:26
+132
+/GA Schedule B:137/G7_Record:2/Clean_Energy_Credit_Month1:12
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/Film_Credit_Month1:27
+132
+/GA Schedule B:137/G7_Record:2/Film_Credit_Month1:13
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/Headquarters_Credit_Month1:28
+132
+/GA Schedule B:137/G7_Record:2/Headquarters_Credit_Month1:14
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/Job_Tax_Credit_Month1:29
+132
+/GA Schedule B:137/G7_Record:2/Job_Tax_Credit_Month1:15
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/Additonal_Tax_Adj_Month2:31
+132
+/GA Schedule B:137/G7_Record:2/Additonal_Tax_Adj_Month2:17
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/Over_Payment_adj_Month2:36
+132
+/GA Schedule B:137/G7_Record:2/Over_Payment_adj_Month2:135
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/Clean_Energy_Credit_Month2:32
+132
+/GA Schedule B:137/G7_Record:2/Clean_Energy_Credit_Month2:18
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/Film_Credit_Month2:33
+132
+/GA Schedule B:137/G7_Record:2/Film_Credit_Month2:19
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/Headquarters_Credit_Month2:34
+132
+/GA Schedule B:137/G7_Record:2/Headquarters_Credit_Month2:20
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/Job_Tax_Credit_Month2:35
+132
+/GA Schedule B:137/G7_Record:2/Job_Tax_Credit_Month2:21
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/Additonal_Tax_Adj_Month3:37
+132
+/GA Schedule B:137/G7_Record:2/Additonal_Tax_Adj_Month3:23
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/Over_Payment_adj_Month3:42
+132
+/GA Schedule B:137/G7_Record:2/Over_Payment_adj_Month3:136
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/Clean_Energy_Credit_Month3:38
+132
+/GA Schedule B:137/G7_Record:2/Clean_Energy_Credit_Month3:24
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/Film_Credit_Month3:39
+132
+/GA Schedule B:137/G7_Record:2/Film_Credit_Month3:25
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/Headquarters_Credit_Month3:40
+132
+/GA Schedule B:137/G7_Record:2/Headquarters_Credit_Month3:26
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/Job_Tax_Credit_Month3:41
+132
+/GA Schedule B:137/G7_Record:2/Job_Tax_Credit_Month3:27
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/Month_1_Liability:43
+132
+/GA Schedule B:137/G7_Record:2/Month_1_Liability:29
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/Month_2_Liability:44
+132
+/GA Schedule B:137/G7_Record:2/Month_2_Liability:30
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/Month_3_Liability:45
+132
+/GA Schedule B:137/G7_Record:2/Month_3_Liability:31
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/Quarterly_Total:145
+132
+/GA Schedule B:137/G7_Record:2/Quarterly_Total:137
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month1_Day1:46
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month1_Day1:32
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month1_Day2:47
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month1_Day2:33
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month1_Day3:48
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month1_Day3:34
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month1_Day4:49
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month1_Day4:35
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month1_Day5:50
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month1_Day5:36
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month1_Day6:51
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month1_Day6:37
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month1_Day7:52
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month1_Day7:38
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month1_Day8:53
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month1_Day8:39
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month1_Day9:54
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month1_Day9:40
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month1_Day10:55
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month1_Day10:41
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month1_Day11:56
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month1_Day11:42
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month1_Day12:57
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month1_Day12:43
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month1_Day13:58
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month1_Day13:44
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month1_Day14:59
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month1_Day14:45
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month1_Day15:60
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month1_Day15:46
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month1_Day16:61
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month1_Day16:47
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month1_Day17:62
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month1_Day17:48
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month1_Day18:63
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month1_Day18:49
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month1_Day19:64
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month1_Day19:50
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month1_Day20:65
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month1_Day20:51
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month1_Day21:66
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month1_Day21:52
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month1_Day22:67
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month1_Day22:53
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month1_Day23:68
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month1_Day23:54
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month1_Day24:69
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month1_Day24:55
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month1_Day25:70
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month1_Day25:56
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month1_Day26:71
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month1_Day26:57
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month1_Day27:72
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month1_Day27:58
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month1_Day28:73
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month1_Day28:59
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month1_Day29:74
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month1_Day29:60
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month1_Day30:75
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month1_Day30:61
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month1_Day31:76
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month1_Day31:62
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/Total_Month_1_Liability:77
+132
+/GA Schedule B:137/G7_Record:2/Total_Month_1_Liability:63
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/Total_Month_1_Deposits:78
+132
+/GA Schedule B:137/G7_Record:2/Total_Month_1_Deposits:64
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month2_Day1:79
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month2_Day1:65
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month2_Day2:80
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month2_Day2:66
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month2_Day3:81
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month2_Day3:67
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month2_Day4:82
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month2_Day4:68
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month2_Day5:83
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month2_Day5:69
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month2_Day6:84
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month2_Day6:70
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month2_Day7:85
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month2_Day7:71
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month2_Day8:86
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month2_Day8:72
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month2_Day9:87
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month2_Day9:73
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month2_Day10:88
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month2_Day10:74
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month2_Day11:89
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month2_Day11:75
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month2_Day12:90
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month2_Day12:76
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month2_Day13:91
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month2_Day13:77
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month2_Day14:92
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month2_Day14:78
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month2_Day15:93
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month2_Day15:79
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month2_Day16:94
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month2_Day16:80
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month2_Day17:95
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month2_Day17:81
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month2_Day18:96
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month2_Day18:82
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month2_Day19:97
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month2_Day19:83
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month2_Day20:98
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month2_Day20:84
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month2_Day21:99
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month2_Day21:85
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month2_Day22:100
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month2_Day22:86
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month2_Day23:101
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month2_Day23:87
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month2_Day24:102
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month2_Day24:88
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month2_Day25:103
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month2_Day25:89
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month2_Day26:104
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month2_Day26:90
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month2_Day27:105
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month2_Day27:91
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month2_Day28:106
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month2_Day28:92
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month2_Day29:107
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month2_Day29:93
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month2_Day30:108
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month2_Day30:94
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month2_Day31:109
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month2_Day31:95
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/Total_Month_2_Liability:110
+132
+/GA Schedule B:137/G7_Record:2/Total_Month_2_Liability:96
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/Total_Month_2_Deposits:111
+132
+/GA Schedule B:137/G7_Record:2/Total_Month_2_Deposits:97
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month3_Day1:112
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month3_Day1:98
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month3_Day2:113
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month3_Day2:99
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month3_Day3:114
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month3_Day3:100
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month3_Day4:115
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month3_Day4:101
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month3_Day5:116
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month3_Day5:102
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month3_Day6:117
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month3_Day6:103
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month3_Day7:118
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month3_Day7:104
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month3_Day8:119
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month3_Day8:105
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month3_Day9:120
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month3_Day9:106
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month3_Day10:121
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month3_Day10:107
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month3_Day11:122
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month3_Day11:108
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month3_Day12:123
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month3_Day12:109
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month3_Day13:124
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month3_Day13:110
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month3_Day14:125
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month3_Day14:111
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month3_Day15:126
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month3_Day15:112
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month3_Day16:127
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month3_Day16:113
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month3_Day17:128
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month3_Day17:114
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month3_Day18:129
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month3_Day18:115
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month3_Day19:130
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month3_Day19:116
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month3_Day20:131
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month3_Day20:117
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month3_Day21:132
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month3_Day21:118
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month3_Day22:133
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month3_Day22:119
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month3_Day23:134
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month3_Day23:120
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month3_Day24:135
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month3_Day24:121
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month3_Day25:136
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month3_Day25:122
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month3_Day26:137
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month3_Day26:123
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month3_Day27:138
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month3_Day27:124
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month3_Day28:139
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month3_Day28:125
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month3_Day29:140
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month3_Day29:126
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month3_Day30:141
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month3_Day30:127
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/SchedB_Month3_Day31:142
+132
+/GA Schedule B:137/G7_Record:2/SchedB_Month3_Day31:128
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/Total_Month_3_Liability:143
+132
+/GA Schedule B:137/G7_Record:2/Total_Month_3_Liability:129
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/Total_Month_3_Deposits:144
+132
+/GA Schedule B:137/G7_Record:2/Total_Month_3_Deposits:130
+36
+1
+/GA Schedule B:1
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/GA Schedule B:148/G7_Record:15/Amount_Paid:146
+132
+/GA Schedule B:137/G7_Record:2/Amount_Paid:132
+@0200N
+129
+148
+NULL_REF
+GA Schedule B
+View of: GA Schedule B
+0
+0
+17
+schdbsrc.adf
+schdb-ga.vw1
+3
+130
+1
+/GA Schedule B:148
+ER_Record
+
+0
+16
+/Shcedule B source file:190/ER_Record:2
+
+1
+6
+132
+2
+/GA Schedule B:148/ER_Record:1
+Record_ID
+
+0
+16
+/Shcedule B source file:190/ER_Record:2/Record_ID:3
+
+
+132
+3
+/GA Schedule B:148/ER_Record:1
+Parnter_ID
+
+0
+16
+/Shcedule B source file:190/ER_Record:2/Parnter_ID:4
+
+
+132
+4
+/GA Schedule B:148/ER_Record:1
+Client_Fed_ID
+
+0
+16
+/Shcedule B source file:190/ER_Record:2/Client_Fed_ID:5
+
+
+132
+5
+/GA Schedule B:148/ER_Record:1
+Year_of_Qtr
+YYYY
+0
+16
+/Shcedule B source file:190/ER_Record:2/Year_of_Qtr:6
+
+
+132
+6
+/GA Schedule B:148/ER_Record:1
+Quarter
+
+0
+16
+/Shcedule B source file:190/ER_Record:2/Quarter:7
+
+
+132
+7
+/GA Schedule B:148/ER_Record:1
+Carriage_Return
+
+0
+16
+/Shcedule B source file:190/ER_Record:2/Carriage_Return:24
+
+
+130
+8
+/GA Schedule B:148
+Payment_Record
+
+0
+16
+/Shcedule B source file:190/Payment_Record:14
+
+1
+6
+132
+9
+/GA Schedule B:148/Payment_Record:8
+Record_ID
+
+0
+16
+/Shcedule B source file:190/Payment_Record:14/Record_ID:15
+
+
+132
+10
+/GA Schedule B:148/Payment_Record:8
+Payment_Month
+MM
+0
+16
+/Shcedule B source file:190/Payment_Record:14/Payment_Month:16
+
+
+132
+11
+/GA Schedule B:148/Payment_Record:8
+Payment_Day
+DD
+0
+16
+/Shcedule B source file:190/Payment_Record:14/Payment_Day:21
+
+
+132
+12
+/GA Schedule B:148/Payment_Record:8
+Payment_Year
+YYYY
+0
+16
+/Shcedule B source file:190/Payment_Record:14/Payment_Year:22
+
+
+132
+13
+/GA Schedule B:148/Payment_Record:8
+Amount
+
+0
+16
+/Shcedule B source file:190/Payment_Record:14/Amount:17
+
+
+132
+14
+/GA Schedule B:148/Payment_Record:8
+Carriage_Return
+
+0
+16
+/Shcedule B source file:190/Payment_Record:14/Carriage_Return:26
+
+
+130
+15
+/GA Schedule B:148
+G7_Record
+
+0
+16
+/Shcedule B source file:190/G7_Record:28
+
+1
+132
+132
+16
+/GA Schedule B:148/G7_Record:15
+Record_ID
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/Record_ID:190
+
+
+132
+17
+/GA Schedule B:148/G7_Record:15
+Tax_Period_End
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/Tax_Period_End:30
+
+
+132
+18
+/GA Schedule B:148/G7_Record:15
+SoftwareID
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SoftwareID:31
+
+
+132
+19
+/GA Schedule B:148/G7_Record:15
+Software_Version
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/Software_Version:32
+
+
+132
+20
+/GA Schedule B:148/G7_Record:15
+Amended_Return_Indicator
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/Amended_Return_Indicator:33
+
+
+132
+21
+/GA Schedule B:148/G7_Record:15
+TIN
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/TIN:34
+
+
+132
+22
+/GA Schedule B:148/G7_Record:15
+State_EIN
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/State_EIN:35
+
+
+132
+23
+/GA Schedule B:148/G7_Record:15
+Due_Date
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/Due_Date:36
+
+
+132
+24
+/GA Schedule B:148/G7_Record:15
+Form
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/Form:37
+
+
+132
+25
+/GA Schedule B:148/G7_Record:15
+Additonal_Tax_Adj_Month1
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/Additonal_Tax_Adj_Month1:38
+
+
+132
+26
+/GA Schedule B:148/G7_Record:15
+Clean_Energy_Credit_Month1
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/Clean_Energy_Credit_Month1:39
+
+
+132
+27
+/GA Schedule B:148/G7_Record:15
+Film_Credit_Month1
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/Film_Credit_Month1:40
+
+
+132
+28
+/GA Schedule B:148/G7_Record:15
+Headquarters_Credit_Month1
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/Headquarters_Credit_Month1:41
+
+
+132
+29
+/GA Schedule B:148/G7_Record:15
+Job_Tax_Credit_Month1
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/Job_Tax_Credit_Month1:42
+
+
+132
+30
+/GA Schedule B:148/G7_Record:15
+Over_Payment_adj_Month1
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/Over_Payment_adj_Month1:43
+
+
+132
+31
+/GA Schedule B:148/G7_Record:15
+Additonal_Tax_Adj_Month2
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/Additonal_Tax_Adj_Month2:45
+
+
+132
+32
+/GA Schedule B:148/G7_Record:15
+Clean_Energy_Credit_Month2
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/Clean_Energy_Credit_Month2:47
+
+
+132
+33
+/GA Schedule B:148/G7_Record:15
+Film_Credit_Month2
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/Film_Credit_Month2:49
+
+
+132
+34
+/GA Schedule B:148/G7_Record:15
+Headquarters_Credit_Month2
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/Headquarters_Credit_Month2:51
+
+
+132
+35
+/GA Schedule B:148/G7_Record:15
+Job_Tax_Credit_Month2
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/Job_Tax_Credit_Month2:53
+
+
+132
+36
+/GA Schedule B:148/G7_Record:15
+Over_Payment_adj_Month2
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/Over_Payment_adj_Month2:55
+
+
+132
+37
+/GA Schedule B:148/G7_Record:15
+Additonal_Tax_Adj_Month3
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/Additonal_Tax_Adj_Month3:57
+
+
+132
+38
+/GA Schedule B:148/G7_Record:15
+Clean_Energy_Credit_Month3
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/Clean_Energy_Credit_Month3:59
+
+
+132
+39
+/GA Schedule B:148/G7_Record:15
+Film_Credit_Month3
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/Film_Credit_Month3:61
+
+
+132
+40
+/GA Schedule B:148/G7_Record:15
+Headquarters_Credit_Month3
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/Headquarters_Credit_Month3:63
+
+
+132
+41
+/GA Schedule B:148/G7_Record:15
+Job_Tax_Credit_Month3
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/Job_Tax_Credit_Month3:65
+
+
+132
+42
+/GA Schedule B:148/G7_Record:15
+Over_Payment_adj_Month3
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/Over_Payment_adj_Month3:67
+
+
+132
+43
+/GA Schedule B:148/G7_Record:15
+Month_1_Liability
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/Month_1_Liability:68
+
+
+132
+44
+/GA Schedule B:148/G7_Record:15
+Month_2_Liability
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/Month_2_Liability:70
+
+
+132
+45
+/GA Schedule B:148/G7_Record:15
+Month_3_Liability
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/Month_3_Liability:71
+
+
+132
+46
+/GA Schedule B:148/G7_Record:15
+SchedB_Month1_Day1
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day1:72
+
+
+132
+47
+/GA Schedule B:148/G7_Record:15
+SchedB_Month1_Day2
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day2:74
+
+
+132
+48
+/GA Schedule B:148/G7_Record:15
+SchedB_Month1_Day3
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day3:75
+
+
+132
+49
+/GA Schedule B:148/G7_Record:15
+SchedB_Month1_Day4
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day4:76
+
+
+132
+50
+/GA Schedule B:148/G7_Record:15
+SchedB_Month1_Day5
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day5:77
+
+
+132
+51
+/GA Schedule B:148/G7_Record:15
+SchedB_Month1_Day6
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day6:78
+
+
+132
+52
+/GA Schedule B:148/G7_Record:15
+SchedB_Month1_Day7
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day7:79
+
+
+132
+53
+/GA Schedule B:148/G7_Record:15
+SchedB_Month1_Day8
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day8:80
+
+
+132
+54
+/GA Schedule B:148/G7_Record:15
+SchedB_Month1_Day9
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day9:81
+
+
+132
+55
+/GA Schedule B:148/G7_Record:15
+SchedB_Month1_Day10
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day10:82
+
+
+132
+56
+/GA Schedule B:148/G7_Record:15
+SchedB_Month1_Day11
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day11:83
+
+
+132
+57
+/GA Schedule B:148/G7_Record:15
+SchedB_Month1_Day12
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day12:84
+
+
+132
+58
+/GA Schedule B:148/G7_Record:15
+SchedB_Month1_Day13
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day13:85
+
+
+132
+59
+/GA Schedule B:148/G7_Record:15
+SchedB_Month1_Day14
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day14:86
+
+
+132
+60
+/GA Schedule B:148/G7_Record:15
+SchedB_Month1_Day15
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day15:87
+
+
+132
+61
+/GA Schedule B:148/G7_Record:15
+SchedB_Month1_Day16
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day16:88
+
+
+132
+62
+/GA Schedule B:148/G7_Record:15
+SchedB_Month1_Day17
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day17:89
+
+
+132
+63
+/GA Schedule B:148/G7_Record:15
+SchedB_Month1_Day18
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day18:90
+
+
+132
+64
+/GA Schedule B:148/G7_Record:15
+SchedB_Month1_Day19
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day19:91
+
+
+132
+65
+/GA Schedule B:148/G7_Record:15
+SchedB_Month1_Day20
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day20:92
+
+
+132
+66
+/GA Schedule B:148/G7_Record:15
+SchedB_Month1_Day21
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day21:93
+
+
+132
+67
+/GA Schedule B:148/G7_Record:15
+SchedB_Month1_Day22
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day22:94
+
+
+132
+68
+/GA Schedule B:148/G7_Record:15
+SchedB_Month1_Day23
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day23:95
+
+
+132
+69
+/GA Schedule B:148/G7_Record:15
+SchedB_Month1_Day24
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day24:96
+
+
+132
+70
+/GA Schedule B:148/G7_Record:15
+SchedB_Month1_Day25
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day25:97
+
+
+132
+71
+/GA Schedule B:148/G7_Record:15
+SchedB_Month1_Day26
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day26:98
+
+
+132
+72
+/GA Schedule B:148/G7_Record:15
+SchedB_Month1_Day27
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day27:99
+
+
+132
+73
+/GA Schedule B:148/G7_Record:15
+SchedB_Month1_Day28
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day28:100
+
+
+132
+74
+/GA Schedule B:148/G7_Record:15
+SchedB_Month1_Day29
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day29:101
+
+
+132
+75
+/GA Schedule B:148/G7_Record:15
+SchedB_Month1_Day30
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day30:103
+
+
+132
+76
+/GA Schedule B:148/G7_Record:15
+SchedB_Month1_Day31
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month1_Day31:104
+
+
+132
+77
+/GA Schedule B:148/G7_Record:15
+Total_Month_1_Liability
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/Total_Month_1_Liability:106
+
+
+132
+78
+/GA Schedule B:148/G7_Record:15
+Total_Month_1_Deposits
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/Total_Month_1_Deposits:108
+
+
+132
+79
+/GA Schedule B:148/G7_Record:15
+SchedB_Month2_Day1
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day1:110
+
+
+132
+80
+/GA Schedule B:148/G7_Record:15
+SchedB_Month2_Day2
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day2:112
+
+
+132
+81
+/GA Schedule B:148/G7_Record:15
+SchedB_Month2_Day3
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day3:113
+
+
+132
+82
+/GA Schedule B:148/G7_Record:15
+SchedB_Month2_Day4
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day4:114
+
+
+132
+83
+/GA Schedule B:148/G7_Record:15
+SchedB_Month2_Day5
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day5:115
+
+
+132
+84
+/GA Schedule B:148/G7_Record:15
+SchedB_Month2_Day6
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day6:116
+
+
+132
+85
+/GA Schedule B:148/G7_Record:15
+SchedB_Month2_Day7
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day7:117
+
+
+132
+86
+/GA Schedule B:148/G7_Record:15
+SchedB_Month2_Day8
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day8:118
+
+
+132
+87
+/GA Schedule B:148/G7_Record:15
+SchedB_Month2_Day9
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day9:119
+
+
+132
+88
+/GA Schedule B:148/G7_Record:15
+SchedB_Month2_Day10
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day10:120
+
+
+132
+89
+/GA Schedule B:148/G7_Record:15
+SchedB_Month2_Day11
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day11:121
+
+
+132
+90
+/GA Schedule B:148/G7_Record:15
+SchedB_Month2_Day12
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day12:122
+
+
+132
+91
+/GA Schedule B:148/G7_Record:15
+SchedB_Month2_Day13
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day13:123
+
+
+132
+92
+/GA Schedule B:148/G7_Record:15
+SchedB_Month2_Day14
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day14:124
+
+
+132
+93
+/GA Schedule B:148/G7_Record:15
+SchedB_Month2_Day15
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day15:125
+
+
+132
+94
+/GA Schedule B:148/G7_Record:15
+SchedB_Month2_Day16
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day16:126
+
+
+132
+95
+/GA Schedule B:148/G7_Record:15
+SchedB_Month2_Day17
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day17:127
+
+
+132
+96
+/GA Schedule B:148/G7_Record:15
+SchedB_Month2_Day18
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day18:128
+
+
+132
+97
+/GA Schedule B:148/G7_Record:15
+SchedB_Month2_Day19
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day19:129
+
+
+132
+98
+/GA Schedule B:148/G7_Record:15
+SchedB_Month2_Day20
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day20:130
+
+
+132
+99
+/GA Schedule B:148/G7_Record:15
+SchedB_Month2_Day21
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day21:131
+
+
+132
+100
+/GA Schedule B:148/G7_Record:15
+SchedB_Month2_Day22
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day22:132
+
+
+132
+101
+/GA Schedule B:148/G7_Record:15
+SchedB_Month2_Day23
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day23:133
+
+
+132
+102
+/GA Schedule B:148/G7_Record:15
+SchedB_Month2_Day24
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day24:134
+
+
+132
+103
+/GA Schedule B:148/G7_Record:15
+SchedB_Month2_Day25
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day25:135
+
+
+132
+104
+/GA Schedule B:148/G7_Record:15
+SchedB_Month2_Day26
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day26:136
+
+
+132
+105
+/GA Schedule B:148/G7_Record:15
+SchedB_Month2_Day27
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day27:137
+
+
+132
+106
+/GA Schedule B:148/G7_Record:15
+SchedB_Month2_Day28
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day28:138
+
+
+132
+107
+/GA Schedule B:148/G7_Record:15
+SchedB_Month2_Day29
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day29:139
+
+
+132
+108
+/GA Schedule B:148/G7_Record:15
+SchedB_Month2_Day30
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day30:140
+
+
+132
+109
+/GA Schedule B:148/G7_Record:15
+SchedB_Month2_Day31
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month2_Day31:141
+
+
+132
+110
+/GA Schedule B:148/G7_Record:15
+Total_Month_2_Liability
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/Total_Month_2_Liability:143
+
+
+132
+111
+/GA Schedule B:148/G7_Record:15
+Total_Month_2_Deposits
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/Total_Month_2_Deposits:145
+
+
+132
+112
+/GA Schedule B:148/G7_Record:15
+SchedB_Month3_Day1
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day1:147
+
+
+132
+113
+/GA Schedule B:148/G7_Record:15
+SchedB_Month3_Day2
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day2:149
+
+
+132
+114
+/GA Schedule B:148/G7_Record:15
+SchedB_Month3_Day3
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day3:150
+
+
+132
+115
+/GA Schedule B:148/G7_Record:15
+SchedB_Month3_Day4
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day4:151
+
+
+132
+116
+/GA Schedule B:148/G7_Record:15
+SchedB_Month3_Day5
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day5:152
+
+
+132
+117
+/GA Schedule B:148/G7_Record:15
+SchedB_Month3_Day6
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day6:153
+
+
+132
+118
+/GA Schedule B:148/G7_Record:15
+SchedB_Month3_Day7
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day7:154
+
+
+132
+119
+/GA Schedule B:148/G7_Record:15
+SchedB_Month3_Day8
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day8:155
+
+
+132
+120
+/GA Schedule B:148/G7_Record:15
+SchedB_Month3_Day9
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day9:156
+
+
+132
+121
+/GA Schedule B:148/G7_Record:15
+SchedB_Month3_Day10
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day10:157
+
+
+132
+122
+/GA Schedule B:148/G7_Record:15
+SchedB_Month3_Day11
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day11:158
+
+
+132
+123
+/GA Schedule B:148/G7_Record:15
+SchedB_Month3_Day12
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day12:159
+
+
+132
+124
+/GA Schedule B:148/G7_Record:15
+SchedB_Month3_Day13
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day13:160
+
+
+132
+125
+/GA Schedule B:148/G7_Record:15
+SchedB_Month3_Day14
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day14:161
+
+
+132
+126
+/GA Schedule B:148/G7_Record:15
+SchedB_Month3_Day15
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day15:162
+
+
+132
+127
+/GA Schedule B:148/G7_Record:15
+SchedB_Month3_Day16
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day16:163
+
+
+132
+128
+/GA Schedule B:148/G7_Record:15
+SchedB_Month3_Day17
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day17:164
+
+
+132
+129
+/GA Schedule B:148/G7_Record:15
+SchedB_Month3_Day18
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day18:165
+
+
+132
+130
+/GA Schedule B:148/G7_Record:15
+SchedB_Month3_Day19
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day19:166
+
+
+132
+131
+/GA Schedule B:148/G7_Record:15
+SchedB_Month3_Day20
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day20:167
+
+
+132
+132
+/GA Schedule B:148/G7_Record:15
+SchedB_Month3_Day21
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day21:168
+
+
+132
+133
+/GA Schedule B:148/G7_Record:15
+SchedB_Month3_Day22
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day22:169
+
+
+132
+134
+/GA Schedule B:148/G7_Record:15
+SchedB_Month3_Day23
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day23:170
+
+
+132
+135
+/GA Schedule B:148/G7_Record:15
+SchedB_Month3_Day24
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day24:171
+
+
+132
+136
+/GA Schedule B:148/G7_Record:15
+SchedB_Month3_Day25
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day25:172
+
+
+132
+137
+/GA Schedule B:148/G7_Record:15
+SchedB_Month3_Day26
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day26:173
+
+
+132
+138
+/GA Schedule B:148/G7_Record:15
+SchedB_Month3_Day27
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day27:174
+
+
+132
+139
+/GA Schedule B:148/G7_Record:15
+SchedB_Month3_Day28
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day28:175
+
+
+132
+140
+/GA Schedule B:148/G7_Record:15
+SchedB_Month3_Day29
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day29:177
+
+
+132
+141
+/GA Schedule B:148/G7_Record:15
+SchedB_Month3_Day30
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day30:178
+
+
+132
+142
+/GA Schedule B:148/G7_Record:15
+SchedB_Month3_Day31
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/SchedB_Month3_Day31:179
+
+
+132
+143
+/GA Schedule B:148/G7_Record:15
+Total_Month_3_Liability
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/Total_Month_3_Liability:181
+
+
+132
+144
+/GA Schedule B:148/G7_Record:15
+Total_Month_3_Deposits
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/Total_Month_3_Deposits:183
+
+
+132
+145
+/GA Schedule B:148/G7_Record:15
+Quarterly_Total
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/Quarterly_Total:185
+
+
+132
+146
+/GA Schedule B:148/G7_Record:15
+Amount_Paid
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/Amount_Paid:187
+
+
+132
+147
+/GA Schedule B:148/G7_Record:15
+Carriage_Return
+
+0
+16
+/Shcedule B source file:190/G7_Record:28/Carriage_Return:189
+
+
+@0200N
+129
+137
+NULL_REF
+GA Schedule B
+View of: GA Schedule B
+0
+0
+17
+schdb-ga.adf
+schdb-ga.vw2
+1
+130
+2
+/GA Schedule B:137
+G7_Record
+
+0
+16
+/Shcedule B GA:197/G7_Record:28
+
+1
+130
+132
+3
+/GA Schedule B:137/G7_Record:2
+Tax_Period_End
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/Tax_Period_End:30
+
+
+132
+4
+/GA Schedule B:137/G7_Record:2
+SoftwareID
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SoftwareID:31
+
+
+132
+5
+/GA Schedule B:137/G7_Record:2
+Software_Version
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/Software_Version:32
+
+
+132
+6
+/GA Schedule B:137/G7_Record:2
+Amended_Return_Indicator
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/Amended_Return_Indicator:33
+
+
+132
+7
+/GA Schedule B:137/G7_Record:2
+TIN
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/TIN:34
+
+
+132
+8
+/GA Schedule B:137/G7_Record:2
+State_EIN
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/State_EIN:35
+
+
+132
+9
+/GA Schedule B:137/G7_Record:2
+Due_Date
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/Due_Date:36
+
+
+132
+10
+/GA Schedule B:137/G7_Record:2
+Form
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/Form:37
+
+
+132
+11
+/GA Schedule B:137/G7_Record:2
+Additonal_Tax_Adj_Month1
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/Additonal_Tax_Adj_Month1:38
+
+
+132
+134
+/GA Schedule B:137/G7_Record:2
+Over_Payment_adj_Month1
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/Over_Payment_adj_Month1:191
+
+
+132
+12
+/GA Schedule B:137/G7_Record:2
+Clean_Energy_Credit_Month1
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/Clean_Energy_Credit_Month1:39
+
+
+132
+13
+/GA Schedule B:137/G7_Record:2
+Film_Credit_Month1
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/Film_Credit_Month1:40
+
+
+132
+14
+/GA Schedule B:137/G7_Record:2
+Headquarters_Credit_Month1
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/Headquarters_Credit_Month1:41
+
+
+132
+15
+/GA Schedule B:137/G7_Record:2
+Job_Tax_Credit_Month1
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/Job_Tax_Credit_Month1:42
+
+
+132
+17
+/GA Schedule B:137/G7_Record:2
+Additonal_Tax_Adj_Month2
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/Additonal_Tax_Adj_Month2:45
+
+
+132
+135
+/GA Schedule B:137/G7_Record:2
+Over_Payment_adj_Month2
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/Over_Payment_adj_Month2:193
+
+
+132
+18
+/GA Schedule B:137/G7_Record:2
+Clean_Energy_Credit_Month2
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/Clean_Energy_Credit_Month2:47
+
+
+132
+19
+/GA Schedule B:137/G7_Record:2
+Film_Credit_Month2
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/Film_Credit_Month2:49
+
+
+132
+20
+/GA Schedule B:137/G7_Record:2
+Headquarters_Credit_Month2
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/Headquarters_Credit_Month2:51
+
+
+132
+21
+/GA Schedule B:137/G7_Record:2
+Job_Tax_Credit_Month2
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/Job_Tax_Credit_Month2:53
+
+
+132
+23
+/GA Schedule B:137/G7_Record:2
+Additonal_Tax_Adj_Month3
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/Additonal_Tax_Adj_Month3:57
+
+
+132
+136
+/GA Schedule B:137/G7_Record:2
+Over_Payment_adj_Month3
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/Over_Payment_adj_Month3:195
+
+
+132
+24
+/GA Schedule B:137/G7_Record:2
+Clean_Energy_Credit_Month3
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/Clean_Energy_Credit_Month3:59
+
+
+132
+25
+/GA Schedule B:137/G7_Record:2
+Film_Credit_Month3
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/Film_Credit_Month3:61
+
+
+132
+26
+/GA Schedule B:137/G7_Record:2
+Headquarters_Credit_Month3
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/Headquarters_Credit_Month3:63
+
+
+132
+27
+/GA Schedule B:137/G7_Record:2
+Job_Tax_Credit_Month3
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/Job_Tax_Credit_Month3:65
+
+
+132
+29
+/GA Schedule B:137/G7_Record:2
+Month_1_Liability
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/Month_1_Liability:68
+
+
+132
+30
+/GA Schedule B:137/G7_Record:2
+Month_2_Liability
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/Month_2_Liability:70
+
+
+132
+31
+/GA Schedule B:137/G7_Record:2
+Month_3_Liability
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/Month_3_Liability:71
+
+
+132
+137
+/GA Schedule B:137/G7_Record:2
+Quarterly_Total
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/Quarterly_Total:197
+
+
+132
+32
+/GA Schedule B:137/G7_Record:2
+SchedB_Month1_Day1
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day1:72
+
+
+132
+33
+/GA Schedule B:137/G7_Record:2
+SchedB_Month1_Day2
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day2:74
+
+
+132
+34
+/GA Schedule B:137/G7_Record:2
+SchedB_Month1_Day3
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day3:75
+
+
+132
+35
+/GA Schedule B:137/G7_Record:2
+SchedB_Month1_Day4
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day4:76
+
+
+132
+36
+/GA Schedule B:137/G7_Record:2
+SchedB_Month1_Day5
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day5:77
+
+
+132
+37
+/GA Schedule B:137/G7_Record:2
+SchedB_Month1_Day6
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day6:78
+
+
+132
+38
+/GA Schedule B:137/G7_Record:2
+SchedB_Month1_Day7
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day7:79
+
+
+132
+39
+/GA Schedule B:137/G7_Record:2
+SchedB_Month1_Day8
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day8:80
+
+
+132
+40
+/GA Schedule B:137/G7_Record:2
+SchedB_Month1_Day9
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day9:81
+
+
+132
+41
+/GA Schedule B:137/G7_Record:2
+SchedB_Month1_Day10
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day10:82
+
+
+132
+42
+/GA Schedule B:137/G7_Record:2
+SchedB_Month1_Day11
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day11:83
+
+
+132
+43
+/GA Schedule B:137/G7_Record:2
+SchedB_Month1_Day12
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day12:84
+
+
+132
+44
+/GA Schedule B:137/G7_Record:2
+SchedB_Month1_Day13
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day13:85
+
+
+132
+45
+/GA Schedule B:137/G7_Record:2
+SchedB_Month1_Day14
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day14:86
+
+
+132
+46
+/GA Schedule B:137/G7_Record:2
+SchedB_Month1_Day15
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day15:87
+
+
+132
+47
+/GA Schedule B:137/G7_Record:2
+SchedB_Month1_Day16
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day16:88
+
+
+132
+48
+/GA Schedule B:137/G7_Record:2
+SchedB_Month1_Day17
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day17:89
+
+
+132
+49
+/GA Schedule B:137/G7_Record:2
+SchedB_Month1_Day18
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day18:90
+
+
+132
+50
+/GA Schedule B:137/G7_Record:2
+SchedB_Month1_Day19
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day19:91
+
+
+132
+51
+/GA Schedule B:137/G7_Record:2
+SchedB_Month1_Day20
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day20:92
+
+
+132
+52
+/GA Schedule B:137/G7_Record:2
+SchedB_Month1_Day21
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day21:93
+
+
+132
+53
+/GA Schedule B:137/G7_Record:2
+SchedB_Month1_Day22
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day22:94
+
+
+132
+54
+/GA Schedule B:137/G7_Record:2
+SchedB_Month1_Day23
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day23:95
+
+
+132
+55
+/GA Schedule B:137/G7_Record:2
+SchedB_Month1_Day24
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day24:96
+
+
+132
+56
+/GA Schedule B:137/G7_Record:2
+SchedB_Month1_Day25
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day25:97
+
+
+132
+57
+/GA Schedule B:137/G7_Record:2
+SchedB_Month1_Day26
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day26:98
+
+
+132
+58
+/GA Schedule B:137/G7_Record:2
+SchedB_Month1_Day27
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day27:99
+
+
+132
+59
+/GA Schedule B:137/G7_Record:2
+SchedB_Month1_Day28
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day28:100
+
+
+132
+60
+/GA Schedule B:137/G7_Record:2
+SchedB_Month1_Day29
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day29:101
+
+
+132
+61
+/GA Schedule B:137/G7_Record:2
+SchedB_Month1_Day30
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day30:103
+
+
+132
+62
+/GA Schedule B:137/G7_Record:2
+SchedB_Month1_Day31
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month1_Day31:104
+
+
+132
+63
+/GA Schedule B:137/G7_Record:2
+Total_Month_1_Liability
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/Total_Month_1_Liability:106
+
+
+132
+64
+/GA Schedule B:137/G7_Record:2
+Total_Month_1_Deposits
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/Total_Month_1_Deposits:108
+
+
+132
+65
+/GA Schedule B:137/G7_Record:2
+SchedB_Month2_Day1
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day1:110
+
+
+132
+66
+/GA Schedule B:137/G7_Record:2
+SchedB_Month2_Day2
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day2:112
+
+
+132
+67
+/GA Schedule B:137/G7_Record:2
+SchedB_Month2_Day3
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day3:113
+
+
+132
+68
+/GA Schedule B:137/G7_Record:2
+SchedB_Month2_Day4
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day4:114
+
+
+132
+69
+/GA Schedule B:137/G7_Record:2
+SchedB_Month2_Day5
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day5:115
+
+
+132
+70
+/GA Schedule B:137/G7_Record:2
+SchedB_Month2_Day6
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day6:116
+
+
+132
+71
+/GA Schedule B:137/G7_Record:2
+SchedB_Month2_Day7
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day7:117
+
+
+132
+72
+/GA Schedule B:137/G7_Record:2
+SchedB_Month2_Day8
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day8:118
+
+
+132
+73
+/GA Schedule B:137/G7_Record:2
+SchedB_Month2_Day9
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day9:119
+
+
+132
+74
+/GA Schedule B:137/G7_Record:2
+SchedB_Month2_Day10
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day10:120
+
+
+132
+75
+/GA Schedule B:137/G7_Record:2
+SchedB_Month2_Day11
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day11:121
+
+
+132
+76
+/GA Schedule B:137/G7_Record:2
+SchedB_Month2_Day12
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day12:122
+
+
+132
+77
+/GA Schedule B:137/G7_Record:2
+SchedB_Month2_Day13
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day13:123
+
+
+132
+78
+/GA Schedule B:137/G7_Record:2
+SchedB_Month2_Day14
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day14:124
+
+
+132
+79
+/GA Schedule B:137/G7_Record:2
+SchedB_Month2_Day15
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day15:125
+
+
+132
+80
+/GA Schedule B:137/G7_Record:2
+SchedB_Month2_Day16
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day16:126
+
+
+132
+81
+/GA Schedule B:137/G7_Record:2
+SchedB_Month2_Day17
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day17:127
+
+
+132
+82
+/GA Schedule B:137/G7_Record:2
+SchedB_Month2_Day18
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day18:128
+
+
+132
+83
+/GA Schedule B:137/G7_Record:2
+SchedB_Month2_Day19
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day19:129
+
+
+132
+84
+/GA Schedule B:137/G7_Record:2
+SchedB_Month2_Day20
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day20:130
+
+
+132
+85
+/GA Schedule B:137/G7_Record:2
+SchedB_Month2_Day21
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day21:131
+
+
+132
+86
+/GA Schedule B:137/G7_Record:2
+SchedB_Month2_Day22
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day22:132
+
+
+132
+87
+/GA Schedule B:137/G7_Record:2
+SchedB_Month2_Day23
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day23:133
+
+
+132
+88
+/GA Schedule B:137/G7_Record:2
+SchedB_Month2_Day24
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day24:134
+
+
+132
+89
+/GA Schedule B:137/G7_Record:2
+SchedB_Month2_Day25
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day25:135
+
+
+132
+90
+/GA Schedule B:137/G7_Record:2
+SchedB_Month2_Day26
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day26:136
+
+
+132
+91
+/GA Schedule B:137/G7_Record:2
+SchedB_Month2_Day27
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day27:137
+
+
+132
+92
+/GA Schedule B:137/G7_Record:2
+SchedB_Month2_Day28
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day28:138
+
+
+132
+93
+/GA Schedule B:137/G7_Record:2
+SchedB_Month2_Day29
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day29:139
+
+
+132
+94
+/GA Schedule B:137/G7_Record:2
+SchedB_Month2_Day30
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day30:140
+
+
+132
+95
+/GA Schedule B:137/G7_Record:2
+SchedB_Month2_Day31
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month2_Day31:141
+
+
+132
+96
+/GA Schedule B:137/G7_Record:2
+Total_Month_2_Liability
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/Total_Month_2_Liability:143
+
+
+132
+97
+/GA Schedule B:137/G7_Record:2
+Total_Month_2_Deposits
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/Total_Month_2_Deposits:145
+
+
+132
+98
+/GA Schedule B:137/G7_Record:2
+SchedB_Month3_Day1
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day1:147
+
+
+132
+99
+/GA Schedule B:137/G7_Record:2
+SchedB_Month3_Day2
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day2:149
+
+
+132
+100
+/GA Schedule B:137/G7_Record:2
+SchedB_Month3_Day3
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day3:150
+
+
+132
+101
+/GA Schedule B:137/G7_Record:2
+SchedB_Month3_Day4
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day4:151
+
+
+132
+102
+/GA Schedule B:137/G7_Record:2
+SchedB_Month3_Day5
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day5:152
+
+
+132
+103
+/GA Schedule B:137/G7_Record:2
+SchedB_Month3_Day6
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day6:153
+
+
+132
+104
+/GA Schedule B:137/G7_Record:2
+SchedB_Month3_Day7
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day7:154
+
+
+132
+105
+/GA Schedule B:137/G7_Record:2
+SchedB_Month3_Day8
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day8:155
+
+
+132
+106
+/GA Schedule B:137/G7_Record:2
+SchedB_Month3_Day9
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day9:156
+
+
+132
+107
+/GA Schedule B:137/G7_Record:2
+SchedB_Month3_Day10
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day10:157
+
+
+132
+108
+/GA Schedule B:137/G7_Record:2
+SchedB_Month3_Day11
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day11:158
+
+
+132
+109
+/GA Schedule B:137/G7_Record:2
+SchedB_Month3_Day12
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day12:159
+
+
+132
+110
+/GA Schedule B:137/G7_Record:2
+SchedB_Month3_Day13
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day13:160
+
+
+132
+111
+/GA Schedule B:137/G7_Record:2
+SchedB_Month3_Day14
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day14:161
+
+
+132
+112
+/GA Schedule B:137/G7_Record:2
+SchedB_Month3_Day15
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day15:162
+
+
+132
+113
+/GA Schedule B:137/G7_Record:2
+SchedB_Month3_Day16
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day16:163
+
+
+132
+114
+/GA Schedule B:137/G7_Record:2
+SchedB_Month3_Day17
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day17:164
+
+
+132
+115
+/GA Schedule B:137/G7_Record:2
+SchedB_Month3_Day18
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day18:165
+
+
+132
+116
+/GA Schedule B:137/G7_Record:2
+SchedB_Month3_Day19
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day19:166
+
+
+132
+117
+/GA Schedule B:137/G7_Record:2
+SchedB_Month3_Day20
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day20:167
+
+
+132
+118
+/GA Schedule B:137/G7_Record:2
+SchedB_Month3_Day21
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day21:168
+
+
+132
+119
+/GA Schedule B:137/G7_Record:2
+SchedB_Month3_Day22
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day22:169
+
+
+132
+120
+/GA Schedule B:137/G7_Record:2
+SchedB_Month3_Day23
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day23:170
+
+
+132
+121
+/GA Schedule B:137/G7_Record:2
+SchedB_Month3_Day24
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day24:171
+
+
+132
+122
+/GA Schedule B:137/G7_Record:2
+SchedB_Month3_Day25
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day25:172
+
+
+132
+123
+/GA Schedule B:137/G7_Record:2
+SchedB_Month3_Day26
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day26:173
+
+
+132
+124
+/GA Schedule B:137/G7_Record:2
+SchedB_Month3_Day27
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day27:174
+
+
+132
+125
+/GA Schedule B:137/G7_Record:2
+SchedB_Month3_Day28
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day28:175
+
+
+132
+126
+/GA Schedule B:137/G7_Record:2
+SchedB_Month3_Day29
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day29:177
+
+
+132
+127
+/GA Schedule B:137/G7_Record:2
+SchedB_Month3_Day30
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day30:178
+
+
+132
+128
+/GA Schedule B:137/G7_Record:2
+SchedB_Month3_Day31
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/SchedB_Month3_Day31:179
+
+
+132
+129
+/GA Schedule B:137/G7_Record:2
+Total_Month_3_Liability
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/Total_Month_3_Liability:181
+
+
+132
+130
+/GA Schedule B:137/G7_Record:2
+Total_Month_3_Deposits
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/Total_Month_3_Deposits:183
+
+
+132
+132
+/GA Schedule B:137/G7_Record:2
+Amount_Paid
+
+0
+16
+/Shcedule B GA:197/G7_Record:28/Amount_Paid:187
+
+
+@0200N
+17
+190
+NULL_REF
+Shcedule B source file
+Shcedule B source file
+0
+0
+2
+10
+2
+44
+0
+0
+0
+4
+PARTNER
+
+4
+APPKEY1
+
+0
+APPKEY2
+
+0
+APPKEY3
+
+0
+schedb.app
+1
+46
+3
+18
+2
+/Shcedule B source file:190
+ER_Record
+
+0
+16
+2
+10
+1
+1
+6
+20
+3
+/Shcedule B source file:190/ER_Record:2
+Record_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+4
+/Shcedule B source file:190/ER_Record:2
+Parnter_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+5
+/Shcedule B source file:190/ER_Record:2
+Client_Fed_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+6
+/Shcedule B source file:190/ER_Record:2
+Year_of_Qtr
+YYYY
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+7
+/Shcedule B source file:190/ER_Record:2
+Quarter
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+24
+/Shcedule B source file:190/ER_Record:2
+Carriage_Return
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+14
+/Shcedule B source file:190
+Payment_Record
+
+0
+16
+2
+10
+0
+0
+6
+20
+15
+/Shcedule B source file:190/Payment_Record:14
+Record_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+16
+/Shcedule B source file:190/Payment_Record:14
+Payment_Month
+MM
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+21
+/Shcedule B source file:190/Payment_Record:14
+Payment_Day
+DD
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+22
+/Shcedule B source file:190/Payment_Record:14
+Payment_Year
+YYYY
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+17
+/Shcedule B source file:190/Payment_Record:14
+Amount
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+26
+/Shcedule B source file:190/Payment_Record:14
+Carriage_Return
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+28
+/Shcedule B source file:190
+G7_Record
+
+0
+16
+2
+10
+0
+0
+132
+20
+190
+/Shcedule B source file:190/G7_Record:28
+Record_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+30
+/Shcedule B source file:190/G7_Record:28
+Tax_Period_End
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+31
+/Shcedule B source file:190/G7_Record:28
+SoftwareID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+32
+/Shcedule B source file:190/G7_Record:28
+Software_Version
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+33
+/Shcedule B source file:190/G7_Record:28
+Amended_Return_Indicator
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+34
+/Shcedule B source file:190/G7_Record:28
+TIN
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+35
+/Shcedule B source file:190/G7_Record:28
+State_EIN
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+36
+/Shcedule B source file:190/G7_Record:28
+Due_Date
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+37
+/Shcedule B source file:190/G7_Record:28
+Form
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+38
+/Shcedule B source file:190/G7_Record:28
+Additonal_Tax_Adj_Month1
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+39
+/Shcedule B source file:190/G7_Record:28
+Clean_Energy_Credit_Month1
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+40
+/Shcedule B source file:190/G7_Record:28
+Film_Credit_Month1
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+41
+/Shcedule B source file:190/G7_Record:28
+Headquarters_Credit_Month1
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+42
+/Shcedule B source file:190/G7_Record:28
+Job_Tax_Credit_Month1
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+43
+/Shcedule B source file:190/G7_Record:28
+Over_Payment_adj_Month1
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+45
+/Shcedule B source file:190/G7_Record:28
+Additonal_Tax_Adj_Month2
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+47
+/Shcedule B source file:190/G7_Record:28
+Clean_Energy_Credit_Month2
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+49
+/Shcedule B source file:190/G7_Record:28
+Film_Credit_Month2
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+51
+/Shcedule B source file:190/G7_Record:28
+Headquarters_Credit_Month2
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+53
+/Shcedule B source file:190/G7_Record:28
+Job_Tax_Credit_Month2
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+55
+/Shcedule B source file:190/G7_Record:28
+Over_Payment_adj_Month2
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+57
+/Shcedule B source file:190/G7_Record:28
+Additonal_Tax_Adj_Month3
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+59
+/Shcedule B source file:190/G7_Record:28
+Clean_Energy_Credit_Month3
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+61
+/Shcedule B source file:190/G7_Record:28
+Film_Credit_Month3
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+63
+/Shcedule B source file:190/G7_Record:28
+Headquarters_Credit_Month3
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+65
+/Shcedule B source file:190/G7_Record:28
+Job_Tax_Credit_Month3
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+67
+/Shcedule B source file:190/G7_Record:28
+Over_Payment_adj_Month3
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+68
+/Shcedule B source file:190/G7_Record:28
+Month_1_Liability
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+70
+/Shcedule B source file:190/G7_Record:28
+Month_2_Liability
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+71
+/Shcedule B source file:190/G7_Record:28
+Month_3_Liability
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+72
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month1_Day1
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+74
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month1_Day2
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+75
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month1_Day3
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+76
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month1_Day4
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+77
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month1_Day5
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+78
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month1_Day6
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+79
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month1_Day7
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+80
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month1_Day8
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+81
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month1_Day9
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+82
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month1_Day10
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+83
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month1_Day11
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+84
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month1_Day12
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+85
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month1_Day13
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+86
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month1_Day14
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+87
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month1_Day15
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+88
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month1_Day16
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+89
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month1_Day17
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+90
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month1_Day18
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+91
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month1_Day19
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+92
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month1_Day20
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+93
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month1_Day21
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+94
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month1_Day22
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+95
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month1_Day23
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+96
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month1_Day24
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+97
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month1_Day25
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+98
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month1_Day26
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+99
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month1_Day27
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+100
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month1_Day28
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+101
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month1_Day29
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+103
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month1_Day30
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+104
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month1_Day31
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+106
+/Shcedule B source file:190/G7_Record:28
+Total_Month_1_Liability
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+108
+/Shcedule B source file:190/G7_Record:28
+Total_Month_1_Deposits
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+110
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month2_Day1
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+112
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month2_Day2
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+113
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month2_Day3
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+114
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month2_Day4
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+115
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month2_Day5
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+116
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month2_Day6
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+117
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month2_Day7
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+118
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month2_Day8
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+119
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month2_Day9
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+120
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month2_Day10
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+121
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month2_Day11
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+122
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month2_Day12
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+123
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month2_Day13
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+124
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month2_Day14
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+125
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month2_Day15
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+126
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month2_Day16
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+127
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month2_Day17
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+128
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month2_Day18
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+129
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month2_Day19
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+130
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month2_Day20
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+131
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month2_Day21
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+132
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month2_Day22
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+133
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month2_Day23
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+134
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month2_Day24
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+135
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month2_Day25
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+136
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month2_Day26
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+137
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month2_Day27
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+138
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month2_Day28
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+139
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month2_Day29
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+140
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month2_Day30
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+141
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month2_Day31
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+143
+/Shcedule B source file:190/G7_Record:28
+Total_Month_2_Liability
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+145
+/Shcedule B source file:190/G7_Record:28
+Total_Month_2_Deposits
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+147
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month3_Day1
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+149
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month3_Day2
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+150
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month3_Day3
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+151
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month3_Day4
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+152
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month3_Day5
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+153
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month3_Day6
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+154
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month3_Day7
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+155
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month3_Day8
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+156
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month3_Day9
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+157
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month3_Day10
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+158
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month3_Day11
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+159
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month3_Day12
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+160
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month3_Day13
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+161
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month3_Day14
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+162
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month3_Day15
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+163
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month3_Day16
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+164
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month3_Day17
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+165
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month3_Day18
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+166
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month3_Day19
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+167
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month3_Day20
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+168
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month3_Day21
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+169
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month3_Day22
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+170
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month3_Day23
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+171
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month3_Day24
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+172
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month3_Day25
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+173
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month3_Day26
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+174
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month3_Day27
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+175
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month3_Day28
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+177
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month3_Day29
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+178
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month3_Day30
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+179
+/Shcedule B source file:190/G7_Record:28
+SchedB_Month3_Day31
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+181
+/Shcedule B source file:190/G7_Record:28
+Total_Month_3_Liability
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+183
+/Shcedule B source file:190/G7_Record:28
+Total_Month_3_Deposits
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+185
+/Shcedule B source file:190/G7_Record:28
+Quarterly_Total
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+187
+/Shcedule B source file:190/G7_Record:28
+Amount_Paid
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+189
+/Shcedule B source file:190/G7_Record:28
+Carriage_Return
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+@0200N
+17
+197
+NULL_REF
+Shcedule B GA
+Shcedule B GA
+0
+0
+2
+10
+2
+44
+0
+0
+0
+4
+PARTNER
+
+0
+APPKEY1
+
+0
+APPKEY2
+
+0
+APPKEY3
+
+0
+schedb.app
+1
+46
+1
+18
+28
+/Shcedule B GA:197
+G7_Record
+
+0
+16
+2
+10
+0
+0
+130
+20
+30
+/Shcedule B GA:197/G7_Record:28
+Tax_Period_End
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+31
+/Shcedule B GA:197/G7_Record:28
+SoftwareID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+32
+/Shcedule B GA:197/G7_Record:28
+Software_Version
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+33
+/Shcedule B GA:197/G7_Record:28
+Amended_Return_Indicator
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+34
+/Shcedule B GA:197/G7_Record:28
+TIN
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+35
+/Shcedule B GA:197/G7_Record:28
+State_EIN
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+36
+/Shcedule B GA:197/G7_Record:28
+Due_Date
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+37
+/Shcedule B GA:197/G7_Record:28
+Form
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+38
+/Shcedule B GA:197/G7_Record:28
+Additonal_Tax_Adj_Month1
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+191
+/Shcedule B GA:197/G7_Record:28
+Over_Payment_adj_Month1
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+39
+/Shcedule B GA:197/G7_Record:28
+Clean_Energy_Credit_Month1
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+40
+/Shcedule B GA:197/G7_Record:28
+Film_Credit_Month1
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+41
+/Shcedule B GA:197/G7_Record:28
+Headquarters_Credit_Month1
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+42
+/Shcedule B GA:197/G7_Record:28
+Job_Tax_Credit_Month1
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+45
+/Shcedule B GA:197/G7_Record:28
+Additonal_Tax_Adj_Month2
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+193
+/Shcedule B GA:197/G7_Record:28
+Over_Payment_adj_Month2
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+47
+/Shcedule B GA:197/G7_Record:28
+Clean_Energy_Credit_Month2
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+49
+/Shcedule B GA:197/G7_Record:28
+Film_Credit_Month2
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+51
+/Shcedule B GA:197/G7_Record:28
+Headquarters_Credit_Month2
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+53
+/Shcedule B GA:197/G7_Record:28
+Job_Tax_Credit_Month2
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+57
+/Shcedule B GA:197/G7_Record:28
+Additonal_Tax_Adj_Month3
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+195
+/Shcedule B GA:197/G7_Record:28
+Over_Payment_adj_Month3
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+59
+/Shcedule B GA:197/G7_Record:28
+Clean_Energy_Credit_Month3
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+61
+/Shcedule B GA:197/G7_Record:28
+Film_Credit_Month3
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+63
+/Shcedule B GA:197/G7_Record:28
+Headquarters_Credit_Month3
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+65
+/Shcedule B GA:197/G7_Record:28
+Job_Tax_Credit_Month3
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+68
+/Shcedule B GA:197/G7_Record:28
+Month_1_Liability
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+70
+/Shcedule B GA:197/G7_Record:28
+Month_2_Liability
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+71
+/Shcedule B GA:197/G7_Record:28
+Month_3_Liability
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+197
+/Shcedule B GA:197/G7_Record:28
+Quarterly_Total
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+72
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month1_Day1
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+74
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month1_Day2
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+75
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month1_Day3
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+76
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month1_Day4
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+77
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month1_Day5
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+78
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month1_Day6
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+79
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month1_Day7
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+80
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month1_Day8
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+81
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month1_Day9
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+82
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month1_Day10
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+83
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month1_Day11
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+84
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month1_Day12
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+85
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month1_Day13
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+86
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month1_Day14
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+87
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month1_Day15
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+88
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month1_Day16
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+89
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month1_Day17
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+90
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month1_Day18
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+91
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month1_Day19
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+92
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month1_Day20
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+93
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month1_Day21
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+94
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month1_Day22
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+95
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month1_Day23
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+96
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month1_Day24
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+97
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month1_Day25
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+98
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month1_Day26
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+99
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month1_Day27
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+100
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month1_Day28
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+101
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month1_Day29
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+103
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month1_Day30
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+104
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month1_Day31
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+106
+/Shcedule B GA:197/G7_Record:28
+Total_Month_1_Liability
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+108
+/Shcedule B GA:197/G7_Record:28
+Total_Month_1_Deposits
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+110
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month2_Day1
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+112
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month2_Day2
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+113
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month2_Day3
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+114
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month2_Day4
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+115
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month2_Day5
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+116
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month2_Day6
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+117
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month2_Day7
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+118
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month2_Day8
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+119
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month2_Day9
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+120
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month2_Day10
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+121
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month2_Day11
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+122
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month2_Day12
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+123
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month2_Day13
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+124
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month2_Day14
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+125
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month2_Day15
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+126
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month2_Day16
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+127
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month2_Day17
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+128
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month2_Day18
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+129
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month2_Day19
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+130
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month2_Day20
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+131
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month2_Day21
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+132
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month2_Day22
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+133
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month2_Day23
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+134
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month2_Day24
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+135
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month2_Day25
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+136
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month2_Day26
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+137
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month2_Day27
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+138
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month2_Day28
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+139
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month2_Day29
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+140
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month2_Day30
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+141
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month2_Day31
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+143
+/Shcedule B GA:197/G7_Record:28
+Total_Month_2_Liability
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+145
+/Shcedule B GA:197/G7_Record:28
+Total_Month_2_Deposits
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+147
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month3_Day1
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+149
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month3_Day2
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+150
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month3_Day3
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+151
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month3_Day4
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+152
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month3_Day5
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+153
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month3_Day6
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+154
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month3_Day7
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+155
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month3_Day8
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+156
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month3_Day9
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+157
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month3_Day10
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+158
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month3_Day11
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+159
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month3_Day12
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+160
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month3_Day13
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+161
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month3_Day14
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+162
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month3_Day15
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+163
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month3_Day16
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+164
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month3_Day17
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+165
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month3_Day18
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+166
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month3_Day19
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+167
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month3_Day20
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+168
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month3_Day21
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+169
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month3_Day22
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+170
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month3_Day23
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+171
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month3_Day24
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+172
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month3_Day25
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+173
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month3_Day26
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+174
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month3_Day27
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+175
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month3_Day28
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+177
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month3_Day29
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+178
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month3_Day30
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+179
+/Shcedule B GA:197/G7_Record:28
+SchedB_Month3_Day31
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+181
+/Shcedule B GA:197/G7_Record:28
+Total_Month_3_Liability
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+183
+/Shcedule B GA:197/G7_Record:28
+Total_Month_3_Deposits
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+187
+/Shcedule B GA:197/G7_Record:28
+Amount_Paid
+
+0
+16
+0
+2
+13
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+END DATA
+
+      

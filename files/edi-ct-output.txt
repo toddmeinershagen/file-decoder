@@ -1,0 +1,8674 @@
+BEGIN DATA
+objects|9
+RTM|edi-ct|macro\edi-ct.rtm|@0200N|11473
+MAP|edi-ct|map\edi-ct.map|@0200N|5259
+VW1|edi-ct|map\edi-ct.vw1|@0200N|27029
+VW2|edi-ct|map\edi-ct.vw2|@0200N|2602
+SRC_ADF|suiwhsrc|map\app\suiwhsrc.adf||20998
+DST_ADF|edi-ct|map\app\edi-ct.adf||2121
+TST_APP||||0
+UNKNOWN||||0
+FLD||||0
+;----------------------------------------
+;
+; spEDI*map 2.0 - MPL  code generator, Rel r3.0EV
+;
+; User: <not available>    Date: Mon Jan 08 10:10:09 2018
+;
+; Map Definition: EDI CT File (EDI CT File)
+;
+;                            Source       Destination         
+;                            ------       -----------         
+;        Name:       SUI Source ADF ===>> EDI CT File         
+;        Desc:       SUI Source ADF       EDI CT File         
+; EDI Version:                                                
+;    EDI Desc:                                                
+;
+;----------------------------------------
+
+;----------------------------------------
+;
+; User code: Sln / Dln conditionals, FEL Code
+;
+;----------------------------------------
+let RTM_Employer_record_EACH_0001( RTM_p0, RTM_p1, RTM_p2, RTM_p3, RTM_p4, RTM_p5, RTM_p6, RTM_p7, RTM_p8, RTM_p9, RTM_p10, RTM_p11, RTM_p12, RTM_p13, RTM_p14, RTM_p15, RTM_p16, RTM_p17, RTM_p18 ) = {
+Let PE_Date = RTM_p0++"/"++RTM_p1++"/"++RTM_p2
+
+If RTM_p3 = "03" then
+Let Day = "31"
+endif
+
+If RTM_p4 = "06" then
+Let Day = "30"
+endif
+
+If RTM_p5 = "09" then
+Let Day = "30"
+endif
+
+If RTM_p6 = "12" then
+Let Day = "31"
+endif
+
+Let Payment_Date = RTM_p7++"/"++Day++"/"++RTM_p8
+
+Let Address = RTM_p9
+Let TP_Address = RTM_p10
+Let Zip = RTM_p11
+Let City = RTM_p12
+Let State = RTM_p13
+Let Client = RTM_p14
+Let SUI = RTM_p15
+Let Client_Address_1 = left(RTM_p16,30)
+Let add_length = size(RTM_p17)
+Let Client_Address_2 = RIGHT(RTM_p18,add_length-30)
+
+
+}
+let RTM_SRC_Employer_record_0002(  ) = {
+RETURN PE_Date
+}
+let RTM_Total_record_EACH_0003( RTM_p0, RTM_p1, RTM_p2 ) = {
+Let PE_Date = RTM_p0++"/"++RTM_p1++"/"++RTM_p2
+
+}
+let RTM_SRC_Total_record_0004(  ) = {
+RETURN PE_Date
+}
+let RTM_SRC_Employer_record_0005(  ) = {
+RETURN Client_Address_1
+}
+let RTM_SRC_Employer_record_0006(  ) = {
+RETURN Client_Address_2
+}
+let RTM_SRC_Transmitter_record_0007(  ) = {
+RETURN "PAYCOR"
+}
+let RTM_SRC_Transmitter_record_0008(  ) = {
+RETURN "OH"
+}
+let RTM_SRC_Transmitter_record_0009(  ) = {
+RETURN "5133810505"
+}
+let RTM_SRC_Transmitter_record_0010(  ) = {
+RETURN "Y"
+}
+let RTM_SRC_Transmitter_record_0011(  ) = {
+RETURN "PAYCOR INC"
+}
+
+;----------------------------------------
+
+
+;----------------------------------------
+;
+; Driver code: for alpha this will manually
+; load the data file and the map definition.
+; Eventually this will be replaced with the
+; AppScan inbound/outbound queue support.
+;
+; (AppScan will also provide the name of the batch file
+; but until it is online, we'll have to make do
+; with deriving a name from the map-def: 'outbound\edi-ct.dat'.)
+;
+;----------------------------------------
+
+LET RTM_RESULT = RUN_MAP("outbound\edi-ct.dat")
+IF RTM_RESULT <> 1 THEN
+   ECHO "Unable to test map."
+   END 1
+ENDIF
+ECHO "Macro EDI CT File completed."
+END 0
+$RTIME:BEGIN
+@0200N
+33
+44
+NULL_REF
+EDI CT File
+EDI CT File
+0
+2048
+17
+suiwhsrc.adf
+17
+edi-ct.adf
+0
+0
+15
+8228
+1
+/EDI CT File:44
+Address
+desc
+0
+0
+8228
+2
+/EDI CT File:44
+City
+desc
+0
+0
+8228
+3
+/EDI CT File:44
+Client
+desc
+0
+0
+8228
+4
+/EDI CT File:44
+Client_Address_1
+desc
+0
+0
+8228
+5
+/EDI CT File:44
+Client_Address_2
+desc
+0
+0
+8228
+6
+/EDI CT File:44
+Day
+desc
+0
+0
+8228
+7
+/EDI CT File:44
+PE_Date
+desc
+0
+0
+8228
+8
+/EDI CT File:44
+Pay_Year
+desc
+0
+0
+8228
+9
+/EDI CT File:44
+Payment_Date
+desc
+0
+0
+8228
+10
+/EDI CT File:44
+SUI
+desc
+0
+0
+8228
+11
+/EDI CT File:44
+State
+desc
+0
+0
+8228
+12
+/EDI CT File:44
+TP_Address
+desc
+0
+0
+8228
+13
+/EDI CT File:44
+YR
+desc
+0
+0
+8228
+14
+/EDI CT File:44
+Zip
+desc
+0
+0
+8228
+15
+/EDI CT File:44
+add_length
+desc
+0
+0
+1
+32770
+16
+/EDI CT File:44
+Employer_record
+SLN Based on Employer_record(View container)
+0
+0
+0
+333
+333
+444
+32
+Let PE_Date = ../Total_record/Return_Period_MM++"/"++../Total_record/Return_Period_DD++"/"++../Total_record/Return_Period_YR
+
+If Reporting_period = "03" then
+Let Day = "31"
+endif
+
+If Reporting_period = "06" then
+Let Day = "30"
+endif
+
+If Reporting_period = "09" then
+Let Day = "30"
+endif
+
+If Reporting_period = "12" then
+Let Day = "31"
+endif
+
+Let Payment_Date = Reporting_period++"/"++Day++"/"++../Transmitter_record/Year
+
+Let Address = ../Transmitter_record/Paycor_street_address
+Let TP_Address = Client_street_address
+Let Zip = Client_zip_code
+Let City = Client_city
+Let State = Client_state
+Let Client = Client_name
+Let SUI = Client_state_ins_acct_number
+Let Client_Address_1 = left(Client_street_address,30)
+Let add_length = size(Client_street_address)
+Let Client_Address_2 = RIGHT(Client_street_address,add_length-30)
+
+
+RTM_Employer_record_EACH_0001
+19
+1
+14
+32
+132
+0
+/SUI Source ADF:404/Total_record:157/Return_Period_MM:268
+1
+53
+32
+132
+0
+/SUI Source ADF:404/Total_record:157/Return_Period_DD:269
+1
+92
+32
+132
+0
+/SUI Source ADF:404/Total_record:157/Return_Period_YR:266
+3
+3
+16
+132
+0
+/SUI Source ADF:404/Employer_record:82/Reporting_period:97
+7
+3
+16
+132
+0
+/SUI Source ADF:404/Employer_record:82/Reporting_period:97
+11
+3
+16
+132
+0
+/SUI Source ADF:404/Employer_record:82/Reporting_period:97
+15
+3
+16
+132
+0
+/SUI Source ADF:404/Employer_record:82/Reporting_period:97
+19
+19
+16
+132
+0
+/SUI Source ADF:404/Employer_record:82/Reporting_period:97
+19
+52
+26
+132
+0
+/SUI Source ADF:404/Transmitter_record:2/Year:8
+21
+14
+43
+132
+0
+/SUI Source ADF:404/Transmitter_record:2/Paycor_street_address:14
+22
+17
+21
+132
+0
+/SUI Source ADF:404/Employer_record:82/Client_street_address:88
+23
+10
+15
+132
+0
+/SUI Source ADF:404/Employer_record:82/Client_zip_code:92
+24
+11
+11
+132
+0
+/SUI Source ADF:404/Employer_record:82/Client_city:89
+25
+12
+12
+132
+0
+/SUI Source ADF:404/Employer_record:82/Client_state:90
+26
+13
+11
+132
+0
+/SUI Source ADF:404/Employer_record:82/Client_name:87
+27
+10
+28
+132
+0
+/SUI Source ADF:404/Employer_record:82/Client_state_ins_acct_number:96
+28
+28
+21
+132
+0
+/SUI Source ADF:404/Employer_record:82/Client_street_address:88
+29
+22
+21
+132
+0
+/SUI Source ADF:404/Employer_record:82/Client_street_address:88
+30
+29
+21
+132
+0
+/SUI Source ADF:404/Employer_record:82/Client_street_address:88
+333
+Employer_record
+Detail_Record
+9
+0
+18
+/SUI Source ADF:404/Employer_record:82
+18
+/EDI CT File:101/Detail_Record:2
+32772
+17
+/EDI CT File:44/Employer_record:16
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN PE_Date
+RTM_SRC_Employer_record_0002
+0
+20
+/SUI Source ADF:404/Employer_record:82/Record_type:83
+20
+/EDI CT File:101/Detail_Record:2/PE_Date:67
+32770
+18
+/EDI CT File:44/Employer_record:16
+Total_record
+SLN Based on Total_record(View container)
+0
+0
+0
+333
+333
+444
+2
+Let PE_Date = Return_Period_MM++"/"++Return_Period_DD++"/"++Return_Period_YR
+
+RTM_Total_record_EACH_0003
+3
+1
+14
+16
+132
+0
+/SUI Source ADF:404/Total_record:157/Return_Period_MM:268
+1
+37
+16
+132
+0
+/SUI Source ADF:404/Total_record:157/Return_Period_DD:269
+1
+60
+16
+132
+0
+/SUI Source ADF:404/Total_record:157/Return_Period_YR:266
+333
+Total_record
+
+6
+0
+18
+/SUI Source ADF:404/Total_record:157
+0
+NULL_REF
+32772
+19
+/EDI CT File:44/Employer_record:16/Total_record:18
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN PE_Date
+RTM_SRC_Total_record_0004
+0
+20
+/SUI Source ADF:404/Total_record:157/Return_Period_MM:268
+20
+/EDI CT File:101/Detail_Record:2/PE_Date:67
+32772
+20
+/EDI CT File:44/Employer_record:16/Total_record:18
+
+
+0
+0
+1
+0
+333
+333
+20
+/SUI Source ADF:404/Total_record:157/Client_Withholding_Number:374
+20
+/EDI CT File:101/Detail_Record:2/CTREG:69
+32772
+27
+/EDI CT File:44/Employer_record:16/Total_record:18
+
+
+0
+0
+1
+0
+333
+333
+20
+/SUI Source ADF:404/Total_record:157/State_QTR_total_gross_wages_ER:174
+20
+/EDI CT File:101/Detail_Record:2/Gross_Wages:85
+32772
+28
+/EDI CT File:44/Employer_record:16/Total_record:18
+
+
+0
+0
+1
+0
+333
+333
+20
+/SUI Source ADF:404/Total_record:157/Total_Quarterly_Gross_Wages_Subject_to_Withholding:244
+20
+/EDI CT File:101/Detail_Record:2/Gross_CT_Wages:87
+32772
+29
+/EDI CT File:44/Employer_record:16/Total_record:18
+
+
+0
+0
+1
+0
+333
+333
+20
+/SUI Source ADF:404/Total_record:157/Total_Qtr_Income_Tax_Liab:303
+20
+/EDI CT File:101/Detail_Record:2/CT_Tax_Withheld:89
+32772
+30
+/EDI CT File:44/Employer_record:16/Total_record:18
+
+
+0
+0
+1
+0
+333
+333
+20
+/SUI Source ADF:404/Total_record:157/Total_Qtr_Income_Tax_Liab:303
+20
+/EDI CT File:101/Detail_Record:2/Payments:91
+32772
+21
+/EDI CT File:44/Employer_record:16
+
+
+0
+0
+1
+0
+333
+333
+20
+/SUI Source ADF:404/Employer_record:82/Client_name:87
+20
+/EDI CT File:101/Detail_Record:2/Taxpayer_Name:71
+32772
+22
+/EDI CT File:44/Employer_record:16
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN Client_Address_1
+RTM_SRC_Employer_record_0005
+0
+20
+/SUI Source ADF:404/Employer_record:82/Client_street_address:88
+20
+/EDI CT File:101/Detail_Record:2/Tax_Payer_Address:75
+32772
+23
+/EDI CT File:44/Employer_record:16
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN Client_Address_2
+RTM_SRC_Employer_record_0006
+0
+20
+/SUI Source ADF:404/Employer_record:82/Client_street_address:88
+20
+/EDI CT File:101/Detail_Record:2/Tax_Payer_Address_2:77
+32772
+24
+/EDI CT File:44/Employer_record:16
+
+
+0
+0
+1
+0
+333
+333
+20
+/SUI Source ADF:404/Employer_record:82/Client_city:89
+20
+/EDI CT File:101/Detail_Record:2/Taxpayer_City:79
+32772
+25
+/EDI CT File:44/Employer_record:16
+
+
+0
+0
+1
+0
+333
+333
+20
+/SUI Source ADF:404/Employer_record:82/Client_state:90
+20
+/EDI CT File:101/Detail_Record:2/Taxpayer_Sate:81
+32772
+26
+/EDI CT File:44/Employer_record:16
+
+
+0
+0
+1
+0
+333
+333
+20
+/SUI Source ADF:404/Employer_record:82/Client_zip_code:92
+20
+/EDI CT File:101/Detail_Record:2/Taxpayer_Zip:83
+32770
+31
+/EDI CT File:44/Employer_record:16
+Transmitter_record
+SLN Based on Transmitter_record(View container)
+0
+0
+0
+333
+333
+333
+333
+Transmitter_record
+
+9
+0
+18
+/SUI Source ADF:404/Transmitter_record:2
+0
+NULL_REF
+32772
+32
+/EDI CT File:44/Employer_record:16/Transmitter_record:31
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "PAYCOR"
+RTM_SRC_Transmitter_record_0007
+0
+20
+/SUI Source ADF:404/Transmitter_record:2/Paycor_legal_name:12
+20
+/EDI CT File:101/Detail_Record:2/Preparer_Name:4
+32772
+33
+/EDI CT File:44/Employer_record:16/Transmitter_record:31
+
+
+0
+0
+1
+0
+333
+333
+20
+/SUI Source ADF:404/Transmitter_record:2/Paycor_street_address:14
+20
+/EDI CT File:101/Detail_Record:2/Preparer_Address:6
+32772
+34
+/EDI CT File:44/Employer_record:16/Transmitter_record:31
+
+
+0
+0
+1
+0
+333
+333
+20
+/SUI Source ADF:404/Transmitter_record:2/Paycor_city:16
+20
+/EDI CT File:101/Detail_Record:2/Preparer_City:8
+32772
+35
+/EDI CT File:44/Employer_record:16/Transmitter_record:31
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "OH"
+RTM_SRC_Transmitter_record_0008
+0
+20
+/SUI Source ADF:404/Transmitter_record:2/Paycor_state:18
+20
+/EDI CT File:101/Detail_Record:2/Preparer_State:10
+32772
+36
+/EDI CT File:44/Employer_record:16/Transmitter_record:31
+
+
+0
+0
+1
+0
+333
+333
+20
+/SUI Source ADF:404/Transmitter_record:2/Paycor_zip_code:20
+20
+/EDI CT File:101/Detail_Record:2/Preparer_Zip:12
+32772
+37
+/EDI CT File:44/Employer_record:16/Transmitter_record:31
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "5133810505"
+RTM_SRC_Transmitter_record_0009
+0
+20
+/SUI Source ADF:404/Transmitter_record:2/Paycor_transmission_contact_area_code:28
+20
+/EDI CT File:101/Detail_Record:2/Preparer_phone:14
+32772
+38
+/EDI CT File:44/Employer_record:16/Transmitter_record:31
+
+
+0
+0
+1
+0
+333
+333
+20
+/SUI Source ADF:404/Transmitter_record:2/Paycor_Fed_ID:10
+20
+/EDI CT File:101/Detail_Record:2/Preparer_FEIN:18
+32772
+39
+/EDI CT File:44/Employer_record:16/Transmitter_record:31
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "Y"
+RTM_SRC_Transmitter_record_0010
+0
+20
+/SUI Source ADF:404/Transmitter_record:2/Record_type:3
+20
+/EDI CT File:101/Detail_Record:2/Return_ID:73
+32772
+40
+/EDI CT File:44/Employer_record:16/Transmitter_record:31
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "PAYCOR INC"
+RTM_SRC_Transmitter_record_0011
+0
+20
+/SUI Source ADF:404/Transmitter_record:2/Record_type:3
+20
+/EDI CT File:101/Detail_Record:2/Paid_Preparer_Name:101
+$RTIME:END
+@0200N
+33
+17
+NULL_REF
+EDI CT File
+EDI CT File
+0
+2048
+edi-ct.vw1
+edi-ct.vw2
+0
+0
+15
+8228
+8
+/EDI CT File:17
+Address
+desc
+0
+0
+8228
+13
+/EDI CT File:17
+City
+desc
+0
+0
+8228
+12
+/EDI CT File:17
+Client
+desc
+0
+0
+8228
+16
+/EDI CT File:17
+Client_Address_1
+desc
+0
+0
+8228
+15
+/EDI CT File:17
+Client_Address_2
+desc
+0
+0
+8228
+5
+/EDI CT File:17
+Day
+desc
+0
+0
+8228
+3
+/EDI CT File:17
+PE_Date
+desc
+0
+0
+8228
+7
+/EDI CT File:17
+Pay_Year
+desc
+0
+0
+8228
+4
+/EDI CT File:17
+Payment_Date
+desc
+0
+0
+8228
+11
+/EDI CT File:17
+SUI
+desc
+0
+0
+8228
+14
+/EDI CT File:17
+State
+desc
+0
+0
+8228
+9
+/EDI CT File:17
+TP_Address
+desc
+0
+0
+8228
+6
+/EDI CT File:17
+YR
+desc
+0
+0
+8228
+10
+/EDI CT File:17
+Zip
+desc
+0
+0
+8228
+17
+/EDI CT File:17
+add_length
+desc
+0
+0
+22
+36
+1
+/EDI CT File:17
+Map Link
+
+0
+0
+
+PE_Date
+1
+0
+0
+27
+Let PE_Date = ../Total_record/Return_Period_MM++"/"++../Total_record/Return_Period_DD++"/"++../Total_record/Return_Period_YR
+
+If Reporting_period = "03" then
+Let Day = "31"
+endif
+
+If Reporting_period = "06" then
+Let Day = "30"
+endif
+
+If Reporting_period = "09" then
+Let Day = "30"
+endif
+
+If Reporting_period = "12" then
+Let Day = "31"
+endif
+
+Let Payment_Date = Reporting_period++"/"++Day++"/"++../Transmitter_record/Year
+
+Let Address = ../Transmitter_record/Paycor_street_address
+Let TP_Address = Client_street_address
+Let Zip = Client_zip_code
+Let City = Client_city
+Let State = Client_state
+Let Client = Client_name
+Let SUI = Client_state_ins_acct_number
+0
+132
+/EDI CT File:203/Employer_record:26/Record_type:27
+132
+/EDI CT File:56/Detail_Record:2/PE_Date:40
+36
+1
+/EDI CT File:17
+Map Link
+
+0
+0
+
+PE_Date
+1
+0
+0
+2
+Let PE_Date = Return_Period_MM++"/"++Return_Period_DD++"/"++Return_Period_YR
+
+0
+132
+/EDI CT File:203/Total_record:73/Return_Period_MM:101
+132
+/EDI CT File:56/Detail_Record:2/PE_Date:40
+36
+1
+/EDI CT File:17
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/EDI CT File:203/Total_record:73/Client_Withholding_Number:183
+132
+/EDI CT File:56/Detail_Record:2/CTREG:39
+36
+1
+/EDI CT File:17
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/EDI CT File:203/Employer_record:26/Client_name:30
+132
+/EDI CT File:56/Detail_Record:2/Taxpayer_Name:41
+36
+1
+/EDI CT File:17
+Map Link
+
+0
+0
+
+Client_Address_1
+1
+0
+0
+5
+Let Client_Address_1 = left(Client_street_address,30)
+Let add_length = size(Client_street_address)
+Let Client_Address_2 = RIGHT(Client_street_address,add_length-30)
+
+
+0
+132
+/EDI CT File:203/Employer_record:26/Client_street_address:31
+132
+/EDI CT File:56/Detail_Record:2/Tax_Payer_Address:42
+36
+1
+/EDI CT File:17
+Map Link
+
+0
+0
+
+Client_Address_2
+1
+0
+0
+0
+0
+132
+/EDI CT File:203/Employer_record:26/Client_street_address:31
+132
+/EDI CT File:56/Detail_Record:2/Tax_Payer_Address_2:38
+36
+1
+/EDI CT File:17
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/EDI CT File:203/Employer_record:26/Client_city:32
+132
+/EDI CT File:56/Detail_Record:2/Taxpayer_City:43
+36
+1
+/EDI CT File:17
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/EDI CT File:203/Employer_record:26/Client_state:33
+132
+/EDI CT File:56/Detail_Record:2/Taxpayer_Sate:44
+36
+1
+/EDI CT File:17
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/EDI CT File:203/Employer_record:26/Client_zip_code:35
+132
+/EDI CT File:56/Detail_Record:2/Taxpayer_Zip:45
+36
+1
+/EDI CT File:17
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/EDI CT File:203/Total_record:73/State_QTR_total_gross_wages_ER:76
+132
+/EDI CT File:56/Detail_Record:2/Gross_Wages:49
+36
+1
+/EDI CT File:17
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/EDI CT File:203/Total_record:73/Total_Quarterly_Gross_Wages_Subject_to_Withholding:91
+132
+/EDI CT File:56/Detail_Record:2/Gross_CT_Wages:50
+36
+1
+/EDI CT File:17
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/EDI CT File:203/Total_record:73/Total_Qtr_Income_Tax_Liab:125
+132
+/EDI CT File:56/Detail_Record:2/CT_Tax_Withheld:51
+36
+1
+/EDI CT File:17
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/EDI CT File:203/Total_record:73/Total_Qtr_Income_Tax_Liab:125
+132
+/EDI CT File:56/Detail_Record:2/Payments:52
+36
+1
+/EDI CT File:17
+Map Link
+
+0
+0
+
+"PAYCOR"
+1
+0
+0
+0
+0
+132
+/EDI CT File:203/Transmitter_record:2/Paycor_legal_name:7
+132
+/EDI CT File:56/Detail_Record:2/Preparer_Name:4
+36
+1
+/EDI CT File:17
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/EDI CT File:203/Transmitter_record:2/Paycor_street_address:8
+132
+/EDI CT File:56/Detail_Record:2/Preparer_Address:5
+36
+1
+/EDI CT File:17
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/EDI CT File:203/Transmitter_record:2/Paycor_city:9
+132
+/EDI CT File:56/Detail_Record:2/Preparer_City:6
+36
+1
+/EDI CT File:17
+Map Link
+
+0
+0
+
+"OH"
+1
+0
+0
+0
+0
+132
+/EDI CT File:203/Transmitter_record:2/Paycor_state:10
+132
+/EDI CT File:56/Detail_Record:2/Preparer_State:7
+36
+1
+/EDI CT File:17
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/EDI CT File:203/Transmitter_record:2/Paycor_zip_code:11
+132
+/EDI CT File:56/Detail_Record:2/Preparer_Zip:8
+36
+1
+/EDI CT File:17
+Map Link
+
+0
+0
+
+"5133810505"
+1
+0
+0
+0
+0
+132
+/EDI CT File:203/Transmitter_record:2/Paycor_transmission_contact_area_code:15
+132
+/EDI CT File:56/Detail_Record:2/Preparer_phone:9
+36
+1
+/EDI CT File:17
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/EDI CT File:203/Transmitter_record:2/Paycor_Fed_ID:6
+132
+/EDI CT File:56/Detail_Record:2/Preparer_FEIN:11
+36
+1
+/EDI CT File:17
+Map Link
+
+0
+0
+
+"Y"
+1
+0
+0
+0
+0
+132
+/EDI CT File:203/Transmitter_record:2/Record_type:3
+132
+/EDI CT File:56/Detail_Record:2/Return_ID:48
+36
+1
+/EDI CT File:17
+Map Link
+
+0
+0
+
+"PAYCOR INC"
+1
+0
+0
+0
+0
+132
+/EDI CT File:203/Transmitter_record:2/Record_type:3
+132
+/EDI CT File:56/Detail_Record:2/Paid_Preparer_Name:56
+@0200N
+129
+203
+NULL_REF
+EDI CT File
+View of: EDI CT File
+0
+0
+17
+suiwhsrc.adf
+edi-ct.vw1
+7
+130
+2
+/EDI CT File:203
+Transmitter_record
+A
+0
+16
+/SUI Source ADF:404/Transmitter_record:2
+
+1
+20
+132
+3
+/EDI CT File:203/Transmitter_record:2
+Record_type
+A
+0
+16
+/SUI Source ADF:404/Transmitter_record:2/Record_type:3
+
+
+132
+4
+/EDI CT File:203/Transmitter_record:2
+Report_ID
+
+0
+16
+/SUI Source ADF:404/Transmitter_record:2/Report_ID:5
+
+
+132
+5
+/EDI CT File:203/Transmitter_record:2
+Year
+CCYY
+0
+16
+/SUI Source ADF:404/Transmitter_record:2/Year:8
+
+
+132
+6
+/EDI CT File:203/Transmitter_record:2
+Paycor_Fed_ID
+
+0
+16
+/SUI Source ADF:404/Transmitter_record:2/Paycor_Fed_ID:10
+
+
+132
+7
+/EDI CT File:203/Transmitter_record:2
+Paycor_legal_name
+
+0
+16
+/SUI Source ADF:404/Transmitter_record:2/Paycor_legal_name:12
+
+
+132
+8
+/EDI CT File:203/Transmitter_record:2
+Paycor_street_address
+
+0
+16
+/SUI Source ADF:404/Transmitter_record:2/Paycor_street_address:14
+
+
+132
+9
+/EDI CT File:203/Transmitter_record:2
+Paycor_city
+
+0
+16
+/SUI Source ADF:404/Transmitter_record:2/Paycor_city:16
+
+
+132
+10
+/EDI CT File:203/Transmitter_record:2
+Paycor_state
+
+0
+16
+/SUI Source ADF:404/Transmitter_record:2/Paycor_state:18
+
+
+132
+11
+/EDI CT File:203/Transmitter_record:2
+Paycor_zip_code
+
+0
+16
+/SUI Source ADF:404/Transmitter_record:2/Paycor_zip_code:20
+
+
+132
+12
+/EDI CT File:203/Transmitter_record:2
+Paycor_zip_code_extension
+
+0
+16
+/SUI Source ADF:404/Transmitter_record:2/Paycor_zip_code_extension:22
+
+
+132
+13
+/EDI CT File:203/Transmitter_record:2
+Paycor_transmission_contacts_title
+Authorized Reporting Agent
+0
+16
+/SUI Source ADF:404/Transmitter_record:2/Paycor_transmission_contacts_title:24
+
+
+132
+14
+/EDI CT File:203/Transmitter_record:2
+Paycor_transmission_contact_name
+Robert Johnson
+0
+16
+/SUI Source ADF:404/Transmitter_record:2/Paycor_transmission_contact_name:26
+
+
+132
+15
+/EDI CT File:203/Transmitter_record:2
+Paycor_transmission_contact_area_code
+513
+0
+16
+/SUI Source ADF:404/Transmitter_record:2/Paycor_transmission_contact_area_code:28
+
+
+132
+16
+/EDI CT File:203/Transmitter_record:2
+Paycor_transmission_contact_phone_ext
+381
+0
+16
+/SUI Source ADF:404/Transmitter_record:2/Paycor_transmission_contact_phone_ext:226
+
+
+132
+17
+/EDI CT File:203/Transmitter_record:2
+Paycor_transmission_contact_phone_last_four
+0505
+0
+16
+/SUI Source ADF:404/Transmitter_record:2/Paycor_transmission_contact_phone_last_four:228
+
+
+132
+18
+/EDI CT File:203/Transmitter_record:2
+Paycor_transmission_contact_phone_extension
+
+0
+16
+/SUI Source ADF:404/Transmitter_record:2/Paycor_transmission_contact_phone_extension:30
+
+
+132
+19
+/EDI CT File:203/Transmitter_record:2
+Media_transmitter_authorization_number
+
+0
+16
+/SUI Source ADF:404/Transmitter_record:2/Media_transmitter_authorization_number:32
+
+
+132
+20
+/EDI CT File:203/Transmitter_record:2
+Media_creation_date_year
+CCYY
+0
+16
+/SUI Source ADF:404/Transmitter_record:2/Media_creation_date_year:34
+
+
+132
+21
+/EDI CT File:203/Transmitter_record:2
+Media_creation_date_month
+MM
+0
+16
+/SUI Source ADF:404/Transmitter_record:2/Media_creation_date_month:36
+
+
+132
+22
+/EDI CT File:203/Transmitter_record:2
+Media_creation_date_day
+DD
+0
+16
+/SUI Source ADF:404/Transmitter_record:2/Media_creation_date_day:38
+
+
+130
+23
+/EDI CT File:203
+Authorization_record
+B
+0
+16
+/SUI Source ADF:404/Authorization_record:58
+
+1
+2
+132
+24
+/EDI CT File:203/Authorization_record:23
+Record_type
+B
+0
+16
+/SUI Source ADF:404/Authorization_record:58/Record_type:59
+
+
+132
+25
+/EDI CT File:203/Authorization_record:23
+Filing_media_type
+
+0
+16
+/SUI Source ADF:404/Authorization_record:58/Filing_media_type:60
+
+
+130
+26
+/EDI CT File:203
+Employer_record
+E
+0
+16
+/SUI Source ADF:404/Employer_record:82
+
+1
+17
+132
+27
+/EDI CT File:203/Employer_record:26
+Record_type
+E
+0
+16
+/SUI Source ADF:404/Employer_record:82/Record_type:83
+
+
+132
+28
+/EDI CT File:203/Employer_record:26
+Client_number
+
+0
+16
+/SUI Source ADF:404/Employer_record:82/Client_number:84
+
+
+132
+29
+/EDI CT File:203/Employer_record:26
+Reimbursing_client_indicator
+
+0
+16
+/SUI Source ADF:404/Employer_record:82/Reimbursing_client_indicator:86
+
+
+132
+30
+/EDI CT File:203/Employer_record:26
+Client_name
+
+0
+16
+/SUI Source ADF:404/Employer_record:82/Client_name:87
+
+
+132
+31
+/EDI CT File:203/Employer_record:26
+Client_street_address
+
+0
+16
+/SUI Source ADF:404/Employer_record:82/Client_street_address:88
+
+
+132
+32
+/EDI CT File:203/Employer_record:26
+Client_city
+
+0
+16
+/SUI Source ADF:404/Employer_record:82/Client_city:89
+
+
+132
+33
+/EDI CT File:203/Employer_record:26
+Client_state
+
+0
+16
+/SUI Source ADF:404/Employer_record:82/Client_state:90
+
+
+132
+34
+/EDI CT File:203/Employer_record:26
+Client_zip_code_extension
+
+0
+16
+/SUI Source ADF:404/Employer_record:82/Client_zip_code_extension:91
+
+
+132
+35
+/EDI CT File:203/Employer_record:26
+Client_zip_code
+
+0
+16
+/SUI Source ADF:404/Employer_record:82/Client_zip_code:92
+
+
+132
+36
+/EDI CT File:203/Employer_record:26
+Type_of_employment
+
+0
+16
+/SUI Source ADF:404/Employer_record:82/Type_of_employment:93
+
+
+132
+37
+/EDI CT File:203/Employer_record:26
+State_identifier_code
+
+0
+16
+/SUI Source ADF:404/Employer_record:82/State_identifier_code:94
+
+
+132
+38
+/EDI CT File:203/Employer_record:26
+Client_state_ins_acct_number
+
+0
+16
+/SUI Source ADF:404/Employer_record:82/Client_state_ins_acct_number:96
+
+
+132
+39
+/EDI CT File:203/Employer_record:26
+Reporting_period
+
+0
+16
+/SUI Source ADF:404/Employer_record:82/Reporting_period:97
+
+
+132
+40
+/EDI CT File:203/Employer_record:26
+No_workers_no_wages
+
+0
+16
+/SUI Source ADF:404/Employer_record:82/No_workers_no_wages:98
+
+
+132
+41
+/EDI CT File:203/Employer_record:26
+Tax_type_code
+
+0
+16
+/SUI Source ADF:404/Employer_record:82/Tax_type_code:99
+
+
+132
+42
+/EDI CT File:203/Employer_record:26
+Plant_number
+
+0
+16
+/SUI Source ADF:404/Employer_record:82/Plant_number:100
+
+
+132
+43
+/EDI CT File:203/Employer_record:26
+Client_Federal_EIN
+
+0
+16
+/SUI Source ADF:404/Employer_record:82/Client_Federal_EIN:230
+
+
+130
+44
+/EDI CT File:203
+Employee_record
+S
+0
+16
+/SUI Source ADF:404/Employee_record:118
+
+1
+28
+132
+45
+/EDI CT File:203/Employee_record:44
+Record_type
+S
+0
+16
+/SUI Source ADF:404/Employee_record:118/Record_type:119
+
+
+132
+46
+/EDI CT File:203/Employee_record:44
+Social_security_number
+
+0
+16
+/SUI Source ADF:404/Employee_record:118/Social_security_number:120
+
+
+132
+47
+/EDI CT File:203/Employee_record:44
+Employee_last_name
+
+0
+16
+/SUI Source ADF:404/Employee_record:118/Employee_last_name:121
+
+
+132
+48
+/EDI CT File:203/Employee_record:44
+Employee_first_name
+
+0
+16
+/SUI Source ADF:404/Employee_record:118/Employee_first_name:122
+
+
+132
+49
+/EDI CT File:203/Employee_record:44
+Employee_middle_initial
+
+0
+16
+/SUI Source ADF:404/Employee_record:118/Employee_middle_initial:136
+
+
+132
+50
+/EDI CT File:203/Employee_record:44
+Employee_street_address
+
+0
+16
+/SUI Source ADF:404/Employee_record:118/Employee_street_address:123
+
+
+132
+51
+/EDI CT File:203/Employee_record:44
+Employee_city
+
+0
+16
+/SUI Source ADF:404/Employee_record:118/Employee_city:124
+
+
+132
+52
+/EDI CT File:203/Employee_record:44
+Employee_state
+
+0
+16
+/SUI Source ADF:404/Employee_record:118/Employee_state:125
+
+
+132
+53
+/EDI CT File:203/Employee_record:44
+Employee_zip_code_extension
+
+0
+16
+/SUI Source ADF:404/Employee_record:118/Employee_zip_code_extension:126
+
+
+132
+54
+/EDI CT File:203/Employee_record:44
+Employee_zip_code
+
+0
+16
+/SUI Source ADF:404/Employee_record:118/Employee_zip_code:127
+
+
+132
+55
+/EDI CT File:203/Employee_record:44
+Employee_state_code
+
+0
+16
+/SUI Source ADF:404/Employee_record:118/Employee_state_code:138
+
+
+132
+56
+/EDI CT File:203/Employee_record:44
+State_QTR_total_gross_wages
+
+0
+16
+/SUI Source ADF:404/Employee_record:118/State_QTR_total_gross_wages:128
+
+
+132
+57
+/EDI CT File:203/Employee_record:44
+State_QTR_total_sui_wages
+
+0
+16
+/SUI Source ADF:404/Employee_record:118/State_QTR_total_sui_wages:140
+
+
+132
+58
+/EDI CT File:203/Employee_record:44
+Number_of_weeks_worked
+
+0
+16
+/SUI Source ADF:404/Employee_record:118/Number_of_weeks_worked:129
+
+
+132
+59
+/EDI CT File:203/Employee_record:44
+Unit_division_location_plant_code
+
+0
+16
+/SUI Source ADF:404/Employee_record:118/Unit_division_location_plant_code:130
+
+
+132
+60
+/EDI CT File:203/Employee_record:44
+Number_of_weeks_worked_for_PA
+
+0
+16
+/SUI Source ADF:404/Employee_record:118/Number_of_weeks_worked_for_PA:232
+
+
+132
+61
+/EDI CT File:203/Employee_record:44
+Quarterly_Gross_Wages_Subject_to_WH
+
+0
+16
+/SUI Source ADF:404/Employee_record:118/Quarterly_Gross_Wages_Subject_to_WH:242
+
+
+132
+62
+/EDI CT File:203/Employee_record:44
+Quarterly_Taxes_Withheld
+
+0
+16
+/SUI Source ADF:404/Employee_record:118/Quarterly_Taxes_Withheld:241
+
+
+132
+63
+/EDI CT File:203/Employee_record:44
+Month_1_Employment
+
+0
+16
+/SUI Source ADF:404/Employee_record:118/Month_1_Employment:240
+
+
+132
+64
+/EDI CT File:203/Employee_record:44
+Month_2_Employment
+
+0
+16
+/SUI Source ADF:404/Employee_record:118/Month_2_Employment:239
+
+
+132
+65
+/EDI CT File:203/Employee_record:44
+Month_3_Employment
+
+0
+16
+/SUI Source ADF:404/Employee_record:118/Month_3_Employment:238
+
+
+132
+66
+/EDI CT File:203/Employee_record:44
+Taxable_Wages
+
+0
+16
+/SUI Source ADF:404/Employee_record:118/Taxable_Wages:250
+
+
+132
+67
+/EDI CT File:203/Employee_record:44
+Excess_Wages
+
+0
+16
+/SUI Source ADF:404/Employee_record:118/Excess_Wages:249
+
+
+132
+68
+/EDI CT File:203/Employee_record:44
+Exempt_Wages
+
+0
+16
+/SUI Source ADF:404/Employee_record:118/Exempt_Wages:248
+
+
+132
+69
+/EDI CT File:203/Employee_record:44
+Hours_worked
+
+0
+16
+/SUI Source ADF:404/Employee_record:118/Hours_worked:260
+
+
+132
+70
+/EDI CT File:203/Employee_record:44
+Workers_Comp_EE
+
+0
+16
+/SUI Source ADF:404/Employee_record:118/Workers_Comp_EE:399
+
+
+132
+71
+/EDI CT File:203/Employee_record:44
+Workers_Comp_ER
+
+0
+16
+/SUI Source ADF:404/Employee_record:118/Workers_Comp_ER:401
+
+
+132
+72
+/EDI CT File:203/Employee_record:44
+Female_Employment
+
+0
+16
+/SUI Source ADF:404/Employee_record:118/Female_Employment:387
+
+
+130
+73
+/EDI CT File:203
+Total_record
+T
+0
+16
+/SUI Source ADF:404/Total_record:157
+
+1
+115
+132
+74
+/EDI CT File:203/Total_record:73
+Record_type
+T
+0
+16
+/SUI Source ADF:404/Total_record:157/Record_type:158
+
+
+132
+75
+/EDI CT File:203/Total_record:73
+Total_number_of_employees
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Total_number_of_employees:159
+
+
+132
+76
+/EDI CT File:203/Total_record:73
+State_QTR_total_gross_wages_ER
+
+0
+16
+/SUI Source ADF:404/Total_record:157/State_QTR_total_gross_wages_ER:174
+
+
+132
+77
+/EDI CT File:203/Total_record:73
+State_QTR_total_sui_wages_ER
+
+0
+16
+/SUI Source ADF:404/Total_record:157/State_QTR_total_sui_wages_ER:176
+
+
+132
+78
+/EDI CT File:203/Total_record:73
+State_QTR_excess_sui_wages_ER
+
+0
+16
+/SUI Source ADF:404/Total_record:157/State_QTR_excess_sui_wages_ER:178
+
+
+132
+79
+/EDI CT File:203/Total_record:73
+State_QTR_taxable_sui_wages_ER
+
+0
+16
+/SUI Source ADF:404/Total_record:157/State_QTR_taxable_sui_wages_ER:179
+
+
+132
+80
+/EDI CT File:203/Total_record:73
+UI_tax_rate_this_quarter
+
+0
+16
+/SUI Source ADF:404/Total_record:157/UI_tax_rate_this_quarter:160
+
+
+132
+81
+/EDI CT File:203/Total_record:73
+State_QTR_UI_taxes_due
+
+0
+16
+/SUI Source ADF:404/Total_record:157/State_QTR_UI_taxes_due:161
+
+
+132
+82
+/EDI CT File:203/Total_record:73
+Previous_QTRs_underpayment
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Previous_QTRs_underpayment:162
+
+
+132
+83
+/EDI CT File:203/Total_record:73
+Interest
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Interest:163
+
+
+132
+84
+/EDI CT File:203/Total_record:73
+Penalty
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Penalty:164
+
+
+132
+85
+/EDI CT File:203/Total_record:73
+Credit_overpayment
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Credit_overpayment:165
+
+
+132
+86
+/EDI CT File:203/Total_record:73
+Total_payment_due
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Total_payment_due:166
+
+
+132
+87
+/EDI CT File:203/Total_record:73
+Month1_employment_for_ER
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Month1_employment_for_ER:167
+
+
+132
+88
+/EDI CT File:203/Total_record:73
+Month2_employment_for_ER
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Month2_employment_for_ER:181
+
+
+132
+89
+/EDI CT File:203/Total_record:73
+Month3_employment_for_ER
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Month3_employment_for_ER:182
+
+
+132
+90
+/EDI CT File:203/Total_record:73
+Document_control_number
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Document_control_number:168
+
+
+132
+91
+/EDI CT File:203/Total_record:73
+Total_Quarterly_Gross_Wages_Subject_to_Withholding
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Total_Quarterly_Gross_Wages_Subject_to_Withholding:244
+
+
+132
+92
+/EDI CT File:203/Total_record:73
+Total_Quarterly_Taxes_Withheld
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Total_Quarterly_Taxes_Withheld:246
+
+
+132
+93
+/EDI CT File:203/Total_record:73
+Total_Exempt
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Total_Exempt:256
+
+
+132
+94
+/EDI CT File:203/Total_record:73
+Surcharge_Rate_1
+Job Skills fee rate
+0
+16
+/SUI Source ADF:404/Total_record:157/Surcharge_Rate_1:255
+
+
+132
+95
+/EDI CT File:203/Total_record:73
+Surchage_Rate_2
+Job Skills fee rate
+0
+16
+/SUI Source ADF:404/Total_record:157/Surchage_Rate_2:254
+
+
+132
+96
+/EDI CT File:203/Total_record:73
+Surcharge_Rate_1_X_SUI_Taxable
+Job skills fee
+0
+16
+/SUI Source ADF:404/Total_record:157/Surcharge_Rate_1_X_SUI_Taxable:253
+
+
+132
+97
+/EDI CT File:203/Total_record:73
+Surcharge_Rate_2_X_SUI_Taxable
+Job skills fee
+0
+16
+/SUI Source ADF:404/Total_record:157/Surcharge_Rate_2_X_SUI_Taxable:252
+
+
+132
+98
+/EDI CT File:203/Total_record:73
+Deposit_Frequency
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Deposit_Frequency:262
+
+
+132
+99
+/EDI CT File:203/Total_record:73
+Name_Control
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Name_Control:264
+
+
+132
+100
+/EDI CT File:203/Total_record:73
+Return_Period_YR
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Return_Period_YR:266
+
+
+132
+101
+/EDI CT File:203/Total_record:73
+Return_Period_MM
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Return_Period_MM:268
+
+
+132
+102
+/EDI CT File:203/Total_record:73
+Return_Period_DD
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Return_Period_DD:269
+
+
+132
+103
+/EDI CT File:203/Total_record:73
+Refund_Credit_Indicator
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Refund_Credit_Indicator:271
+
+
+132
+104
+/EDI CT File:203/Total_record:73
+DI_ER_Contrib
+
+0
+16
+/SUI Source ADF:404/Total_record:157/DI_ER_Contrib:273
+
+
+132
+105
+/EDI CT File:203/Total_record:73
+DI_EE_Contrib
+
+0
+16
+/SUI Source ADF:404/Total_record:157/DI_EE_Contrib:275
+
+
+132
+106
+/EDI CT File:203/Total_record:73
+Total_SUI_EE_contrib
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Total_SUI_EE_contrib:277
+
+
+132
+107
+/EDI CT File:203/Total_record:73
+Net_SUI_EE_contrib
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Net_SUI_EE_contrib:279
+
+
+132
+108
+/EDI CT File:203/Total_record:73
+Net_SUI_ER_contrib
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Net_SUI_ER_contrib:281
+
+
+132
+109
+/EDI CT File:203/Total_record:73
+Total_SUI_Contributions
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Total_SUI_Contributions:283
+
+
+132
+110
+/EDI CT File:203/Total_record:73
+Total_DI_Contributions
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Total_DI_Contributions:285
+
+
+132
+111
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_1
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_1:287
+
+
+132
+112
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_2
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_2:289
+
+
+132
+113
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_3
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_3:290
+
+
+132
+114
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_4
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_4:291
+
+
+132
+115
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_5
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_5:292
+
+
+132
+116
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_6
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_6:293
+
+
+132
+117
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_7
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_7:294
+
+
+132
+118
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_8
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_8:295
+
+
+132
+119
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_9
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_9:296
+
+
+132
+120
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_10
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_10:297
+
+
+132
+121
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_11
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_11:298
+
+
+132
+122
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_12
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_12:299
+
+
+132
+123
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_13
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_13:300
+
+
+132
+124
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_14
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_14:301
+
+
+132
+125
+/EDI CT File:203/Total_record:73
+Total_Qtr_Income_Tax_Liab
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Total_Qtr_Income_Tax_Liab:303
+
+
+132
+126
+/EDI CT File:203/Total_record:73
+Total_Combined_Liability_NJ
+New Jersey
+0
+16
+/SUI Source ADF:404/Total_record:157/Total_Combined_Liability_NJ:305
+
+
+132
+127
+/EDI CT File:203/Total_record:73
+Total_Combined_Liability
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Total_Combined_Liability:307
+
+
+132
+128
+/EDI CT File:203/Total_record:73
+Total_Payments_Credits
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Total_Payments_Credits:309
+
+
+132
+129
+/EDI CT File:203/Total_record:73
+Overpayment_Amount
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Overpayment_Amount:311
+
+
+132
+130
+/EDI CT File:203/Total_record:73
+Balance_Due
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Balance_Due:313
+
+
+132
+131
+/EDI CT File:203/Total_record:73
+State_Tax_Code_1
+
+0
+16
+/SUI Source ADF:404/Total_record:157/State_Tax_Code_1:315
+
+
+132
+132
+/EDI CT File:203/Total_record:73
+State_Tax_Code_2
+
+0
+16
+/SUI Source ADF:404/Total_record:157/State_Tax_Code_2:317
+
+
+132
+133
+/EDI CT File:203/Total_record:73
+State_Tax_Code_3
+
+0
+16
+/SUI Source ADF:404/Total_record:157/State_Tax_Code_3:318
+
+
+132
+134
+/EDI CT File:203/Total_record:73
+State_Tax_Code_4
+
+0
+16
+/SUI Source ADF:404/Total_record:157/State_Tax_Code_4:319
+
+
+132
+135
+/EDI CT File:203/Total_record:73
+State_Tax_Code_5
+
+0
+16
+/SUI Source ADF:404/Total_record:157/State_Tax_Code_5:320
+
+
+132
+136
+/EDI CT File:203/Total_record:73
+State_Tax_Code_6
+
+0
+16
+/SUI Source ADF:404/Total_record:157/State_Tax_Code_6:321
+
+
+132
+137
+/EDI CT File:203/Total_record:73
+State_Tax_Code_7
+
+0
+16
+/SUI Source ADF:404/Total_record:157/State_Tax_Code_7:322
+
+
+132
+138
+/EDI CT File:203/Total_record:73
+State_Tax_Code_8
+
+0
+16
+/SUI Source ADF:404/Total_record:157/State_Tax_Code_8:323
+
+
+132
+139
+/EDI CT File:203/Total_record:73
+State_Tax_Code_9
+
+0
+16
+/SUI Source ADF:404/Total_record:157/State_Tax_Code_9:324
+
+
+132
+140
+/EDI CT File:203/Total_record:73
+State_Tax_Code_10
+
+0
+16
+/SUI Source ADF:404/Total_record:157/State_Tax_Code_10:325
+
+
+132
+141
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_1_MM
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_1_MM:327
+
+
+132
+142
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_1_DD
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_1_DD:329
+
+
+132
+143
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_1_YYYY
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_1_YYYY:330
+
+
+132
+144
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_2_MM
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_2_MM:332
+
+
+132
+145
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_2_DD
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_2_DD:346
+
+
+132
+146
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_2_YYYY
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_2_YYYY:360
+
+
+132
+147
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_3_MM
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_3_MM:333
+
+
+132
+148
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_3_DD
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_3_DD:347
+
+
+132
+149
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_3_YYYY
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_3_YYYY:361
+
+
+132
+150
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_4_MM
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_4_MM:334
+
+
+132
+151
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_4_DD
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_4_DD:348
+
+
+132
+152
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_4_YYYY
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_4_YYYY:362
+
+
+132
+153
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_5_MM
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_5_MM:335
+
+
+132
+154
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_5_DD
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_5_DD:349
+
+
+132
+155
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_5_YYYY
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_5_YYYY:363
+
+
+132
+156
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_6_MM
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_6_MM:336
+
+
+132
+157
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_6_DD
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_6_DD:350
+
+
+132
+158
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_6_YYYY
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_6_YYYY:364
+
+
+132
+159
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_7_MM
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_7_MM:337
+
+
+132
+160
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_7_DD
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_7_DD:351
+
+
+132
+161
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_7_YYYY
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_7_YYYY:365
+
+
+132
+162
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_8_MM
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_8_MM:338
+
+
+132
+163
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_8_DD
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_8_DD:352
+
+
+132
+164
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_8_YYYY
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_8_YYYY:366
+
+
+132
+165
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_9_MM
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_9_MM:339
+
+
+132
+166
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_9_DD
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_9_DD:353
+
+
+132
+167
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_9_YYYY
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_9_YYYY:367
+
+
+132
+168
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_10_MM
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_10_MM:340
+
+
+132
+169
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_10_DD
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_10_DD:354
+
+
+132
+170
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_10_YYYY
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_10_YYYY:368
+
+
+132
+171
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_11_MM
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_11_MM:341
+
+
+132
+172
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_11_DD
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_11_DD:355
+
+
+132
+173
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_11_YYYY
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_11_YYYY:369
+
+
+132
+174
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_12_MM
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_12_MM:342
+
+
+132
+175
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_12_DD
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_12_DD:356
+
+
+132
+176
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_12_YYYY
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_12_YYYY:370
+
+
+132
+177
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_13_MM
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_13_MM:343
+
+
+132
+178
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_13_DD
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_13_DD:357
+
+
+132
+179
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_13_YYYY
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_13_YYYY:371
+
+
+132
+180
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_14_MM
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_14_MM:344
+
+
+132
+181
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_14_DD
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_14_DD:358
+
+
+132
+182
+/EDI CT File:203/Total_record:73
+Income_Tax_Liab_14_YYYY
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Income_Tax_Liab_14_YYYY:372
+
+
+132
+183
+/EDI CT File:203/Total_record:73
+Client_Withholding_Number
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Client_Withholding_Number:374
+
+
+132
+184
+/EDI CT File:203/Total_record:73
+Filing_Frequency
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Filing_Frequency:376
+
+
+132
+185
+/EDI CT File:203/Total_record:73
+Workers_Comp_Total
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Workers_Comp_Total:396
+
+
+132
+186
+/EDI CT File:203/Total_record:73
+Female_Month1_employment_for_ER
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Female_Month1_employment_for_ER:389
+
+
+132
+187
+/EDI CT File:203/Total_record:73
+Female_Month2_employment_for_ER
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Female_Month2_employment_for_ER:391
+
+
+132
+188
+/EDI CT File:203/Total_record:73
+Female_Month3_employment_for_ER
+
+0
+16
+/SUI Source ADF:404/Total_record:157/Female_Month3_employment_for_ER:392
+
+
+130
+189
+/EDI CT File:203
+R_Record
+
+0
+16
+/SUI Source ADF:404/R_Record:377
+
+1
+5
+132
+190
+/EDI CT File:203/R_Record:189
+Record_ID
+
+0
+16
+/SUI Source ADF:404/R_Record:377/Record_ID:379
+
+
+132
+191
+/EDI CT File:203/R_Record:189
+Date_Wages_Paid_MM
+
+0
+16
+/SUI Source ADF:404/R_Record:377/Date_Wages_Paid_MM:381
+
+
+132
+192
+/EDI CT File:203/R_Record:189
+Date_Wages_Paid_DD
+
+0
+16
+/SUI Source ADF:404/R_Record:377/Date_Wages_Paid_DD:403
+
+
+132
+193
+/EDI CT File:203/R_Record:189
+Date_Wages_Paid_YYYY
+
+0
+16
+/SUI Source ADF:404/R_Record:377/Date_Wages_Paid_YYYY:404
+
+
+132
+194
+/EDI CT File:203/R_Record:189
+Amount_Withheld_Deposited
+
+0
+16
+/SUI Source ADF:404/R_Record:377/Amount_Withheld_Deposited:383
+
+
+130
+195
+/EDI CT File:203
+Final_record
+F
+0
+16
+/SUI Source ADF:404/Final_record:201
+
+1
+8
+132
+196
+/EDI CT File:203/Final_record:195
+Record_type
+F
+0
+16
+/SUI Source ADF:404/Final_record:201/Record_type:202
+
+
+132
+197
+/EDI CT File:203/Final_record:195
+Total_number_of_EEs_in_file
+
+0
+16
+/SUI Source ADF:404/Final_record:201/Total_number_of_EEs_in_file:203
+
+
+132
+198
+/EDI CT File:203/Final_record:195
+Total_number_of_ERs_in_file
+
+0
+16
+/SUI Source ADF:404/Final_record:201/Total_number_of_ERs_in_file:220
+
+
+132
+199
+/EDI CT File:203/Final_record:195
+QTR_SUI_total_wages_in_file
+
+0
+16
+/SUI Source ADF:404/Final_record:201/QTR_SUI_total_wages_in_file:205
+
+
+132
+200
+/EDI CT File:203/Final_record:195
+QTR_SUI_excess_wages_in_file
+
+0
+16
+/SUI Source ADF:404/Final_record:201/QTR_SUI_excess_wages_in_file:222
+
+
+132
+201
+/EDI CT File:203/Final_record:195
+QTR_SUI_taxable_wages_in_file
+
+0
+16
+/SUI Source ADF:404/Final_record:201/QTR_SUI_taxable_wages_in_file:223
+
+
+132
+202
+/EDI CT File:203/Final_record:195
+Sui_Total_Gross
+
+0
+16
+/SUI Source ADF:404/Final_record:201/Sui_Total_Gross:257
+
+
+132
+203
+/EDI CT File:203/Final_record:195
+SUI_Total_Exempt
+
+0
+16
+/SUI Source ADF:404/Final_record:201/SUI_Total_Exempt:258
+
+
+@0200N
+129
+56
+NULL_REF
+EDI CT File
+View of: EDI CT File
+0
+0
+17
+edi-ct.adf
+edi-ct.vw2
+1
+130
+2
+/EDI CT File:56
+Detail_Record
+
+0
+16
+/EDI CT File:101/Detail_Record:2
+
+1
+22
+132
+40
+/EDI CT File:56/Detail_Record:2
+PE_Date
+
+0
+16
+/EDI CT File:101/Detail_Record:2/PE_Date:67
+
+
+132
+39
+/EDI CT File:56/Detail_Record:2
+CTREG
+
+0
+16
+/EDI CT File:101/Detail_Record:2/CTREG:69
+
+
+132
+41
+/EDI CT File:56/Detail_Record:2
+Taxpayer_Name
+
+0
+16
+/EDI CT File:101/Detail_Record:2/Taxpayer_Name:71
+
+
+132
+42
+/EDI CT File:56/Detail_Record:2
+Tax_Payer_Address
+
+0
+16
+/EDI CT File:101/Detail_Record:2/Tax_Payer_Address:75
+
+
+132
+38
+/EDI CT File:56/Detail_Record:2
+Tax_Payer_Address_2
+
+0
+16
+/EDI CT File:101/Detail_Record:2/Tax_Payer_Address_2:77
+
+
+132
+43
+/EDI CT File:56/Detail_Record:2
+Taxpayer_City
+
+0
+16
+/EDI CT File:101/Detail_Record:2/Taxpayer_City:79
+
+
+132
+44
+/EDI CT File:56/Detail_Record:2
+Taxpayer_Sate
+
+0
+16
+/EDI CT File:101/Detail_Record:2/Taxpayer_Sate:81
+
+
+132
+45
+/EDI CT File:56/Detail_Record:2
+Taxpayer_Zip
+
+0
+16
+/EDI CT File:101/Detail_Record:2/Taxpayer_Zip:83
+
+
+132
+49
+/EDI CT File:56/Detail_Record:2
+Gross_Wages
+
+0
+16
+/EDI CT File:101/Detail_Record:2/Gross_Wages:85
+
+
+132
+50
+/EDI CT File:56/Detail_Record:2
+Gross_CT_Wages
+
+0
+16
+/EDI CT File:101/Detail_Record:2/Gross_CT_Wages:87
+
+
+132
+51
+/EDI CT File:56/Detail_Record:2
+CT_Tax_Withheld
+
+0
+16
+/EDI CT File:101/Detail_Record:2/CT_Tax_Withheld:89
+
+
+132
+52
+/EDI CT File:56/Detail_Record:2
+Payments
+
+0
+16
+/EDI CT File:101/Detail_Record:2/Payments:91
+
+
+132
+4
+/EDI CT File:56/Detail_Record:2
+Preparer_Name
+
+0
+16
+/EDI CT File:101/Detail_Record:2/Preparer_Name:4
+
+
+132
+5
+/EDI CT File:56/Detail_Record:2
+Preparer_Address
+
+0
+16
+/EDI CT File:101/Detail_Record:2/Preparer_Address:6
+
+
+132
+47
+/EDI CT File:56/Detail_Record:2
+Preparer_Address2
+
+0
+16
+/EDI CT File:101/Detail_Record:2/Preparer_Address2:93
+
+
+132
+6
+/EDI CT File:56/Detail_Record:2
+Preparer_City
+
+0
+16
+/EDI CT File:101/Detail_Record:2/Preparer_City:8
+
+
+132
+7
+/EDI CT File:56/Detail_Record:2
+Preparer_State
+
+0
+16
+/EDI CT File:101/Detail_Record:2/Preparer_State:10
+
+
+132
+8
+/EDI CT File:56/Detail_Record:2
+Preparer_Zip
+
+0
+16
+/EDI CT File:101/Detail_Record:2/Preparer_Zip:12
+
+
+132
+9
+/EDI CT File:56/Detail_Record:2
+Preparer_phone
+
+0
+16
+/EDI CT File:101/Detail_Record:2/Preparer_phone:14
+
+
+132
+11
+/EDI CT File:56/Detail_Record:2
+Preparer_FEIN
+
+0
+16
+/EDI CT File:101/Detail_Record:2/Preparer_FEIN:18
+
+
+132
+48
+/EDI CT File:56/Detail_Record:2
+Return_ID
+
+0
+16
+/EDI CT File:101/Detail_Record:2/Return_ID:73
+
+
+132
+56
+/EDI CT File:56/Detail_Record:2
+Paid_Preparer_Name
+
+0
+16
+/EDI CT File:101/Detail_Record:2/Paid_Preparer_Name:101
+
+
+@0200N
+17
+404
+NULL_REF
+SUI Source ADF
+SUI Source ADF
+0
+0
+2
+10
+2
+44
+0
+0
+0
+4
+PARTNER
+
+5
+APPKEY1
+
+0
+APPKEY2
+
+0
+APPKEY3
+
+0
+suiwh.app
+1
+46
+7
+18
+2
+/SUI Source ADF:404
+Transmitter_record
+A
+0
+16
+2
+10
+1
+0
+20
+20
+3
+/SUI Source ADF:404/Transmitter_record:2
+Record_type
+A
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+5
+/SUI Source ADF:404/Transmitter_record:2
+Report_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+8
+/SUI Source ADF:404/Transmitter_record:2
+Year
+CCYY
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+10
+/SUI Source ADF:404/Transmitter_record:2
+Paycor_Fed_ID
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+1
+0
+0
+0
++
+-
+20
+12
+/SUI Source ADF:404/Transmitter_record:2
+Paycor_legal_name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+34
+34
+0
+20
+14
+/SUI Source ADF:404/Transmitter_record:2
+Paycor_street_address
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+34
+34
+0
+20
+16
+/SUI Source ADF:404/Transmitter_record:2
+Paycor_city
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+18
+/SUI Source ADF:404/Transmitter_record:2
+Paycor_state
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+20
+/SUI Source ADF:404/Transmitter_record:2
+Paycor_zip_code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+22
+/SUI Source ADF:404/Transmitter_record:2
+Paycor_zip_code_extension
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+24
+/SUI Source ADF:404/Transmitter_record:2
+Paycor_transmission_contacts_title
+Authorized Reporting Agent
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+26
+/SUI Source ADF:404/Transmitter_record:2
+Paycor_transmission_contact_name
+Robert Johnson
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+28
+/SUI Source ADF:404/Transmitter_record:2
+Paycor_transmission_contact_area_code
+513
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+226
+/SUI Source ADF:404/Transmitter_record:2
+Paycor_transmission_contact_phone_ext
+381
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+228
+/SUI Source ADF:404/Transmitter_record:2
+Paycor_transmission_contact_phone_last_four
+0505
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+30
+/SUI Source ADF:404/Transmitter_record:2
+Paycor_transmission_contact_phone_extension
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+32
+/SUI Source ADF:404/Transmitter_record:2
+Media_transmitter_authorization_number
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+34
+/SUI Source ADF:404/Transmitter_record:2
+Media_creation_date_year
+CCYY
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+36
+/SUI Source ADF:404/Transmitter_record:2
+Media_creation_date_month
+MM
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+38
+/SUI Source ADF:404/Transmitter_record:2
+Media_creation_date_day
+DD
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+58
+/SUI Source ADF:404
+Authorization_record
+B
+0
+16
+2
+10
+1
+0
+2
+20
+59
+/SUI Source ADF:404/Authorization_record:58
+Record_type
+B
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+60
+/SUI Source ADF:404/Authorization_record:58
+Filing_media_type
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+82
+/SUI Source ADF:404
+Employer_record
+E
+0
+16
+2
+10
+1
+0
+17
+20
+83
+/SUI Source ADF:404/Employer_record:82
+Record_type
+E
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+84
+/SUI Source ADF:404/Employer_record:82
+Client_number
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+86
+/SUI Source ADF:404/Employer_record:82
+Reimbursing_client_indicator
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+87
+/SUI Source ADF:404/Employer_record:82
+Client_name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+34
+34
+0
+20
+88
+/SUI Source ADF:404/Employer_record:82
+Client_street_address
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+34
+34
+0
+20
+89
+/SUI Source ADF:404/Employer_record:82
+Client_city
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+90
+/SUI Source ADF:404/Employer_record:82
+Client_state
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+91
+/SUI Source ADF:404/Employer_record:82
+Client_zip_code_extension
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+92
+/SUI Source ADF:404/Employer_record:82
+Client_zip_code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+93
+/SUI Source ADF:404/Employer_record:82
+Type_of_employment
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+94
+/SUI Source ADF:404/Employer_record:82
+State_identifier_code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+96
+/SUI Source ADF:404/Employer_record:82
+Client_state_ins_acct_number
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+97
+/SUI Source ADF:404/Employer_record:82
+Reporting_period
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+98
+/SUI Source ADF:404/Employer_record:82
+No_workers_no_wages
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+1
+0
+0
+0
++
+-
+20
+99
+/SUI Source ADF:404/Employer_record:82
+Tax_type_code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+100
+/SUI Source ADF:404/Employer_record:82
+Plant_number
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+230
+/SUI Source ADF:404/Employer_record:82
+Client_Federal_EIN
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+118
+/SUI Source ADF:404
+Employee_record
+S
+0
+16
+2
+10
+1
+0
+28
+20
+119
+/SUI Source ADF:404/Employee_record:118
+Record_type
+S
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+120
+/SUI Source ADF:404/Employee_record:118
+Social_security_number
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+121
+/SUI Source ADF:404/Employee_record:118
+Employee_last_name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+122
+/SUI Source ADF:404/Employee_record:118
+Employee_first_name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+136
+/SUI Source ADF:404/Employee_record:118
+Employee_middle_initial
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+123
+/SUI Source ADF:404/Employee_record:118
+Employee_street_address
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+34
+34
+0
+20
+124
+/SUI Source ADF:404/Employee_record:118
+Employee_city
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+125
+/SUI Source ADF:404/Employee_record:118
+Employee_state
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+126
+/SUI Source ADF:404/Employee_record:118
+Employee_zip_code_extension
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+127
+/SUI Source ADF:404/Employee_record:118
+Employee_zip_code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+138
+/SUI Source ADF:404/Employee_record:118
+Employee_state_code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+128
+/SUI Source ADF:404/Employee_record:118
+State_QTR_total_gross_wages
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+140
+/SUI Source ADF:404/Employee_record:118
+State_QTR_total_sui_wages
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+129
+/SUI Source ADF:404/Employee_record:118
+Number_of_weeks_worked
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+130
+/SUI Source ADF:404/Employee_record:118
+Unit_division_location_plant_code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+232
+/SUI Source ADF:404/Employee_record:118
+Number_of_weeks_worked_for_PA
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+242
+/SUI Source ADF:404/Employee_record:118
+Quarterly_Gross_Wages_Subject_to_WH
+
+0
+16
+0
+2
+44
+3
+48
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+241
+/SUI Source ADF:404/Employee_record:118
+Quarterly_Taxes_Withheld
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+240
+/SUI Source ADF:404/Employee_record:118
+Month_1_Employment
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+239
+/SUI Source ADF:404/Employee_record:118
+Month_2_Employment
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+238
+/SUI Source ADF:404/Employee_record:118
+Month_3_Employment
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+250
+/SUI Source ADF:404/Employee_record:118
+Taxable_Wages
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+249
+/SUI Source ADF:404/Employee_record:118
+Excess_Wages
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+248
+/SUI Source ADF:404/Employee_record:118
+Exempt_Wages
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+260
+/SUI Source ADF:404/Employee_record:118
+Hours_worked
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+0
+0
+0
++
+-
+20
+399
+/SUI Source ADF:404/Employee_record:118
+Workers_Comp_EE
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+401
+/SUI Source ADF:404/Employee_record:118
+Workers_Comp_ER
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+387
+/SUI Source ADF:404/Employee_record:118
+Female_Employment
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+157
+/SUI Source ADF:404
+Total_record
+T
+0
+16
+2
+10
+1
+0
+115
+20
+158
+/SUI Source ADF:404/Total_record:157
+Record_type
+T
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+159
+/SUI Source ADF:404/Total_record:157
+Total_number_of_employees
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+174
+/SUI Source ADF:404/Total_record:157
+State_QTR_total_gross_wages_ER
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+176
+/SUI Source ADF:404/Total_record:157
+State_QTR_total_sui_wages_ER
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+178
+/SUI Source ADF:404/Total_record:157
+State_QTR_excess_sui_wages_ER
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+179
+/SUI Source ADF:404/Total_record:157
+State_QTR_taxable_sui_wages_ER
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+160
+/SUI Source ADF:404/Total_record:157
+UI_tax_rate_this_quarter
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+5
+0
+0
++
+-
+20
+161
+/SUI Source ADF:404/Total_record:157
+State_QTR_UI_taxes_due
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+162
+/SUI Source ADF:404/Total_record:157
+Previous_QTRs_underpayment
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+163
+/SUI Source ADF:404/Total_record:157
+Interest
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+164
+/SUI Source ADF:404/Total_record:157
+Penalty
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+165
+/SUI Source ADF:404/Total_record:157
+Credit_overpayment
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+166
+/SUI Source ADF:404/Total_record:157
+Total_payment_due
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+167
+/SUI Source ADF:404/Total_record:157
+Month1_employment_for_ER
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+0
+0
+0
++
+-
+20
+181
+/SUI Source ADF:404/Total_record:157
+Month2_employment_for_ER
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+0
+0
+0
++
+-
+20
+182
+/SUI Source ADF:404/Total_record:157
+Month3_employment_for_ER
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+0
+0
+0
++
+-
+20
+168
+/SUI Source ADF:404/Total_record:157
+Document_control_number
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+0
+0
+0
++
+-
+20
+244
+/SUI Source ADF:404/Total_record:157
+Total_Quarterly_Gross_Wages_Subject_to_Withholding
+
+0
+16
+0
+2
+44
+3
+48
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+246
+/SUI Source ADF:404/Total_record:157
+Total_Quarterly_Taxes_Withheld
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+256
+/SUI Source ADF:404/Total_record:157
+Total_Exempt
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+255
+/SUI Source ADF:404/Total_record:157
+Surcharge_Rate_1
+Job Skills fee rate
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+6
+0
+0
++
+-
+20
+254
+/SUI Source ADF:404/Total_record:157
+Surchage_Rate_2
+Job Skills fee rate
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+6
+0
+0
++
+-
+20
+253
+/SUI Source ADF:404/Total_record:157
+Surcharge_Rate_1_X_SUI_Taxable
+Job skills fee
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+252
+/SUI Source ADF:404/Total_record:157
+Surcharge_Rate_2_X_SUI_Taxable
+Job skills fee
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+262
+/SUI Source ADF:404/Total_record:157
+Deposit_Frequency
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+264
+/SUI Source ADF:404/Total_record:157
+Name_Control
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+266
+/SUI Source ADF:404/Total_record:157
+Return_Period_YR
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+268
+/SUI Source ADF:404/Total_record:157
+Return_Period_MM
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+269
+/SUI Source ADF:404/Total_record:157
+Return_Period_DD
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+271
+/SUI Source ADF:404/Total_record:157
+Refund_Credit_Indicator
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+273
+/SUI Source ADF:404/Total_record:157
+DI_ER_Contrib
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+275
+/SUI Source ADF:404/Total_record:157
+DI_EE_Contrib
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+277
+/SUI Source ADF:404/Total_record:157
+Total_SUI_EE_contrib
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+279
+/SUI Source ADF:404/Total_record:157
+Net_SUI_EE_contrib
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+281
+/SUI Source ADF:404/Total_record:157
+Net_SUI_ER_contrib
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+283
+/SUI Source ADF:404/Total_record:157
+Total_SUI_Contributions
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+285
+/SUI Source ADF:404/Total_record:157
+Total_DI_Contributions
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+287
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_1
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+289
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_2
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+290
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_3
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+291
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_4
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+292
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_5
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+293
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_6
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+294
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_7
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+295
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_8
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+296
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_9
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+297
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_10
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+298
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_11
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+299
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_12
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+300
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_13
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+301
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_14
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+303
+/SUI Source ADF:404/Total_record:157
+Total_Qtr_Income_Tax_Liab
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+305
+/SUI Source ADF:404/Total_record:157
+Total_Combined_Liability_NJ
+New Jersey
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+307
+/SUI Source ADF:404/Total_record:157
+Total_Combined_Liability
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+309
+/SUI Source ADF:404/Total_record:157
+Total_Payments_Credits
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+311
+/SUI Source ADF:404/Total_record:157
+Overpayment_Amount
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+313
+/SUI Source ADF:404/Total_record:157
+Balance_Due
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+315
+/SUI Source ADF:404/Total_record:157
+State_Tax_Code_1
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+317
+/SUI Source ADF:404/Total_record:157
+State_Tax_Code_2
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+318
+/SUI Source ADF:404/Total_record:157
+State_Tax_Code_3
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+319
+/SUI Source ADF:404/Total_record:157
+State_Tax_Code_4
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+320
+/SUI Source ADF:404/Total_record:157
+State_Tax_Code_5
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+321
+/SUI Source ADF:404/Total_record:157
+State_Tax_Code_6
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+322
+/SUI Source ADF:404/Total_record:157
+State_Tax_Code_7
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+323
+/SUI Source ADF:404/Total_record:157
+State_Tax_Code_8
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+324
+/SUI Source ADF:404/Total_record:157
+State_Tax_Code_9
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+325
+/SUI Source ADF:404/Total_record:157
+State_Tax_Code_10
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+327
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_1_MM
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+329
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_1_DD
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+330
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_1_YYYY
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+332
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_2_MM
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+346
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_2_DD
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+360
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_2_YYYY
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+333
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_3_MM
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+347
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_3_DD
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+361
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_3_YYYY
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+334
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_4_MM
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+348
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_4_DD
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+362
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_4_YYYY
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+335
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_5_MM
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+349
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_5_DD
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+363
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_5_YYYY
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+336
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_6_MM
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+350
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_6_DD
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+364
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_6_YYYY
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+337
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_7_MM
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+351
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_7_DD
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+365
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_7_YYYY
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+338
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_8_MM
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+352
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_8_DD
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+366
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_8_YYYY
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+339
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_9_MM
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+353
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_9_DD
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+367
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_9_YYYY
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+340
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_10_MM
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+354
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_10_DD
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+368
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_10_YYYY
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+341
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_11_MM
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+355
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_11_DD
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+369
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_11_YYYY
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+342
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_12_MM
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+356
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_12_DD
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+370
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_12_YYYY
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+343
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_13_MM
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+357
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_13_DD
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+371
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_13_YYYY
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+344
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_14_MM
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+358
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_14_DD
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+372
+/SUI Source ADF:404/Total_record:157
+Income_Tax_Liab_14_YYYY
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+374
+/SUI Source ADF:404/Total_record:157
+Client_Withholding_Number
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+376
+/SUI Source ADF:404/Total_record:157
+Filing_Frequency
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+396
+/SUI Source ADF:404/Total_record:157
+Workers_Comp_Total
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+389
+/SUI Source ADF:404/Total_record:157
+Female_Month1_employment_for_ER
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+0
+0
+0
++
+-
+20
+391
+/SUI Source ADF:404/Total_record:157
+Female_Month2_employment_for_ER
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+0
+0
+0
++
+-
+20
+392
+/SUI Source ADF:404/Total_record:157
+Female_Month3_employment_for_ER
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+0
+0
+0
++
+-
+18
+377
+/SUI Source ADF:404
+R_Record
+
+0
+16
+2
+10
+0
+0
+5
+20
+379
+/SUI Source ADF:404/R_Record:377
+Record_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+R
+2
+0
+0
+0
+20
+381
+/SUI Source ADF:404/R_Record:377
+Date_Wages_Paid_MM
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+403
+/SUI Source ADF:404/R_Record:377
+Date_Wages_Paid_DD
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+404
+/SUI Source ADF:404/R_Record:377
+Date_Wages_Paid_YYYY
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+383
+/SUI Source ADF:404/R_Record:377
+Amount_Withheld_Deposited
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+18
+201
+/SUI Source ADF:404
+Final_record
+F
+0
+16
+2
+10
+1
+0
+8
+20
+202
+/SUI Source ADF:404/Final_record:201
+Record_type
+F
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+203
+/SUI Source ADF:404/Final_record:201
+Total_number_of_EEs_in_file
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+0
+0
+0
++
+-
+20
+220
+/SUI Source ADF:404/Final_record:201
+Total_number_of_ERs_in_file
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+0
+0
+0
++
+-
+20
+205
+/SUI Source ADF:404/Final_record:201
+QTR_SUI_total_wages_in_file
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+222
+/SUI Source ADF:404/Final_record:201
+QTR_SUI_excess_wages_in_file
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+223
+/SUI Source ADF:404/Final_record:201
+QTR_SUI_taxable_wages_in_file
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+257
+/SUI Source ADF:404/Final_record:201
+Sui_Total_Gross
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+258
+/SUI Source ADF:404/Final_record:201
+SUI_Total_Exempt
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+@0200N
+17
+101
+NULL_REF
+EDI CT File
+EDI CT File
+0
+0
+2
+10
+2
+44
+0
+0
+0
+4
+PARTNER
+
+0
+APPKEY1
+
+0
+APPKEY2
+
+0
+APPKEY3
+
+0
+suiwh.app
+1
+46
+1
+18
+2
+/EDI CT File:101
+Detail_Record
+
+0
+16
+2
+10
+1
+0
+22
+20
+67
+/EDI CT File:101/Detail_Record:2
+PE_Date
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+69
+/EDI CT File:101/Detail_Record:2
+CTREG
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+71
+/EDI CT File:101/Detail_Record:2
+Taxpayer_Name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+34
+34
+0
+20
+75
+/EDI CT File:101/Detail_Record:2
+Tax_Payer_Address
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+34
+34
+0
+20
+77
+/EDI CT File:101/Detail_Record:2
+Tax_Payer_Address_2
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+34
+34
+0
+20
+79
+/EDI CT File:101/Detail_Record:2
+Taxpayer_City
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+34
+34
+0
+20
+81
+/EDI CT File:101/Detail_Record:2
+Taxpayer_Sate
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+83
+/EDI CT File:101/Detail_Record:2
+Taxpayer_Zip
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+85
+/EDI CT File:101/Detail_Record:2
+Gross_Wages
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+-1
+0
+0
++
+-
+20
+87
+/EDI CT File:101/Detail_Record:2
+Gross_CT_Wages
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+-1
+0
+0
++
+-
+20
+89
+/EDI CT File:101/Detail_Record:2
+CT_Tax_Withheld
+
+0
+16
+0
+2
+44
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+-1
+0
+0
++
+-
+20
+91
+/EDI CT File:101/Detail_Record:2
+Payments
+
+0
+16
+0
+2
+44
+0
+32
+2
+0
+0
+
+0
+0
+0
+0
+20
+4
+/EDI CT File:101/Detail_Record:2
+Preparer_Name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+6
+/EDI CT File:101/Detail_Record:2
+Preparer_Address
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+93
+/EDI CT File:101/Detail_Record:2
+Preparer_Address2
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+8
+/EDI CT File:101/Detail_Record:2
+Preparer_City
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+10
+/EDI CT File:101/Detail_Record:2
+Preparer_State
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+12
+/EDI CT File:101/Detail_Record:2
+Preparer_Zip
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+14
+/EDI CT File:101/Detail_Record:2
+Preparer_phone
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+18
+/EDI CT File:101/Detail_Record:2
+Preparer_FEIN
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+73
+/EDI CT File:101/Detail_Record:2
+Return_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+101
+/EDI CT File:101/Detail_Record:2
+Paid_Preparer_Name
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+END DATA
+m      

@@ -1,0 +1,5822 @@
+BEGIN DATA
+objects|9
+RTM|wctrvlrs|macro\wctrvlrs.rtm|@0200N|11339
+MAP|wctrvlrs|map\wctrvlrs.map|@0200N|7453
+VW1|wctrvlrs|map\wctrvlrs.vw1|@0200N|8132
+VW2|wctrvlrs|map\wctrvlrs.vw2|@0200N|6514
+SRC_ADF|wcasrc|map\app\wcasrc.adf||6125
+DST_ADF|wctrvlrs|map\app\wctrvlrs.adf||5258
+TST_APP||||0
+UNKNOWN||||0
+FLD||||0
+;----------------------------------------
+;
+; spEDI*map 2.0 - MPL  code generator, Rel r3.0EV
+;
+; User: <not available>    Date: Thu Sep 01 13:26:19 2011
+;
+; Map Definition: WCA Travelers file (Workers Comp)
+;
+;                            Source       Destination         
+;                            ------       -----------         
+;        Name:    Workers Comp file ===>> Workers Comp        
+;        Desc:    Workers Comp file       Travelers format    
+; EDI Version:                                                
+;    EDI Desc:                                                
+;
+;----------------------------------------
+
+;----------------------------------------
+;
+; User code: Sln / Dln conditionals, FEL Code
+;
+;----------------------------------------
+let RTM_Header_Record_FIRST_0001(  ) = {
+Let Batch_Num = ""
+Let Seq_Num = ""
+}
+let RTM_Header_Record_EACH_0002(  ) = {
+Let Current_Date = DATE("EDI_CC")
+}
+let RTM_SRC_Header_Record_0003(  ) = {
+RETURN "HDR"
+}
+let RTM_SRC_Header_Record_0004(  ) = {
+RETURN "01"
+}
+let RTM_Batch_Header_EACH_0005(  ) = {
+Let Batch_Num = Batch_Num + 1
+}
+let RTM_SRC_Batch_Header_0006(  ) = {
+RETURN "BHD"
+}
+let RTM_Detail_Record_EACH_0007( RTM_p0, RTM_p1, RTM_p2 ) = {
+Let Policy_ID = left(RTM_p0,2)
+
+If Policy_ID = "UB" then
+Let P_Num = right(left(RTM_p1,10),8)
+else
+ Let P_Num = left(RTM_p2,8)
+endif
+
+Let Seq_Num = Seq_Num + 1
+}
+let RTM_SRC_Detail_Record_0008(  ) = {
+RETURN "INI"
+}
+let RTM_SRC_Detail_Record_0009(  ) = {
+RETURN P_Num
+}
+let RTM_SRC_File_Trailer_0010(  ) = {
+RETURN "TRL"
+}
+
+;----------------------------------------
+
+
+;----------------------------------------
+;
+; Driver code: for alpha this will manually
+; load the data file and the map definition.
+; Eventually this will be replaced with the
+; AppScan inbound/outbound queue support.
+;
+; (AppScan will also provide the name of the batch file
+; but until it is online, we'll have to make do
+; with deriving a name from the map-def: 'outbound\wctrvlrs.dat'.)
+;
+;----------------------------------------
+
+LET RTM_RESULT = RUN_MAP("outbound\wctrvlrs.dat")
+IF RTM_RESULT <> 1 THEN
+   ECHO "Unable to test map."
+   END 1
+ENDIF
+ECHO "Macro WCA Travelers file completed."
+END 0
+$RTIME:BEGIN
+@0200N
+33
+57
+NULL_REF
+WCA Travelers file
+Workers Comp
+0
+2048
+17
+wcasrc.adf
+17
+wctrvlrs.adf
+0
+0
+11
+4132
+1
+/WCA Travelers file:57
+LIT_0
+00000
+0
+0
+8228
+2
+/WCA Travelers file:57
+Batch_Num
+desc
+0
+0
+4132
+3
+/WCA Travelers file:57
+LIT_0
+CYB62
+0
+0
+8228
+4
+/WCA Travelers file:57
+Current_Date
+desc
+0
+0
+4132
+5
+/WCA Travelers file:57
+LIT_0
+PAY
+0
+0
+4132
+6
+/WCA Travelers file:57
+LIT_0
+PAYCOR
+0
+0
+4132
+7
+/WCA Travelers file:57
+LIT_0
+PI
+0
+0
+8228
+8
+/WCA Travelers file:57
+P_Num
+desc
+0
+0
+8228
+9
+/WCA Travelers file:57
+Policy_ID
+desc
+0
+0
+8228
+10
+/WCA Travelers file:57
+Seq_Num
+desc
+0
+0
+4132
+11
+/WCA Travelers file:57
+LIT_0
+UB
+0
+0
+4
+32770
+12
+/WCA Travelers file:57
+Header_Record
+SLN Based on Header_Record(View container)
+0
+0
+0
+333
+444
+2
+Let Batch_Num = ""
+Let Seq_Num = ""
+RTM_Header_Record_FIRST_0001
+0
+444
+1
+Let Current_Date = DATE("EDI_CC")
+RTM_Header_Record_EACH_0002
+0
+333
+Header_Record
+File_Header
+5
+0
+18
+/Workers Comp file:123/Header_Record:2
+18
+/Workers Comp:103/File_Header:2
+32772
+13
+/WCA Travelers file:57/Header_Record:12
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "HDR"
+RTM_SRC_Header_Record_0003
+0
+20
+/Workers Comp file:123/Header_Record:2/Record_ID:3
+20
+/Workers Comp:103/File_Header:2/Record_ID:3
+32772
+14
+/WCA Travelers file:57/Header_Record:12
+
+
+0
+0
+1
+0
+333
+333
+4132
+/WCA Travelers file:57/LIT_0:7
+20
+/Workers Comp:103/File_Header:2/Vendor_Code:4
+32772
+15
+/WCA Travelers file:57/Header_Record:12
+
+
+0
+0
+1
+0
+333
+333
+4132
+/WCA Travelers file:57/LIT_0:6
+20
+/Workers Comp:103/File_Header:2/Vendor_Name:8
+32772
+16
+/WCA Travelers file:57/Header_Record:12
+
+
+0
+0
+1
+0
+333
+333
+8228
+/WCA Travelers file:57/Current_Date:4
+20
+/Workers Comp:103/File_Header:2/Process_Date:9
+32772
+17
+/WCA Travelers file:57/Header_Record:12
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "01"
+RTM_SRC_Header_Record_0004
+0
+20
+/Workers Comp file:123/Header_Record:2/Record_ID:3
+20
+/Workers Comp:103/File_Header:2/Cycle_Number:10
+32770
+18
+/WCA Travelers file:57
+Batch_Header
+SLN Based on Batch_Header(View container)
+0
+0
+0
+333
+333
+444
+1
+Let Batch_Num = Batch_Num + 1
+RTM_Batch_Header_EACH_0005
+0
+333
+Batch_Header
+Batch_Header
+12
+0
+18
+/Workers Comp file:123/Batch_Header:7
+18
+/Workers Comp:103/Batch_Header:7
+32772
+19
+/WCA Travelers file:57/Batch_Header:18
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "BHD"
+RTM_SRC_Batch_Header_0006
+0
+20
+/Workers Comp file:123/Batch_Header:7/Record_ID:9
+20
+/Workers Comp:103/Batch_Header:7/Record_ID:12
+32772
+20
+/WCA Travelers file:57/Batch_Header:18
+
+
+0
+0
+1
+0
+333
+333
+4132
+/WCA Travelers file:57/LIT_0:7
+20
+/Workers Comp:103/Batch_Header:7/Vendor_Code:14
+32772
+21
+/WCA Travelers file:57/Batch_Header:18
+
+
+0
+0
+1
+0
+333
+333
+8228
+/WCA Travelers file:57/Batch_Num:2
+20
+/Workers Comp:103/Batch_Header:7/Batch_Number:15
+32772
+22
+/WCA Travelers file:57/Batch_Header:18
+
+
+0
+0
+1
+0
+333
+333
+4132
+/WCA Travelers file:57/LIT_0:1
+20
+/Workers Comp:103/Batch_Header:7/Seq_number:16
+32772
+23
+/WCA Travelers file:57/Batch_Header:18
+
+
+0
+0
+1
+0
+333
+333
+8228
+/WCA Travelers file:57/Current_Date:4
+20
+/Workers Comp:103/Batch_Header:7/Receipt_Date:17
+32772
+24
+/WCA Travelers file:57/Batch_Header:18
+
+
+0
+0
+1
+0
+333
+333
+8228
+/WCA Travelers file:57/Current_Date:4
+20
+/Workers Comp:103/Batch_Header:7/Process_Date:19
+32772
+25
+/WCA Travelers file:57/Batch_Header:18
+
+
+0
+0
+1
+0
+333
+333
+20
+/Workers Comp file:123/Batch_Header:7/Batch_Net_Amount:10
+20
+/Workers Comp:103/Batch_Header:7/Batch_Net_Pay:20
+32772
+26
+/WCA Travelers file:57/Batch_Header:18
+
+
+0
+0
+1
+0
+333
+333
+20
+/Workers Comp file:123/Batch_Header:7/Batch_Net_Amount_Sign:11
+20
+/Workers Comp:103/Batch_Header:7/Net_Pay_Sign:21
+32772
+27
+/WCA Travelers file:57/Batch_Header:18
+
+
+0
+0
+1
+0
+333
+333
+20
+/Workers Comp file:123/Batch_Header:7/Batch_Count:12
+20
+/Workers Comp:103/Batch_Header:7/Batch_Count:22
+32772
+28
+/WCA Travelers file:57/Batch_Header:18
+
+
+0
+0
+1
+0
+333
+333
+4132
+/WCA Travelers file:57/LIT_0:5
+20
+/Workers Comp:103/Batch_Header:7/Batch_Trans_Type:23
+32772
+29
+/WCA Travelers file:57/Batch_Header:18
+
+
+0
+0
+1
+0
+333
+333
+4132
+/WCA Travelers file:57/LIT_0:3
+20
+/Workers Comp:103/Batch_Header:7/Agent_Code:25
+32772
+30
+/WCA Travelers file:57/Batch_Header:18
+
+
+0
+0
+1
+0
+333
+333
+8228
+/WCA Travelers file:57/Current_Date:4
+20
+/Workers Comp:103/Batch_Header:7/Payroll_Date:27
+32770
+31
+/WCA Travelers file:57
+Detail_Record
+SLN Based on Detail_Record(View container)
+0
+0
+0
+333
+333
+444
+9
+Let Policy_ID = left(Policy_Number,2)
+
+If Policy_ID = "UB" then
+Let P_Num = right(left(Policy_Number,10),8)
+else
+ Let P_Num = left(Policy_Number,8)
+endif
+
+Let Seq_Num = Seq_Num + 1
+RTM_Detail_Record_EACH_0007
+3
+1
+21
+13
+132
+0
+/Workers Comp file:123/Detail_Record:14/Policy_Number:19
+4
+23
+13
+132
+0
+/Workers Comp file:123/Detail_Record:14/Policy_Number:19
+6
+18
+13
+132
+0
+/Workers Comp file:123/Detail_Record:14/Policy_Number:19
+333
+Detail_Record
+Detail
+18
+0
+18
+/Workers Comp file:123/Detail_Record:14
+18
+/Workers Comp:103/Detail:31
+32772
+32
+/WCA Travelers file:57/Detail_Record:31
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "INI"
+RTM_SRC_Detail_Record_0008
+0
+20
+/Workers Comp file:123/Detail_Record:14/Record_ID:16
+20
+/Workers Comp:103/Detail:31/Record_ID:35
+32772
+33
+/WCA Travelers file:57/Detail_Record:31
+
+
+0
+0
+1
+0
+333
+333
+4132
+/WCA Travelers file:57/LIT_0:7
+20
+/Workers Comp:103/Detail:31/Vendor_Code:37
+32772
+34
+/WCA Travelers file:57/Detail_Record:31
+
+
+0
+0
+1
+0
+333
+333
+8228
+/WCA Travelers file:57/Batch_Num:2
+20
+/Workers Comp:103/Detail:31/Batch_Number:39
+32772
+35
+/WCA Travelers file:57/Detail_Record:31
+
+
+0
+0
+1
+0
+333
+333
+8228
+/WCA Travelers file:57/Seq_Num:10
+20
+/Workers Comp:103/Detail:31/Seq_number:41
+32772
+36
+/WCA Travelers file:57/Detail_Record:31
+
+
+0
+0
+1
+0
+333
+333
+20
+/Workers Comp file:123/Detail_Record:14/Invoice_ID:17
+20
+/Workers Comp:103/Detail:31/Invoice_ID:42
+32772
+37
+/WCA Travelers file:57/Detail_Record:31
+
+
+0
+0
+1
+0
+333
+333
+4132
+/WCA Travelers file:57/LIT_0:3
+20
+/Workers Comp:103/Detail:31/Agent_Code:43
+32772
+38
+/WCA Travelers file:57/Detail_Record:31
+
+
+0
+0
+1
+0
+333
+333
+4132
+/WCA Travelers file:57/LIT_0:11
+20
+/Workers Comp:103/Detail:31/Policy_Symbol:44
+32772
+39
+/WCA Travelers file:57/Detail_Record:31
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN P_Num
+RTM_SRC_Detail_Record_0009
+0
+20
+/Workers Comp file:123/Detail_Record:14/Policy_Number:19
+20
+/Workers Comp:103/Detail:31/Policy_Number:45
+32772
+40
+/WCA Travelers file:57/Detail_Record:31
+
+
+0
+0
+1
+0
+333
+333
+8228
+/WCA Travelers file:57/Current_Date:4
+20
+/Workers Comp:103/Detail:31/Receipt_Date:47
+32772
+41
+/WCA Travelers file:57/Detail_Record:31
+
+
+0
+0
+1
+0
+333
+333
+20
+/Workers Comp file:123/Detail_Record:14/Policy_Effective_Date:20
+20
+/Workers Comp:103/Detail:31/Policy_Date:49
+32772
+42
+/WCA Travelers file:57/Detail_Record:31
+
+
+0
+0
+1
+0
+333
+333
+20
+/Workers Comp file:123/Detail_Record:14/WC_Premium_Paid:74
+20
+/Workers Comp:103/Detail:31/Gross_Pay:51
+32772
+43
+/WCA Travelers file:57/Detail_Record:31
+
+
+0
+0
+1
+0
+333
+333
+20
+/Workers Comp file:123/Detail_Record:14/WC_Premium_Paid_Sign:123
+20
+/Workers Comp:103/Detail:31/Gross_Pay_Sign:53
+32772
+44
+/WCA Travelers file:57/Detail_Record:31
+
+
+0
+0
+1
+0
+333
+333
+20
+/Workers Comp file:123/Detail_Record:14/Commision_Rate:25
+20
+/Workers Comp:103/Detail:31/Comm_Rate:54
+32772
+45
+/WCA Travelers file:57/Detail_Record:31
+
+
+0
+0
+1
+0
+333
+333
+20
+/Workers Comp file:123/Detail_Record:14/Commission_Amount:27
+20
+/Workers Comp:103/Detail:31/Comm_Amount:56
+32772
+46
+/WCA Travelers file:57/Detail_Record:31
+
+
+0
+0
+1
+0
+333
+333
+20
+/Workers Comp file:123/Detail_Record:14/Commission_Amount_Sign:29
+20
+/Workers Comp:103/Detail:31/Comm_Sign:58
+32772
+47
+/WCA Travelers file:57/Detail_Record:31
+
+
+0
+0
+1
+0
+333
+333
+20
+/Workers Comp file:123/Detail_Record:14/Net_Pay_Amount:31
+20
+/Workers Comp:103/Detail:31/Net_Pay:60
+32772
+48
+/WCA Travelers file:57/Detail_Record:31
+
+
+0
+0
+1
+0
+333
+333
+20
+/Workers Comp file:123/Detail_Record:14/Net_Pay_Amount_Sign:33
+20
+/Workers Comp:103/Detail:31/Net_Pay_Sign:62
+32772
+49
+/WCA Travelers file:57/Detail_Record:31
+
+
+0
+0
+1
+0
+333
+333
+20
+/Workers Comp file:123/Detail_Record:14/Insured_Name:35
+20
+/Workers Comp:103/Detail:31/Insured_Name:63
+32770
+50
+/WCA Travelers file:57
+File_Trailer
+SLN Based on File_Trailer(View container)
+0
+0
+0
+333
+333
+333
+333
+File_Trailer
+Trailer
+6
+0
+18
+/Workers Comp file:123/File_Trailer:60
+18
+/Workers Comp:103/Trailer:65
+32772
+51
+/WCA Travelers file:57/File_Trailer:50
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "TRL"
+RTM_SRC_File_Trailer_0010
+0
+20
+/Workers Comp file:123/File_Trailer:60/Record_ID:62
+20
+/Workers Comp:103/Trailer:65/Record_ID:67
+32772
+52
+/WCA Travelers file:57/File_Trailer:50
+
+
+0
+0
+1
+0
+333
+333
+4132
+/WCA Travelers file:57/LIT_0:7
+20
+/Workers Comp:103/Trailer:65/Vendor_Code:69
+32772
+53
+/WCA Travelers file:57/File_Trailer:50
+
+
+0
+0
+1
+0
+333
+333
+8228
+/WCA Travelers file:57/Current_Date:4
+20
+/Workers Comp:103/Trailer:65/Process_Date:71
+32772
+54
+/WCA Travelers file:57/File_Trailer:50
+
+
+0
+0
+1
+0
+333
+333
+20
+/Workers Comp file:123/File_Trailer:60/Batch_Count:63
+20
+/Workers Comp:103/Trailer:65/Pay_Batch_Cnt:91
+32772
+55
+/WCA Travelers file:57/File_Trailer:50
+
+
+0
+0
+1
+0
+333
+333
+20
+/Workers Comp file:123/File_Trailer:60/Batch_Amount:65
+20
+/Workers Comp:103/Trailer:65/Pay_Batch_Amt:93
+32772
+56
+/WCA Travelers file:57/File_Trailer:50
+
+
+0
+0
+1
+0
+333
+333
+20
+/Workers Comp file:123/File_Trailer:60/Batch_Amount_Sign:67
+20
+/Workers Comp:103/Trailer:65/Pay_Batch_Amt_Sign:95
+$RTIME:END
+@0200N
+33
+12
+NULL_REF
+WCA Travelers file
+Workers Comp
+0
+2048
+wctrvlrs.vw1
+wctrvlrs.vw2
+0
+0
+11
+4132
+3
+/WCA Travelers file:12
+LIT_0
+00000
+0
+0
+8228
+2
+/WCA Travelers file:12
+Batch_Num
+desc
+0
+0
+4132
+7
+/WCA Travelers file:12
+LIT_0
+CYB62
+0
+0
+8228
+4
+/WCA Travelers file:12
+Current_Date
+desc
+0
+0
+4132
+5
+/WCA Travelers file:12
+LIT_0
+PAY
+0
+0
+4132
+9
+/WCA Travelers file:12
+LIT_0
+PAYCOR
+0
+0
+4132
+8
+/WCA Travelers file:12
+LIT_0
+PI
+0
+0
+8228
+11
+/WCA Travelers file:12
+P_Num
+desc
+0
+0
+8228
+12
+/WCA Travelers file:12
+Policy_ID
+desc
+0
+0
+8228
+6
+/WCA Travelers file:12
+Seq_Num
+desc
+0
+0
+4132
+10
+/WCA Travelers file:12
+LIT_0
+UB
+0
+0
+41
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+"HDR"
+1
+0
+2
+Let Batch_Num = ""
+Let Seq_Num = ""
+1
+Let Current_Date = DATE("EDI_CC")
+0
+132
+/WCA Travelers file:66/Header_Record:2/Record_ID:3
+132
+/WCA Travelers file:62/File_Header:2/Record_ID:3
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+4132
+/WCA Travelers file:12/LIT_0:8
+132
+/WCA Travelers file:62/File_Header:2/Vendor_Code:4
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+4132
+/WCA Travelers file:12/LIT_0:9
+132
+/WCA Travelers file:62/File_Header:2/Vendor_Name:5
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+8228
+/WCA Travelers file:12/Current_Date:4
+132
+/WCA Travelers file:62/File_Header:2/Process_Date:6
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+"01"
+1
+0
+0
+0
+0
+132
+/WCA Travelers file:66/Header_Record:2/Record_ID:3
+132
+/WCA Travelers file:62/File_Header:2/Cycle_Number:7
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+"BHD"
+1
+0
+0
+1
+Let Batch_Num = Batch_Num + 1
+0
+132
+/WCA Travelers file:66/Batch_Header:10/Record_ID:11
+132
+/WCA Travelers file:62/Batch_Header:9/Record_ID:10
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+4132
+/WCA Travelers file:12/LIT_0:8
+132
+/WCA Travelers file:62/Batch_Header:9/Vendor_Code:11
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+8228
+/WCA Travelers file:12/Batch_Num:2
+132
+/WCA Travelers file:62/Batch_Header:9/Batch_Number:12
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+4132
+/WCA Travelers file:12/LIT_0:3
+132
+/WCA Travelers file:62/Batch_Header:9/Seq_number:13
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+8228
+/WCA Travelers file:12/Current_Date:4
+132
+/WCA Travelers file:62/Batch_Header:9/Receipt_Date:14
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+8228
+/WCA Travelers file:12/Current_Date:4
+132
+/WCA Travelers file:62/Batch_Header:9/Process_Date:15
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/WCA Travelers file:66/Batch_Header:10/Batch_Net_Amount:12
+132
+/WCA Travelers file:62/Batch_Header:9/Batch_Net_Pay:16
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/WCA Travelers file:66/Batch_Header:10/Batch_Net_Amount_Sign:13
+132
+/WCA Travelers file:62/Batch_Header:9/Net_Pay_Sign:17
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/WCA Travelers file:66/Batch_Header:10/Batch_Count:14
+132
+/WCA Travelers file:62/Batch_Header:9/Batch_Count:18
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+4132
+/WCA Travelers file:12/LIT_0:5
+132
+/WCA Travelers file:62/Batch_Header:9/Batch_Trans_Type:19
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+4132
+/WCA Travelers file:12/LIT_0:7
+132
+/WCA Travelers file:62/Batch_Header:9/Agent_Code:21
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+8228
+/WCA Travelers file:12/Current_Date:4
+132
+/WCA Travelers file:62/Batch_Header:9/Payroll_Date:22
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+"INI"
+1
+0
+0
+8
+Let Policy_ID = left(Policy_Number,2)
+
+If Policy_ID = "UB" then
+Let P_Num = right(left(Policy_Number,10),8)
+else
+ Let P_Num = left(Policy_Number,8)
+endif
+
+0
+132
+/WCA Travelers file:66/Detail_Record:20/Record_ID:21
+132
+/WCA Travelers file:62/Detail:24/Record_ID:25
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+4132
+/WCA Travelers file:12/LIT_0:8
+132
+/WCA Travelers file:62/Detail:24/Vendor_Code:26
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+8228
+/WCA Travelers file:12/Batch_Num:2
+132
+/WCA Travelers file:62/Detail:24/Batch_Number:27
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+1
+Let Seq_Num = Seq_Num + 1
+0
+8228
+/WCA Travelers file:12/Seq_Num:6
+132
+/WCA Travelers file:62/Detail:24/Seq_number:28
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/WCA Travelers file:66/Detail_Record:20/Invoice_ID:22
+132
+/WCA Travelers file:62/Detail:24/Invoice_ID:29
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+4132
+/WCA Travelers file:12/LIT_0:7
+132
+/WCA Travelers file:62/Detail:24/Agent_Code:30
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+4132
+/WCA Travelers file:12/LIT_0:10
+132
+/WCA Travelers file:62/Detail:24/Policy_Symbol:31
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+P_Num
+1
+0
+0
+0
+0
+132
+/WCA Travelers file:66/Detail_Record:20/Policy_Number:24
+132
+/WCA Travelers file:62/Detail:24/Policy_Number:32
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+8228
+/WCA Travelers file:12/Current_Date:4
+132
+/WCA Travelers file:62/Detail:24/Receipt_Date:33
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/WCA Travelers file:66/Detail_Record:20/Policy_Effective_Date:25
+132
+/WCA Travelers file:62/Detail:24/Policy_Date:34
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/WCA Travelers file:66/Detail_Record:20/WC_Premium_Paid:28
+132
+/WCA Travelers file:62/Detail:24/Gross_Pay:35
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/WCA Travelers file:66/Detail_Record:20/WC_Premium_Paid_Sign:66
+132
+/WCA Travelers file:62/Detail:24/Gross_Pay_Sign:36
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/WCA Travelers file:66/Detail_Record:20/Commision_Rate:29
+132
+/WCA Travelers file:62/Detail:24/Comm_Rate:37
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/WCA Travelers file:66/Detail_Record:20/Commission_Amount:30
+132
+/WCA Travelers file:62/Detail:24/Comm_Amount:38
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/WCA Travelers file:66/Detail_Record:20/Commission_Amount_Sign:31
+132
+/WCA Travelers file:62/Detail:24/Comm_Sign:39
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/WCA Travelers file:66/Detail_Record:20/Net_Pay_Amount:32
+132
+/WCA Travelers file:62/Detail:24/Net_Pay:40
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/WCA Travelers file:66/Detail_Record:20/Net_Pay_Amount_Sign:33
+132
+/WCA Travelers file:62/Detail:24/Net_Pay_Sign:41
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/WCA Travelers file:66/Detail_Record:20/Insured_Name:34
+132
+/WCA Travelers file:62/Detail:24/Insured_Name:42
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+"TRL"
+1
+0
+0
+0
+0
+132
+/WCA Travelers file:66/File_Trailer:56/Record_ID:57
+132
+/WCA Travelers file:62/Trailer:43/Record_ID:44
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+4132
+/WCA Travelers file:12/LIT_0:8
+132
+/WCA Travelers file:62/Trailer:43/Vendor_Code:45
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+8228
+/WCA Travelers file:12/Current_Date:4
+132
+/WCA Travelers file:62/Trailer:43/Process_Date:46
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/WCA Travelers file:66/File_Trailer:56/Batch_Count:58
+132
+/WCA Travelers file:62/Trailer:43/Pay_Batch_Cnt:56
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/WCA Travelers file:66/File_Trailer:56/Batch_Amount:59
+132
+/WCA Travelers file:62/Trailer:43/Pay_Batch_Amt:57
+36
+1
+/WCA Travelers file:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/WCA Travelers file:66/File_Trailer:56/Batch_Amount_Sign:60
+132
+/WCA Travelers file:62/Trailer:43/Pay_Batch_Amt_Sign:58
+@0200N
+129
+66
+NULL_REF
+WCA Travelers file
+View of: Workers Comp
+0
+0
+17
+wcasrc.adf
+wctrvlrs.vw1
+5
+130
+2
+/WCA Travelers file:66
+Header_Record
+
+0
+16
+/Workers Comp file:123/Header_Record:2
+
+1
+7
+132
+3
+/WCA Travelers file:66/Header_Record:2
+Record_ID
+
+0
+16
+/Workers Comp file:123/Header_Record:2/Record_ID:3
+
+
+132
+4
+/WCA Travelers file:66/Header_Record:2
+Partner_ID
+
+0
+16
+/Workers Comp file:123/Header_Record:2/Partner_ID:4
+
+
+132
+5
+/WCA Travelers file:66/Header_Record:2
+Future_Field_1
+
+0
+16
+/Workers Comp file:123/Header_Record:2/Future_Field_1:114
+
+
+132
+6
+/WCA Travelers file:66/Header_Record:2
+Future_Field_2
+
+0
+16
+/Workers Comp file:123/Header_Record:2/Future_Field_2:116
+
+
+132
+7
+/WCA Travelers file:66/Header_Record:2
+Future_Field_3
+
+0
+16
+/Workers Comp file:123/Header_Record:2/Future_Field_3:118
+
+
+132
+8
+/WCA Travelers file:66/Header_Record:2
+Future_Field_4
+
+0
+16
+/Workers Comp file:123/Header_Record:2/Future_Field_4:120
+
+
+132
+9
+/WCA Travelers file:66/Header_Record:2
+Future_Field_5
+
+0
+16
+/Workers Comp file:123/Header_Record:2/Future_Field_5:122
+
+
+130
+10
+/WCA Travelers file:66
+Batch_Header
+
+0
+16
+/Workers Comp file:123/Batch_Header:7
+
+1
+9
+132
+11
+/WCA Travelers file:66/Batch_Header:10
+Record_ID
+
+0
+16
+/Workers Comp file:123/Batch_Header:7/Record_ID:9
+
+
+132
+12
+/WCA Travelers file:66/Batch_Header:10
+Batch_Net_Amount
+
+0
+16
+/Workers Comp file:123/Batch_Header:7/Batch_Net_Amount:10
+
+
+132
+13
+/WCA Travelers file:66/Batch_Header:10
+Batch_Net_Amount_Sign
+
+0
+16
+/Workers Comp file:123/Batch_Header:7/Batch_Net_Amount_Sign:11
+
+
+132
+14
+/WCA Travelers file:66/Batch_Header:10
+Batch_Count
+
+0
+16
+/Workers Comp file:123/Batch_Header:7/Batch_Count:12
+
+
+132
+15
+/WCA Travelers file:66/Batch_Header:10
+Future_Field_1
+
+0
+16
+/Workers Comp file:123/Batch_Header:7/Future_Field_1:104
+
+
+132
+16
+/WCA Travelers file:66/Batch_Header:10
+Future_Field_2
+
+0
+16
+/Workers Comp file:123/Batch_Header:7/Future_Field_2:106
+
+
+132
+17
+/WCA Travelers file:66/Batch_Header:10
+Future_Field_3
+
+0
+16
+/Workers Comp file:123/Batch_Header:7/Future_Field_3:108
+
+
+132
+18
+/WCA Travelers file:66/Batch_Header:10
+Future_Field_4
+
+0
+16
+/Workers Comp file:123/Batch_Header:7/Future_Field_4:110
+
+
+132
+19
+/WCA Travelers file:66/Batch_Header:10
+Future_Field_5
+
+0
+16
+/Workers Comp file:123/Batch_Header:7/Future_Field_5:112
+
+
+130
+20
+/WCA Travelers file:66
+Detail_Record
+
+0
+16
+/Workers Comp file:123/Detail_Record:14
+
+1
+29
+132
+21
+/WCA Travelers file:66/Detail_Record:20
+Record_ID
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Record_ID:16
+
+
+132
+22
+/WCA Travelers file:66/Detail_Record:20
+Invoice_ID
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Invoice_ID:17
+
+
+132
+23
+/WCA Travelers file:66/Detail_Record:20
+TPC_Policy_Symbol
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/TPC_Policy_Symbol:18
+
+
+132
+24
+/WCA Travelers file:66/Detail_Record:20
+Policy_Number
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Policy_Number:19
+
+
+132
+25
+/WCA Travelers file:66/Detail_Record:20
+Policy_Effective_Date
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Policy_Effective_Date:20
+
+
+132
+26
+/WCA Travelers file:66/Detail_Record:20
+Gross_Pay_Amount
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Gross_Pay_Amount:21
+
+
+132
+27
+/WCA Travelers file:66/Detail_Record:20
+Gross_Pay_Amount_Sign
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Gross_Pay_Amount_Sign:23
+
+
+132
+28
+/WCA Travelers file:66/Detail_Record:20
+WC_Premium_Paid
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/WC_Premium_Paid:74
+
+
+132
+66
+/WCA Travelers file:66/Detail_Record:20
+WC_Premium_Paid_Sign
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/WC_Premium_Paid_Sign:123
+
+
+132
+29
+/WCA Travelers file:66/Detail_Record:20
+Commision_Rate
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Commision_Rate:25
+
+
+132
+30
+/WCA Travelers file:66/Detail_Record:20
+Commission_Amount
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Commission_Amount:27
+
+
+132
+31
+/WCA Travelers file:66/Detail_Record:20
+Commission_Amount_Sign
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Commission_Amount_Sign:29
+
+
+132
+32
+/WCA Travelers file:66/Detail_Record:20
+Net_Pay_Amount
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Net_Pay_Amount:31
+
+
+132
+33
+/WCA Travelers file:66/Detail_Record:20
+Net_Pay_Amount_Sign
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Net_Pay_Amount_Sign:33
+
+
+132
+34
+/WCA Travelers file:66/Detail_Record:20
+Insured_Name
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Insured_Name:35
+
+
+132
+35
+/WCA Travelers file:66/Detail_Record:20
+State
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/State:36
+
+
+132
+36
+/WCA Travelers file:66/Detail_Record:20
+Class_Code
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Class_Code:38
+
+
+132
+37
+/WCA Travelers file:66/Detail_Record:20
+NCCI_Rate
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/NCCI_Rate:76
+
+
+132
+38
+/WCA Travelers file:66/Detail_Record:20
+Begin_Date
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Begin_Date:40
+
+
+132
+39
+/WCA Travelers file:66/Detail_Record:20
+End_Date
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/End_Date:45
+
+
+132
+40
+/WCA Travelers file:66/Detail_Record:20
+Check_Date
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Check_Date:42
+
+
+132
+41
+/WCA Travelers file:66/Detail_Record:20
+Excluded_Payroll
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Excluded_Payroll:47
+
+
+132
+42
+/WCA Travelers file:66/Detail_Record:20
+Subject_Payroll
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Subject_Payroll:49
+
+
+132
+43
+/WCA Travelers file:66/Detail_Record:20
+FEIN
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/FEIN:53
+
+
+132
+44
+/WCA Travelers file:66/Detail_Record:20
+Future_Field_1
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Future_Field_1:94
+
+
+132
+45
+/WCA Travelers file:66/Detail_Record:20
+Future_Field_2
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Future_Field_2:96
+
+
+132
+46
+/WCA Travelers file:66/Detail_Record:20
+Future_Field_3
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Future_Field_3:98
+
+
+132
+47
+/WCA Travelers file:66/Detail_Record:20
+Future_Field_4
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Future_Field_4:100
+
+
+132
+48
+/WCA Travelers file:66/Detail_Record:20
+Future_Field_5
+
+0
+16
+/Workers Comp file:123/Detail_Record:14/Future_Field_5:102
+
+
+130
+49
+/WCA Travelers file:66
+Batch_Trailer
+
+0
+16
+/Workers Comp file:123/Batch_Trailer:56
+
+1
+6
+132
+50
+/WCA Travelers file:66/Batch_Trailer:49
+Record_ID
+
+0
+16
+/Workers Comp file:123/Batch_Trailer:56/Record_ID:58
+
+
+132
+51
+/WCA Travelers file:66/Batch_Trailer:49
+Future_Field_1
+
+0
+16
+/Workers Comp file:123/Batch_Trailer:56/Future_Field_1:84
+
+
+132
+52
+/WCA Travelers file:66/Batch_Trailer:49
+Future_Field_2
+
+0
+16
+/Workers Comp file:123/Batch_Trailer:56/Future_Field_2:86
+
+
+132
+53
+/WCA Travelers file:66/Batch_Trailer:49
+Future_Field_3
+
+0
+16
+/Workers Comp file:123/Batch_Trailer:56/Future_Field_3:88
+
+
+132
+54
+/WCA Travelers file:66/Batch_Trailer:49
+Future_Field_4
+
+0
+16
+/Workers Comp file:123/Batch_Trailer:56/Future_Field_4:90
+
+
+132
+55
+/WCA Travelers file:66/Batch_Trailer:49
+Future_Field_5
+
+0
+16
+/Workers Comp file:123/Batch_Trailer:56/Future_Field_5:92
+
+
+130
+56
+/WCA Travelers file:66
+File_Trailer
+
+0
+16
+/Workers Comp file:123/File_Trailer:60
+
+1
+9
+132
+57
+/WCA Travelers file:66/File_Trailer:56
+Record_ID
+
+0
+16
+/Workers Comp file:123/File_Trailer:60/Record_ID:62
+
+
+132
+58
+/WCA Travelers file:66/File_Trailer:56
+Batch_Count
+
+0
+16
+/Workers Comp file:123/File_Trailer:60/Batch_Count:63
+
+
+132
+59
+/WCA Travelers file:66/File_Trailer:56
+Batch_Amount
+
+0
+16
+/Workers Comp file:123/File_Trailer:60/Batch_Amount:65
+
+
+132
+60
+/WCA Travelers file:66/File_Trailer:56
+Batch_Amount_Sign
+
+0
+16
+/Workers Comp file:123/File_Trailer:60/Batch_Amount_Sign:67
+
+
+132
+61
+/WCA Travelers file:66/File_Trailer:56
+Future_Field_1
+
+0
+16
+/Workers Comp file:123/File_Trailer:60/Future_Field_1:77
+
+
+132
+62
+/WCA Travelers file:66/File_Trailer:56
+Future_Field_2
+
+0
+16
+/Workers Comp file:123/File_Trailer:60/Future_Field_2:79
+
+
+132
+63
+/WCA Travelers file:66/File_Trailer:56
+Future_Field_3
+
+0
+16
+/Workers Comp file:123/File_Trailer:60/Future_Field_3:80
+
+
+132
+64
+/WCA Travelers file:66/File_Trailer:56
+Future_Field_4
+
+0
+16
+/Workers Comp file:123/File_Trailer:60/Future_Field_4:81
+
+
+132
+65
+/WCA Travelers file:66/File_Trailer:56
+Future_Field_5
+
+0
+16
+/Workers Comp file:123/File_Trailer:60/Future_Field_5:82
+
+
+@0200N
+129
+62
+NULL_REF
+WCA Travelers file
+View of: Workers Comp
+0
+0
+17
+wctrvlrs.adf
+wctrvlrs.vw2
+4
+130
+2
+/WCA Travelers file:62
+File_Header
+
+0
+16
+/Workers Comp:103/File_Header:2
+
+1
+6
+132
+3
+/WCA Travelers file:62/File_Header:2
+Record_ID
+
+0
+16
+/Workers Comp:103/File_Header:2/Record_ID:3
+
+
+132
+4
+/WCA Travelers file:62/File_Header:2
+Vendor_Code
+
+0
+16
+/Workers Comp:103/File_Header:2/Vendor_Code:4
+
+
+132
+5
+/WCA Travelers file:62/File_Header:2
+Vendor_Name
+
+0
+16
+/Workers Comp:103/File_Header:2/Vendor_Name:8
+
+
+132
+6
+/WCA Travelers file:62/File_Header:2
+Process_Date
+
+0
+16
+/Workers Comp:103/File_Header:2/Process_Date:9
+
+
+132
+7
+/WCA Travelers file:62/File_Header:2
+Cycle_Number
+
+0
+16
+/Workers Comp:103/File_Header:2/Cycle_Number:10
+
+
+132
+8
+/WCA Travelers file:62/File_Header:2
+Filler
+
+0
+16
+/Workers Comp:103/File_Header:2/Filler:5
+
+
+130
+9
+/WCA Travelers file:62
+Batch_Header
+
+0
+16
+/Workers Comp:103/Batch_Header:7
+
+1
+14
+132
+10
+/WCA Travelers file:62/Batch_Header:9
+Record_ID
+
+0
+16
+/Workers Comp:103/Batch_Header:7/Record_ID:12
+
+
+132
+11
+/WCA Travelers file:62/Batch_Header:9
+Vendor_Code
+
+0
+16
+/Workers Comp:103/Batch_Header:7/Vendor_Code:14
+
+
+132
+12
+/WCA Travelers file:62/Batch_Header:9
+Batch_Number
+
+0
+16
+/Workers Comp:103/Batch_Header:7/Batch_Number:15
+
+
+132
+13
+/WCA Travelers file:62/Batch_Header:9
+Seq_number
+
+0
+16
+/Workers Comp:103/Batch_Header:7/Seq_number:16
+
+
+132
+14
+/WCA Travelers file:62/Batch_Header:9
+Receipt_Date
+
+0
+16
+/Workers Comp:103/Batch_Header:7/Receipt_Date:17
+
+
+132
+15
+/WCA Travelers file:62/Batch_Header:9
+Process_Date
+
+0
+16
+/Workers Comp:103/Batch_Header:7/Process_Date:19
+
+
+132
+16
+/WCA Travelers file:62/Batch_Header:9
+Batch_Net_Pay
+
+0
+16
+/Workers Comp:103/Batch_Header:7/Batch_Net_Pay:20
+
+
+132
+17
+/WCA Travelers file:62/Batch_Header:9
+Net_Pay_Sign
+
+0
+16
+/Workers Comp:103/Batch_Header:7/Net_Pay_Sign:21
+
+
+132
+18
+/WCA Travelers file:62/Batch_Header:9
+Batch_Count
+
+0
+16
+/Workers Comp:103/Batch_Header:7/Batch_Count:22
+
+
+132
+19
+/WCA Travelers file:62/Batch_Header:9
+Batch_Trans_Type
+
+0
+16
+/Workers Comp:103/Batch_Header:7/Batch_Trans_Type:23
+
+
+132
+20
+/WCA Travelers file:62/Batch_Header:9
+Filler
+
+0
+16
+/Workers Comp:103/Batch_Header:7/Filler:24
+
+
+132
+21
+/WCA Travelers file:62/Batch_Header:9
+Agent_Code
+
+0
+16
+/Workers Comp:103/Batch_Header:7/Agent_Code:25
+
+
+132
+22
+/WCA Travelers file:62/Batch_Header:9
+Payroll_Date
+
+0
+16
+/Workers Comp:103/Batch_Header:7/Payroll_Date:27
+
+
+132
+23
+/WCA Travelers file:62/Batch_Header:9
+Filler2
+
+0
+16
+/Workers Comp:103/Batch_Header:7/Filler2:29
+
+
+130
+24
+/WCA Travelers file:62
+Detail
+
+0
+16
+/Workers Comp:103/Detail:31
+
+1
+18
+132
+25
+/WCA Travelers file:62/Detail:24
+Record_ID
+
+0
+16
+/Workers Comp:103/Detail:31/Record_ID:35
+
+
+132
+26
+/WCA Travelers file:62/Detail:24
+Vendor_Code
+
+0
+16
+/Workers Comp:103/Detail:31/Vendor_Code:37
+
+
+132
+27
+/WCA Travelers file:62/Detail:24
+Batch_Number
+
+0
+16
+/Workers Comp:103/Detail:31/Batch_Number:39
+
+
+132
+28
+/WCA Travelers file:62/Detail:24
+Seq_number
+
+0
+16
+/Workers Comp:103/Detail:31/Seq_number:41
+
+
+132
+29
+/WCA Travelers file:62/Detail:24
+Invoice_ID
+
+0
+16
+/Workers Comp:103/Detail:31/Invoice_ID:42
+
+
+132
+30
+/WCA Travelers file:62/Detail:24
+Agent_Code
+
+0
+16
+/Workers Comp:103/Detail:31/Agent_Code:43
+
+
+132
+31
+/WCA Travelers file:62/Detail:24
+Policy_Symbol
+
+0
+16
+/Workers Comp:103/Detail:31/Policy_Symbol:44
+
+
+132
+32
+/WCA Travelers file:62/Detail:24
+Policy_Number
+
+0
+16
+/Workers Comp:103/Detail:31/Policy_Number:45
+
+
+132
+33
+/WCA Travelers file:62/Detail:24
+Receipt_Date
+
+0
+16
+/Workers Comp:103/Detail:31/Receipt_Date:47
+
+
+132
+34
+/WCA Travelers file:62/Detail:24
+Policy_Date
+
+0
+16
+/Workers Comp:103/Detail:31/Policy_Date:49
+
+
+132
+35
+/WCA Travelers file:62/Detail:24
+Gross_Pay
+
+0
+16
+/Workers Comp:103/Detail:31/Gross_Pay:51
+
+
+132
+36
+/WCA Travelers file:62/Detail:24
+Gross_Pay_Sign
+
+0
+16
+/Workers Comp:103/Detail:31/Gross_Pay_Sign:53
+
+
+132
+37
+/WCA Travelers file:62/Detail:24
+Comm_Rate
+
+0
+16
+/Workers Comp:103/Detail:31/Comm_Rate:54
+
+
+132
+38
+/WCA Travelers file:62/Detail:24
+Comm_Amount
+
+0
+16
+/Workers Comp:103/Detail:31/Comm_Amount:56
+
+
+132
+39
+/WCA Travelers file:62/Detail:24
+Comm_Sign
+
+0
+16
+/Workers Comp:103/Detail:31/Comm_Sign:58
+
+
+132
+40
+/WCA Travelers file:62/Detail:24
+Net_Pay
+
+0
+16
+/Workers Comp:103/Detail:31/Net_Pay:60
+
+
+132
+41
+/WCA Travelers file:62/Detail:24
+Net_Pay_Sign
+
+0
+16
+/Workers Comp:103/Detail:31/Net_Pay_Sign:62
+
+
+132
+42
+/WCA Travelers file:62/Detail:24
+Insured_Name
+
+0
+16
+/Workers Comp:103/Detail:31/Insured_Name:63
+
+
+130
+43
+/WCA Travelers file:62
+Trailer
+
+0
+16
+/Workers Comp:103/Trailer:65
+
+1
+19
+132
+44
+/WCA Travelers file:62/Trailer:43
+Record_ID
+
+0
+16
+/Workers Comp:103/Trailer:65/Record_ID:67
+
+
+132
+45
+/WCA Travelers file:62/Trailer:43
+Vendor_Code
+
+0
+16
+/Workers Comp:103/Trailer:65/Vendor_Code:69
+
+
+132
+46
+/WCA Travelers file:62/Trailer:43
+Process_Date
+
+0
+16
+/Workers Comp:103/Trailer:65/Process_Date:71
+
+
+132
+47
+/WCA Travelers file:62/Trailer:43
+Bio_Cnt
+
+0
+16
+/Workers Comp:103/Trailer:65/Bio_Cnt:72
+
+
+132
+48
+/WCA Travelers file:62/Trailer:43
+Bio_Amt
+
+0
+16
+/Workers Comp:103/Trailer:65/Bio_Amt:74
+
+
+132
+49
+/WCA Travelers file:62/Trailer:43
+Bio_Amt_Sign
+
+0
+16
+/Workers Comp:103/Trailer:65/Bio_Amt_Sign:76
+
+
+132
+50
+/WCA Travelers file:62/Trailer:43
+Move_Cnt
+
+0
+16
+/Workers Comp:103/Trailer:65/Move_Cnt:78
+
+
+132
+51
+/WCA Travelers file:62/Trailer:43
+Move_Amt
+
+0
+16
+/Workers Comp:103/Trailer:65/Move_Amt:86
+
+
+132
+52
+/WCA Travelers file:62/Trailer:43
+Move_Amt_Sign
+
+0
+16
+/Workers Comp:103/Trailer:65/Move_Amt_Sign:81
+
+
+132
+53
+/WCA Travelers file:62/Trailer:43
+Write_off_Cnt
+
+0
+16
+/Workers Comp:103/Trailer:65/Write_off_Cnt:83
+
+
+132
+54
+/WCA Travelers file:62/Trailer:43
+Write_off_Amt
+
+0
+16
+/Workers Comp:103/Trailer:65/Write_off_Amt:88
+
+
+132
+55
+/WCA Travelers file:62/Trailer:43
+Write_off_Amt_Sign
+
+0
+16
+/Workers Comp:103/Trailer:65/Write_off_Amt_Sign:90
+
+
+132
+56
+/WCA Travelers file:62/Trailer:43
+Pay_Batch_Cnt
+
+0
+16
+/Workers Comp:103/Trailer:65/Pay_Batch_Cnt:91
+
+
+132
+57
+/WCA Travelers file:62/Trailer:43
+Pay_Batch_Amt
+
+0
+16
+/Workers Comp:103/Trailer:65/Pay_Batch_Amt:93
+
+
+132
+58
+/WCA Travelers file:62/Trailer:43
+Pay_Batch_Amt_Sign
+
+0
+16
+/Workers Comp:103/Trailer:65/Pay_Batch_Amt_Sign:95
+
+
+132
+59
+/WCA Travelers file:62/Trailer:43
+Bal_Ver_Cnt
+
+0
+16
+/Workers Comp:103/Trailer:65/Bal_Ver_Cnt:97
+
+
+132
+60
+/WCA Travelers file:62/Trailer:43
+Bal_Ver_Amt
+
+0
+16
+/Workers Comp:103/Trailer:65/Bal_Ver_Amt:99
+
+
+132
+61
+/WCA Travelers file:62/Trailer:43
+Bal_Ver_Amt_Sign
+
+0
+16
+/Workers Comp:103/Trailer:65/Bal_Ver_Amt_Sign:101
+
+
+132
+62
+/WCA Travelers file:62/Trailer:43
+Filler
+
+0
+16
+/Workers Comp:103/Trailer:65/Filler:103
+
+
+@0200N
+17
+123
+NULL_REF
+Workers Comp file
+Workers Comp file
+0
+0
+2
+10
+2
+44
+0
+0
+0
+4
+PARTNER
+
+4
+APPKEY1
+
+0
+APPKEY2
+
+0
+APPKEY3
+
+0
+wca.app
+1
+46
+5
+18
+2
+/Workers Comp file:123
+Header_Record
+
+0
+16
+2
+10
+1
+1
+7
+20
+3
+/Workers Comp file:123/Header_Record:2
+Record_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+1
+2
+0
+0
+0
+20
+4
+/Workers Comp file:123/Header_Record:2
+Partner_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+114
+/Workers Comp file:123/Header_Record:2
+Future_Field_1
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+116
+/Workers Comp file:123/Header_Record:2
+Future_Field_2
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+118
+/Workers Comp file:123/Header_Record:2
+Future_Field_3
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+120
+/Workers Comp file:123/Header_Record:2
+Future_Field_4
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+122
+/Workers Comp file:123/Header_Record:2
+Future_Field_5
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+7
+/Workers Comp file:123
+Batch_Header
+
+0
+16
+2
+10
+1
+0
+9
+20
+9
+/Workers Comp file:123/Batch_Header:7
+Record_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+2
+2
+0
+0
+0
+20
+10
+/Workers Comp file:123/Batch_Header:7
+Batch_Net_Amount
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+11
+/Workers Comp file:123/Batch_Header:7
+Batch_Net_Amount_Sign
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+12
+/Workers Comp file:123/Batch_Header:7
+Batch_Count
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+104
+/Workers Comp file:123/Batch_Header:7
+Future_Field_1
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+106
+/Workers Comp file:123/Batch_Header:7
+Future_Field_2
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+108
+/Workers Comp file:123/Batch_Header:7
+Future_Field_3
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+110
+/Workers Comp file:123/Batch_Header:7
+Future_Field_4
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+112
+/Workers Comp file:123/Batch_Header:7
+Future_Field_5
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+14
+/Workers Comp file:123
+Detail_Record
+
+0
+16
+2
+10
+0
+0
+29
+20
+16
+/Workers Comp file:123/Detail_Record:14
+Record_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+3
+2
+0
+0
+0
+20
+17
+/Workers Comp file:123/Detail_Record:14
+Invoice_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+18
+/Workers Comp file:123/Detail_Record:14
+TPC_Policy_Symbol
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+19
+/Workers Comp file:123/Detail_Record:14
+Policy_Number
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+20
+/Workers Comp file:123/Detail_Record:14
+Policy_Effective_Date
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+21
+/Workers Comp file:123/Detail_Record:14
+Gross_Pay_Amount
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+23
+/Workers Comp file:123/Detail_Record:14
+Gross_Pay_Amount_Sign
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+74
+/Workers Comp file:123/Detail_Record:14
+WC_Premium_Paid
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+123
+/Workers Comp file:123/Detail_Record:14
+WC_Premium_Paid_Sign
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+25
+/Workers Comp file:123/Detail_Record:14
+Commision_Rate
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+27
+/Workers Comp file:123/Detail_Record:14
+Commission_Amount
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+29
+/Workers Comp file:123/Detail_Record:14
+Commission_Amount_Sign
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+31
+/Workers Comp file:123/Detail_Record:14
+Net_Pay_Amount
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+33
+/Workers Comp file:123/Detail_Record:14
+Net_Pay_Amount_Sign
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+35
+/Workers Comp file:123/Detail_Record:14
+Insured_Name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+36
+/Workers Comp file:123/Detail_Record:14
+State
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+38
+/Workers Comp file:123/Detail_Record:14
+Class_Code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+76
+/Workers Comp file:123/Detail_Record:14
+NCCI_Rate
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+40
+/Workers Comp file:123/Detail_Record:14
+Begin_Date
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+45
+/Workers Comp file:123/Detail_Record:14
+End_Date
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+42
+/Workers Comp file:123/Detail_Record:14
+Check_Date
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+47
+/Workers Comp file:123/Detail_Record:14
+Excluded_Payroll
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+49
+/Workers Comp file:123/Detail_Record:14
+Subject_Payroll
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+53
+/Workers Comp file:123/Detail_Record:14
+FEIN
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+94
+/Workers Comp file:123/Detail_Record:14
+Future_Field_1
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+96
+/Workers Comp file:123/Detail_Record:14
+Future_Field_2
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+98
+/Workers Comp file:123/Detail_Record:14
+Future_Field_3
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+100
+/Workers Comp file:123/Detail_Record:14
+Future_Field_4
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+102
+/Workers Comp file:123/Detail_Record:14
+Future_Field_5
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+56
+/Workers Comp file:123
+Batch_Trailer
+
+0
+16
+2
+10
+0
+0
+6
+20
+58
+/Workers Comp file:123/Batch_Trailer:56
+Record_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+4
+2
+0
+0
+0
+20
+84
+/Workers Comp file:123/Batch_Trailer:56
+Future_Field_1
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+86
+/Workers Comp file:123/Batch_Trailer:56
+Future_Field_2
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+88
+/Workers Comp file:123/Batch_Trailer:56
+Future_Field_3
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+90
+/Workers Comp file:123/Batch_Trailer:56
+Future_Field_4
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+92
+/Workers Comp file:123/Batch_Trailer:56
+Future_Field_5
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+60
+/Workers Comp file:123
+File_Trailer
+
+0
+16
+2
+10
+0
+0
+9
+20
+62
+/Workers Comp file:123/File_Trailer:60
+Record_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+5
+2
+0
+0
+0
+20
+63
+/Workers Comp file:123/File_Trailer:60
+Batch_Count
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+65
+/Workers Comp file:123/File_Trailer:60
+Batch_Amount
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+67
+/Workers Comp file:123/File_Trailer:60
+Batch_Amount_Sign
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+77
+/Workers Comp file:123/File_Trailer:60
+Future_Field_1
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+79
+/Workers Comp file:123/File_Trailer:60
+Future_Field_2
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+80
+/Workers Comp file:123/File_Trailer:60
+Future_Field_3
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+81
+/Workers Comp file:123/File_Trailer:60
+Future_Field_4
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+82
+/Workers Comp file:123/File_Trailer:60
+Future_Field_5
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+@0200N
+17
+103
+NULL_REF
+Workers Comp
+Travelers format
+0
+0
+2
+10
+1
+0
+10
+0
+0
+0
+4
+PARTNER
+
+0
+APPKEY1
+
+0
+APPKEY2
+
+0
+APPKEY3
+
+0
+wca.app
+1
+46
+4
+18
+2
+/Workers Comp:103
+File_Header
+
+0
+16
+2
+10
+1
+1
+6
+20
+3
+/Workers Comp:103/File_Header:2
+Record_ID
+
+0
+16
+0
+1
+0
+3
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+4
+/Workers Comp:103/File_Header:2
+Vendor_Code
+
+0
+16
+0
+1
+0
+2
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+8
+/Workers Comp:103/File_Header:2
+Vendor_Name
+
+0
+16
+0
+1
+0
+12
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+9
+/Workers Comp:103/File_Header:2
+Process_Date
+
+0
+16
+0
+1
+0
+8
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+10
+/Workers Comp:103/File_Header:2
+Cycle_Number
+
+0
+16
+0
+1
+0
+2
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+5
+/Workers Comp:103/File_Header:2
+Filler
+
+0
+16
+0
+1
+0
+105
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+7
+/Workers Comp:103
+Batch_Header
+
+0
+16
+2
+10
+0
+0
+14
+20
+12
+/Workers Comp:103/Batch_Header:7
+Record_ID
+
+0
+16
+0
+1
+0
+3
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+14
+/Workers Comp:103/Batch_Header:7
+Vendor_Code
+
+0
+16
+0
+1
+0
+2
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+15
+/Workers Comp:103/Batch_Header:7
+Batch_Number
+
+0
+16
+0
+1
+0
+10
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+0
+0
+0
++
+-
+20
+16
+/Workers Comp:103/Batch_Header:7
+Seq_number
+
+0
+16
+0
+1
+0
+5
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+17
+/Workers Comp:103/Batch_Header:7
+Receipt_Date
+
+0
+16
+0
+1
+0
+8
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+19
+/Workers Comp:103/Batch_Header:7
+Process_Date
+
+0
+16
+0
+1
+0
+8
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+20
+/Workers Comp:103/Batch_Header:7
+Batch_Net_Pay
+
+0
+16
+0
+1
+0
+11
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+1
+2
+0
+0
++
+-
+20
+21
+/Workers Comp:103/Batch_Header:7
+Net_Pay_Sign
+
+0
+16
+0
+1
+0
+1
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+22
+/Workers Comp:103/Batch_Header:7
+Batch_Count
+
+0
+16
+0
+1
+0
+5
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+0
+0
+0
++
+-
+20
+23
+/Workers Comp:103/Batch_Header:7
+Batch_Trans_Type
+
+0
+16
+0
+1
+0
+4
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+24
+/Workers Comp:103/Batch_Header:7
+Filler
+
+0
+16
+0
+1
+0
+3
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+25
+/Workers Comp:103/Batch_Header:7
+Agent_Code
+
+0
+16
+0
+1
+0
+5
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+27
+/Workers Comp:103/Batch_Header:7
+Payroll_Date
+
+0
+16
+0
+1
+0
+8
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+29
+/Workers Comp:103/Batch_Header:7
+Filler2
+
+0
+16
+0
+1
+0
+59
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+31
+/Workers Comp:103
+Detail
+
+0
+16
+2
+10
+0
+0
+18
+20
+35
+/Workers Comp:103/Detail:31
+Record_ID
+
+0
+16
+0
+1
+0
+3
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+37
+/Workers Comp:103/Detail:31
+Vendor_Code
+
+0
+16
+0
+1
+0
+2
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+39
+/Workers Comp:103/Detail:31
+Batch_Number
+
+0
+16
+0
+1
+0
+10
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+0
+0
+0
++
+-
+20
+41
+/Workers Comp:103/Detail:31
+Seq_number
+
+0
+16
+0
+1
+0
+5
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+0
+0
+0
++
+-
+20
+42
+/Workers Comp:103/Detail:31
+Invoice_ID
+
+0
+16
+0
+1
+0
+20
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+43
+/Workers Comp:103/Detail:31
+Agent_Code
+
+0
+16
+0
+1
+0
+5
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+44
+/Workers Comp:103/Detail:31
+Policy_Symbol
+
+0
+16
+0
+1
+0
+4
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+45
+/Workers Comp:103/Detail:31
+Policy_Number
+
+0
+16
+0
+1
+0
+10
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+47
+/Workers Comp:103/Detail:31
+Receipt_Date
+
+0
+16
+0
+1
+0
+8
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+49
+/Workers Comp:103/Detail:31
+Policy_Date
+
+0
+16
+0
+1
+0
+8
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+51
+/Workers Comp:103/Detail:31
+Gross_Pay
+
+0
+16
+0
+1
+0
+11
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+1
+2
+0
+0
++
+-
+20
+53
+/Workers Comp:103/Detail:31
+Gross_Pay_Sign
+
+0
+16
+0
+1
+0
+1
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+54
+/Workers Comp:103/Detail:31
+Comm_Rate
+
+0
+16
+0
+1
+0
+5
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+1
+4
+0
+0
++
+-
+20
+56
+/Workers Comp:103/Detail:31
+Comm_Amount
+
+0
+16
+0
+1
+0
+11
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+1
+2
+0
+0
++
+-
+20
+58
+/Workers Comp:103/Detail:31
+Comm_Sign
+
+0
+16
+0
+1
+0
+1
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+60
+/Workers Comp:103/Detail:31
+Net_Pay
+
+0
+16
+0
+1
+0
+11
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+1
+2
+0
+0
++
+-
+20
+62
+/Workers Comp:103/Detail:31
+Net_Pay_Sign
+
+0
+16
+0
+1
+0
+1
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+63
+/Workers Comp:103/Detail:31
+Insured_Name
+
+0
+16
+0
+1
+0
+16
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+65
+/Workers Comp:103
+Trailer
+
+0
+16
+2
+10
+1
+1
+19
+20
+67
+/Workers Comp:103/Trailer:65
+Record_ID
+
+0
+16
+0
+1
+0
+3
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+69
+/Workers Comp:103/Trailer:65
+Vendor_Code
+
+0
+16
+0
+1
+0
+2
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+71
+/Workers Comp:103/Trailer:65
+Process_Date
+
+0
+16
+0
+1
+0
+8
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+72
+/Workers Comp:103/Trailer:65
+Bio_Cnt
+
+0
+16
+0
+1
+0
+5
+3
+48
+1
+0
+0
+
+0
+0
+0
+0
+0
+0
+0
+0
++
+-
+20
+74
+/Workers Comp:103/Trailer:65
+Bio_Amt
+
+0
+16
+0
+1
+0
+11
+3
+48
+1
+0
+0
+
+0
+0
+0
+0
+0
+0
+0
+0
++
+-
+20
+76
+/Workers Comp:103/Trailer:65
+Bio_Amt_Sign
+
+0
+16
+0
+1
+0
+1
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+78
+/Workers Comp:103/Trailer:65
+Move_Cnt
+
+0
+16
+0
+1
+0
+5
+3
+48
+1
+0
+0
+
+0
+0
+0
+0
+0
+0
+0
+0
++
+-
+20
+86
+/Workers Comp:103/Trailer:65
+Move_Amt
+
+0
+16
+0
+1
+0
+11
+3
+48
+1
+0
+0
+
+0
+0
+0
+0
+0
+0
+0
+0
++
+-
+20
+81
+/Workers Comp:103/Trailer:65
+Move_Amt_Sign
+
+0
+16
+0
+1
+0
+1
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+83
+/Workers Comp:103/Trailer:65
+Write_off_Cnt
+
+0
+16
+0
+1
+0
+5
+3
+48
+1
+0
+0
+
+0
+0
+0
+0
+0
+0
+0
+0
++
+-
+20
+88
+/Workers Comp:103/Trailer:65
+Write_off_Amt
+
+0
+16
+0
+1
+0
+11
+3
+48
+1
+0
+0
+
+0
+0
+0
+0
+0
+0
+0
+0
++
+-
+20
+90
+/Workers Comp:103/Trailer:65
+Write_off_Amt_Sign
+
+0
+16
+0
+1
+0
+1
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+91
+/Workers Comp:103/Trailer:65
+Pay_Batch_Cnt
+
+0
+16
+0
+1
+0
+5
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+0
+0
+0
++
+-
+20
+93
+/Workers Comp:103/Trailer:65
+Pay_Batch_Amt
+
+0
+16
+0
+1
+0
+11
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+1
+2
+0
+0
++
+-
+20
+95
+/Workers Comp:103/Trailer:65
+Pay_Batch_Amt_Sign
+
+0
+16
+0
+1
+0
+1
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+97
+/Workers Comp:103/Trailer:65
+Bal_Ver_Cnt
+
+0
+16
+0
+1
+0
+5
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+0
+0
+0
++
+-
+20
+99
+/Workers Comp:103/Trailer:65
+Bal_Ver_Amt
+
+0
+16
+0
+1
+0
+11
+3
+48
+1
+0
+0
+
+0
+0
+0
+0
+0
+0
+0
+0
++
+-
+20
+101
+/Workers Comp:103/Trailer:65
+Bal_Ver_Amt_Sign
+
+0
+16
+0
+1
+0
+1
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+103
+/Workers Comp:103/Trailer:65
+Filler
+
+0
+16
+0
+1
+0
+34
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+END DATA
+                                       

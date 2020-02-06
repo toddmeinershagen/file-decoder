@@ -1,0 +1,2530 @@
+BEGIN DATA
+objects|9
+RTM|rate-pa|macro\rate-pa.rtm|@0200N|9283
+MAP|rate-pa|map\rate-pa.map|@0200N|4079
+VW1|rate-pa|map\rate-pa.vw1|@0200N|3327
+VW2|rate-pa|map\rate-pa.vw2|@0200N|2045
+SRC_ADF|ratesrc|map\app\ratesrc.adf||2743
+DST_ADF|rate-pa|map\app\rate-pa.adf||1731
+TST_APP||||0
+UNKNOWN||||0
+FLD||||0
+;----------------------------------------
+;
+; spEDI*map 2.0 - MPL  code generator, Rel r3.0EV
+;
+; User: <not available>    Date: Tue Jun 11 15:43:41 2019
+;
+; Map Definition: PA Rate Map (PA Rate Map)
+;
+;                            Source       Destination         
+;                            ------       -----------         
+;        Name: Rate - Frequency sou ===>> Washington Rate File
+;        Desc: Rate - Frequency sou       UNE WA Rate         
+; EDI Version:                                                
+;    EDI Desc:                                                
+;
+;----------------------------------------
+
+;----------------------------------------
+;
+; User code: Sln / Dln conditionals, FEL Code
+;
+;----------------------------------------
+let RTM_Detail_Record_EACH_0001( RTM_p0, RTM_p1, RTM_p2, RTM_p3, RTM_p4, RTM_p5, RTM_p6, RTM_p7, RTM_p8, RTM_p9 ) = {
+If RTM_p0 = "Applied For" then
+Let ID = "Appliedfor"
+else
+If RTM_p1 = "" then
+Let ID = "Appliedfor"
+else
+Let ID = left(RTM_p2 ,7)
+endif
+endif
+
+Let Zip_length = size(RTM_p3)
+
+Let Phone =  RTM_p4++RTM_p5
+Let Month = left(RTM_p6,2)
+Let Year = right(RTM_p7,4)
+
+If Month = "01" then
+Let Quarter = "1"
+endif
+If Month = "02" then
+Let Quarter = "1"
+endif
+If Month = "03" then
+Let Quarter = "1"
+endif
+If Month = "04" then
+Let Quarter = "2"
+endif
+If Month = "05" then
+Let Quarter = "2"
+endif
+If Month = "06" then
+Let Quarter = "2"
+endif
+If Month = "07" then
+Let Quarter = "3"
+endif
+If Month = "08" then
+Let Quarter = "3"
+endif
+If Month = "09" then
+Let Quarter = "3"
+endif
+If Month = "10" then
+Let Quarter = "4"
+endif
+If Month = "11" then
+Let Quarter = "4"
+endif
+If Month = "12" then
+Let Quarter = "4"
+endif
+If Zip_length > 8 then
+ Let Zip_ext = right(RTM_p8,4)
+else
+ Let Zip_ext = ""
+endif
+
+If RTM_p9 = "N" then
+ Let Status = "Inactive"
+else
+ Let Status = "Active"
+endif
+
+}
+let RTM_SRC_Detail_Record_0002(  ) = {
+RETURN ID
+}
+let RTM_SRC_Detail_Record_0003( RTM_p0 ) = {
+RETURN left(RTM_p0,35)
+}
+let RTM_SRC_Detail_Record_0004( RTM_p0 ) = {
+RETURN left(RTM_p0,35)
+}
+let RTM_SRC_Detail_Record_0005( RTM_p0 ) = {
+RETURN left(RTM_p0,20)
+}
+let RTM_SRC_Detail_Record_0006( RTM_p0 ) = {
+RETURN left(RTM_p0,5)
+}
+let RTM_SRC_Detail_Record_0007(  ) = {
+RETURN "Margaret Amison"
+}
+let RTM_SRC_Detail_Record_0008(  ) = {
+RETURN Status
+}
+
+;----------------------------------------
+
+
+;----------------------------------------
+;
+; Driver code: for alpha this will manually
+; load the data file and the map definition.
+; Eventually this will be replaced with the
+; AppScan inbound/outbound queue support.
+;
+; (AppScan will also provide the name of the batch file
+; but until it is online, we'll have to make do
+; with deriving a name from the map-def: 'outbound\rate-pa.dat'.)
+;
+;----------------------------------------
+
+LET RTM_RESULT = RUN_MAP("outbound\rate-pa.dat")
+IF RTM_RESULT <> 1 THEN
+   ECHO "Unable to test map."
+   END 1
+ENDIF
+ECHO "Macro PA Rate Map completed."
+END 0
+$RTIME:BEGIN
+@0200N
+33
+29
+NULL_REF
+PA Rate Map
+PA Rate Map
+0
+2048
+17
+ratesrc.adf
+17
+rate-pa.adf
+0
+0
+11
+4132
+1
+/PA Rate Map:29
+LIT_0
+,
+0
+0
+4132
+2
+/PA Rate Map:29
+LIT_0
+Active
+0
+0
+8228
+3
+/PA Rate Map:29
+ID
+desc
+0
+0
+8228
+4
+/PA Rate Map:29
+Month
+desc
+0
+0
+8228
+5
+/PA Rate Map:29
+Phone
+desc
+0
+0
+8228
+6
+/PA Rate Map:29
+Quarter
+desc
+0
+0
+8228
+7
+/PA Rate Map:29
+Status
+desc
+0
+0
+4132
+8
+/PA Rate Map:29
+LIT_0
+US
+0
+0
+8228
+9
+/PA Rate Map:29
+Year
+desc
+0
+0
+8228
+10
+/PA Rate Map:29
+Zip_ext
+desc
+0
+0
+8228
+11
+/PA Rate Map:29
+Zip_length
+desc
+0
+0
+1
+32770
+12
+/PA Rate Map:29
+Detail_Record
+SLN Based on Detail_Record(View container)
+0
+0
+0
+333
+333
+444
+64
+If Tax_ID_Account_Number = "Applied For" then
+Let ID = "Appliedfor"
+else
+If Tax_ID_Account_Number = "" then
+Let ID = "Appliedfor"
+else
+Let ID = left(Tax_ID_Account_Number ,7)
+endif
+endif
+
+Let Zip_length = size(Client_Zip_Code)
+
+Let Phone =  Contact_phone_area_code++Contact_Phone_Number
+Let Month = left(Effective_Date,2)
+Let Year = right(Effective_Date,4)
+
+If Month = "01" then
+Let Quarter = "1"
+endif
+If Month = "02" then
+Let Quarter = "1"
+endif
+If Month = "03" then
+Let Quarter = "1"
+endif
+If Month = "04" then
+Let Quarter = "2"
+endif
+If Month = "05" then
+Let Quarter = "2"
+endif
+If Month = "06" then
+Let Quarter = "2"
+endif
+If Month = "07" then
+Let Quarter = "3"
+endif
+If Month = "08" then
+Let Quarter = "3"
+endif
+If Month = "09" then
+Let Quarter = "3"
+endif
+If Month = "10" then
+Let Quarter = "4"
+endif
+If Month = "11" then
+Let Quarter = "4"
+endif
+If Month = "12" then
+Let Quarter = "4"
+endif
+If Zip_length > 8 then
+ Let Zip_ext = right(Client_Zip_Code,4)
+else
+ Let Zip_ext = ""
+endif
+
+If Contact_Fax_Number = "N" then
+ Let Status = "Inactive"
+else
+ Let Status = "Active"
+endif
+
+RTM_Detail_Record_EACH_0001
+10
+1
+3
+21
+132
+0
+/Rate - Frequency source file:34/Detail_Record:2/Tax_ID_Account_Number:22
+4
+3
+21
+132
+0
+/Rate - Frequency source file:34/Detail_Record:2/Tax_ID_Account_Number:22
+7
+14
+21
+132
+0
+/Rate - Frequency source file:34/Detail_Record:2/Tax_ID_Account_Number:22
+11
+22
+15
+132
+0
+/Rate - Frequency source file:34/Detail_Record:2/Client_Zip_Code:14
+13
+13
+23
+132
+0
+/Rate - Frequency source file:34/Detail_Record:2/Contact_phone_area_code:29
+13
+38
+20
+132
+0
+/Rate - Frequency source file:34/Detail_Record:2/Contact_Phone_Number:26
+14
+17
+14
+132
+0
+/Rate - Frequency source file:34/Detail_Record:2/Effective_Date:34
+15
+17
+14
+132
+0
+/Rate - Frequency source file:34/Detail_Record:2/Effective_Date:34
+54
+21
+15
+132
+0
+/Rate - Frequency source file:34/Detail_Record:2/Client_Zip_Code:14
+59
+3
+18
+132
+0
+/Rate - Frequency source file:34/Detail_Record:2/Contact_Fax_Number:28
+333
+Detail_Record
+Detail_Record
+17
+0
+18
+/Rate - Frequency source file:34/Detail_Record:2
+18
+/Washington Rate File:54/Detail_Record:2
+32772
+13
+/PA Rate Map:29/Detail_Record:12
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN ID
+RTM_SRC_Detail_Record_0002
+0
+20
+/Rate - Frequency source file:34/Detail_Record:2/Tax_ID_Account_Number:22
+20
+/Washington Rate File:54/Detail_Record:2/ER_Acct_Number:7
+32772
+14
+/PA Rate Map:29/Detail_Record:12
+
+
+0
+0
+1
+0
+333
+333
+4132
+/PA Rate Map:29/LIT_0:1
+20
+/Washington Rate File:54/Detail_Record:2/Delimiter:51
+32772
+15
+/PA Rate Map:29/Detail_Record:12
+
+
+0
+0
+1
+0
+333
+333
+20
+/Rate - Frequency source file:34/Detail_Record:2/Client_Legal_Name:6
+20
+/Washington Rate File:54/Detail_Record:2/ER_Name:36
+32772
+16
+/PA Rate Map:29/Detail_Record:12
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN left(Client_Address_1,35)
+RTM_SRC_Detail_Record_0003
+1
+1
+12
+16
+132
+0
+/Rate - Frequency source file:34/Detail_Record:2/Client_Address_1:9
+20
+/Rate - Frequency source file:34/Detail_Record:2/Client_Address_1:9
+20
+/Washington Rate File:54/Detail_Record:2/ER_Address:38
+32772
+17
+/PA Rate Map:29/Detail_Record:12
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN left(Client_Address_2,35)
+RTM_SRC_Detail_Record_0004
+1
+1
+12
+16
+132
+0
+/Rate - Frequency source file:34/Detail_Record:2/Client_Address_2:11
+20
+/Rate - Frequency source file:34/Detail_Record:2/Client_Address_2:11
+20
+/Washington Rate File:54/Detail_Record:2/ER_Address_2:41
+32772
+18
+/PA Rate Map:29/Detail_Record:12
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN left(Client_city,20)
+RTM_SRC_Detail_Record_0005
+1
+1
+12
+11
+132
+0
+/Rate - Frequency source file:34/Detail_Record:2/Client_city:12
+20
+/Rate - Frequency source file:34/Detail_Record:2/Client_city:12
+20
+/Washington Rate File:54/Detail_Record:2/ER_City:39
+32772
+19
+/PA Rate Map:29/Detail_Record:12
+
+
+0
+0
+1
+0
+333
+333
+20
+/Rate - Frequency source file:34/Detail_Record:2/Client_state:13
+20
+/Washington Rate File:54/Detail_Record:2/ER_State:43
+32772
+20
+/PA Rate Map:29/Detail_Record:12
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN left(Client_Zip_Code,5)
+RTM_SRC_Detail_Record_0006
+1
+1
+12
+15
+132
+0
+/Rate - Frequency source file:34/Detail_Record:2/Client_Zip_Code:14
+20
+/Rate - Frequency source file:34/Detail_Record:2/Client_Zip_Code:14
+20
+/Washington Rate File:54/Detail_Record:2/ER_Zip:44
+32772
+21
+/PA Rate Map:29/Detail_Record:12
+
+
+0
+0
+1
+0
+333
+333
+4132
+/PA Rate Map:29/LIT_0:1
+20
+/Washington Rate File:54/Detail_Record:2/Delimiter2:49
+32772
+22
+/PA Rate Map:29/Detail_Record:12
+
+
+0
+0
+1
+0
+333
+333
+20
+/Rate - Frequency source file:34/Detail_Record:2/FEIN:5
+20
+/Washington Rate File:54/Detail_Record:2/FEIN:11
+32772
+23
+/PA Rate Map:29/Detail_Record:12
+
+
+0
+0
+1
+0
+333
+333
+8228
+/PA Rate Map:29/Phone:5
+20
+/Washington Rate File:54/Detail_Record:2/ER_Phone:46
+32772
+24
+/PA Rate Map:29/Detail_Record:12
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "Margaret Amison"
+RTM_SRC_Detail_Record_0007
+0
+20
+/Rate - Frequency source file:34/Detail_Record:2/Contact_Name:24
+20
+/Washington Rate File:54/Detail_Record:2/Contact:33
+32772
+25
+/PA Rate Map:29/Detail_Record:12
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN Status
+RTM_SRC_Detail_Record_0008
+0
+20
+/Rate - Frequency source file:34/Detail_Record:2/Contact_Fax_Number:28
+20
+/Washington Rate File:54/Detail_Record:2/ER_Account_Status:48
+32772
+26
+/PA Rate Map:29/Detail_Record:12
+
+
+0
+0
+1
+0
+333
+333
+8228
+/PA Rate Map:29/Quarter:6
+20
+/Washington Rate File:54/Detail_Record:2/Quarter:47
+32772
+27
+/PA Rate Map:29/Detail_Record:12
+
+
+0
+0
+1
+0
+333
+333
+8228
+/PA Rate Map:29/Year:9
+20
+/Washington Rate File:54/Detail_Record:2/Year:35
+32772
+28
+/PA Rate Map:29/Detail_Record:12
+
+
+0
+0
+1
+0
+333
+333
+8228
+/PA Rate Map:29/Zip_ext:10
+20
+/Washington Rate File:54/Detail_Record:2/Zip_4:53
+32772
+29
+/PA Rate Map:29/Detail_Record:12
+
+
+0
+0
+1
+0
+333
+333
+4132
+/PA Rate Map:29/LIT_0:8
+20
+/Washington Rate File:54/Detail_Record:2/Country_Code:54
+$RTIME:END
+@0200N
+33
+12
+NULL_REF
+PA Rate Map
+PA Rate Map
+0
+2048
+rate-pa.vw1
+rate-pa.vw2
+0
+0
+11
+4132
+8
+/PA Rate Map:12
+LIT_0
+,
+0
+0
+4132
+3
+/PA Rate Map:12
+LIT_0
+Active
+0
+0
+8228
+7
+/PA Rate Map:12
+ID
+desc
+0
+0
+8228
+6
+/PA Rate Map:12
+Month
+desc
+0
+0
+8228
+2
+/PA Rate Map:12
+Phone
+desc
+0
+0
+8228
+4
+/PA Rate Map:12
+Quarter
+desc
+0
+0
+8228
+9
+/PA Rate Map:12
+Status
+desc
+0
+0
+4132
+10
+/PA Rate Map:12
+LIT_0
+US
+0
+0
+8228
+5
+/PA Rate Map:12
+Year
+desc
+0
+0
+8228
+11
+/PA Rate Map:12
+Zip_ext
+desc
+0
+0
+8228
+12
+/PA Rate Map:12
+Zip_length
+desc
+0
+0
+17
+36
+1
+/PA Rate Map:12
+Map Link
+
+0
+0
+
+ID
+1
+0
+0
+52
+If Tax_ID_Account_Number = "Applied For" then
+Let ID = "Appliedfor"
+else
+If Tax_ID_Account_Number = "" then
+Let ID = "Appliedfor"
+else
+Let ID = left(Tax_ID_Account_Number ,7)
+endif
+endif
+
+Let Zip_length = size(Client_Zip_Code)
+
+Let Phone =  Contact_phone_area_code++Contact_Phone_Number
+Let Month = left(Effective_Date,2)
+Let Year = right(Effective_Date,4)
+
+If Month = "01" then
+Let Quarter = "1"
+endif
+If Month = "02" then
+Let Quarter = "1"
+endif
+If Month = "03" then
+Let Quarter = "1"
+endif
+If Month = "04" then
+Let Quarter = "2"
+endif
+If Month = "05" then
+Let Quarter = "2"
+endif
+If Month = "06" then
+Let Quarter = "2"
+endif
+If Month = "07" then
+Let Quarter = "3"
+endif
+If Month = "08" then
+Let Quarter = "3"
+endif
+If Month = "09" then
+Let Quarter = "3"
+endif
+If Month = "10" then
+Let Quarter = "4"
+endif
+If Month = "11" then
+Let Quarter = "4"
+endif
+If Month = "12" then
+Let Quarter = "4"
+endif
+0
+132
+/PA Rate Map:26/Detail_Record:2/Tax_ID_Account_Number:18
+132
+/PA Rate Map:19/Detail_Record:2/ER_Acct_Number:3
+36
+1
+/PA Rate Map:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+4132
+/PA Rate Map:12/LIT_0:8
+132
+/PA Rate Map:19/Detail_Record:2/Delimiter:17
+36
+1
+/PA Rate Map:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/PA Rate Map:26/Detail_Record:2/Client_Legal_Name:6
+132
+/PA Rate Map:19/Detail_Record:2/ER_Name:4
+36
+1
+/PA Rate Map:12
+Map Link
+
+0
+0
+
+left(Client_Address_1,35)
+1
+0
+0
+0
+0
+132
+/PA Rate Map:26/Detail_Record:2/Client_Address_1:8
+132
+/PA Rate Map:19/Detail_Record:2/ER_Address:5
+36
+1
+/PA Rate Map:12
+Map Link
+
+0
+0
+
+left(Client_Address_2,35)
+1
+0
+0
+0
+0
+132
+/PA Rate Map:26/Detail_Record:2/Client_Address_2:9
+132
+/PA Rate Map:19/Detail_Record:2/ER_Address_2:6
+36
+1
+/PA Rate Map:12
+Map Link
+
+0
+0
+
+left(Client_city,20)
+1
+0
+0
+0
+0
+132
+/PA Rate Map:26/Detail_Record:2/Client_city:10
+132
+/PA Rate Map:19/Detail_Record:2/ER_City:7
+36
+1
+/PA Rate Map:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/PA Rate Map:26/Detail_Record:2/Client_state:11
+132
+/PA Rate Map:19/Detail_Record:2/ER_State:8
+36
+1
+/PA Rate Map:12
+Map Link
+
+0
+0
+
+left(Client_Zip_Code,5)
+1
+0
+0
+6
+If Zip_length > 8 then
+ Let Zip_ext = right(Client_Zip_Code,4)
+else
+ Let Zip_ext = ""
+endif
+
+0
+132
+/PA Rate Map:26/Detail_Record:2/Client_Zip_Code:12
+132
+/PA Rate Map:19/Detail_Record:2/ER_Zip:9
+36
+1
+/PA Rate Map:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+4132
+/PA Rate Map:12/LIT_0:8
+132
+/PA Rate Map:19/Detail_Record:2/Delimiter2:16
+36
+1
+/PA Rate Map:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/PA Rate Map:26/Detail_Record:2/FEIN:5
+132
+/PA Rate Map:19/Detail_Record:2/FEIN:10
+36
+1
+/PA Rate Map:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+8228
+/PA Rate Map:12/Phone:2
+132
+/PA Rate Map:19/Detail_Record:2/ER_Phone:11
+36
+1
+/PA Rate Map:12
+Map Link
+
+0
+0
+
+"Margaret Amison"
+1
+0
+0
+0
+0
+132
+/PA Rate Map:26/Detail_Record:2/Contact_Name:20
+132
+/PA Rate Map:19/Detail_Record:2/Contact:12
+36
+1
+/PA Rate Map:12
+Map Link
+
+0
+0
+
+Status
+1
+0
+0
+6
+If Contact_Fax_Number = "N" then
+ Let Status = "Inactive"
+else
+ Let Status = "Active"
+endif
+
+0
+132
+/PA Rate Map:26/Detail_Record:2/Contact_Fax_Number:25
+132
+/PA Rate Map:19/Detail_Record:2/ER_Account_Status:13
+36
+1
+/PA Rate Map:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+8228
+/PA Rate Map:12/Quarter:4
+132
+/PA Rate Map:19/Detail_Record:2/Quarter:14
+36
+1
+/PA Rate Map:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+8228
+/PA Rate Map:12/Year:5
+132
+/PA Rate Map:19/Detail_Record:2/Year:15
+36
+1
+/PA Rate Map:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+8228
+/PA Rate Map:12/Zip_ext:11
+132
+/PA Rate Map:19/Detail_Record:2/Zip_4:18
+36
+1
+/PA Rate Map:12
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+4132
+/PA Rate Map:12/LIT_0:10
+132
+/PA Rate Map:19/Detail_Record:2/Country_Code:19
+@0200N
+129
+26
+NULL_REF
+PA Rate Map
+View of: PA Rate Map
+0
+0
+17
+ratesrc.adf
+rate-pa.vw1
+1
+130
+2
+/PA Rate Map:26
+Detail_Record
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2
+
+1
+24
+132
+3
+/PA Rate Map:26/Detail_Record:2
+Partner_ID
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Partner_ID:3
+
+
+132
+4
+/PA Rate Map:26/Detail_Record:2
+Client_Number
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Client_Number:4
+
+
+132
+5
+/PA Rate Map:26/Detail_Record:2
+FEIN
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/FEIN:5
+
+
+132
+6
+/PA Rate Map:26/Detail_Record:2
+Client_Legal_Name
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Client_Legal_Name:6
+
+
+132
+7
+/PA Rate Map:26/Detail_Record:2
+Client_DBA_Name
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Client_DBA_Name:8
+
+
+132
+8
+/PA Rate Map:26/Detail_Record:2
+Client_Address_1
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Client_Address_1:9
+
+
+132
+9
+/PA Rate Map:26/Detail_Record:2
+Client_Address_2
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Client_Address_2:11
+
+
+132
+10
+/PA Rate Map:26/Detail_Record:2
+Client_city
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Client_city:12
+
+
+132
+11
+/PA Rate Map:26/Detail_Record:2
+Client_state
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Client_state:13
+
+
+132
+12
+/PA Rate Map:26/Detail_Record:2
+Client_Zip_Code
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Client_Zip_Code:14
+
+
+132
+13
+/PA Rate Map:26/Detail_Record:2
+Foreign_Address_Indicator
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Foreign_Address_Indicator:15
+
+
+132
+14
+/PA Rate Map:26/Detail_Record:2
+Tax_Type
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Tax_Type:16
+
+
+132
+15
+/PA Rate Map:26/Detail_Record:2
+Tax_Code
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Tax_Code:18
+
+
+132
+16
+/PA Rate Map:26/Detail_Record:2
+Tax_Rate
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Tax_Rate:20
+
+
+132
+17
+/PA Rate Map:26/Detail_Record:2
+Deposit_Frequency_Code
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Deposit_Frequency_Code:21
+
+
+132
+18
+/PA Rate Map:26/Detail_Record:2
+Tax_ID_Account_Number
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Tax_ID_Account_Number:22
+
+
+132
+19
+/PA Rate Map:26/Detail_Record:2
+EFT_Indicator
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/EFT_Indicator:23
+
+
+132
+20
+/PA Rate Map:26/Detail_Record:2
+Contact_Name
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Contact_Name:24
+
+
+132
+21
+/PA Rate Map:26/Detail_Record:2
+Contact_phone_area_code
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Contact_phone_area_code:29
+
+
+132
+22
+/PA Rate Map:26/Detail_Record:2
+Contact_Phone_Number
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Contact_Phone_Number:26
+
+
+132
+23
+/PA Rate Map:26/Detail_Record:2
+Contact_Phone_Extension
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Contact_Phone_Extension:31
+
+
+132
+24
+/PA Rate Map:26/Detail_Record:2
+Contact_fax_area_code
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Contact_fax_area_code:33
+
+
+132
+25
+/PA Rate Map:26/Detail_Record:2
+Contact_Fax_Number
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Contact_Fax_Number:28
+
+
+132
+26
+/PA Rate Map:26/Detail_Record:2
+Effective_Date
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Effective_Date:34
+
+
+@0200N
+129
+19
+NULL_REF
+PA Rate Map
+View of: PA Rate Map
+0
+0
+17
+rate-pa.adf
+rate-pa.vw2
+1
+130
+2
+/PA Rate Map:19
+Detail_Record
+
+0
+16
+/Washington Rate File:54/Detail_Record:2
+
+1
+17
+132
+3
+/PA Rate Map:19/Detail_Record:2
+ER_Acct_Number
+
+0
+16
+/Washington Rate File:54/Detail_Record:2/ER_Acct_Number:7
+
+
+132
+17
+/PA Rate Map:19/Detail_Record:2
+Delimiter
+
+0
+16
+/Washington Rate File:54/Detail_Record:2/Delimiter:51
+
+
+132
+4
+/PA Rate Map:19/Detail_Record:2
+ER_Name
+
+0
+16
+/Washington Rate File:54/Detail_Record:2/ER_Name:36
+
+
+132
+5
+/PA Rate Map:19/Detail_Record:2
+ER_Address
+
+0
+16
+/Washington Rate File:54/Detail_Record:2/ER_Address:38
+
+
+132
+6
+/PA Rate Map:19/Detail_Record:2
+ER_Address_2
+
+0
+16
+/Washington Rate File:54/Detail_Record:2/ER_Address_2:41
+
+
+132
+7
+/PA Rate Map:19/Detail_Record:2
+ER_City
+
+0
+16
+/Washington Rate File:54/Detail_Record:2/ER_City:39
+
+
+132
+8
+/PA Rate Map:19/Detail_Record:2
+ER_State
+
+0
+16
+/Washington Rate File:54/Detail_Record:2/ER_State:43
+
+
+132
+9
+/PA Rate Map:19/Detail_Record:2
+ER_Zip
+
+0
+16
+/Washington Rate File:54/Detail_Record:2/ER_Zip:44
+
+
+132
+16
+/PA Rate Map:19/Detail_Record:2
+Delimiter2
+
+0
+16
+/Washington Rate File:54/Detail_Record:2/Delimiter2:49
+
+
+132
+10
+/PA Rate Map:19/Detail_Record:2
+FEIN
+
+0
+16
+/Washington Rate File:54/Detail_Record:2/FEIN:11
+
+
+132
+11
+/PA Rate Map:19/Detail_Record:2
+ER_Phone
+
+0
+16
+/Washington Rate File:54/Detail_Record:2/ER_Phone:46
+
+
+132
+12
+/PA Rate Map:19/Detail_Record:2
+Contact
+
+0
+16
+/Washington Rate File:54/Detail_Record:2/Contact:33
+
+
+132
+13
+/PA Rate Map:19/Detail_Record:2
+ER_Account_Status
+
+0
+16
+/Washington Rate File:54/Detail_Record:2/ER_Account_Status:48
+
+
+132
+14
+/PA Rate Map:19/Detail_Record:2
+Quarter
+
+0
+16
+/Washington Rate File:54/Detail_Record:2/Quarter:47
+
+
+132
+15
+/PA Rate Map:19/Detail_Record:2
+Year
+
+0
+16
+/Washington Rate File:54/Detail_Record:2/Year:35
+
+
+132
+18
+/PA Rate Map:19/Detail_Record:2
+Zip_4
+
+0
+16
+/Washington Rate File:54/Detail_Record:2/Zip_4:53
+
+
+132
+19
+/PA Rate Map:19/Detail_Record:2
+Country_Code
+
+0
+16
+/Washington Rate File:54/Detail_Record:2/Country_Code:54
+
+
+@0200N
+17
+34
+NULL_REF
+Rate - Frequency source file
+Rate - Frequency source file
+0
+0
+2
+10
+2
+44
+0
+0
+0
+4
+PARTNER
+
+3
+APPKEY1
+
+0
+APPKEY2
+
+0
+APPKEY3
+
+0
+ratefreq.app
+1
+46
+1
+18
+2
+/Rate - Frequency source file:34
+Detail_Record
+
+0
+16
+2
+10
+1
+0
+24
+20
+3
+/Rate - Frequency source file:34/Detail_Record:2
+Partner_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+4
+/Rate - Frequency source file:34/Detail_Record:2
+Client_Number
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+5
+/Rate - Frequency source file:34/Detail_Record:2
+FEIN
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+6
+/Rate - Frequency source file:34/Detail_Record:2
+Client_Legal_Name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+8
+/Rate - Frequency source file:34/Detail_Record:2
+Client_DBA_Name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+9
+/Rate - Frequency source file:34/Detail_Record:2
+Client_Address_1
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+11
+/Rate - Frequency source file:34/Detail_Record:2
+Client_Address_2
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+12
+/Rate - Frequency source file:34/Detail_Record:2
+Client_city
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+13
+/Rate - Frequency source file:34/Detail_Record:2
+Client_state
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+14
+/Rate - Frequency source file:34/Detail_Record:2
+Client_Zip_Code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+15
+/Rate - Frequency source file:34/Detail_Record:2
+Foreign_Address_Indicator
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+16
+/Rate - Frequency source file:34/Detail_Record:2
+Tax_Type
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+18
+/Rate - Frequency source file:34/Detail_Record:2
+Tax_Code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+20
+/Rate - Frequency source file:34/Detail_Record:2
+Tax_Rate
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+8
+0
+0
++
+-
+20
+21
+/Rate - Frequency source file:34/Detail_Record:2
+Deposit_Frequency_Code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+22
+/Rate - Frequency source file:34/Detail_Record:2
+Tax_ID_Account_Number
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+23
+/Rate - Frequency source file:34/Detail_Record:2
+EFT_Indicator
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+24
+/Rate - Frequency source file:34/Detail_Record:2
+Contact_Name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+29
+/Rate - Frequency source file:34/Detail_Record:2
+Contact_phone_area_code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+26
+/Rate - Frequency source file:34/Detail_Record:2
+Contact_Phone_Number
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+31
+/Rate - Frequency source file:34/Detail_Record:2
+Contact_Phone_Extension
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+33
+/Rate - Frequency source file:34/Detail_Record:2
+Contact_fax_area_code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+28
+/Rate - Frequency source file:34/Detail_Record:2
+Contact_Fax_Number
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+34
+/Rate - Frequency source file:34/Detail_Record:2
+Effective_Date
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+@0200N
+17
+54
+NULL_REF
+Washington Rate File
+UNE WA Rate
+0
+0
+2
+10
+2
+44
+0
+0
+0
+4
+PARTNER
+
+0
+APPKEY1
+
+0
+APPKEY2
+
+0
+APPKEY3
+
+0
+ratefreq.app
+1
+46
+1
+18
+2
+/Washington Rate File:54
+Detail_Record
+
+0
+16
+2
+10
+1
+0
+17
+20
+7
+/Washington Rate File:54/Detail_Record:2
+ER_Acct_Number
+
+0
+16
+0
+1
+0
+10
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+51
+/Washington Rate File:54/Detail_Record:2
+Delimiter
+
+0
+16
+0
+1
+0
+1
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+36
+/Washington Rate File:54/Detail_Record:2
+ER_Name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+38
+/Washington Rate File:54/Detail_Record:2
+ER_Address
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+41
+/Washington Rate File:54/Detail_Record:2
+ER_Address_2
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+39
+/Washington Rate File:54/Detail_Record:2
+ER_City
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+43
+/Washington Rate File:54/Detail_Record:2
+ER_State
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+44
+/Washington Rate File:54/Detail_Record:2
+ER_Zip
+
+0
+16
+0
+1
+0
+8
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+49
+/Washington Rate File:54/Detail_Record:2
+Delimiter2
+
+0
+16
+0
+1
+0
+1
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+11
+/Washington Rate File:54/Detail_Record:2
+FEIN
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+46
+/Washington Rate File:54/Detail_Record:2
+ER_Phone
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+33
+/Washington Rate File:54/Detail_Record:2
+Contact
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+48
+/Washington Rate File:54/Detail_Record:2
+ER_Account_Status
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+47
+/Washington Rate File:54/Detail_Record:2
+Quarter
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+35
+/Washington Rate File:54/Detail_Record:2
+Year
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+53
+/Washington Rate File:54/Detail_Record:2
+Zip_4
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+54
+/Washington Rate File:54/Detail_Record:2
+Country_Code
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+END DATA
+d               

@@ -1,0 +1,8853 @@
+BEGIN DATA
+objects|9
+RTM|w3me|macro\w3me.rtm|@0200N|9743
+MAP|w3me|map\w3me.map|@0200N|4632
+VW1|w3me|map\w3me.vw1|@0200N|42717
+VW2|w3me|map\w3me.vw2|@0200N|4280
+SRC_ADF|w2src|map\app\w2src.adf||30422
+DST_ADF|w3me|map\app\w3me.adf||3367
+TST_APP||||0
+UNKNOWN||||0
+FLD||||0
+;----------------------------------------
+;
+; spEDI*map 2.0 - MPL  code generator, Rel r3.0EV
+;
+; User: <not available>    Date: Fri Feb 15 14:02:32 2008
+;
+; Map Definition: W3 Maine (W3 Maine)
+;
+;                            Source       Destination         
+;                            ------       -----------         
+;        Name: W2 Electronic Data E ===>> W3 Maine            
+;        Desc: W2 Electronic Data E       W3 Maine            
+; EDI Version:                                                
+;    EDI Desc:                                                
+;
+;----------------------------------------
+
+;----------------------------------------
+;
+; User code: Sln / Dln conditionals, FEL Code
+;
+;----------------------------------------
+let RTM_Submitter_record_EACH_0001( RTM_p0, RTM_p1 ) = {
+Let Payee = RTM_p0
+Let Payee_ID = RTM_p1
+}
+let RTM_SRC_Submitter_record_0002(  ) = {
+RETURN "A"
+}
+let RTM_SRC_Submitter_record_0003(  ) = {
+RETURN "W3ME"
+}
+let RTM_SRC_Submitter_record_0004(  ) = {
+RETURN ""
+}
+let RTM_SRC_Total_Record_0005(  ) = {
+RETURN "E"
+}
+let RTM_SRC_Total_Record_0006(  ) = {
+RETURN "W3ME"
+}
+let RTM_SRC_Total_Record_0007(  ) = {
+RETURN "N"
+}
+let RTM_SRC_Final_Record_0008(  ) = {
+RETURN "F"
+}
+let RTM_SRC_Final_Record_0009(  ) = {
+RETURN "W3ME"
+}
+let RTM_SRC_Final_Record_0010(  ) = {
+RETURN "1"
+}
+let RTM_SRC_Final_Record_0011(  ) = {
+RETURN ""
+}
+
+;----------------------------------------
+
+
+;----------------------------------------
+;
+; Driver code: for alpha this will manually
+; load the data file and the map definition.
+; Eventually this will be replaced with the
+; AppScan inbound/outbound queue support.
+;
+; (AppScan will also provide the name of the batch file
+; but until it is online, we'll have to make do
+; with deriving a name from the map-def: 'outbound\w3me.dat'.)
+;
+;----------------------------------------
+
+LET RTM_RESULT = RUN_MAP("outbound\w3me.dat")
+IF RTM_RESULT <> 1 THEN
+   ECHO "Unable to test map."
+   END 1
+ENDIF
+ECHO "Macro W3 Maine completed."
+END 0
+$RTIME:BEGIN
+@0200N
+33
+45
+NULL_REF
+W3 Maine
+W3 Maine
+0
+2048
+17
+w2src.adf
+17
+w3me.adf
+0
+0
+3
+8228
+1
+/W3 Maine:45
+Payee
+desc
+0
+0
+8228
+2
+/W3 Maine:45
+Payee_ID
+desc
+0
+0
+8228
+3
+/W3 Maine:45
+SWH
+desc
+0
+0
+3
+32770
+4
+/W3 Maine:45
+Submitter_record
+SLN Based on Submitter_record(View container)
+0
+0
+0
+333
+333
+444
+2
+Let Payee = Paycor_Legal_Name
+Let Payee_ID = Paycor_Federal_ID
+RTM_Submitter_record_EACH_0001
+2
+1
+12
+17
+132
+0
+/W2 Electronic Data Extract:350/Submitter_record:2/Paycor_Legal_Name:10
+2
+15
+17
+132
+0
+/W2 Electronic Data Extract:350/Submitter_record:2/Paycor_Federal_ID:5
+333
+Submitter_record
+Header_record
+8
+0
+18
+/W2 Electronic Data Extract:350/Submitter_record:2
+18
+/W3 Maine:156/Header_record:2
+32772
+5
+/W3 Maine:45/Submitter_record:4
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "A"
+RTM_SRC_Submitter_record_0002
+0
+20
+/W2 Electronic Data Extract:350/Submitter_record:2/Record_Identifier:4
+20
+/W3 Maine:156/Header_record:2/Record_ID:3
+32770
+6
+/W3 Maine:45/Submitter_record:4
+Employer_Record
+SLN Based on Employer_Record(View container)
+0
+0
+0
+333
+333
+333
+333
+Employer_Record
+
+1
+0
+18
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30
+0
+NULL_REF
+32772
+7
+/W3 Maine:45/Submitter_record:4/Employer_Record:6
+
+
+0
+0
+1
+0
+333
+333
+20
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Tax_Year:33
+20
+/W3 Maine:156/Header_record:2/Payment_Year:47
+32772
+8
+/W3 Maine:45/Submitter_record:4
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "W3ME"
+RTM_SRC_Submitter_record_0003
+0
+20
+/W2 Electronic Data Extract:350/Submitter_record:2/Record_Identifier:4
+20
+/W3 Maine:156/Header_record:2/Taxing_Entity_Code:115
+32772
+9
+/W3 Maine:45/Submitter_record:4
+
+
+0
+0
+1
+0
+333
+333
+20
+/W2 Electronic Data Extract:350/Submitter_record:2/Paycor_Federal_ID:5
+20
+/W3 Maine:156/Header_record:2/Transmitters_Fed_ID_Number:116
+32772
+10
+/W3 Maine:45/Submitter_record:4
+
+
+0
+0
+1
+0
+333
+333
+20
+/W2 Electronic Data Extract:350/Submitter_record:2/Paycor_Legal_Name:10
+20
+/W3 Maine:156/Header_record:2/Transmitter_Name:112
+32772
+11
+/W3 Maine:45/Submitter_record:4
+
+
+0
+0
+1
+0
+333
+333
+20
+/W2 Electronic Data Extract:350/Submitter_record:2/Paycor_Transmission_Contact_Name:24
+20
+/W3 Maine:156/Header_record:2/Transmitter_Contact:118
+32772
+12
+/W3 Maine:45/Submitter_record:4
+
+
+0
+0
+1
+0
+333
+333
+20
+/W2 Electronic Data Extract:350/Submitter_record:2/Paycor_Contact_Phone_Number:26
+20
+/W3 Maine:156/Header_record:2/Transmitter_Contact_Telephone_Number:120
+32772
+13
+/W3 Maine:45/Submitter_record:4
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN ""
+RTM_SRC_Submitter_record_0004
+0
+20
+/W2 Electronic Data Extract:350/Submitter_record:2/Record_Identifier:4
+20
+/W3 Maine:156/Header_record:2/Carriage_Return:153
+32770
+14
+/W3 Maine:45
+Total_Record
+SLN Based on Total_Record(View container)
+0
+0
+0
+333
+333
+333
+333
+Total_Record
+Detail_record
+11
+0
+18
+/W2 Electronic Data Extract:350/Total_Record:187
+18
+/W3 Maine:156/Detail_record:15
+32772
+15
+/W3 Maine:45/Total_Record:14
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "E"
+RTM_SRC_Total_Record_0005
+0
+20
+/W2 Electronic Data Extract:350/Total_Record:187/Record_Identifier:189
+20
+/W3 Maine:156/Detail_record:15/Record_ID:28
+32770
+16
+/W3 Maine:45/Total_Record:14
+Submitter_record
+SLN Based on Submitter_record(View container)
+0
+0
+0
+333
+333
+333
+333
+Submitter_record
+
+1
+0
+18
+/W2 Electronic Data Extract:350/Submitter_record:2
+0
+NULL_REF
+32770
+17
+/W3 Maine:45/Total_Record:14/Submitter_record:16
+Employer_Record
+SLN Based on Employer_Record(View container)
+0
+0
+0
+333
+333
+333
+333
+Employer_Record
+
+2
+0
+18
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30
+0
+NULL_REF
+32772
+18
+/W3 Maine:45/Total_Record:14/Submitter_record:16/Employer_Record:17
+
+
+0
+0
+1
+0
+333
+333
+20
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Tax_Year:33
+20
+/W3 Maine:156/Detail_record:15/Payment_Year:126
+32772
+21
+/W3 Maine:45/Total_Record:14/Submitter_record:16/Employer_Record:17
+
+
+0
+0
+1
+0
+333
+333
+20
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employer_Name:36
+20
+/W3 Maine:156/Detail_record:15/Client_Name:21
+32772
+19
+/W3 Maine:45/Total_Record:14
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "W3ME"
+RTM_SRC_Total_Record_0006
+0
+20
+/W2 Electronic Data Extract:350/Total_Record:187/Record_Identifier:189
+20
+/W3 Maine:156/Detail_record:15/Taxing_Entity_Code:128
+32772
+20
+/W3 Maine:45/Total_Record:14
+
+
+0
+0
+1
+0
+333
+333
+20
+/W2 Electronic Data Extract:350/Total_Record:187/Designated_Roth_contributions_under_403B:350
+20
+/W3 Maine:156/Detail_record:15/Withholding_Acct_ID_Number:18
+32772
+22
+/W3 Maine:45/Total_Record:14
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "N"
+RTM_SRC_Total_Record_0007
+0
+20
+/W2 Electronic Data Extract:350/Total_Record:187/Record_Identifier:189
+20
+/W3 Maine:156/Detail_record:15/1099_Fed_State_Submissions:129
+32772
+23
+/W3 Maine:45/Total_Record:14
+
+
+0
+0
+1
+0
+333
+333
+20
+/W2 Electronic Data Extract:350/Total_Record:187/Total_State_Income_Tax_Withheld:339
+20
+/W3 Maine:156/Detail_record:15/Maine_Income_Tax_Reported_on_Payee_Statements:56
+32772
+24
+/W3 Maine:45/Total_Record:14
+
+
+0
+0
+1
+0
+333
+333
+20
+/W2 Electronic Data Extract:350/Total_Record:187/Total_State_Income_Tax_Withheld:339
+20
+/W3 Maine:156/Detail_record:15/Maine_Income_Tax_Reported_to_Maine_Revenue_Services:131
+32772
+25
+/W3 Maine:45/Total_Record:14
+
+
+0
+0
+1
+0
+333
+333
+20
+/W2 Electronic Data Extract:350/Total_Record:187/Total_State_Income_Tax_Withheld:339
+20
+/W3 Maine:156/Detail_record:15/Maine_Income_Tax_included_in_Quarterly_returns_reported_on_Forms_W2:133
+32772
+26
+/W3 Maine:45/Total_Record:14
+
+
+0
+0
+1
+0
+333
+333
+20
+/W2 Electronic Data Extract:350/Total_Record:187/Total_State_Income_Tax_Withheld:339
+20
+/W3 Maine:156/Detail_record:15/Maine_Income_Tax_remitted_by_Third_Party_Payer:135
+32772
+27
+/W3 Maine:45/Total_Record:14
+
+
+0
+0
+1
+0
+333
+333
+8228
+/W3 Maine:45/Payee:1
+20
+/W3 Maine:156/Detail_record:15/Third_Party_Payer_Name:137
+32772
+28
+/W3 Maine:45/Total_Record:14
+
+
+0
+0
+1
+0
+333
+333
+8228
+/W3 Maine:45/Payee_ID:2
+20
+/W3 Maine:156/Detail_record:15/Third_Party_EIN:139
+32770
+29
+/W3 Maine:45
+Final_Record
+SLN Based on Final_Record(View container)
+0
+0
+0
+333
+333
+333
+333
+Final_Record
+Trailer_record
+5
+0
+18
+/W2 Electronic Data Extract:350/Final_Record:268
+18
+/W3 Maine:156/Trailer_record:29
+32772
+30
+/W3 Maine:45/Final_Record:29
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "F"
+RTM_SRC_Final_Record_0008
+0
+20
+/W2 Electronic Data Extract:350/Final_Record:268/Record_Identifier:270
+20
+/W3 Maine:156/Trailer_record:29/Record_ID:38
+32772
+31
+/W3 Maine:45/Final_Record:29
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "W3ME"
+RTM_SRC_Final_Record_0009
+0
+20
+/W2 Electronic Data Extract:350/Final_Record:268/Record_Identifier:270
+20
+/W3 Maine:156/Trailer_record:29/Taxing_Entity_Code:143
+32772
+32
+/W3 Maine:45/Final_Record:29
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN "1"
+RTM_SRC_Final_Record_0010
+0
+20
+/W2 Electronic Data Extract:350/Final_Record:268/Record_Identifier:270
+20
+/W3 Maine:156/Trailer_record:29/Total_ERs_in_File:145
+32770
+33
+/W3 Maine:45/Final_Record:29
+Total_Record
+SLN Based on Total_Record(View container)
+0
+0
+0
+333
+333
+333
+333
+Total_Record
+
+2
+0
+18
+/W2 Electronic Data Extract:350/Total_Record:187
+0
+NULL_REF
+32772
+34
+/W3 Maine:45/Final_Record:29/Total_Record:33
+
+
+0
+0
+1
+0
+333
+333
+20
+/W2 Electronic Data Extract:350/Total_Record:187/Total_State_Income_Tax_Withheld:339
+20
+/W3 Maine:156/Trailer_record:29/Total_Maine_Income_Tax_Reported_on_Payee_Statements:147
+32772
+35
+/W3 Maine:45/Final_Record:29/Total_Record:33
+
+
+0
+0
+1
+0
+333
+333
+20
+/W2 Electronic Data Extract:350/Total_Record:187/Total_State_Income_Tax_Withheld:339
+20
+/W3 Maine:156/Trailer_record:29/Total_Maine_Income_Tax_Reported_to_Maine_Revenue_Services:149
+32772
+36
+/W3 Maine:45/Final_Record:29
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN ""
+RTM_SRC_Final_Record_0011
+0
+20
+/W2 Electronic Data Extract:350/Final_Record:268/Record_Identifier:270
+20
+/W3 Maine:156/Trailer_record:29/Carriage_Return:156
+$RTIME:END
+@0200N
+33
+4
+NULL_REF
+W3 Maine
+W3 Maine
+0
+2048
+w3me.vw1
+w3me.vw2
+0
+0
+3
+8228
+3
+/W3 Maine:4
+Payee
+desc
+0
+0
+8228
+4
+/W3 Maine:4
+Payee_ID
+desc
+0
+0
+8228
+2
+/W3 Maine:4
+SWH
+desc
+0
+0
+26
+36
+1
+/W3 Maine:4
+Map Link
+
+0
+0
+
+"A"
+1
+0
+0
+2
+Let Payee = Paycor_Legal_Name
+Let Payee_ID = Paycor_Federal_ID
+0
+132
+/W3 Maine:198/Submitter_record:2/Record_Identifier:3
+132
+/W3 Maine:35/Header_record:2/Record_ID:3
+36
+1
+/W3 Maine:4
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Tax_Year:22
+132
+/W3 Maine:35/Header_record:2/Payment_Year:4
+36
+1
+/W3 Maine:4
+Map Link
+
+0
+0
+
+"W3ME"
+1
+0
+0
+0
+0
+132
+/W3 Maine:198/Submitter_record:2/Record_Identifier:3
+132
+/W3 Maine:35/Header_record:2/Taxing_Entity_Code:5
+36
+1
+/W3 Maine:4
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/W3 Maine:198/Submitter_record:2/Paycor_Federal_ID:5
+132
+/W3 Maine:35/Header_record:2/Transmitters_Fed_ID_Number:6
+36
+1
+/W3 Maine:4
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/W3 Maine:198/Submitter_record:2/Paycor_Legal_Name:9
+132
+/W3 Maine:35/Header_record:2/Transmitter_Name:7
+36
+1
+/W3 Maine:4
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/W3 Maine:198/Submitter_record:2/Paycor_Transmission_Contact_Name:16
+132
+/W3 Maine:35/Header_record:2/Transmitter_Contact:8
+36
+1
+/W3 Maine:4
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/W3 Maine:198/Submitter_record:2/Paycor_Contact_Phone_Number:17
+132
+/W3 Maine:35/Header_record:2/Transmitter_Contact_Telephone_Number:9
+36
+1
+/W3 Maine:4
+Map Link
+
+0
+0
+
+""
+1
+0
+0
+0
+0
+132
+/W3 Maine:198/Submitter_record:2/Record_Identifier:3
+132
+/W3 Maine:35/Header_record:2/Carriage_Return:12
+36
+1
+/W3 Maine:4
+Map Link
+
+0
+0
+
+"E"
+1
+0
+0
+0
+0
+132
+/W3 Maine:198/Total_Record:144/Record_Identifier:145
+132
+/W3 Maine:35/Detail_record:13/Record_ID:14
+36
+1
+/W3 Maine:4
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Tax_Year:22
+132
+/W3 Maine:35/Detail_record:13/Payment_Year:15
+36
+1
+/W3 Maine:4
+Map Link
+
+0
+0
+
+"W3ME"
+1
+0
+0
+0
+0
+132
+/W3 Maine:198/Total_Record:144/Record_Identifier:145
+132
+/W3 Maine:35/Detail_record:13/Taxing_Entity_Code:16
+36
+1
+/W3 Maine:4
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/W3 Maine:198/Total_Record:144/Designated_Roth_contributions_under_403B:173
+132
+/W3 Maine:35/Detail_record:13/Withholding_Acct_ID_Number:17
+36
+1
+/W3 Maine:4
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employer_Name:25
+132
+/W3 Maine:35/Detail_record:13/Client_Name:18
+36
+1
+/W3 Maine:4
+Map Link
+
+0
+0
+
+"N"
+1
+0
+0
+0
+0
+132
+/W3 Maine:198/Total_Record:144/Record_Identifier:145
+132
+/W3 Maine:35/Detail_record:13/1099_Fed_State_Submissions:19
+36
+1
+/W3 Maine:4
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/W3 Maine:198/Total_Record:144/Total_State_Income_Tax_Withheld:169
+132
+/W3 Maine:35/Detail_record:13/Maine_Income_Tax_Reported_on_Payee_Statements:20
+36
+1
+/W3 Maine:4
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/W3 Maine:198/Total_Record:144/Total_State_Income_Tax_Withheld:169
+132
+/W3 Maine:35/Detail_record:13/Maine_Income_Tax_Reported_to_Maine_Revenue_Services:21
+36
+1
+/W3 Maine:4
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/W3 Maine:198/Total_Record:144/Total_State_Income_Tax_Withheld:169
+132
+/W3 Maine:35/Detail_record:13/Maine_Income_Tax_included_in_Quarterly_returns_reported_on_Forms_W2:22
+36
+1
+/W3 Maine:4
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/W3 Maine:198/Total_Record:144/Total_State_Income_Tax_Withheld:169
+132
+/W3 Maine:35/Detail_record:13/Maine_Income_Tax_remitted_by_Third_Party_Payer:23
+36
+1
+/W3 Maine:4
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+8228
+/W3 Maine:4/Payee:3
+132
+/W3 Maine:35/Detail_record:13/Third_Party_Payer_Name:24
+36
+1
+/W3 Maine:4
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+8228
+/W3 Maine:4/Payee_ID:4
+132
+/W3 Maine:35/Detail_record:13/Third_Party_EIN:25
+36
+1
+/W3 Maine:4
+Map Link
+
+0
+0
+
+"F"
+1
+0
+0
+0
+0
+132
+/W3 Maine:198/Final_Record:195/Record_Identifier:196
+132
+/W3 Maine:35/Trailer_record:28/Record_ID:29
+36
+1
+/W3 Maine:4
+Map Link
+
+0
+0
+
+"W3ME"
+1
+0
+0
+0
+0
+132
+/W3 Maine:198/Final_Record:195/Record_Identifier:196
+132
+/W3 Maine:35/Trailer_record:28/Taxing_Entity_Code:30
+36
+1
+/W3 Maine:4
+Map Link
+
+0
+0
+
+"1"
+1
+0
+0
+0
+0
+132
+/W3 Maine:198/Final_Record:195/Record_Identifier:196
+132
+/W3 Maine:35/Trailer_record:28/Total_ERs_in_File:31
+36
+1
+/W3 Maine:4
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/W3 Maine:198/Total_Record:144/Total_State_Income_Tax_Withheld:169
+132
+/W3 Maine:35/Trailer_record:28/Total_Maine_Income_Tax_Reported_on_Payee_Statements:32
+36
+1
+/W3 Maine:4
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/W3 Maine:198/Total_Record:144/Total_State_Income_Tax_Withheld:169
+132
+/W3 Maine:35/Trailer_record:28/Total_Maine_Income_Tax_Reported_to_Maine_Revenue_Services:33
+36
+1
+/W3 Maine:4
+Map Link
+
+0
+0
+
+""
+1
+0
+0
+0
+0
+132
+/W3 Maine:198/Final_Record:195/Record_Identifier:196
+132
+/W3 Maine:35/Trailer_record:28/Carriage_Return:35
+@0200N
+129
+198
+NULL_REF
+W3 Maine
+View of: W3 Maine
+0
+0
+17
+w2src.adf
+w3me.vw1
+4
+130
+2
+/W3 Maine:198
+Submitter_record
+RA
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2
+
+1
+18
+132
+3
+/W3 Maine:198/Submitter_record:2
+Record_Identifier
+RA
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Record_Identifier:4
+
+
+132
+4
+/W3 Maine:198/Submitter_record:2
+Report_ID
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Report_ID:3
+
+
+132
+5
+/W3 Maine:198/Submitter_record:2
+Paycor_Federal_ID
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Paycor_Federal_ID:5
+
+
+132
+6
+/W3 Maine:198/Submitter_record:2
+PIN
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/PIN:6
+
+
+132
+7
+/W3 Maine:198/Submitter_record:2
+Resub_Indicator
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Resub_Indicator:7
+
+
+132
+8
+/W3 Maine:198/Submitter_record:2
+Resub_TLCN
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Resub_TLCN:9
+
+
+132
+9
+/W3 Maine:198/Submitter_record:2
+Paycor_Legal_Name
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Paycor_Legal_Name:10
+
+
+132
+10
+/W3 Maine:198/Submitter_record:2
+Paycor_Suite_Number
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Paycor_Suite_Number:12
+
+
+132
+11
+/W3 Maine:198/Submitter_record:2
+Paycor_Street_Address
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Paycor_Street_Address:14
+
+
+132
+12
+/W3 Maine:198/Submitter_record:2
+Paycor_City
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Paycor_City:16
+
+
+132
+13
+/W3 Maine:198/Submitter_record:2
+Paycor_State_Abbreviation
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Paycor_State_Abbreviation:18
+
+
+132
+14
+/W3 Maine:198/Submitter_record:2
+Paycor_Zip_Code
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Paycor_Zip_Code:20
+
+
+132
+15
+/W3 Maine:198/Submitter_record:2
+Paycor_Zip_Code_Extension
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Paycor_Zip_Code_Extension:22
+
+
+132
+16
+/W3 Maine:198/Submitter_record:2
+Paycor_Transmission_Contact_Name
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Paycor_Transmission_Contact_Name:24
+
+
+132
+17
+/W3 Maine:198/Submitter_record:2
+Paycor_Contact_Phone_Number
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Paycor_Contact_Phone_Number:26
+
+
+132
+18
+/W3 Maine:198/Submitter_record:2
+Paycor_Contact_Fax
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Paycor_Contact_Fax:28
+
+
+132
+19
+/W3 Maine:198/Submitter_record:2
+Carriage_return
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Carriage_return:275
+
+
+130
+20
+/W3 Maine:198/Submitter_record:2
+Employer_Record
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30
+
+1
+16
+132
+21
+/W3 Maine:198/Submitter_record:2/Employer_Record:20
+Record_Identifier
+RE
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Record_Identifier:32
+
+
+132
+22
+/W3 Maine:198/Submitter_record:2/Employer_Record:20
+Tax_Year
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Tax_Year:33
+
+
+132
+23
+/W3 Maine:198/Submitter_record:2/Employer_Record:20
+Employer_Identification_Number
+EIN
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employer_Identification_Number:34
+
+
+132
+24
+/W3 Maine:198/Submitter_record:2/Employer_Record:20
+Terminating_Business_Indicator
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Terminating_Business_Indicator:35
+
+
+132
+25
+/W3 Maine:198/Submitter_record:2/Employer_Record:20
+Employer_Name
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employer_Name:36
+
+
+132
+26
+/W3 Maine:198/Submitter_record:2/Employer_Record:20
+Location_Address
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Location_Address:37
+
+
+132
+27
+/W3 Maine:198/Submitter_record:2/Employer_Record:20
+Delivery_Address
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Delivery_Address:39
+
+
+132
+28
+/W3 Maine:198/Submitter_record:2/Employer_Record:20
+City
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/City:41
+
+
+132
+29
+/W3 Maine:198/Submitter_record:2/Employer_Record:20
+State_Abbreviation
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/State_Abbreviation:42
+
+
+132
+30
+/W3 Maine:198/Submitter_record:2/Employer_Record:20
+Zip_Code
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Zip_Code:43
+
+
+132
+31
+/W3 Maine:198/Submitter_record:2/Employer_Record:20
+Zip_Code_Extension
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Zip_Code_Extension:45
+
+
+132
+32
+/W3 Maine:198/Submitter_record:2/Employer_Record:20
+Employment_Code
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employment_Code:46
+
+
+132
+33
+/W3 Maine:198/Submitter_record:2/Employer_Record:20
+Tax_Jurisdiction_Code
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Tax_Jurisdiction_Code:327
+
+
+132
+34
+/W3 Maine:198/Submitter_record:2/Employer_Record:20
+Third_Party_Sick_Pay_Indicator
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Third_Party_Sick_Pay_Indicator:328
+
+
+132
+35
+/W3 Maine:198/Submitter_record:2/Employer_Record:20
+Carriage_return
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Carriage_return:319
+
+
+130
+36
+/W3 Maine:198/Submitter_record:2/Employer_Record:20
+Employee_Record
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+
+1
+44
+132
+37
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Record_Identifier
+RW
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Record_Identifier:50
+
+
+132
+38
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+SSN
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/SSN:51
+
+
+132
+39
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Employee_First_Name
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_First_Name:52
+
+
+132
+40
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Employee_Middle_Name_or_Initial
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Middle_Name_or_Initial:55
+
+
+132
+41
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Employee_Last_Name
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Last_Name:57
+
+
+132
+42
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Suffix
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Suffix:53
+
+
+132
+43
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Location_Address
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Location_Address:58
+
+
+132
+44
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Delivery_Address
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Delivery_Address:60
+
+
+132
+45
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+City
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/City:62
+
+
+132
+46
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+State_Abbreviation
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Abbreviation:64
+
+
+132
+47
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Zip_Code
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Zip_Code:66
+
+
+132
+48
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Zip_Code_Extension
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Zip_Code_Extension:68
+
+
+132
+49
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Wages_Tips_Other_Compensation
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Wages_Tips_Other_Compensation:69
+
+
+132
+50
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Federal_Income_Tax_Withheld
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Federal_Income_Tax_Withheld:71
+
+
+132
+51
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Social_Security_Wages
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Social_Security_Wages:273
+
+
+132
+52
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Social_Security_Tax_Withheld
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Social_Security_Tax_Withheld:73
+
+
+132
+53
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Medicare_Wages_Tips
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Medicare_Wages_Tips:75
+
+
+132
+54
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Medicare_Tax_Withheld
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Medicare_Tax_Withheld:77
+
+
+132
+55
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Social_Security_Tips
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Social_Security_Tips:79
+
+
+132
+56
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Advanced_Earned_Income_Credit
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Advanced_Earned_Income_Credit:81
+
+
+132
+57
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Dependent_Care_Benefits
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Dependent_Care_Benefits:83
+
+
+132
+58
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Deferred_Comp_Cont_to_Section_401k
+401k
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Deferred_Comp_Cont_to_Section_401k:85
+
+
+132
+59
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Deferred_Comp_Cont_to_Section_403b
+403b
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Deferred_Comp_Cont_to_Section_403b:87
+
+
+132
+60
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Deferred_Comp_Cont_to_Section_408k6
+408k6
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Deferred_Comp_Cont_to_Section_408k6:89
+
+
+132
+61
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Deferred_Comp_Cont_to_Section_457b
+457b
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Deferred_Comp_Cont_to_Section_457b:91
+
+
+132
+62
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Deferred_Comp_Cont_to_Section_501c18d
+501c18b
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Deferred_Comp_Cont_to_Section_501c18d:93
+
+
+132
+63
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Military_ee_Basic_Quarters_Subsistence_and_Combat_Pay
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Military_ee_Basic_Quarters_Subsistence_and_Combat_Pay:95
+
+
+132
+64
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Non_Qualified_Plan_Section_457_Distributions_or_Contributions
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Non_Qualified_Plan_Section_457_Distributions_or_Contributions:97
+
+
+132
+65
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Non_Qualified_Plan_Not_Section_457_Distributions_or_Contributions
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Non_Qualified_Plan_Not_Section_457_Distributions_or_Contributions:99
+
+
+132
+66
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Control_Number
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Control_Number:100
+
+
+132
+67
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Fringe_Benefits
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Fringe_Benefits:102
+
+
+132
+68
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Employer_Cost_of_Premiums_for_Group_Term_Life_Ins_over_50000
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employer_Cost_of_Premiums_for_Group_Term_Life_Ins_over_50000:104
+
+
+132
+69
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Deferred_Compensation_Indicator
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Deferred_Compensation_Indicator:105
+
+
+132
+70
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Statutory_EE_Indicator
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Statutory_EE_Indicator:107
+
+
+132
+71
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Deceased_Indicator
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Deceased_Indicator:109
+
+
+132
+72
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Retirement_Plan_Indicator
+Previously_Called_Pension_Plan
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Retirement_Plan_Indicator:111
+
+
+132
+73
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Income_From_Exercise_Nonstatutory_Stock_Options
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Income_From_Exercise_Nonstatutory_Stock_Options:330
+
+
+132
+74
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Third_Party_Sick_Pay_Indicator
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Third_Party_Sick_Pay_Indicator:329
+
+
+132
+75
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Designated_Roth_contributions_to_401K
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Designated_Roth_contributions_to_401K:343
+
+
+132
+76
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Designated_Roth_contributions_under_403B
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Designated_Roth_contributions_under_403B:346
+
+
+132
+77
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Carriage_return
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Carriage_return:320
+
+
+130
+78
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Employee_Wage_Record
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113
+
+1
+20
+132
+79
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Employee_Wage_Record:78
+Record_Identifier
+RO
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113/Record_Identifier:115
+
+
+132
+80
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Employee_Wage_Record:78
+Allocated_Tips
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113/Allocated_Tips:117
+
+
+132
+81
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Employee_Wage_Record:78
+Uncollected_EE_Tax_on_Tips
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113/Uncollected_EE_Tax_on_Tips:119
+
+
+132
+82
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Employee_Wage_Record:78
+Medical_Savings_Account
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113/Medical_Savings_Account:121
+
+
+132
+83
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Employee_Wage_Record:78
+Simple_Retirement_Account
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113/Simple_Retirement_Account:123
+
+
+132
+84
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Employee_Wage_Record:78
+Qualified_Adoption_Expenses
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113/Qualified_Adoption_Expenses:125
+
+
+132
+85
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Employee_Wage_Record:78
+Civil_Status
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113/Civil_Status:127
+
+
+132
+86
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Employee_Wage_Record:78
+Spouse_SSN
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113/Spouse_SSN:129
+
+
+132
+87
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Employee_Wage_Record:78
+Wages_Subject_to_Puerto_Rico_Tax
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113/Wages_Subject_to_Puerto_Rico_Tax:131
+
+
+132
+88
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Employee_Wage_Record:78
+Commissions_Subject_to_Puerto_Rico_Tax
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113/Commissions_Subject_to_Puerto_Rico_Tax:133
+
+
+132
+89
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Employee_Wage_Record:78
+Allowances_Subject_to_Puerto_Rico_Tax
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113/Allowances_Subject_to_Puerto_Rico_Tax:135
+
+
+132
+90
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Employee_Wage_Record:78
+Tips_Subject_to_Puerto_Rico_Tax
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113/Tips_Subject_to_Puerto_Rico_Tax:137
+
+
+132
+91
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Employee_Wage_Record:78
+Total_Wages_Commissions_Tips_Allowances_Subject_to_Puerto_Rico_Tax
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113/Total_Wages_Commissions_Tips_Allowances_Subject_to_Puerto_Rico_Tax:139
+
+
+132
+92
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Employee_Wage_Record:78
+Puerto_Rico_Tax_Withheld
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113/Puerto_Rico_Tax_Withheld:141
+
+
+132
+93
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Employee_Wage_Record:78
+Retirement_Fund_Annual_Contributions
+Previously_called_Retirement_Fund_Subject_to_Puerto_Rico_Tax
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113/Retirement_Fund_Annual_Contributions:143
+
+
+132
+94
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Employee_Wage_Record:78
+Total_Wages_Tips_Other_Compensation_Subject_to_VI_GU_AS_MP_Income_Tax
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113/Total_Wages_Tips_Other_Compensation_Subject_to_VI_GU_AS_MP_Income_Tax:145
+
+
+132
+95
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Employee_Wage_Record:78
+VI_GU_AS_MP_Income_Tax_Withheld
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113/VI_GU_AS_MP_Income_Tax_Withheld:147
+
+
+132
+96
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Employee_Wage_Record:78
+Uncollected_Social_Security_or_RRTA_Tax_on_Cost_of_Group_Term_Life_Ins_Over_50000
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113/Uncollected_Social_Security_or_RRTA_Tax_on_Cost_of_Group_Term_Life_Ins_Over_50000:332
+
+
+132
+97
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Employee_Wage_Record:78
+Uncollected_Medicare_Tax_on_Cost_of_Group_term_Life_Ins_over_50000
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113/Uncollected_Medicare_Tax_on_Cost_of_Group_term_Life_Ins_over_50000:331
+
+
+132
+98
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Employee_Wage_Record:78
+Carriage_return
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113/Carriage_return:321
+
+
+130
+99
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+State_Record
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149
+
+1
+23
+132
+100
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/State_Record:99
+Record_Identifier
+RS
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149/Record_Identifier:151
+
+
+132
+101
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/State_Record:99
+State_Code
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149/State_Code:152
+
+
+132
+102
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/State_Record:99
+State_Employer_Account_Number
+SWH
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149/State_Employer_Account_Number:153
+
+
+132
+103
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/State_Record:99
+Taxing_Entity_Code
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149/Taxing_Entity_Code:154
+
+
+132
+104
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/State_Record:99
+Optional_Code
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149/Optional_Code:155
+
+
+132
+105
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/State_Record:99
+Reporting_Period
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149/Reporting_Period:156
+
+
+132
+106
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/State_Record:99
+State_Quarterly_Unemployment_Ins_Total_Wages
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149/State_Quarterly_Unemployment_Ins_Total_Wages:159
+
+
+132
+107
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/State_Record:99
+State_Quarterly_Unemployment_Ins_Total_Taxable_Wages
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149/State_Quarterly_Unemployment_Ins_Total_Taxable_Wages:161
+
+
+132
+108
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/State_Record:99
+Number_of_Weeks_Worked
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149/Number_of_Weeks_Worked:162
+
+
+132
+109
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/State_Record:99
+Hire_Date
+MMDDYYYY
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149/Hire_Date:163
+
+
+132
+110
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/State_Record:99
+Termination_Date
+MMDDYYYY
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149/Termination_Date:165
+
+
+132
+111
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/State_Record:99
+State_Employer_Account_Number_2
+SUI Account Number
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149/State_Employer_Account_Number_2:167
+
+
+132
+112
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/State_Record:99
+State_Code_2
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149/State_Code_2:169
+
+
+132
+113
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/State_Record:99
+State_Taxable_Wages
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149/State_Taxable_Wages:171
+
+
+132
+114
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/State_Record:99
+State_Income_Tax_Withheld
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149/State_Income_Tax_Withheld:173
+
+
+132
+115
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/State_Record:99
+Other_State_Data
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149/Other_State_Data:175
+
+
+132
+116
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/State_Record:99
+Tax_Type_Code
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149/Tax_Type_Code:176
+
+
+132
+117
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/State_Record:99
+Local_Taxable_Wages
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149/Local_Taxable_Wages:178
+
+
+132
+118
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/State_Record:99
+Local_Income_Tax_Withheld
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149/Local_Income_Tax_Withheld:180
+
+
+132
+119
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/State_Record:99
+State_Control_Number
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149/State_Control_Number:182
+
+
+132
+120
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/State_Record:99
+Supplemental_Data_1
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149/Supplemental_Data_1:183
+
+
+132
+121
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/State_Record:99
+Supplemental_Data_2
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149/Supplemental_Data_2:185
+
+
+132
+122
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/State_Record:99
+Carriage_return
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149/Carriage_return:322
+
+
+130
+123
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36
+Intermediate_Record
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279
+
+1
+20
+132
+124
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Intermediate_Record:123
+Record_Identifier
+RI
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279/Record_Identifier:281
+
+
+132
+125
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Intermediate_Record:123
+Social_Security_Wages
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279/Social_Security_Wages:283
+
+
+132
+126
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Intermediate_Record:123
+Social_Security_Tips
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279/Social_Security_Tips:285
+
+
+132
+127
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Intermediate_Record:123
+Wages_Tips_Other_Compensation
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279/Wages_Tips_Other_Compensation:287
+
+
+132
+128
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Intermediate_Record:123
+Social_Security_Tax_Withheld
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279/Social_Security_Tax_Withheld:289
+
+
+132
+129
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Intermediate_Record:123
+Federal_Income_Tax_Withheld
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279/Federal_Income_Tax_Withheld:291
+
+
+132
+130
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Intermediate_Record:123
+Control_Number
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279/Control_Number:293
+
+
+132
+131
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Intermediate_Record:123
+Employer_Cost_of_Premiums_for_Group_Term_Life_Ins_over_50000
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279/Employer_Cost_of_Premiums_for_Group_Term_Life_Ins_over_50000:295
+
+
+132
+132
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Intermediate_Record:123
+Uncollected_EE_Tax_on_Tips
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279/Uncollected_EE_Tax_on_Tips:297
+
+
+132
+133
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Intermediate_Record:123
+Advanced_Earned_Income_Credit
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279/Advanced_Earned_Income_Credit:299
+
+
+132
+134
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Intermediate_Record:123
+Allocated_Tips
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279/Allocated_Tips:301
+
+
+132
+135
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Intermediate_Record:123
+Fringe_Benefits
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279/Fringe_Benefits:303
+
+
+132
+136
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Intermediate_Record:123
+Deferred_Compensation_Contributions
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279/Deferred_Compensation_Contributions:305
+
+
+132
+137
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Intermediate_Record:123
+Dependent_Care_Benefits
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279/Dependent_Care_Benefits:307
+
+
+132
+138
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Intermediate_Record:123
+Non_Qualified_Plan_Section_457_Distributions_or_Contributions
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279/Non_Qualified_Plan_Section_457_Distributions_or_Contributions:309
+
+
+132
+139
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Intermediate_Record:123
+Non_Qualified_Plan_Not_Section_457_Distributions_or_Contributions
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279/Non_Qualified_Plan_Not_Section_457_Distributions_or_Contributions:311
+
+
+132
+140
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Intermediate_Record:123
+Medicare_Wages_Tips
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279/Medicare_Wages_Tips:313
+
+
+132
+141
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Intermediate_Record:123
+Medicare_Tax_Withheld
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279/Medicare_Tax_Withheld:315
+
+
+132
+142
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Intermediate_Record:123
+Military_ee_Basic_Quarters_Subsistence_and_Combat_Pay
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279/Military_ee_Basic_Quarters_Subsistence_and_Combat_Pay:317
+
+
+132
+143
+/W3 Maine:198/Submitter_record:2/Employer_Record:20/Employee_Record:36/Intermediate_Record:123
+Carriage_return
+
+0
+16
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279/Carriage_return:323
+
+
+130
+144
+/W3 Maine:198
+Total_Record
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record:187
+
+1
+30
+132
+145
+/W3 Maine:198/Total_Record:144
+Record_Identifier
+RT
+0
+16
+/W2 Electronic Data Extract:350/Total_Record:187/Record_Identifier:189
+
+
+132
+146
+/W3 Maine:198/Total_Record:144
+Number_of_RW_Records
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record:187/Number_of_RW_Records:190
+
+
+132
+147
+/W3 Maine:198/Total_Record:144
+Wages_Tips_Other_Compensation
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record:187/Wages_Tips_Other_Compensation:192
+
+
+132
+148
+/W3 Maine:198/Total_Record:144
+Federal_Income_Tax_Withheld
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record:187/Federal_Income_Tax_Withheld:194
+
+
+132
+149
+/W3 Maine:198/Total_Record:144
+Social_Security_Wages
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record:187/Social_Security_Wages:196
+
+
+132
+150
+/W3 Maine:198/Total_Record:144
+Social_Security_Tax_Withheld
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record:187/Social_Security_Tax_Withheld:198
+
+
+132
+151
+/W3 Maine:198/Total_Record:144
+Medicare_Wages_Tips
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record:187/Medicare_Wages_Tips:200
+
+
+132
+152
+/W3 Maine:198/Total_Record:144
+Medicare_Tax_Withheld
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record:187/Medicare_Tax_Withheld:202
+
+
+132
+153
+/W3 Maine:198/Total_Record:144
+Social_Security_Tips
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record:187/Social_Security_Tips:204
+
+
+132
+154
+/W3 Maine:198/Total_Record:144
+Advanced_Earned_Income_Credit
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record:187/Advanced_Earned_Income_Credit:206
+
+
+132
+155
+/W3 Maine:198/Total_Record:144
+Dependent_Care_Benefits
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record:187/Dependent_Care_Benefits:208
+
+
+132
+156
+/W3 Maine:198/Total_Record:144
+Deferred_Comp_Cont_to_Section_401k
+401k
+0
+16
+/W2 Electronic Data Extract:350/Total_Record:187/Deferred_Comp_Cont_to_Section_401k:211
+
+
+132
+157
+/W3 Maine:198/Total_Record:144
+Deferred_Comp_Cont_to_Section_403b
+403b
+0
+16
+/W2 Electronic Data Extract:350/Total_Record:187/Deferred_Comp_Cont_to_Section_403b:213
+
+
+132
+158
+/W3 Maine:198/Total_Record:144
+Deferred_Comp_Cont_to_Section_408k6
+408k6
+0
+16
+/W2 Electronic Data Extract:350/Total_Record:187/Deferred_Comp_Cont_to_Section_408k6:215
+
+
+132
+159
+/W3 Maine:198/Total_Record:144
+Deferred_Comp_Cont_to_Section_457b
+457b
+0
+16
+/W2 Electronic Data Extract:350/Total_Record:187/Deferred_Comp_Cont_to_Section_457b:217
+
+
+132
+160
+/W3 Maine:198/Total_Record:144
+Deferred_Comp_Cont_to_Section_501c18d
+501c18d
+0
+16
+/W2 Electronic Data Extract:350/Total_Record:187/Deferred_Comp_Cont_to_Section_501c18d:219
+
+
+132
+161
+/W3 Maine:198/Total_Record:144
+Military_ee_Basic_Quarters_Subsistence_and_Combat_Pay
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record:187/Military_ee_Basic_Quarters_Subsistence_and_Combat_Pay:221
+
+
+132
+162
+/W3 Maine:198/Total_Record:144
+Non_Qualified_Plan_Section_457_Distributions_or_Contributions
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record:187/Non_Qualified_Plan_Section_457_Distributions_or_Contributions:223
+
+
+132
+163
+/W3 Maine:198/Total_Record:144
+Non_Qualified_Plan_Not_Section_457_Distributions_or_Contributions
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record:187/Non_Qualified_Plan_Not_Section_457_Distributions_or_Contributions:225
+
+
+132
+164
+/W3 Maine:198/Total_Record:144
+Fringe_Benefits
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record:187/Fringe_Benefits:227
+
+
+132
+165
+/W3 Maine:198/Total_Record:144
+Employer_Cost_of_Premiums_for_Group_Term_Life_Ins_over_50000
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record:187/Employer_Cost_of_Premiums_for_Group_Term_Life_Ins_over_50000:229
+
+
+132
+166
+/W3 Maine:198/Total_Record:144
+Income_Tax_Withheld_by_Third_Party_Payer
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record:187/Income_Tax_Withheld_by_Third_Party_Payer:231
+
+
+132
+167
+/W3 Maine:198/Total_Record:144
+Income_from_the_exercise_of_Nonstatutory_Stock_Options
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record:187/Income_from_the_exercise_of_Nonstatutory_Stock_Options:333
+
+
+132
+168
+/W3 Maine:198/Total_Record:144
+Total_State_Taxable_Wages
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record:187/Total_State_Taxable_Wages:337
+
+
+132
+169
+/W3 Maine:198/Total_Record:144
+Total_State_Income_Tax_Withheld
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record:187/Total_State_Income_Tax_Withheld:339
+
+
+132
+170
+/W3 Maine:198/Total_Record:144
+Total_Local_Taxable_Wages
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record:187/Total_Local_Taxable_Wages:340
+
+
+132
+171
+/W3 Maine:198/Total_Record:144
+Total_Local_Income_Tax_Withheld
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record:187/Total_Local_Income_Tax_Withheld:341
+
+
+132
+172
+/W3 Maine:198/Total_Record:144
+Designated_Roth_contributions_to_401K
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record:187/Designated_Roth_contributions_to_401K:348
+
+
+132
+173
+/W3 Maine:198/Total_Record:144
+Designated_Roth_contributions_under_403B
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record:187/Designated_Roth_contributions_under_403B:350
+
+
+132
+174
+/W3 Maine:198/Total_Record:144
+Carriage_return
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record:187/Carriage_return:324
+
+
+130
+175
+/W3 Maine:198
+Total_Record_2
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record_2:233
+
+1
+19
+132
+176
+/W3 Maine:198/Total_Record_2:175
+Record_Identifier
+RU
+0
+16
+/W2 Electronic Data Extract:350/Total_Record_2:233/Record_Identifier:235
+
+
+132
+177
+/W3 Maine:198/Total_Record_2:175
+Number_of_RO_Records
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record_2:233/Number_of_RO_Records:236
+
+
+132
+178
+/W3 Maine:198/Total_Record_2:175
+Allocated_Tips
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record_2:233/Allocated_Tips:238
+
+
+132
+179
+/W3 Maine:198/Total_Record_2:175
+Uncollected_EE_Tax_on_Tips
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record_2:233/Uncollected_EE_Tax_on_Tips:240
+
+
+132
+180
+/W3 Maine:198/Total_Record_2:175
+Medical_Savings_Account
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record_2:233/Medical_Savings_Account:242
+
+
+132
+181
+/W3 Maine:198/Total_Record_2:175
+Simple_Retirement_Account
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record_2:233/Simple_Retirement_Account:244
+
+
+132
+182
+/W3 Maine:198/Total_Record_2:175
+Qualified_Adoption_Expenses
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record_2:233/Qualified_Adoption_Expenses:246
+
+
+132
+183
+/W3 Maine:198/Total_Record_2:175
+Wages_Subject_to_Puerto_Rico_Tax
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record_2:233/Wages_Subject_to_Puerto_Rico_Tax:248
+
+
+132
+184
+/W3 Maine:198/Total_Record_2:175
+Commissions_Subject_to_Puerto_Rico_Tax
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record_2:233/Commissions_Subject_to_Puerto_Rico_Tax:250
+
+
+132
+185
+/W3 Maine:198/Total_Record_2:175
+Allowances_Subject_to_Puerto_Rico_Tax
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record_2:233/Allowances_Subject_to_Puerto_Rico_Tax:252
+
+
+132
+186
+/W3 Maine:198/Total_Record_2:175
+Tips_Subject_to_Puerto_Rico_Tax
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record_2:233/Tips_Subject_to_Puerto_Rico_Tax:254
+
+
+132
+187
+/W3 Maine:198/Total_Record_2:175
+Total_Wages_Commissions_Tips_Allowances_Subject_to_Puerto_Rico_Tax
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record_2:233/Total_Wages_Commissions_Tips_Allowances_Subject_to_Puerto_Rico_Tax:256
+
+
+132
+188
+/W3 Maine:198/Total_Record_2:175
+Puerto_Rico_Tax_Withheld
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record_2:233/Puerto_Rico_Tax_Withheld:258
+
+
+132
+189
+/W3 Maine:198/Total_Record_2:175
+Retirement_Fund_Annual_Contributions
+Retirement_Fund_Subject_to_Puerto_Rico_Tax
+0
+16
+/W2 Electronic Data Extract:350/Total_Record_2:233/Retirement_Fund_Annual_Contributions:260
+
+
+132
+190
+/W3 Maine:198/Total_Record_2:175
+Total_Wages_Tips_Other_Compensation_Subject_to_VI_GU_AS_MP_Income_Tax
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record_2:233/Total_Wages_Tips_Other_Compensation_Subject_to_VI_GU_AS_MP_Income_Tax:262
+
+
+132
+191
+/W3 Maine:198/Total_Record_2:175
+VI_GU_AS_MP_Income_Tax_Withheld
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record_2:233/VI_GU_AS_MP_Income_Tax_Withheld:266
+
+
+132
+192
+/W3 Maine:198/Total_Record_2:175
+Uncollected_Social_Security_or_RRTA_Tax_on_Cost_of_Group_Term_Life_Ins_Over_50000
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record_2:233/Uncollected_Social_Security_or_RRTA_Tax_on_Cost_of_Group_Term_Life_Ins_Over_50000:335
+
+
+132
+193
+/W3 Maine:198/Total_Record_2:175
+Uncollected_Medicare_Tax_on_Cost_of_Group_term_Life_Ins_over_50000
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record_2:233/Uncollected_Medicare_Tax_on_Cost_of_Group_term_Life_Ins_over_50000:334
+
+
+132
+194
+/W3 Maine:198/Total_Record_2:175
+Carriage_return
+
+0
+16
+/W2 Electronic Data Extract:350/Total_Record_2:233/Carriage_return:325
+
+
+130
+195
+/W3 Maine:198
+Final_Record
+
+0
+16
+/W2 Electronic Data Extract:350/Final_Record:268
+
+1
+3
+132
+196
+/W3 Maine:198/Final_Record:195
+Record_Identifier
+RF
+0
+16
+/W2 Electronic Data Extract:350/Final_Record:268/Record_Identifier:270
+
+
+132
+197
+/W3 Maine:198/Final_Record:195
+Number_of_RW_Records
+
+0
+16
+/W2 Electronic Data Extract:350/Final_Record:268/Number_of_RW_Records:271
+
+
+132
+198
+/W3 Maine:198/Final_Record:195
+Carriage_return
+
+0
+16
+/W2 Electronic Data Extract:350/Final_Record:268/Carriage_return:326
+
+
+@0200N
+129
+35
+NULL_REF
+W3 Maine
+View of: W3 Maine
+0
+0
+17
+w3me.adf
+w3me.vw2
+3
+130
+2
+/W3 Maine:35
+Header_record
+
+0
+16
+/W3 Maine:156/Header_record:2
+
+1
+10
+132
+3
+/W3 Maine:35/Header_record:2
+Record_ID
+
+0
+16
+/W3 Maine:156/Header_record:2/Record_ID:3
+
+
+132
+4
+/W3 Maine:35/Header_record:2
+Payment_Year
+
+0
+16
+/W3 Maine:156/Header_record:2/Payment_Year:47
+
+
+132
+5
+/W3 Maine:35/Header_record:2
+Taxing_Entity_Code
+
+0
+16
+/W3 Maine:156/Header_record:2/Taxing_Entity_Code:115
+
+
+132
+6
+/W3 Maine:35/Header_record:2
+Transmitters_Fed_ID_Number
+
+0
+16
+/W3 Maine:156/Header_record:2/Transmitters_Fed_ID_Number:116
+
+
+132
+7
+/W3 Maine:35/Header_record:2
+Transmitter_Name
+
+0
+16
+/W3 Maine:156/Header_record:2/Transmitter_Name:112
+
+
+132
+8
+/W3 Maine:35/Header_record:2
+Transmitter_Contact
+
+0
+16
+/W3 Maine:156/Header_record:2/Transmitter_Contact:118
+
+
+132
+9
+/W3 Maine:35/Header_record:2
+Transmitter_Contact_Telephone_Number
+
+0
+16
+/W3 Maine:156/Header_record:2/Transmitter_Contact_Telephone_Number:120
+
+
+132
+10
+/W3 Maine:35/Header_record:2
+Contact_Telephone_Extension
+
+0
+16
+/W3 Maine:156/Header_record:2/Contact_Telephone_Extension:122
+
+
+132
+11
+/W3 Maine:35/Header_record:2
+Blanks
+
+0
+16
+/W3 Maine:156/Header_record:2/Blanks:124
+
+
+132
+12
+/W3 Maine:35/Header_record:2
+Carriage_Return
+
+0
+16
+/W3 Maine:156/Header_record:2/Carriage_Return:153
+
+
+130
+13
+/W3 Maine:35
+Detail_record
+
+0
+16
+/W3 Maine:156/Detail_record:15
+
+1
+14
+132
+14
+/W3 Maine:35/Detail_record:13
+Record_ID
+
+0
+16
+/W3 Maine:156/Detail_record:15/Record_ID:28
+
+
+132
+15
+/W3 Maine:35/Detail_record:13
+Payment_Year
+
+0
+16
+/W3 Maine:156/Detail_record:15/Payment_Year:126
+
+
+132
+16
+/W3 Maine:35/Detail_record:13
+Taxing_Entity_Code
+
+0
+16
+/W3 Maine:156/Detail_record:15/Taxing_Entity_Code:128
+
+
+132
+17
+/W3 Maine:35/Detail_record:13
+Withholding_Acct_ID_Number
+
+0
+16
+/W3 Maine:156/Detail_record:15/Withholding_Acct_ID_Number:18
+
+
+132
+18
+/W3 Maine:35/Detail_record:13
+Client_Name
+
+0
+16
+/W3 Maine:156/Detail_record:15/Client_Name:21
+
+
+132
+19
+/W3 Maine:35/Detail_record:13
+1099_Fed_State_Submissions
+
+0
+16
+/W3 Maine:156/Detail_record:15/1099_Fed_State_Submissions:129
+
+
+132
+20
+/W3 Maine:35/Detail_record:13
+Maine_Income_Tax_Reported_on_Payee_Statements
+
+0
+16
+/W3 Maine:156/Detail_record:15/Maine_Income_Tax_Reported_on_Payee_Statements:56
+
+
+132
+21
+/W3 Maine:35/Detail_record:13
+Maine_Income_Tax_Reported_to_Maine_Revenue_Services
+
+0
+16
+/W3 Maine:156/Detail_record:15/Maine_Income_Tax_Reported_to_Maine_Revenue_Services:131
+
+
+132
+22
+/W3 Maine:35/Detail_record:13
+Maine_Income_Tax_included_in_Quarterly_returns_reported_on_Forms_W2
+
+0
+16
+/W3 Maine:156/Detail_record:15/Maine_Income_Tax_included_in_Quarterly_returns_reported_on_Forms_W2:133
+
+
+132
+23
+/W3 Maine:35/Detail_record:13
+Maine_Income_Tax_remitted_by_Third_Party_Payer
+
+0
+16
+/W3 Maine:156/Detail_record:15/Maine_Income_Tax_remitted_by_Third_Party_Payer:135
+
+
+132
+24
+/W3 Maine:35/Detail_record:13
+Third_Party_Payer_Name
+
+0
+16
+/W3 Maine:156/Detail_record:15/Third_Party_Payer_Name:137
+
+
+132
+25
+/W3 Maine:35/Detail_record:13
+Third_Party_EIN
+
+0
+16
+/W3 Maine:156/Detail_record:15/Third_Party_EIN:139
+
+
+132
+26
+/W3 Maine:35/Detail_record:13
+Blanks
+
+0
+16
+/W3 Maine:156/Detail_record:15/Blanks:141
+
+
+132
+27
+/W3 Maine:35/Detail_record:13
+Carriage_Return
+
+0
+16
+/W3 Maine:156/Detail_record:15/Carriage_Return:155
+
+
+130
+28
+/W3 Maine:35
+Trailer_record
+
+0
+16
+/W3 Maine:156/Trailer_record:29
+
+1
+7
+132
+29
+/W3 Maine:35/Trailer_record:28
+Record_ID
+
+0
+16
+/W3 Maine:156/Trailer_record:29/Record_ID:38
+
+
+132
+30
+/W3 Maine:35/Trailer_record:28
+Taxing_Entity_Code
+
+0
+16
+/W3 Maine:156/Trailer_record:29/Taxing_Entity_Code:143
+
+
+132
+31
+/W3 Maine:35/Trailer_record:28
+Total_ERs_in_File
+
+0
+16
+/W3 Maine:156/Trailer_record:29/Total_ERs_in_File:145
+
+
+132
+32
+/W3 Maine:35/Trailer_record:28
+Total_Maine_Income_Tax_Reported_on_Payee_Statements
+
+0
+16
+/W3 Maine:156/Trailer_record:29/Total_Maine_Income_Tax_Reported_on_Payee_Statements:147
+
+
+132
+33
+/W3 Maine:35/Trailer_record:28
+Total_Maine_Income_Tax_Reported_to_Maine_Revenue_Services
+
+0
+16
+/W3 Maine:156/Trailer_record:29/Total_Maine_Income_Tax_Reported_to_Maine_Revenue_Services:149
+
+
+132
+34
+/W3 Maine:35/Trailer_record:28
+Blanks
+
+0
+16
+/W3 Maine:156/Trailer_record:29/Blanks:151
+
+
+132
+35
+/W3 Maine:35/Trailer_record:28
+Carriage_Return
+
+0
+16
+/W3 Maine:156/Trailer_record:29/Carriage_Return:156
+
+
+@0200N
+17
+350
+NULL_REF
+W2 Electronic Data Extract
+W2 Electronic Data Extract
+0
+0
+2
+10
+2
+44
+0
+0
+0
+4
+PARTNER
+
+3
+APPKEY1
+
+0
+APPKEY2
+
+0
+APPKEY3
+
+0
+tax.app
+1
+46
+4
+18
+2
+/W2 Electronic Data Extract:350
+Submitter_record
+RA
+0
+16
+2
+10
+1
+1
+18
+20
+4
+/W2 Electronic Data Extract:350/Submitter_record:2
+Record_Identifier
+RA
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+RA
+2
+0
+0
+0
+20
+3
+/W2 Electronic Data Extract:350/Submitter_record:2
+Report_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+5
+/W2 Electronic Data Extract:350/Submitter_record:2
+Paycor_Federal_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+6
+/W2 Electronic Data Extract:350/Submitter_record:2
+PIN
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+7
+/W2 Electronic Data Extract:350/Submitter_record:2
+Resub_Indicator
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+9
+/W2 Electronic Data Extract:350/Submitter_record:2
+Resub_TLCN
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+10
+/W2 Electronic Data Extract:350/Submitter_record:2
+Paycor_Legal_Name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+12
+/W2 Electronic Data Extract:350/Submitter_record:2
+Paycor_Suite_Number
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+14
+/W2 Electronic Data Extract:350/Submitter_record:2
+Paycor_Street_Address
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+16
+/W2 Electronic Data Extract:350/Submitter_record:2
+Paycor_City
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+18
+/W2 Electronic Data Extract:350/Submitter_record:2
+Paycor_State_Abbreviation
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+20
+/W2 Electronic Data Extract:350/Submitter_record:2
+Paycor_Zip_Code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+22
+/W2 Electronic Data Extract:350/Submitter_record:2
+Paycor_Zip_Code_Extension
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+24
+/W2 Electronic Data Extract:350/Submitter_record:2
+Paycor_Transmission_Contact_Name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+26
+/W2 Electronic Data Extract:350/Submitter_record:2
+Paycor_Contact_Phone_Number
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+28
+/W2 Electronic Data Extract:350/Submitter_record:2
+Paycor_Contact_Fax
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+275
+/W2 Electronic Data Extract:350/Submitter_record:2
+Carriage_return
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+30
+/W2 Electronic Data Extract:350/Submitter_record:2
+Employer_Record
+
+0
+16
+2
+10
+1
+0
+16
+20
+32
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30
+Record_Identifier
+RE
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+RE
+2
+0
+0
+0
+20
+33
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30
+Tax_Year
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+34
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30
+Employer_Identification_Number
+EIN
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+35
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30
+Terminating_Business_Indicator
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+36
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30
+Employer_Name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+37
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30
+Location_Address
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+39
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30
+Delivery_Address
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+41
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30
+City
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+42
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30
+State_Abbreviation
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+43
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30
+Zip_Code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+45
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30
+Zip_Code_Extension
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+46
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30
+Employment_Code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+327
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30
+Tax_Jurisdiction_Code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+328
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30
+Third_Party_Sick_Pay_Indicator
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+319
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30
+Carriage_return
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+48
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30
+Employee_Record
+
+0
+16
+2
+10
+1
+0
+44
+20
+50
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Record_Identifier
+RW
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+RW
+2
+0
+0
+0
+20
+51
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+SSN
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+52
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Employee_First_Name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+55
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Employee_Middle_Name_or_Initial
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+57
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Employee_Last_Name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+53
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Suffix
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+58
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Location_Address
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+60
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Delivery_Address
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+62
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+City
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+64
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+State_Abbreviation
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+66
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Zip_Code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+68
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Zip_Code_Extension
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+69
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Wages_Tips_Other_Compensation
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+71
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Federal_Income_Tax_Withheld
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+273
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Social_Security_Wages
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+73
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Social_Security_Tax_Withheld
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+75
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Medicare_Wages_Tips
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+77
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Medicare_Tax_Withheld
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+79
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Social_Security_Tips
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+81
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Advanced_Earned_Income_Credit
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+83
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Dependent_Care_Benefits
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+85
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Deferred_Comp_Cont_to_Section_401k
+401k
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+87
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Deferred_Comp_Cont_to_Section_403b
+403b
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+89
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Deferred_Comp_Cont_to_Section_408k6
+408k6
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+91
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Deferred_Comp_Cont_to_Section_457b
+457b
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+93
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Deferred_Comp_Cont_to_Section_501c18d
+501c18b
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+95
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Military_ee_Basic_Quarters_Subsistence_and_Combat_Pay
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+97
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Non_Qualified_Plan_Section_457_Distributions_or_Contributions
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+99
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Non_Qualified_Plan_Not_Section_457_Distributions_or_Contributions
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+100
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Control_Number
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+102
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Fringe_Benefits
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+104
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Employer_Cost_of_Premiums_for_Group_Term_Life_Ins_over_50000
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+105
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Deferred_Compensation_Indicator
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+107
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Statutory_EE_Indicator
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+109
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Deceased_Indicator
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+111
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Retirement_Plan_Indicator
+Previously_Called_Pension_Plan
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+330
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Income_From_Exercise_Nonstatutory_Stock_Options
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+329
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Third_Party_Sick_Pay_Indicator
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+343
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Designated_Roth_contributions_to_401K
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+346
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Designated_Roth_contributions_under_403B
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+320
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Carriage_return
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+113
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Employee_Wage_Record
+
+0
+16
+2
+10
+0
+1
+20
+20
+115
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113
+Record_Identifier
+RO
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+RO
+2
+0
+0
+0
+20
+117
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113
+Allocated_Tips
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+119
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113
+Uncollected_EE_Tax_on_Tips
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+121
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113
+Medical_Savings_Account
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+123
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113
+Simple_Retirement_Account
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+125
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113
+Qualified_Adoption_Expenses
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+127
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113
+Civil_Status
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+129
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113
+Spouse_SSN
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+131
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113
+Wages_Subject_to_Puerto_Rico_Tax
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+133
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113
+Commissions_Subject_to_Puerto_Rico_Tax
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+135
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113
+Allowances_Subject_to_Puerto_Rico_Tax
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+137
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113
+Tips_Subject_to_Puerto_Rico_Tax
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+139
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113
+Total_Wages_Commissions_Tips_Allowances_Subject_to_Puerto_Rico_Tax
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+141
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113
+Puerto_Rico_Tax_Withheld
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+143
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113
+Retirement_Fund_Annual_Contributions
+Previously_called_Retirement_Fund_Subject_to_Puerto_Rico_Tax
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+145
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113
+Total_Wages_Tips_Other_Compensation_Subject_to_VI_GU_AS_MP_Income_Tax
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+147
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113
+VI_GU_AS_MP_Income_Tax_Withheld
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+332
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113
+Uncollected_Social_Security_or_RRTA_Tax_on_Cost_of_Group_Term_Life_Ins_Over_50000
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+331
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113
+Uncollected_Medicare_Tax_on_Cost_of_Group_term_Life_Ins_over_50000
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+321
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Employee_Wage_Record:113
+Carriage_return
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+149
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+State_Record
+
+0
+16
+2
+10
+0
+0
+23
+20
+151
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149
+Record_Identifier
+RS
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+RS
+2
+0
+0
+0
+20
+152
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149
+State_Code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+153
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149
+State_Employer_Account_Number
+SWH
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+154
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149
+Taxing_Entity_Code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+155
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149
+Optional_Code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+156
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149
+Reporting_Period
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+159
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149
+State_Quarterly_Unemployment_Ins_Total_Wages
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+161
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149
+State_Quarterly_Unemployment_Ins_Total_Taxable_Wages
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+162
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149
+Number_of_Weeks_Worked
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+163
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149
+Hire_Date
+MMDDYYYY
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+165
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149
+Termination_Date
+MMDDYYYY
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+167
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149
+State_Employer_Account_Number_2
+SUI Account Number
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+169
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149
+State_Code_2
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+171
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149
+State_Taxable_Wages
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+173
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149
+State_Income_Tax_Withheld
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+175
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149
+Other_State_Data
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+176
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149
+Tax_Type_Code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+178
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149
+Local_Taxable_Wages
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+180
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149
+Local_Income_Tax_Withheld
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+182
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149
+State_Control_Number
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+183
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149
+Supplemental_Data_1
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+185
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149
+Supplemental_Data_2
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+322
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/State_Record:149
+Carriage_return
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+279
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48
+Intermediate_Record
+
+0
+16
+2
+10
+0
+0
+20
+20
+281
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279
+Record_Identifier
+RI
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+RI
+2
+0
+0
+0
+20
+283
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279
+Social_Security_Wages
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+285
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279
+Social_Security_Tips
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+287
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279
+Wages_Tips_Other_Compensation
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+289
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279
+Social_Security_Tax_Withheld
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+291
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279
+Federal_Income_Tax_Withheld
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+293
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279
+Control_Number
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+295
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279
+Employer_Cost_of_Premiums_for_Group_Term_Life_Ins_over_50000
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+297
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279
+Uncollected_EE_Tax_on_Tips
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+299
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279
+Advanced_Earned_Income_Credit
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+301
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279
+Allocated_Tips
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+303
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279
+Fringe_Benefits
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+305
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279
+Deferred_Compensation_Contributions
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+307
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279
+Dependent_Care_Benefits
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+309
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279
+Non_Qualified_Plan_Section_457_Distributions_or_Contributions
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+311
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279
+Non_Qualified_Plan_Not_Section_457_Distributions_or_Contributions
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+313
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279
+Medicare_Wages_Tips
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+315
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279
+Medicare_Tax_Withheld
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+317
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279
+Military_ee_Basic_Quarters_Subsistence_and_Combat_Pay
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+323
+/W2 Electronic Data Extract:350/Submitter_record:2/Employer_Record:30/Employee_Record:48/Intermediate_Record:279
+Carriage_return
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+187
+/W2 Electronic Data Extract:350
+Total_Record
+
+0
+16
+2
+10
+1
+0
+30
+20
+189
+/W2 Electronic Data Extract:350/Total_Record:187
+Record_Identifier
+RT
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+RT
+2
+0
+0
+0
+20
+190
+/W2 Electronic Data Extract:350/Total_Record:187
+Number_of_RW_Records
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+192
+/W2 Electronic Data Extract:350/Total_Record:187
+Wages_Tips_Other_Compensation
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+194
+/W2 Electronic Data Extract:350/Total_Record:187
+Federal_Income_Tax_Withheld
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+196
+/W2 Electronic Data Extract:350/Total_Record:187
+Social_Security_Wages
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+198
+/W2 Electronic Data Extract:350/Total_Record:187
+Social_Security_Tax_Withheld
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+200
+/W2 Electronic Data Extract:350/Total_Record:187
+Medicare_Wages_Tips
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+202
+/W2 Electronic Data Extract:350/Total_Record:187
+Medicare_Tax_Withheld
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+204
+/W2 Electronic Data Extract:350/Total_Record:187
+Social_Security_Tips
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+206
+/W2 Electronic Data Extract:350/Total_Record:187
+Advanced_Earned_Income_Credit
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+208
+/W2 Electronic Data Extract:350/Total_Record:187
+Dependent_Care_Benefits
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+211
+/W2 Electronic Data Extract:350/Total_Record:187
+Deferred_Comp_Cont_to_Section_401k
+401k
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+213
+/W2 Electronic Data Extract:350/Total_Record:187
+Deferred_Comp_Cont_to_Section_403b
+403b
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+215
+/W2 Electronic Data Extract:350/Total_Record:187
+Deferred_Comp_Cont_to_Section_408k6
+408k6
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+217
+/W2 Electronic Data Extract:350/Total_Record:187
+Deferred_Comp_Cont_to_Section_457b
+457b
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+219
+/W2 Electronic Data Extract:350/Total_Record:187
+Deferred_Comp_Cont_to_Section_501c18d
+501c18d
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+221
+/W2 Electronic Data Extract:350/Total_Record:187
+Military_ee_Basic_Quarters_Subsistence_and_Combat_Pay
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+223
+/W2 Electronic Data Extract:350/Total_Record:187
+Non_Qualified_Plan_Section_457_Distributions_or_Contributions
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+225
+/W2 Electronic Data Extract:350/Total_Record:187
+Non_Qualified_Plan_Not_Section_457_Distributions_or_Contributions
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+227
+/W2 Electronic Data Extract:350/Total_Record:187
+Fringe_Benefits
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+229
+/W2 Electronic Data Extract:350/Total_Record:187
+Employer_Cost_of_Premiums_for_Group_Term_Life_Ins_over_50000
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+231
+/W2 Electronic Data Extract:350/Total_Record:187
+Income_Tax_Withheld_by_Third_Party_Payer
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+333
+/W2 Electronic Data Extract:350/Total_Record:187
+Income_from_the_exercise_of_Nonstatutory_Stock_Options
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+337
+/W2 Electronic Data Extract:350/Total_Record:187
+Total_State_Taxable_Wages
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+339
+/W2 Electronic Data Extract:350/Total_Record:187
+Total_State_Income_Tax_Withheld
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+340
+/W2 Electronic Data Extract:350/Total_Record:187
+Total_Local_Taxable_Wages
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+341
+/W2 Electronic Data Extract:350/Total_Record:187
+Total_Local_Income_Tax_Withheld
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+348
+/W2 Electronic Data Extract:350/Total_Record:187
+Designated_Roth_contributions_to_401K
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+350
+/W2 Electronic Data Extract:350/Total_Record:187
+Designated_Roth_contributions_under_403B
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+324
+/W2 Electronic Data Extract:350/Total_Record:187
+Carriage_return
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+233
+/W2 Electronic Data Extract:350
+Total_Record_2
+
+0
+16
+2
+10
+0
+0
+19
+20
+235
+/W2 Electronic Data Extract:350/Total_Record_2:233
+Record_Identifier
+RU
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+RU
+2
+0
+0
+0
+20
+236
+/W2 Electronic Data Extract:350/Total_Record_2:233
+Number_of_RO_Records
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+238
+/W2 Electronic Data Extract:350/Total_Record_2:233
+Allocated_Tips
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+240
+/W2 Electronic Data Extract:350/Total_Record_2:233
+Uncollected_EE_Tax_on_Tips
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+242
+/W2 Electronic Data Extract:350/Total_Record_2:233
+Medical_Savings_Account
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+244
+/W2 Electronic Data Extract:350/Total_Record_2:233
+Simple_Retirement_Account
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+246
+/W2 Electronic Data Extract:350/Total_Record_2:233
+Qualified_Adoption_Expenses
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+248
+/W2 Electronic Data Extract:350/Total_Record_2:233
+Wages_Subject_to_Puerto_Rico_Tax
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+250
+/W2 Electronic Data Extract:350/Total_Record_2:233
+Commissions_Subject_to_Puerto_Rico_Tax
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+252
+/W2 Electronic Data Extract:350/Total_Record_2:233
+Allowances_Subject_to_Puerto_Rico_Tax
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+254
+/W2 Electronic Data Extract:350/Total_Record_2:233
+Tips_Subject_to_Puerto_Rico_Tax
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+256
+/W2 Electronic Data Extract:350/Total_Record_2:233
+Total_Wages_Commissions_Tips_Allowances_Subject_to_Puerto_Rico_Tax
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+258
+/W2 Electronic Data Extract:350/Total_Record_2:233
+Puerto_Rico_Tax_Withheld
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+260
+/W2 Electronic Data Extract:350/Total_Record_2:233
+Retirement_Fund_Annual_Contributions
+Retirement_Fund_Subject_to_Puerto_Rico_Tax
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+262
+/W2 Electronic Data Extract:350/Total_Record_2:233
+Total_Wages_Tips_Other_Compensation_Subject_to_VI_GU_AS_MP_Income_Tax
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+266
+/W2 Electronic Data Extract:350/Total_Record_2:233
+VI_GU_AS_MP_Income_Tax_Withheld
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+335
+/W2 Electronic Data Extract:350/Total_Record_2:233
+Uncollected_Social_Security_or_RRTA_Tax_on_Cost_of_Group_Term_Life_Ins_Over_50000
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+334
+/W2 Electronic Data Extract:350/Total_Record_2:233
+Uncollected_Medicare_Tax_on_Cost_of_Group_term_Life_Ins_over_50000
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+325
+/W2 Electronic Data Extract:350/Total_Record_2:233
+Carriage_return
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+268
+/W2 Electronic Data Extract:350
+Final_Record
+
+0
+16
+2
+10
+1
+1
+3
+20
+270
+/W2 Electronic Data Extract:350/Final_Record:268
+Record_Identifier
+RF
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+RF
+2
+0
+0
+0
+20
+271
+/W2 Electronic Data Extract:350/Final_Record:268
+Number_of_RW_Records
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+326
+/W2 Electronic Data Extract:350/Final_Record:268
+Carriage_return
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+@0200N
+17
+156
+NULL_REF
+W3 Maine
+W3 Maine
+0
+0
+2
+10
+1
+0
+10
+0
+0
+0
+4
+PARTNER
+
+0
+APPKEY1
+
+0
+APPKEY2
+
+0
+APPKEY3
+
+0
+tax.app
+1
+46
+3
+18
+2
+/W3 Maine:156
+Header_record
+
+0
+16
+2
+10
+1
+1
+10
+20
+3
+/W3 Maine:156/Header_record:2
+Record_ID
+
+0
+16
+0
+1
+0
+1
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+47
+/W3 Maine:156/Header_record:2
+Payment_Year
+
+0
+16
+0
+1
+0
+4
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+115
+/W3 Maine:156/Header_record:2
+Taxing_Entity_Code
+
+0
+16
+0
+1
+0
+4
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+116
+/W3 Maine:156/Header_record:2
+Transmitters_Fed_ID_Number
+
+0
+16
+0
+1
+0
+9
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+112
+/W3 Maine:156/Header_record:2
+Transmitter_Name
+
+0
+16
+0
+1
+0
+50
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+118
+/W3 Maine:156/Header_record:2
+Transmitter_Contact
+
+0
+16
+0
+1
+0
+30
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+120
+/W3 Maine:156/Header_record:2
+Transmitter_Contact_Telephone_Number
+
+0
+16
+0
+1
+0
+10
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+122
+/W3 Maine:156/Header_record:2
+Contact_Telephone_Extension
+
+0
+16
+0
+1
+0
+4
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+124
+/W3 Maine:156/Header_record:2
+Blanks
+
+0
+16
+0
+1
+0
+128
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+153
+/W3 Maine:156/Header_record:2
+Carriage_Return
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+15
+/W3 Maine:156
+Detail_record
+
+0
+16
+2
+10
+1
+0
+14
+20
+28
+/W3 Maine:156/Detail_record:15
+Record_ID
+
+0
+16
+0
+1
+0
+1
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+126
+/W3 Maine:156/Detail_record:15
+Payment_Year
+
+0
+16
+0
+1
+0
+4
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+128
+/W3 Maine:156/Detail_record:15
+Taxing_Entity_Code
+
+0
+16
+0
+1
+0
+4
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+18
+/W3 Maine:156/Detail_record:15
+Withholding_Acct_ID_Number
+
+0
+16
+0
+1
+0
+11
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+0
+0
+0
++
+-
+20
+21
+/W3 Maine:156/Detail_record:15
+Client_Name
+
+0
+16
+0
+1
+0
+50
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+129
+/W3 Maine:156/Detail_record:15
+1099_Fed_State_Submissions
+
+0
+16
+0
+1
+0
+1
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+56
+/W3 Maine:156/Detail_record:15
+Maine_Income_Tax_Reported_on_Payee_Statements
+
+0
+16
+0
+1
+0
+14
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+1
+2
+0
+0
++
+-
+20
+131
+/W3 Maine:156/Detail_record:15
+Maine_Income_Tax_Reported_to_Maine_Revenue_Services
+
+0
+16
+0
+1
+0
+14
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+1
+2
+0
+0
++
+-
+20
+133
+/W3 Maine:156/Detail_record:15
+Maine_Income_Tax_included_in_Quarterly_returns_reported_on_Forms_W2
+
+0
+16
+0
+1
+0
+15
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+1
+2
+0
+0
++
+-
+20
+135
+/W3 Maine:156/Detail_record:15
+Maine_Income_Tax_remitted_by_Third_Party_Payer
+
+0
+16
+0
+1
+0
+15
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+1
+2
+0
+0
++
+-
+20
+137
+/W3 Maine:156/Detail_record:15
+Third_Party_Payer_Name
+
+0
+16
+0
+1
+0
+51
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+139
+/W3 Maine:156/Detail_record:15
+Third_Party_EIN
+
+0
+16
+0
+1
+0
+9
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+141
+/W3 Maine:156/Detail_record:15
+Blanks
+
+0
+16
+0
+1
+0
+51
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+155
+/W3 Maine:156/Detail_record:15
+Carriage_Return
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+29
+/W3 Maine:156
+Trailer_record
+
+0
+16
+2
+10
+1
+1
+7
+20
+38
+/W3 Maine:156/Trailer_record:29
+Record_ID
+
+0
+16
+0
+1
+0
+1
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+143
+/W3 Maine:156/Trailer_record:29
+Taxing_Entity_Code
+
+0
+16
+0
+1
+0
+4
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+145
+/W3 Maine:156/Trailer_record:29
+Total_ERs_in_File
+
+0
+16
+0
+1
+0
+5
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+0
+0
+0
++
+-
+20
+147
+/W3 Maine:156/Trailer_record:29
+Total_Maine_Income_Tax_Reported_on_Payee_Statements
+
+0
+16
+0
+1
+0
+14
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+1
+2
+0
+0
++
+-
+20
+149
+/W3 Maine:156/Trailer_record:29
+Total_Maine_Income_Tax_Reported_to_Maine_Revenue_Services
+
+0
+16
+0
+1
+0
+14
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+1
+2
+0
+0
++
+-
+20
+151
+/W3 Maine:156/Trailer_record:29
+Blanks
+
+0
+16
+0
+1
+0
+202
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+156
+/W3 Maine:156/Trailer_record:29
+Carriage_Return
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+END DATA
+rn   

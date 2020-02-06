@@ -13,8 +13,6 @@ namespace FileDecoder
             var inputPath = Path.Combine(directoryPath, inputFile);
             var outputPath = Path.Combine(directoryPath, $"{Path.GetFileNameWithoutExtension(inputFile)}-output.txt");
 
-            Console.WriteLine($"{inputPath} to {outputPath}");
-
             string[] all = File.ReadAllLines(inputPath);
             StringBuilder stringBuilder = new StringBuilder();        
             for (int i = 1; i < all.Length - 2; i++)

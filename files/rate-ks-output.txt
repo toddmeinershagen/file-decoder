@@ -1,0 +1,2621 @@
+BEGIN DATA
+objects|9
+RTM|rate-ks|macro\rate-ks.rtm|@0200N|7055
+MAP|rate-ks|map\rate-ks.map|@0200N|3998
+VW1|rate-ks|map\rate-ks.vw1|@0200N|3461
+VW2|rate-ks|map\rate-ks.vw2|@0200N|2829
+SRC_ADF|ratesrc|map\app\ratesrc.adf||2743
+DST_ADF|rate-ks|map\app\rate-ks.adf||2215
+TST_APP||||0
+UNKNOWN||||0
+FLD||||0
+;----------------------------------------
+;
+; spEDI*map 2.0 - MPL  code generator, Rel r3.0EV
+;
+; User: <not available>    Date: Thu Oct 09 09:23:27 2008
+;
+; Map Definition: Kansas Rate File (Kansas Rate File)
+;
+;                            Source       Destination         
+;                            ------       -----------         
+;        Name: Rate - Frequency sou ===>> Kansas Rate File    
+;        Desc: Rate - Frequency sou       UNE KS Rate         
+; EDI Version:                                                
+;    EDI Desc:                                                
+;
+;----------------------------------------
+
+;----------------------------------------
+;
+; User code: Sln / Dln conditionals, FEL Code
+;
+;----------------------------------------
+let RTM_COND_Detail_Record_0001( RTM_p0 ) = {
+RETURN RTM_p0=1
+}
+let RTM_SRC_Detail_Record_0002(  ) = {
+RETURN "RH"
+}
+let RTM_SRC_Detail_Record_0003(  ) = {
+RETURN ""
+}
+let RTM_Detail_Record_EACH_0004(  ) = {
+Let YR = left(DATE("EDI_CC"),4)
+}
+let RTM_COND_Detail_Record_0005( RTM_p0 ) = {
+RETURN RTM_p0>1
+}
+let RTM_SRC_Detail_Record_0006(  ) = {
+RETURN "RI"
+}
+let RTM_SRC_Detail_Record_0007(  ) = {
+RETURN ""
+}
+
+;----------------------------------------
+
+
+;----------------------------------------
+;
+; Driver code: for alpha this will manually
+; load the data file and the map definition.
+; Eventually this will be replaced with the
+; AppScan inbound/outbound queue support.
+;
+; (AppScan will also provide the name of the batch file
+; but until it is online, we'll have to make do
+; with deriving a name from the map-def: 'outbound\rate-ks.dat'.)
+;
+;----------------------------------------
+
+LET RTM_RESULT = RUN_MAP("outbound\rate-ks.dat")
+IF RTM_RESULT <> 1 THEN
+   ECHO "Unable to test map."
+   END 1
+ENDIF
+ECHO "Macro Kansas Rate File completed."
+END 0
+$RTIME:BEGIN
+@0200N
+33
+37
+NULL_REF
+Kansas Rate File
+Kansas Rate File
+0
+2048
+17
+ratesrc.adf
+17
+rate-ks.adf
+0
+0
+14
+4132
+1
+/Kansas Rate File:37
+LIT_0
+1720
+0
+0
+4132
+2
+/Kansas Rate File:37
+LIT_0
+2384
+0
+0
+4132
+3
+/Kansas Rate File:37
+LIT_0
+311299990
+0
+0
+4132
+4
+/Kansas Rate File:37
+LIT_0
+45203
+0
+0
+4132
+5
+/Kansas Rate File:37
+LIT_0
+5133810505
+0
+0
+4132
+6
+/Kansas Rate File:37
+LIT_0
+644 LINN ST, SUITE 200
+0
+0
+4132
+7
+/Kansas Rate File:37
+LIT_0
+CINCINNATI 
+0
+0
+4132
+8
+/Kansas Rate File:37
+LIT_0
+KATELIN HOLMES
+0
+0
+4132
+9
+/Kansas Rate File:37
+LIT_0
+KHOLMES@PAYCOR.COM
+0
+0
+4132
+10
+/Kansas Rate File:37
+LIT_0
+OH
+0
+0
+4132
+11
+/Kansas Rate File:37
+LIT_0
+PAYCOR, INC
+0
+0
+4132
+12
+/Kansas Rate File:37
+LIT_0
+RH
+0
+0
+4132
+13
+/Kansas Rate File:37
+LIT_0
+RI
+0
+0
+8228
+14
+/Kansas Rate File:37
+YR
+desc
+0
+0
+2
+32770
+15
+/Kansas Rate File:37
+Detail_Record
+SLN Based on Detail_Record(View container)
+0
+0
+0
+333
+333
+333
+333
+Detail_Record
+Header_Record
+13
+0
+18
+/Rate - Frequency source file:34/Detail_Record:2
+18
+/Kansas Rate File:77/Header_Record:2
+32772
+16
+/Kansas Rate File:37/Detail_Record:15
+
+
+0
+0
+1
+1
+444
+1
+RETURN RTM_CARD=1
+RTM_COND_Detail_Record_0001
+1
+1
+7
+8
+130
+2
+/Rate - Frequency source file:34/Detail_Record:2
+444
+1
+RETURN "RH"
+RTM_SRC_Detail_Record_0002
+0
+4132
+/Kansas Rate File:37/LIT_0:12
+20
+/Kansas Rate File:77/Header_Record:2/Record_ID:7
+32772
+17
+/Kansas Rate File:37/Detail_Record:15
+
+
+0
+0
+1
+0
+333
+333
+4132
+/Kansas Rate File:37/LIT_0:3
+20
+/Kansas Rate File:77/Header_Record:2/Transmitter_Fed_ID:11
+32772
+18
+/Kansas Rate File:37/Detail_Record:15
+
+
+0
+0
+1
+0
+333
+333
+4132
+/Kansas Rate File:37/LIT_0:11
+20
+/Kansas Rate File:77/Header_Record:2/Transmitter_Name:31
+32772
+19
+/Kansas Rate File:37/Detail_Record:15
+
+
+0
+0
+1
+0
+333
+333
+4132
+/Kansas Rate File:37/LIT_0:6
+20
+/Kansas Rate File:77/Header_Record:2/Transmitter_Street:33
+32772
+20
+/Kansas Rate File:37/Detail_Record:15
+
+
+0
+0
+1
+0
+333
+333
+4132
+/Kansas Rate File:37/LIT_0:7
+20
+/Kansas Rate File:77/Header_Record:2/Transmitter_City:35
+32772
+21
+/Kansas Rate File:37/Detail_Record:15
+
+
+0
+0
+1
+0
+333
+333
+4132
+/Kansas Rate File:37/LIT_0:10
+20
+/Kansas Rate File:77/Header_Record:2/Transmitter_State:37
+32772
+22
+/Kansas Rate File:37/Detail_Record:15
+
+
+0
+0
+1
+0
+333
+333
+4132
+/Kansas Rate File:37/LIT_0:4
+20
+/Kansas Rate File:77/Header_Record:2/Transmitter_Zip:39
+32772
+23
+/Kansas Rate File:37/Detail_Record:15
+
+
+0
+0
+1
+0
+333
+333
+4132
+/Kansas Rate File:37/LIT_0:1
+20
+/Kansas Rate File:77/Header_Record:2/Transmitter_Zip_Plus4:41
+32772
+24
+/Kansas Rate File:37/Detail_Record:15
+
+
+0
+0
+1
+0
+333
+333
+4132
+/Kansas Rate File:37/LIT_0:8
+20
+/Kansas Rate File:77/Header_Record:2/Transmitter_Contact:43
+32772
+25
+/Kansas Rate File:37/Detail_Record:15
+
+
+0
+0
+1
+0
+333
+333
+4132
+/Kansas Rate File:37/LIT_0:5
+20
+/Kansas Rate File:77/Header_Record:2/Transmitter_Phone:45
+32772
+26
+/Kansas Rate File:37/Detail_Record:15
+
+
+0
+0
+1
+0
+333
+333
+4132
+/Kansas Rate File:37/LIT_0:2
+20
+/Kansas Rate File:77/Header_Record:2/Transmitter_Phone_Extension:47
+32772
+27
+/Kansas Rate File:37/Detail_Record:15
+
+
+0
+0
+1
+0
+333
+333
+4132
+/Kansas Rate File:37/LIT_0:9
+20
+/Kansas Rate File:77/Header_Record:2/Transmitter_Email:49
+32772
+28
+/Kansas Rate File:37/Detail_Record:15
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN ""
+RTM_SRC_Detail_Record_0003
+0
+4132
+/Kansas Rate File:37/LIT_0:11
+20
+/Kansas Rate File:77/Header_Record:2/Carriage_Return:30
+32770
+29
+/Kansas Rate File:37
+Detail_Record
+SLN Based on Detail_Record(View container)
+0
+0
+0
+333
+333
+444
+1
+Let YR = left(DATE("EDI_CC"),4)
+RTM_Detail_Record_EACH_0004
+0
+333
+Detail_Record
+Detail_Record
+8
+0
+18
+/Rate - Frequency source file:34/Detail_Record:2
+18
+/Kansas Rate File:77/Detail_Record:64
+32772
+30
+/Kansas Rate File:37/Detail_Record:29
+
+
+0
+0
+1
+0
+333
+333
+4132
+/Kansas Rate File:37/LIT_0:13
+20
+/Kansas Rate File:77/Detail_Record:64/Record_ID:65
+32772
+31
+/Kansas Rate File:37/Detail_Record:29
+
+
+0
+0
+1
+1
+444
+1
+RETURN RTM_CARD>1
+RTM_COND_Detail_Record_0005
+1
+1
+7
+8
+130
+2
+/Rate - Frequency source file:34/Detail_Record:2
+444
+1
+RETURN "RI"
+RTM_SRC_Detail_Record_0006
+0
+20
+/Rate - Frequency source file:34/Detail_Record:2/Client_Number:4
+20
+/Kansas Rate File:77/Detail_Record:64/Record_ID:65
+32772
+32
+/Kansas Rate File:37/Detail_Record:29
+
+
+0
+0
+1
+0
+333
+333
+20
+/Rate - Frequency source file:34/Detail_Record:2/FEIN:5
+20
+/Kansas Rate File:77/Detail_Record:64/ER_Fed_ID:66
+32772
+33
+/Kansas Rate File:37/Detail_Record:29
+
+
+0
+0
+1
+0
+333
+333
+20
+/Rate - Frequency source file:34/Detail_Record:2/Tax_ID_Account_Number:22
+20
+/Kansas Rate File:77/Detail_Record:64/KS_Account_Number:67
+32772
+34
+/Kansas Rate File:37/Detail_Record:29
+
+
+0
+0
+1
+0
+333
+333
+8228
+/Kansas Rate File:37/YR:14
+20
+/Kansas Rate File:77/Detail_Record:64/Year:68
+32772
+35
+/Kansas Rate File:37/Detail_Record:29
+
+
+0
+0
+1
+0
+333
+333
+20
+/Rate - Frequency source file:34/Detail_Record:2/Client_Legal_Name:6
+20
+/Kansas Rate File:77/Detail_Record:64/ER_Name:69
+32772
+36
+/Kansas Rate File:37/Detail_Record:29
+
+
+0
+0
+1
+0
+333
+333
+20
+/Rate - Frequency source file:34/Detail_Record:2/Tax_Rate:20
+20
+/Kansas Rate File:77/Detail_Record:64/Rate:70
+32772
+37
+/Kansas Rate File:37/Detail_Record:29
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN ""
+RTM_SRC_Detail_Record_0007
+0
+20
+/Rate - Frequency source file:34/Detail_Record:2/Client_Number:4
+20
+/Kansas Rate File:77/Detail_Record:64/Carriage_Return:77
+$RTIME:END
+@0200N
+33
+15
+NULL_REF
+Kansas Rate File
+Kansas Rate File
+0
+2048
+rate-ks.vw1
+rate-ks.vw2
+0
+0
+14
+4132
+10
+/Kansas Rate File:15
+LIT_0
+1720
+0
+0
+4132
+13
+/Kansas Rate File:15
+LIT_0
+2384
+0
+0
+4132
+4
+/Kansas Rate File:15
+LIT_0
+311299990
+0
+0
+4132
+9
+/Kansas Rate File:15
+LIT_0
+45203
+0
+0
+4132
+12
+/Kansas Rate File:15
+LIT_0
+5133810505
+0
+0
+4132
+6
+/Kansas Rate File:15
+LIT_0
+644 LINN ST, SUITE 200
+0
+0
+4132
+7
+/Kansas Rate File:15
+LIT_0
+CINCINNATI 
+0
+0
+4132
+11
+/Kansas Rate File:15
+LIT_0
+KATELIN HOLMES
+0
+0
+4132
+14
+/Kansas Rate File:15
+LIT_0
+KHOLMES@PAYCOR.COM
+0
+0
+4132
+8
+/Kansas Rate File:15
+LIT_0
+OH
+0
+0
+4132
+5
+/Kansas Rate File:15
+LIT_0
+PAYCOR, INC
+0
+0
+4132
+3
+/Kansas Rate File:15
+LIT_0
+RH
+0
+0
+4132
+15
+/Kansas Rate File:15
+LIT_0
+RI
+0
+0
+8228
+2
+/Kansas Rate File:15
+YR
+desc
+0
+0
+21
+36
+1
+/Kansas Rate File:15
+Map Link
+
+0
+0
+RTM_CARD=1
+"RH"
+1
+1
+0
+0
+0
+4132
+/Kansas Rate File:15/LIT_0:3
+132
+/Kansas Rate File:5/Header_Record:1/Record_ID:2
+36
+1
+/Kansas Rate File:15
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+4132
+/Kansas Rate File:15/LIT_0:4
+132
+/Kansas Rate File:5/Header_Record:1/Transmitter_Fed_ID:3
+36
+1
+/Kansas Rate File:15
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+4132
+/Kansas Rate File:15/LIT_0:5
+132
+/Kansas Rate File:5/Header_Record:1/Transmitter_Name:4
+36
+1
+/Kansas Rate File:15
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+4132
+/Kansas Rate File:15/LIT_0:6
+132
+/Kansas Rate File:5/Header_Record:1/Transmitter_Street:5
+36
+1
+/Kansas Rate File:15
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+4132
+/Kansas Rate File:15/LIT_0:7
+132
+/Kansas Rate File:5/Header_Record:1/Transmitter_City:6
+36
+1
+/Kansas Rate File:15
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+4132
+/Kansas Rate File:15/LIT_0:8
+132
+/Kansas Rate File:5/Header_Record:1/Transmitter_State:7
+36
+1
+/Kansas Rate File:15
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+4132
+/Kansas Rate File:15/LIT_0:9
+132
+/Kansas Rate File:5/Header_Record:1/Transmitter_Zip:8
+36
+1
+/Kansas Rate File:15
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+4132
+/Kansas Rate File:15/LIT_0:10
+132
+/Kansas Rate File:5/Header_Record:1/Transmitter_Zip_Plus4:9
+36
+1
+/Kansas Rate File:15
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+4132
+/Kansas Rate File:15/LIT_0:11
+132
+/Kansas Rate File:5/Header_Record:1/Transmitter_Contact:10
+36
+1
+/Kansas Rate File:15
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+4132
+/Kansas Rate File:15/LIT_0:12
+132
+/Kansas Rate File:5/Header_Record:1/Transmitter_Phone:11
+36
+1
+/Kansas Rate File:15
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+4132
+/Kansas Rate File:15/LIT_0:13
+132
+/Kansas Rate File:5/Header_Record:1/Transmitter_Phone_Extension:12
+36
+1
+/Kansas Rate File:15
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+4132
+/Kansas Rate File:15/LIT_0:14
+132
+/Kansas Rate File:5/Header_Record:1/Transmitter_Email:13
+36
+1
+/Kansas Rate File:15
+Map Link
+
+0
+0
+
+""
+1
+0
+0
+0
+0
+4132
+/Kansas Rate File:15/LIT_0:5
+132
+/Kansas Rate File:5/Header_Record:1/Carriage_Return:14
+36
+1
+/Kansas Rate File:15
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+4132
+/Kansas Rate File:15/LIT_0:15
+132
+/Kansas Rate File:5/Detail_Record:15/Record_ID:16
+36
+1
+/Kansas Rate File:15
+Map Link
+
+0
+0
+RTM_CARD>1
+"RI"
+1
+1
+0
+1
+Let YR = left(DATE("EDI_CC"),4)
+0
+132
+/Kansas Rate File:26/Detail_Record:1/Client_Number:3
+132
+/Kansas Rate File:5/Detail_Record:15/Record_ID:16
+36
+1
+/Kansas Rate File:15
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/Kansas Rate File:26/Detail_Record:1/FEIN:4
+132
+/Kansas Rate File:5/Detail_Record:15/ER_Fed_ID:17
+36
+1
+/Kansas Rate File:15
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/Kansas Rate File:26/Detail_Record:1/Tax_ID_Account_Number:17
+132
+/Kansas Rate File:5/Detail_Record:15/KS_Account_Number:18
+36
+1
+/Kansas Rate File:15
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+8228
+/Kansas Rate File:15/YR:2
+132
+/Kansas Rate File:5/Detail_Record:15/Year:19
+36
+1
+/Kansas Rate File:15
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/Kansas Rate File:26/Detail_Record:1/Client_Legal_Name:5
+132
+/Kansas Rate File:5/Detail_Record:15/ER_Name:20
+36
+1
+/Kansas Rate File:15
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/Kansas Rate File:26/Detail_Record:1/Tax_Rate:15
+132
+/Kansas Rate File:5/Detail_Record:15/Rate:21
+36
+1
+/Kansas Rate File:15
+Map Link
+
+0
+0
+
+""
+1
+0
+0
+0
+0
+132
+/Kansas Rate File:26/Detail_Record:1/Client_Number:3
+132
+/Kansas Rate File:5/Detail_Record:15/Carriage_Return:23
+@0200N
+129
+26
+NULL_REF
+Kansas Rate File
+View of: Kansas Rate File
+0
+0
+17
+ratesrc.adf
+rate-ks.vw1
+1
+130
+1
+/Kansas Rate File:26
+Detail_Record
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2
+
+1
+24
+132
+2
+/Kansas Rate File:26/Detail_Record:1
+Partner_ID
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Partner_ID:3
+
+
+132
+3
+/Kansas Rate File:26/Detail_Record:1
+Client_Number
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Client_Number:4
+
+
+132
+4
+/Kansas Rate File:26/Detail_Record:1
+FEIN
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/FEIN:5
+
+
+132
+5
+/Kansas Rate File:26/Detail_Record:1
+Client_Legal_Name
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Client_Legal_Name:6
+
+
+132
+6
+/Kansas Rate File:26/Detail_Record:1
+Client_DBA_Name
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Client_DBA_Name:8
+
+
+132
+7
+/Kansas Rate File:26/Detail_Record:1
+Client_Address_1
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Client_Address_1:9
+
+
+132
+8
+/Kansas Rate File:26/Detail_Record:1
+Client_Address_2
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Client_Address_2:11
+
+
+132
+9
+/Kansas Rate File:26/Detail_Record:1
+Client_city
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Client_city:12
+
+
+132
+10
+/Kansas Rate File:26/Detail_Record:1
+Client_state
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Client_state:13
+
+
+132
+11
+/Kansas Rate File:26/Detail_Record:1
+Client_Zip_Code
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Client_Zip_Code:14
+
+
+132
+12
+/Kansas Rate File:26/Detail_Record:1
+Foreign_Address_Indicator
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Foreign_Address_Indicator:15
+
+
+132
+13
+/Kansas Rate File:26/Detail_Record:1
+Tax_Type
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Tax_Type:16
+
+
+132
+14
+/Kansas Rate File:26/Detail_Record:1
+Tax_Code
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Tax_Code:18
+
+
+132
+15
+/Kansas Rate File:26/Detail_Record:1
+Tax_Rate
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Tax_Rate:20
+
+
+132
+16
+/Kansas Rate File:26/Detail_Record:1
+Deposit_Frequency_Code
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Deposit_Frequency_Code:21
+
+
+132
+17
+/Kansas Rate File:26/Detail_Record:1
+Tax_ID_Account_Number
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Tax_ID_Account_Number:22
+
+
+132
+18
+/Kansas Rate File:26/Detail_Record:1
+EFT_Indicator
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/EFT_Indicator:23
+
+
+132
+19
+/Kansas Rate File:26/Detail_Record:1
+Contact_Name
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Contact_Name:24
+
+
+132
+20
+/Kansas Rate File:26/Detail_Record:1
+Contact_phone_area_code
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Contact_phone_area_code:29
+
+
+132
+21
+/Kansas Rate File:26/Detail_Record:1
+Contact_Phone_Number
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Contact_Phone_Number:26
+
+
+132
+22
+/Kansas Rate File:26/Detail_Record:1
+Contact_Phone_Extension
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Contact_Phone_Extension:31
+
+
+132
+23
+/Kansas Rate File:26/Detail_Record:1
+Contact_fax_area_code
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Contact_fax_area_code:33
+
+
+132
+24
+/Kansas Rate File:26/Detail_Record:1
+Contact_Fax_Number
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Contact_Fax_Number:28
+
+
+132
+25
+/Kansas Rate File:26/Detail_Record:1
+Effective_Date
+
+0
+16
+/Rate - Frequency source file:34/Detail_Record:2/Effective_Date:34
+
+
+@0200N
+129
+5
+NULL_REF
+Kansas Rate File
+View of: Kansas Rate File
+0
+0
+17
+rate-ks.adf
+rate-ks.vw2
+2
+130
+1
+/Kansas Rate File:5
+Header_Record
+
+0
+16
+/Kansas Rate File:77/Header_Record:2
+
+1
+13
+132
+2
+/Kansas Rate File:5/Header_Record:1
+Record_ID
+
+0
+16
+/Kansas Rate File:77/Header_Record:2/Record_ID:7
+
+
+132
+3
+/Kansas Rate File:5/Header_Record:1
+Transmitter_Fed_ID
+
+0
+16
+/Kansas Rate File:77/Header_Record:2/Transmitter_Fed_ID:11
+
+
+132
+4
+/Kansas Rate File:5/Header_Record:1
+Transmitter_Name
+
+0
+16
+/Kansas Rate File:77/Header_Record:2/Transmitter_Name:31
+
+
+132
+5
+/Kansas Rate File:5/Header_Record:1
+Transmitter_Street
+
+0
+16
+/Kansas Rate File:77/Header_Record:2/Transmitter_Street:33
+
+
+132
+6
+/Kansas Rate File:5/Header_Record:1
+Transmitter_City
+
+0
+16
+/Kansas Rate File:77/Header_Record:2/Transmitter_City:35
+
+
+132
+7
+/Kansas Rate File:5/Header_Record:1
+Transmitter_State
+
+0
+16
+/Kansas Rate File:77/Header_Record:2/Transmitter_State:37
+
+
+132
+8
+/Kansas Rate File:5/Header_Record:1
+Transmitter_Zip
+
+0
+16
+/Kansas Rate File:77/Header_Record:2/Transmitter_Zip:39
+
+
+132
+9
+/Kansas Rate File:5/Header_Record:1
+Transmitter_Zip_Plus4
+
+0
+16
+/Kansas Rate File:77/Header_Record:2/Transmitter_Zip_Plus4:41
+
+
+132
+10
+/Kansas Rate File:5/Header_Record:1
+Transmitter_Contact
+
+0
+16
+/Kansas Rate File:77/Header_Record:2/Transmitter_Contact:43
+
+
+132
+11
+/Kansas Rate File:5/Header_Record:1
+Transmitter_Phone
+
+0
+16
+/Kansas Rate File:77/Header_Record:2/Transmitter_Phone:45
+
+
+132
+12
+/Kansas Rate File:5/Header_Record:1
+Transmitter_Phone_Extension
+
+0
+16
+/Kansas Rate File:77/Header_Record:2/Transmitter_Phone_Extension:47
+
+
+132
+13
+/Kansas Rate File:5/Header_Record:1
+Transmitter_Email
+
+0
+16
+/Kansas Rate File:77/Header_Record:2/Transmitter_Email:49
+
+
+132
+14
+/Kansas Rate File:5/Header_Record:1
+Carriage_Return
+
+0
+16
+/Kansas Rate File:77/Header_Record:2/Carriage_Return:30
+
+
+130
+15
+/Kansas Rate File:5
+Detail_Record
+
+0
+16
+/Kansas Rate File:77/Detail_Record:64
+
+1
+8
+132
+16
+/Kansas Rate File:5/Detail_Record:15
+Record_ID
+
+0
+16
+/Kansas Rate File:77/Detail_Record:64/Record_ID:65
+
+
+132
+17
+/Kansas Rate File:5/Detail_Record:15
+ER_Fed_ID
+
+0
+16
+/Kansas Rate File:77/Detail_Record:64/ER_Fed_ID:66
+
+
+132
+18
+/Kansas Rate File:5/Detail_Record:15
+KS_Account_Number
+
+0
+16
+/Kansas Rate File:77/Detail_Record:64/KS_Account_Number:67
+
+
+132
+19
+/Kansas Rate File:5/Detail_Record:15
+Year
+
+0
+16
+/Kansas Rate File:77/Detail_Record:64/Year:68
+
+
+132
+20
+/Kansas Rate File:5/Detail_Record:15
+ER_Name
+
+0
+16
+/Kansas Rate File:77/Detail_Record:64/ER_Name:69
+
+
+132
+21
+/Kansas Rate File:5/Detail_Record:15
+Rate
+
+0
+16
+/Kansas Rate File:77/Detail_Record:64/Rate:70
+
+
+132
+22
+/Kansas Rate File:5/Detail_Record:15
+Blanks
+
+0
+16
+/Kansas Rate File:77/Detail_Record:64/Blanks:76
+
+
+132
+23
+/Kansas Rate File:5/Detail_Record:15
+Carriage_Return
+
+0
+16
+/Kansas Rate File:77/Detail_Record:64/Carriage_Return:77
+
+
+@0200N
+17
+34
+NULL_REF
+Rate - Frequency source file
+Rate - Frequency source file
+0
+0
+2
+10
+2
+44
+0
+0
+0
+4
+PARTNER
+
+3
+APPKEY1
+
+0
+APPKEY2
+
+0
+APPKEY3
+
+0
+ratefreq.app
+1
+46
+1
+18
+2
+/Rate - Frequency source file:34
+Detail_Record
+
+0
+16
+2
+10
+1
+0
+24
+20
+3
+/Rate - Frequency source file:34/Detail_Record:2
+Partner_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+4
+/Rate - Frequency source file:34/Detail_Record:2
+Client_Number
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+5
+/Rate - Frequency source file:34/Detail_Record:2
+FEIN
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+6
+/Rate - Frequency source file:34/Detail_Record:2
+Client_Legal_Name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+8
+/Rate - Frequency source file:34/Detail_Record:2
+Client_DBA_Name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+9
+/Rate - Frequency source file:34/Detail_Record:2
+Client_Address_1
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+11
+/Rate - Frequency source file:34/Detail_Record:2
+Client_Address_2
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+12
+/Rate - Frequency source file:34/Detail_Record:2
+Client_city
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+13
+/Rate - Frequency source file:34/Detail_Record:2
+Client_state
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+14
+/Rate - Frequency source file:34/Detail_Record:2
+Client_Zip_Code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+15
+/Rate - Frequency source file:34/Detail_Record:2
+Foreign_Address_Indicator
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+16
+/Rate - Frequency source file:34/Detail_Record:2
+Tax_Type
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+18
+/Rate - Frequency source file:34/Detail_Record:2
+Tax_Code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+20
+/Rate - Frequency source file:34/Detail_Record:2
+Tax_Rate
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+8
+0
+0
++
+-
+20
+21
+/Rate - Frequency source file:34/Detail_Record:2
+Deposit_Frequency_Code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+22
+/Rate - Frequency source file:34/Detail_Record:2
+Tax_ID_Account_Number
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+23
+/Rate - Frequency source file:34/Detail_Record:2
+EFT_Indicator
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+24
+/Rate - Frequency source file:34/Detail_Record:2
+Contact_Name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+29
+/Rate - Frequency source file:34/Detail_Record:2
+Contact_phone_area_code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+26
+/Rate - Frequency source file:34/Detail_Record:2
+Contact_Phone_Number
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+31
+/Rate - Frequency source file:34/Detail_Record:2
+Contact_Phone_Extension
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+33
+/Rate - Frequency source file:34/Detail_Record:2
+Contact_fax_area_code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+28
+/Rate - Frequency source file:34/Detail_Record:2
+Contact_Fax_Number
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+34
+/Rate - Frequency source file:34/Detail_Record:2
+Effective_Date
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+@0200N
+17
+77
+NULL_REF
+Kansas Rate File
+UNE KS Rate
+0
+0
+2
+10
+1
+0
+10
+0
+0
+0
+4
+PARTNER
+
+0
+APPKEY1
+
+0
+APPKEY2
+
+0
+APPKEY3
+
+0
+ratefreq.app
+1
+46
+2
+18
+2
+/Kansas Rate File:77
+Header_Record
+
+0
+16
+2
+10
+1
+1
+13
+20
+7
+/Kansas Rate File:77/Header_Record:2
+Record_ID
+
+0
+16
+0
+1
+0
+2
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+11
+/Kansas Rate File:77/Header_Record:2
+Transmitter_Fed_ID
+
+0
+16
+0
+1
+0
+9
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+31
+/Kansas Rate File:77/Header_Record:2
+Transmitter_Name
+
+0
+16
+0
+1
+0
+50
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+33
+/Kansas Rate File:77/Header_Record:2
+Transmitter_Street
+
+0
+16
+0
+1
+0
+40
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+35
+/Kansas Rate File:77/Header_Record:2
+Transmitter_City
+
+0
+16
+0
+1
+0
+25
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+37
+/Kansas Rate File:77/Header_Record:2
+Transmitter_State
+
+0
+16
+0
+1
+0
+2
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+39
+/Kansas Rate File:77/Header_Record:2
+Transmitter_Zip
+
+0
+16
+0
+1
+0
+5
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+41
+/Kansas Rate File:77/Header_Record:2
+Transmitter_Zip_Plus4
+
+0
+16
+0
+1
+0
+4
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+43
+/Kansas Rate File:77/Header_Record:2
+Transmitter_Contact
+
+0
+16
+0
+1
+0
+30
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+45
+/Kansas Rate File:77/Header_Record:2
+Transmitter_Phone
+
+0
+16
+0
+1
+0
+10
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+47
+/Kansas Rate File:77/Header_Record:2
+Transmitter_Phone_Extension
+
+0
+16
+0
+1
+0
+4
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+49
+/Kansas Rate File:77/Header_Record:2
+Transmitter_Email
+
+0
+16
+0
+1
+0
+40
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+30
+/Kansas Rate File:77/Header_Record:2
+Carriage_Return
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+64
+/Kansas Rate File:77
+Detail_Record
+
+0
+16
+2
+10
+1
+0
+8
+20
+65
+/Kansas Rate File:77/Detail_Record:64
+Record_ID
+
+0
+16
+0
+1
+0
+2
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+66
+/Kansas Rate File:77/Detail_Record:64
+ER_Fed_ID
+
+0
+16
+0
+1
+0
+9
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+67
+/Kansas Rate File:77/Detail_Record:64
+KS_Account_Number
+
+0
+16
+0
+1
+0
+6
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+68
+/Kansas Rate File:77/Detail_Record:64
+Year
+
+0
+16
+0
+1
+0
+4
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+69
+/Kansas Rate File:77/Detail_Record:64
+ER_Name
+
+0
+16
+0
+1
+0
+50
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+70
+/Kansas Rate File:77/Detail_Record:64
+Rate
+
+0
+16
+0
+1
+0
+7
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+1
+4
+0
+0
++
+-
+20
+76
+/Kansas Rate File:77/Detail_Record:64
+Blanks
+
+0
+16
+0
+1
+0
+143
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+77
+/Kansas Rate File:77/Detail_Record:64
+Carriage_Return
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+END DATA
+rn                     

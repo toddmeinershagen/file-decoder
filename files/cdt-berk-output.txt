@@ -1,0 +1,9836 @@
+BEGIN DATA
+objects|9
+RTM|cdt-berk|macro\cdt-berk.rtm|@0200N|23761
+MAP|cdt-berk|map\cdt-berk.map|@0200N|16270
+VW1|cdt-berk|map\cdt-berk.vw1|@0200N|25247
+VW2|cdt-berk|map\cdt-berk.vw2|@0200N|16097
+SRC_ADF|cdtsrc|map\app\cdtsrc.adf||17656
+DST_ADF|cdtberk|map\app\cdtberk.adf||10986
+TST_APP||||0
+UNKNOWN||||0
+FLD||||0
+;----------------------------------------
+;
+; spEDI*map 2.0 - MPL  code generator, Rel r3.0EV
+;
+; User: <not available>    Date: Wed Feb 11 13:17:14 2015
+;
+; Map Definition: CDT Berkheimer File (CDT File)
+;
+;                            Source       Destination         
+;                            ------       -----------         
+;        Name: CDT Electronic Data  ===>> CDT Berkeimer       
+;        Desc: CDT Electronic Data        CDT Berkeimer       
+; EDI Version:                                                
+;    EDI Desc:                                                
+;
+;----------------------------------------
+
+;----------------------------------------
+;
+; User code: Sln / Dln conditionals, FEL Code
+;
+;----------------------------------------
+let RTM_Employer_Record_EACH_0001( RTM_p0, RTM_p1, RTM_p2, RTM_p3 ) = {
+If RTM_p0 = "E" then
+ Let SD = ""
+endif
+If RTM_p1 = "L" then
+ Let SD = "00000000000"
+endif
+
+If RTM_p2 = "E" then
+ Let Ex = ""
+endif
+If RTM_p3 = "L" then
+ Let Ex = "0000000"
+endif
+}
+let RTM_SRC_Employer_Record_0002( RTM_p0, RTM_p1 ) = {
+RETURN RTM_p0++" "++RTM_p1
+}
+let RTM_State_Record_EACH_0003( RTM_p0, RTM_p1, RTM_p2, RTM_p3 ) = {
+If RTM_p0 = "E" then
+ Let RS_SD = ""
+endif
+If RTM_p1 = "L" then
+ Let RS_SD = "00000000000"
+endif
+
+If RTM_p2 = "000000" then
+ Let PSD = "990000"
+else
+ Let PSD = RTM_p3
+endif
+}
+let RTM_SRC_State_Record_0004(  ) = {
+RETURN PSD
+}
+
+;----------------------------------------
+
+
+;----------------------------------------
+;
+; Driver code: for alpha this will manually
+; load the data file and the map definition.
+; Eventually this will be replaced with the
+; AppScan inbound/outbound queue support.
+;
+; (AppScan will also provide the name of the batch file
+; but until it is online, we'll have to make do
+; with deriving a name from the map-def: 'outbound\cdt-berk.dat'.)
+;
+;----------------------------------------
+
+LET RTM_RESULT = RUN_MAP("outbound\cdt-berk.dat")
+IF RTM_RESULT <> 1 THEN
+   ECHO "Unable to test map."
+   END 1
+ENDIF
+ECHO "Macro CDT Berkheimer File completed."
+END 0
+$RTIME:BEGIN
+@0200N
+33
+76
+NULL_REF
+CDT Berkheimer File
+CDT File
+0
+2048
+17
+cdtsrc.adf
+17
+cdtberk.adf
+0
+0
+5
+8228
+1
+/CDT Berkheimer File:76
+Ex
+desc
+0
+0
+8228
+2
+/CDT Berkheimer File:76
+PSD
+desc
+0
+0
+8228
+3
+/CDT Berkheimer File:76
+RS_SD
+desc
+0
+0
+8228
+4
+/CDT Berkheimer File:76
+SD
+desc
+0
+0
+8228
+5
+/CDT Berkheimer File:76
+new scratch pad entry
+desc
+0
+0
+2
+32770
+6
+/CDT Berkheimer File:76
+Submitter_record
+SLN Based on Submitter_record(View container)
+0
+0
+0
+333
+333
+333
+333
+Submitter_record
+Submitter_Record
+14
+0
+18
+/CDT Electronic Data Extract:475/Submitter_record:2
+18
+/CDT Berkeimer:443/Submitter_Record:2
+32772
+7
+/CDT Berkheimer File:76/Submitter_record:6
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Record_Identifier:4
+20
+/CDT Berkeimer:443/Submitter_Record:2/Record_Identifier:3
+32772
+8
+/CDT Berkheimer File:76/Submitter_record:6
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Paycor_Federal_ID:5
+20
+/CDT Berkeimer:443/Submitter_Record:2/Submitter_ID_Number:4
+32772
+9
+/CDT Berkheimer File:76/Submitter_record:6
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Paycor_Name:352
+20
+/CDT Berkeimer:443/Submitter_Record:2/Submitter_Name:22
+32772
+10
+/CDT Berkheimer File:76/Submitter_record:6
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Paycor_Location_Address:353
+20
+/CDT Berkeimer:443/Submitter_Record:2/Location_Address_2:23
+32772
+11
+/CDT Berkheimer File:76/Submitter_record:6
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Paycor_Street_Address:14
+20
+/CDT Berkeimer:443/Submitter_Record:2/Delivery_Address_2:25
+32772
+12
+/CDT Berkheimer File:76/Submitter_record:6
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Paycor_City:16
+20
+/CDT Berkeimer:443/Submitter_Record:2/City_2:27
+32772
+13
+/CDT Berkheimer File:76/Submitter_record:6
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Paycor_State_Abbreviation:18
+20
+/CDT Berkeimer:443/Submitter_Record:2/State_Abbreviation_2:29
+32772
+14
+/CDT Berkheimer File:76/Submitter_record:6
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Paycor_Zip_Code:20
+20
+/CDT Berkeimer:443/Submitter_Record:2/Zip_Code_2:31
+32772
+15
+/CDT Berkheimer File:76/Submitter_record:6
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Paycor_Zip_Code_Extension:22
+20
+/CDT Berkeimer:443/Submitter_Record:2/Zip_Code_Extension_2:33
+32772
+16
+/CDT Berkheimer File:76/Submitter_record:6
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Paycor_Transmission_Contact_Name:24
+20
+/CDT Berkeimer:443/Submitter_Record:2/Contact_Name:42
+32772
+17
+/CDT Berkheimer File:76/Submitter_record:6
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Paycor_Contact_Phone_Number:26
+20
+/CDT Berkeimer:443/Submitter_Record:2/Contact_Phone_Number:43
+32772
+18
+/CDT Berkheimer File:76/Submitter_record:6
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Paycor_Contact_Email:361
+20
+/CDT Berkeimer:443/Submitter_Record:2/Contact_Email_Internet:46
+32772
+19
+/CDT Berkheimer File:76/Submitter_record:6
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Paycor_Contact_Fax:28
+20
+/CDT Berkeimer:443/Submitter_Record:2/Contact_Fax:48
+32770
+20
+/CDT Berkheimer File:76/Submitter_record:6
+Employer_Record
+SLN Based on Employer_Record(View container)
+0
+0
+0
+333
+333
+444
+13
+If Tax_Type = "E" then
+ Let SD = ""
+endif
+If Tax_Type = "L" then
+ Let SD = "00000000000"
+endif
+
+If Tax_Type = "E" then
+ Let Ex = ""
+endif
+If Tax_Type = "L" then
+ Let Ex = "0000000"
+endif
+RTM_Employer_Record_EACH_0001
+4
+1
+3
+8
+132
+0
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Tax_Type:381
+4
+3
+8
+132
+0
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Tax_Type:381
+8
+3
+8
+132
+0
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Tax_Type:381
+11
+3
+8
+132
+0
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Tax_Type:381
+333
+Employer_Record
+Employer_Record
+20
+0
+18
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30
+18
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55
+32772
+21
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Record_Identifier:32
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Record_Identifier:57
+32772
+22
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Tax_Year:33
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Tax_Year:58
+32772
+23
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Tax_Quarter:374
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Tax_Quarter:59
+32772
+24
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Employer_Identification_Number:34
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Employer_Agent_ID_Number:60
+32772
+25
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/ER_Tax_Account_Number:35
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/ER_Account_number:418
+32772
+26
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Employer_Name:36
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Employer_Name:65
+32772
+27
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN ER_Street_Address++" "++ER_Address
+RTM_SRC_Employer_Record_0002
+2
+1
+7
+17
+132
+0
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/ER_Street_Address:39
+1
+31
+10
+132
+0
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/ER_Address:37
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/ER_Street_Address:39
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Delivery_Address:67
+32772
+28
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/City:41
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/City:68
+32772
+29
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Abbreviation:42
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State:69
+32772
+30
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Zip_Code:43
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Zip_Code:70
+32772
+31
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Zip_Code_Extension:45
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Zip_Code_Extension:71
+32772
+32
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Record_Change_Indicator:46
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Record_Change_Indicator:419
+32772
+33
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/ER_PSD_Code:378
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/ER_PSD_Code:420
+32772
+34
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Filing_Frequency:379
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Filing_Frequency:73
+32772
+35
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Reporting_Period:380
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Reporting_Period:74
+32772
+36
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Tax_Type:381
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Tax_Type:75
+32772
+37
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/ER_School_District:382
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/ER_Total_School_District_Only_Payments:397
+32772
+38
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/ER_Total_Exemptions:383
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/ER_Total_Number_Exemptions:76
+32770
+39
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20
+State_Record
+SLN Based on State_Record(View container)
+0
+0
+0
+333
+333
+444
+12
+If Local_Tax_Type_Code = "E" then
+ Let RS_SD = ""
+endif
+If Local_Tax_Type_Code = "L" then
+ Let RS_SD = "00000000000"
+endif
+
+If PSD_Code_of_EEs_Residence = "000000" then
+ Let PSD = "990000"
+else
+ Let PSD = PSD_Code_of_EEs_Residence
+endif
+RTM_State_Record_EACH_0003
+4
+1
+3
+19
+132
+0
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/Local_Tax_Type_Code:176
+4
+3
+19
+132
+0
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/Local_Tax_Type_Code:176
+8
+3
+25
+132
+0
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/PSD_Code_of_EEs_Residence:183
+11
+11
+25
+132
+0
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/PSD_Code_of_EEs_Residence:183
+333
+State_Record
+State_Record
+27
+0
+18
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+18
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200
+32772
+40
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20/State_Record:39
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/Record_Identifier:151
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/Record_ID:202
+32772
+41
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20/State_Record:39
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/EE_SSN:396
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/SSN:205
+32772
+42
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20/State_Record:39
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/EE_First_Name:398
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/Employee_First_Name:206
+32772
+43
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20/State_Record:39
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/EE_Middle_Name:399
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/Employee_Middle_Name_or_Initial:208
+32772
+44
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20/State_Record:39
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/EE_Last_Name:400
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/Employee_Last_Name:210
+32772
+45
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20/State_Record:39
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/EE_Name_Suffix:401
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/Suffix:211
+32772
+46
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20/State_Record:39
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/EE_Location_Address:402
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/Location_Address:212
+32772
+47
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20/State_Record:39
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/EE_Street_Address:403
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/Delivery_Address:213
+32772
+48
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20/State_Record:39
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/EE_City:404
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/City:215
+32772
+49
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20/State_Record:39
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/EE_State:405
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/State:216
+32772
+50
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20/State_Record:39
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/EE_Zip_Code:406
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/Zip_Code:217
+32772
+51
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20/State_Record:39
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/EE_Zip_Extension:407
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/Zip_Code_Extension:219
+32772
+52
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20/State_Record:39
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/EE_Foreign_State:408
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/EE_Foreign_State:399
+32772
+53
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20/State_Record:39
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/EE_Foreign_Postal_Code:409
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/EE_Foreign_Postal_Code:424
+32772
+54
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20/State_Record:39
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/EE_Country_Code:410
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/EE_Foreign_Country_code:425
+32772
+55
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20/State_Record:39
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/Record_Change_Indicator:411
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/Record_Change_Indicator:429
+32772
+56
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20/State_Record:39
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/Reporting_Period_End_Date:413
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/Reporting_Period_End_Date:428
+32772
+57
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20/State_Record:39
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/State_Code:152
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/State_Code_2:237
+32772
+58
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20/State_Record:39
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/State_Taxable_Wages:171
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/State_Taxable_Wages:238
+32772
+59
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20/State_Record:39
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/State_Income_Tax_Withheld:173
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/State_Income_Tax_Withheld:239
+32772
+60
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20/State_Record:39
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/Local_Tax_Type_Code:176
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/Local_Tax_Type:430
+32772
+61
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20/State_Record:39
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/Local_Taxable_Wages:178
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/Local_Taxable_Wages:242
+32772
+62
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20/State_Record:39
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/Local_Income_Tax_Withheld:180
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/Local_Income_Tax_Withheld:244
+32772
+63
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20/State_Record:39
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/State_Control_Number:182
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/State_Control_Number:401
+32772
+64
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20/State_Record:39
+
+
+0
+0
+1
+0
+333
+444
+1
+RETURN PSD
+RTM_SRC_State_Record_0004
+0
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/PSD_Code_of_EEs_Residence:183
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/PSD_Code_of_EE_Residence:245
+32772
+65
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20/State_Record:39
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/School_District_Only_Pymt:185
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/School_District_only_pymnt:432
+32772
+66
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20/State_Record:39
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/Non_resident_Flag:415
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/Non_Resident_Flag:403
+32770
+67
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20
+Total_Record
+SLN Based on Total_Record(View container)
+0
+0
+0
+333
+333
+333
+333
+Total_Record
+Total_Record
+4
+0
+18
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Total_Record:187
+18
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Total_Record:254
+32772
+68
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20/Total_Record:67
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Total_Record:187/Record_Identifier:189
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Total_Record:254/Record_Identifier:256
+32772
+69
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20/Total_Record:67
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Total_Record:187/Number_of_RS_Records:190
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Total_Record:254/Number_of_RS_Records:257
+32772
+70
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20/Total_Record:67
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Total_Record:187/Total_Local_Taxable_Wages:340
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Total_Record:254/Total_Local_Wages:258
+32772
+71
+/CDT Berkheimer File:76/Submitter_record:6/Employer_Record:20/Total_Record:67
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Total_Record:187/Total_Local_Income_Tax_Withheld:341
+20
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Total_Record:254/Total_Local_Tax_Withheld:264
+32770
+72
+/CDT Berkheimer File:76
+Final_Record
+SLN Based on Final_Record(View container)
+0
+0
+0
+333
+333
+333
+333
+Final_Record
+Final_Record
+4
+0
+18
+/CDT Electronic Data Extract:475/Final_Record:455
+18
+/CDT Berkeimer:443/Final_Record:411
+32772
+73
+/CDT Berkheimer File:76/Final_Record:72
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Final_Record:455/Record_Identifier:456
+20
+/CDT Berkeimer:443/Final_Record:411/Record_Identifier:412
+32772
+74
+/CDT Berkheimer File:76/Final_Record:72
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Final_Record:455/Number_of_RS_Records:457
+20
+/CDT Berkeimer:443/Final_Record:411/Number_of_RS_Records:414
+32772
+75
+/CDT Berkheimer File:76/Final_Record:72
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Final_Record:455/Total_Local_Taxable_Wages:458
+20
+/CDT Berkeimer:443/Final_Record:411/Total_Local_Wages:415
+32772
+76
+/CDT Berkheimer File:76/Final_Record:72
+
+
+0
+0
+1
+0
+333
+333
+20
+/CDT Electronic Data Extract:475/Final_Record:455/Total_Local_Income_Tax_Withheld:459
+20
+/CDT Berkeimer:443/Final_Record:411/Total_Local_Tax_Withheld:416
+$RTIME:END
+@0200N
+33
+6
+NULL_REF
+CDT Berkheimer File
+CDT File
+0
+2048
+cdt-berk.vw1
+cdt-berk.vw2
+0
+0
+5
+8228
+2
+/CDT Berkheimer File:6
+Ex
+desc
+0
+0
+8228
+5
+/CDT Berkheimer File:6
+PSD
+desc
+0
+0
+8228
+4
+/CDT Berkheimer File:6
+RS_SD
+desc
+0
+0
+8228
+3
+/CDT Berkheimer File:6
+SD
+desc
+0
+0
+8228
+6
+/CDT Berkheimer File:6
+new scratch pad entry
+desc
+0
+0
+66
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Record_Identifier:2
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Record_Identifier:2
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Paycor_Federal_ID:4
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Submitter_ID_Number:3
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Paycor_Name:5
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Submitter_Name:5
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Paycor_Location_Address:6
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Location_Address_2:6
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Paycor_Street_Address:7
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Delivery_Address_2:7
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Paycor_City:8
+132
+/CDT Berkheimer File:97/Submitter_Record:1/City_2:8
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Paycor_State_Abbreviation:9
+132
+/CDT Berkheimer File:97/Submitter_Record:1/State_Abbreviation_2:9
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Paycor_Zip_Code:10
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Zip_Code_2:10
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Paycor_Zip_Code_Extension:11
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Zip_Code_Extension_2:11
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Paycor_Transmission_Contact_Name:15
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Contact_Name:13
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Paycor_Contact_Phone_Number:16
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Contact_Phone_Number:14
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Paycor_Contact_Email:18
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Contact_Email_Internet:17
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Paycor_Contact_Fax:19
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Contact_Fax:19
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/Record_Identifier:32
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/Record_Identifier:23
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/Tax_Year:33
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/Tax_Year:24
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/Tax_Quarter:34
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/Tax_Quarter:25
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/Employer_Identification_Number:35
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/Employer_Agent_ID_Number:26
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/ER_Tax_Account_Number:36
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/ER_Account_number:27
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/Employer_Name:37
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/Employer_Name:29
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+ER_Street_Address++" "++ER_Address
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/ER_Street_Address:39
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/Delivery_Address:31
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/City:40
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/City:32
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Abbreviation:41
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State:33
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/Zip_Code:42
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/Zip_Code:34
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/Zip_Code_Extension:43
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/Zip_Code_Extension:35
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/Record_Change_Indicator:44
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/Record_Change_Indicator:36
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/ER_PSD_Code:48
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/ER_PSD_Code:38
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/Filing_Frequency:49
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/Filing_Frequency:39
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/Reporting_Period:50
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/Reporting_Period:40
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+13
+If Tax_Type = "E" then
+ Let SD = ""
+endif
+If Tax_Type = "L" then
+ Let SD = "00000000000"
+endif
+
+If Tax_Type = "E" then
+ Let Ex = ""
+endif
+If Tax_Type = "L" then
+ Let Ex = "0000000"
+endif
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/Tax_Type:51
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/Tax_Type:41
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/ER_School_District:52
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/ER_Total_School_District_Only_Payments:42
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/ER_Total_Exemptions:53
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/ER_Total_Number_Exemptions:43
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65/Record_Identifier:66
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46/Record_ID:47
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65/EE_SSN:67
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46/SSN:49
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65/EE_First_Name:68
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46/Employee_First_Name:50
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65/EE_Middle_Name:69
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46/Employee_Middle_Name_or_Initial:51
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65/EE_Last_Name:70
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46/Employee_Last_Name:52
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65/EE_Name_Suffix:71
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46/Suffix:53
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65/EE_Location_Address:72
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46/Location_Address:54
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65/EE_Street_Address:73
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46/Delivery_Address:55
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65/EE_City:74
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46/City:56
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65/EE_State:75
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46/State:57
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65/EE_Zip_Code:76
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46/Zip_Code:58
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65/EE_Zip_Extension:77
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46/Zip_Code_Extension:59
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65/EE_Foreign_State:78
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46/EE_Foreign_State:61
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65/EE_Foreign_Postal_Code:79
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46/EE_Foreign_Postal_Code:62
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65/EE_Country_Code:80
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46/EE_Foreign_Country_code:63
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65/Record_Change_Indicator:81
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46/Record_Change_Indicator:65
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65/Reporting_Period_End_Date:82
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46/Reporting_Period_End_Date:66
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65/State_Code:83
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46/State_Code_2:68
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65/State_Taxable_Wages:84
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46/State_Taxable_Wages:69
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65/State_Income_Tax_Withheld:85
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46/State_Income_Tax_Withheld:70
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+7
+If Local_Tax_Type_Code = "E" then
+ Let RS_SD = ""
+endif
+If Local_Tax_Type_Code = "L" then
+ Let RS_SD = "00000000000"
+endif
+
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65/Local_Tax_Type_Code:86
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46/Local_Tax_Type:72
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65/Local_Taxable_Wages:87
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46/Local_Taxable_Wages:73
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65/Local_Income_Tax_Withheld:88
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46/Local_Income_Tax_Withheld:74
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65/State_Control_Number:89
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46/State_Control_Number:75
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+PSD
+1
+0
+0
+5
+If PSD_Code_of_EEs_Residence = "000000" then
+ Let PSD = "990000"
+else
+ Let PSD = PSD_Code_of_EEs_Residence
+endif
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65/PSD_Code_of_EEs_Residence:90
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46/PSD_Code_of_EE_Residence:76
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65/School_District_Only_Pymt:91
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46/School_District_only_pymnt:77
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65/Non_resident_Flag:92
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46/Non_Resident_Flag:78
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/Total_Record:104/Record_Identifier:105
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/Total_Record:81/Record_Identifier:82
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/Total_Record:104/Number_of_RS_Records:106
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/Total_Record:81/Number_of_RS_Records:83
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/Total_Record:104/Total_Local_Taxable_Wages:107
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/Total_Record:81/Total_Local_Wages:84
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/Total_Record:104/Total_Local_Income_Tax_Withheld:108
+132
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/Total_Record:81/Total_Local_Tax_Withheld:85
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Final_Record:136/Record_Identifier:137
+132
+/CDT Berkheimer File:97/Final_Record:95/Record_Identifier:96
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Final_Record:136/Number_of_RS_Records:138
+132
+/CDT Berkheimer File:97/Final_Record:95/Number_of_RS_Records:98
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Final_Record:136/Total_Local_Taxable_Wages:139
+132
+/CDT Berkheimer File:97/Final_Record:95/Total_Local_Wages:99
+36
+1
+/CDT Berkheimer File:6
+Map Link
+
+0
+0
+
+
+1
+0
+0
+0
+0
+132
+/CDT Berkheimer File:175/Final_Record:136/Total_Local_Income_Tax_Withheld:140
+132
+/CDT Berkheimer File:97/Final_Record:95/Total_Local_Tax_Withheld:100
+@0200N
+129
+175
+NULL_REF
+CDT Berkheimer File
+View of: CDT File
+0
+0
+17
+cdtsrc.adf
+cdt-berk.vw1
+2
+130
+1
+/CDT Berkheimer File:175
+Submitter_record
+RA
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2
+
+1
+30
+132
+2
+/CDT Berkheimer File:175/Submitter_record:1
+Record_Identifier
+RA
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Record_Identifier:4
+
+
+132
+3
+/CDT Berkheimer File:175/Submitter_record:1
+Report_ID
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Report_ID:3
+
+
+132
+4
+/CDT Berkheimer File:175/Submitter_record:1
+Paycor_Federal_ID
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Paycor_Federal_ID:5
+
+
+132
+5
+/CDT Berkheimer File:175/Submitter_record:1
+Paycor_Name
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Paycor_Name:352
+
+
+132
+6
+/CDT Berkheimer File:175/Submitter_record:1
+Paycor_Location_Address
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Paycor_Location_Address:353
+
+
+132
+7
+/CDT Berkheimer File:175/Submitter_record:1
+Paycor_Street_Address
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Paycor_Street_Address:14
+
+
+132
+8
+/CDT Berkheimer File:175/Submitter_record:1
+Paycor_City
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Paycor_City:16
+
+
+132
+9
+/CDT Berkheimer File:175/Submitter_record:1
+Paycor_State_Abbreviation
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Paycor_State_Abbreviation:18
+
+
+132
+10
+/CDT Berkheimer File:175/Submitter_record:1
+Paycor_Zip_Code
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Paycor_Zip_Code:20
+
+
+132
+11
+/CDT Berkheimer File:175/Submitter_record:1
+Paycor_Zip_Code_Extension
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Paycor_Zip_Code_Extension:22
+
+
+132
+12
+/CDT Berkheimer File:175/Submitter_record:1
+Foreign_State
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Foreign_State:355
+
+
+132
+13
+/CDT Berkheimer File:175/Submitter_record:1
+Foreign_Postal_Code
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Foreign_Postal_Code:356
+
+
+132
+14
+/CDT Berkheimer File:175/Submitter_record:1
+County_Code
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/County_Code:357
+
+
+132
+15
+/CDT Berkheimer File:175/Submitter_record:1
+Paycor_Transmission_Contact_Name
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Paycor_Transmission_Contact_Name:24
+
+
+132
+16
+/CDT Berkheimer File:175/Submitter_record:1
+Paycor_Contact_Phone_Number
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Paycor_Contact_Phone_Number:26
+
+
+132
+17
+/CDT Berkheimer File:175/Submitter_record:1
+Paycor_Contact_Phone_Extension
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Paycor_Contact_Phone_Extension:359
+
+
+132
+18
+/CDT Berkheimer File:175/Submitter_record:1
+Paycor_Contact_Email
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Paycor_Contact_Email:361
+
+
+132
+19
+/CDT Berkheimer File:175/Submitter_record:1
+Paycor_Contact_Fax
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Paycor_Contact_Fax:28
+
+
+132
+20
+/CDT Berkheimer File:175/Submitter_record:1
+Future_Field_1
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Future_Field_1:363
+
+
+132
+21
+/CDT Berkheimer File:175/Submitter_record:1
+Future_Field_2
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Future_Field_2:365
+
+
+132
+22
+/CDT Berkheimer File:175/Submitter_record:1
+Future_Field_3
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Future_Field_3:366
+
+
+132
+23
+/CDT Berkheimer File:175/Submitter_record:1
+Future_Field_4
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Future_Field_4:367
+
+
+132
+24
+/CDT Berkheimer File:175/Submitter_record:1
+Future_Field_5
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Future_Field_5:368
+
+
+132
+25
+/CDT Berkheimer File:175/Submitter_record:1
+Future_Field_6
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Future_Field_6:369
+
+
+132
+26
+/CDT Berkheimer File:175/Submitter_record:1
+Future_Field_7
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Future_Field_7:370
+
+
+132
+27
+/CDT Berkheimer File:175/Submitter_record:1
+Future_Field_8
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Future_Field_8:371
+
+
+132
+28
+/CDT Berkheimer File:175/Submitter_record:1
+Future_Field_9
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Future_Field_9:372
+
+
+132
+29
+/CDT Berkheimer File:175/Submitter_record:1
+Future_Field_10
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Future_Field_10:373
+
+
+132
+30
+/CDT Berkheimer File:175/Submitter_record:1
+Carriage_return
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Paycor_Name:352
+
+
+130
+31
+/CDT Berkheimer File:175/Submitter_record:1
+Employer_Record
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30
+
+1
+35
+132
+32
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31
+Record_Identifier
+RE
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Record_Identifier:32
+
+
+132
+33
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31
+Tax_Year
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Tax_Year:33
+
+
+132
+34
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31
+Tax_Quarter
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Tax_Quarter:374
+
+
+132
+35
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31
+Employer_Identification_Number
+EIN
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Employer_Identification_Number:34
+
+
+132
+36
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31
+ER_Tax_Account_Number
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/ER_Tax_Account_Number:35
+
+
+132
+37
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31
+Employer_Name
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Employer_Name:36
+
+
+132
+38
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31
+ER_Address
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/ER_Address:37
+
+
+132
+39
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31
+ER_Street_Address
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/ER_Street_Address:39
+
+
+132
+40
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31
+City
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/City:41
+
+
+132
+41
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31
+State_Abbreviation
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Abbreviation:42
+
+
+132
+42
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31
+Zip_Code
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Zip_Code:43
+
+
+132
+43
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31
+Zip_Code_Extension
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Zip_Code_Extension:45
+
+
+132
+44
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31
+Record_Change_Indicator
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Record_Change_Indicator:46
+
+
+132
+45
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31
+Foreign_State_Indicator
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Foreign_State_Indicator:327
+
+
+132
+46
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31
+Foreign_Postal_code
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Foreign_Postal_code:376
+
+
+132
+47
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31
+Country_code
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Country_code:328
+
+
+132
+48
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31
+ER_PSD_Code
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/ER_PSD_Code:378
+
+
+132
+49
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31
+Filing_Frequency
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Filing_Frequency:379
+
+
+132
+50
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31
+Reporting_Period
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Reporting_Period:380
+
+
+132
+51
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31
+Tax_Type
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Tax_Type:381
+
+
+132
+52
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31
+ER_School_District
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/ER_School_District:382
+
+
+132
+53
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31
+ER_Total_Exemptions
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/ER_Total_Exemptions:383
+
+
+132
+54
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31
+Future_Field_1
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/PA_8_digit_Number:385
+
+
+132
+55
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31
+Future_Field_2
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/ER_Phone_Number:387
+
+
+132
+56
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31
+Future_Field_3
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Future_Field_3:388
+
+
+132
+57
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31
+Future_Field_4
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Future_Field_4:389
+
+
+132
+58
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31
+Future_Field_5
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Future_Field_5:390
+
+
+132
+59
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31
+Future_Field_6
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Future_Field_6:391
+
+
+132
+60
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31
+Future_Field_7
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Future_Field_7:392
+
+
+132
+61
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31
+Future_Field_8
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Future_Field_8:393
+
+
+132
+62
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31
+Future_Field_9
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Future_Field_9:394
+
+
+132
+63
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31
+Future_Field_10
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Future_Field_10:395
+
+
+132
+64
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31
+Carriage_return
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Carriage_return:471
+
+
+130
+65
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31
+State_Record
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+
+1
+38
+132
+66
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+Record_Identifier
+RS
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/Record_Identifier:151
+
+
+132
+67
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+EE_SSN
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/EE_SSN:396
+
+
+132
+68
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+EE_First_Name
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/EE_First_Name:398
+
+
+132
+69
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+EE_Middle_Name
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/EE_Middle_Name:399
+
+
+132
+70
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+EE_Last_Name
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/EE_Last_Name:400
+
+
+132
+71
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+EE_Name_Suffix
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/EE_Name_Suffix:401
+
+
+132
+72
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+EE_Location_Address
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/EE_Location_Address:402
+
+
+132
+73
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+EE_Street_Address
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/EE_Street_Address:403
+
+
+132
+74
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+EE_City
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/EE_City:404
+
+
+132
+75
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+EE_State
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/EE_State:405
+
+
+132
+76
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+EE_Zip_Code
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/EE_Zip_Code:406
+
+
+132
+77
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+EE_Zip_Extension
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/EE_Zip_Extension:407
+
+
+132
+78
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+EE_Foreign_State
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/EE_Foreign_State:408
+
+
+132
+79
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+EE_Foreign_Postal_Code
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/EE_Foreign_Postal_Code:409
+
+
+132
+80
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+EE_Country_Code
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/EE_Country_Code:410
+
+
+132
+81
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+Record_Change_Indicator
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/Record_Change_Indicator:411
+
+
+132
+82
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+Reporting_Period_End_Date
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/Reporting_Period_End_Date:413
+
+
+132
+83
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+State_Code
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/State_Code:152
+
+
+132
+84
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+State_Taxable_Wages
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/State_Taxable_Wages:171
+
+
+132
+85
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+State_Income_Tax_Withheld
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/State_Income_Tax_Withheld:173
+
+
+132
+86
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+Local_Tax_Type_Code
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/Local_Tax_Type_Code:176
+
+
+132
+87
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+Local_Taxable_Wages
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/Local_Taxable_Wages:178
+
+
+132
+88
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+Local_Income_Tax_Withheld
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/Local_Income_Tax_Withheld:180
+
+
+132
+89
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+State_Control_Number
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/State_Control_Number:182
+
+
+132
+90
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+PSD_Code_of_EEs_Residence
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/PSD_Code_of_EEs_Residence:183
+
+
+132
+91
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+School_District_Only_Pymt
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/School_District_Only_Pymt:185
+
+
+132
+92
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+Non_resident_Flag
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/Non_resident_Flag:415
+
+
+132
+93
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+Future_Field_1
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/Future_Field_1:417
+
+
+132
+94
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+Future_Field_2
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/Future_Field_2:419
+
+
+132
+95
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+Future_Field_3
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/Future_Field_3:420
+
+
+132
+96
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+Future_Field_4
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/Future_Field_4:421
+
+
+132
+97
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+Future_Field_5
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/Future_Field_5:422
+
+
+132
+98
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+Future_Field_6
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/Future_Field_6:423
+
+
+132
+99
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+Future_Field_7
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/Future_Field_7:424
+
+
+132
+100
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+Future_Field_8
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/Future_Field_8:425
+
+
+132
+101
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+Future_Field_9
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/Future_Field_9:426
+
+
+132
+102
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+Future_Field_10
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/Future_Field_10:428
+
+
+132
+103
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/State_Record:65
+Carriage_return
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149/Carriage_return:473
+
+
+130
+104
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31
+Total_Record
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Total_Record:187
+
+1
+15
+132
+105
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/Total_Record:104
+Record_Identifier
+RT
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Total_Record:187/Record_Identifier:189
+
+
+132
+106
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/Total_Record:104
+Number_of_RS_Records
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Total_Record:187/Number_of_RS_Records:190
+
+
+132
+107
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/Total_Record:104
+Total_Local_Taxable_Wages
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Total_Record:187/Total_Local_Taxable_Wages:340
+
+
+132
+108
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/Total_Record:104
+Total_Local_Income_Tax_Withheld
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Total_Record:187/Total_Local_Income_Tax_Withheld:341
+
+
+132
+109
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/Total_Record:104
+Future_Field_1
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Total_Record:187/Future_Field_1:348
+
+
+132
+110
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/Total_Record:104
+Future_Field_2
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Total_Record:187/Future_Field_2:430
+
+
+132
+111
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/Total_Record:104
+Future_Field_3
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Total_Record:187/Future_Field_3:431
+
+
+132
+112
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/Total_Record:104
+Future_Field_4
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Total_Record:187/Future_Field_4:432
+
+
+132
+113
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/Total_Record:104
+Future_Field_5
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Total_Record:187/Future_Field_5:433
+
+
+132
+114
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/Total_Record:104
+Future_Field_6
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Total_Record:187/Future_Field_6:434
+
+
+132
+115
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/Total_Record:104
+Future_Field_7
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Total_Record:187/Future_Field_7:435
+
+
+132
+116
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/Total_Record:104
+Future_Field_8
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Total_Record:187/Future_Field_8:436
+
+
+132
+117
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/Total_Record:104
+Future_Field_9
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Total_Record:187/Future_Field_9:437
+
+
+132
+118
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/Total_Record:104
+Future_Field_10
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Total_Record:187/Future_Field_10:438
+
+
+132
+119
+/CDT Berkheimer File:175/Submitter_record:1/Employer_Record:31/Total_Record:104
+Carriage_return
+
+0
+16
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Total_Record:187/Carriage_return:474
+
+
+130
+136
+/CDT Berkheimer File:175
+Final_Record
+
+0
+16
+/CDT Electronic Data Extract:475/Final_Record:455
+
+1
+15
+132
+137
+/CDT Berkheimer File:175/Final_Record:136
+Record_Identifier
+RF
+0
+16
+/CDT Electronic Data Extract:475/Final_Record:455/Record_Identifier:456
+
+
+132
+138
+/CDT Berkheimer File:175/Final_Record:136
+Number_of_RS_Records
+
+0
+16
+/CDT Electronic Data Extract:475/Final_Record:455/Number_of_RS_Records:457
+
+
+132
+139
+/CDT Berkheimer File:175/Final_Record:136
+Total_Local_Taxable_Wages
+
+0
+16
+/CDT Electronic Data Extract:475/Final_Record:455/Total_Local_Taxable_Wages:458
+
+
+132
+140
+/CDT Berkheimer File:175/Final_Record:136
+Total_Local_Income_Tax_Withheld
+
+0
+16
+/CDT Electronic Data Extract:475/Final_Record:455/Total_Local_Income_Tax_Withheld:459
+
+
+132
+141
+/CDT Berkheimer File:175/Final_Record:136
+Future_Field_1
+
+0
+16
+/CDT Electronic Data Extract:475/Final_Record:455/Future_Field_1:460
+
+
+132
+142
+/CDT Berkheimer File:175/Final_Record:136
+Future_Field_2
+
+0
+16
+/CDT Electronic Data Extract:475/Final_Record:455/Future_Field_2:461
+
+
+132
+143
+/CDT Berkheimer File:175/Final_Record:136
+Future_Field_3
+
+0
+16
+/CDT Electronic Data Extract:475/Final_Record:455/Future_Field_3:462
+
+
+132
+144
+/CDT Berkheimer File:175/Final_Record:136
+Future_Field_4
+
+0
+16
+/CDT Electronic Data Extract:475/Final_Record:455/Future_Field_4:463
+
+
+132
+145
+/CDT Berkheimer File:175/Final_Record:136
+Future_Field_5
+
+0
+16
+/CDT Electronic Data Extract:475/Final_Record:455/Future_Field_5:464
+
+
+132
+146
+/CDT Berkheimer File:175/Final_Record:136
+Future_Field_6
+
+0
+16
+/CDT Electronic Data Extract:475/Final_Record:455/Future_Field_6:465
+
+
+132
+147
+/CDT Berkheimer File:175/Final_Record:136
+Future_Field_7
+
+0
+16
+/CDT Electronic Data Extract:475/Final_Record:455/Future_Field_7:466
+
+
+132
+148
+/CDT Berkheimer File:175/Final_Record:136
+Future_Field_8
+
+0
+16
+/CDT Electronic Data Extract:475/Final_Record:455/Future_Field_8:467
+
+
+132
+149
+/CDT Berkheimer File:175/Final_Record:136
+Future_Field_9
+
+0
+16
+/CDT Electronic Data Extract:475/Final_Record:455/Future_Field_9:468
+
+
+132
+150
+/CDT Berkheimer File:175/Final_Record:136
+Future_Field_10
+
+0
+16
+/CDT Electronic Data Extract:475/Final_Record:455/Future_Field_10:469
+
+
+132
+151
+/CDT Berkheimer File:175/Final_Record:136
+Carriage_return
+
+0
+16
+/CDT Electronic Data Extract:475/Final_Record:455/Carriage_return:475
+
+
+@0200N
+129
+97
+NULL_REF
+CDT Berkheimer File
+View of: CDT File
+0
+0
+17
+cdtberk.adf
+cdt-berk.vw2
+2
+130
+1
+/CDT Berkheimer File:97
+Submitter_Record
+RA
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2
+
+1
+21
+132
+2
+/CDT Berkheimer File:97/Submitter_Record:1
+Record_Identifier
+RA
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Record_Identifier:3
+
+
+132
+3
+/CDT Berkheimer File:97/Submitter_Record:1
+Submitter_ID_Number
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Submitter_ID_Number:4
+
+
+132
+4
+/CDT Berkheimer File:97/Submitter_Record:1
+Blank
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Blank:5
+
+
+132
+5
+/CDT Berkheimer File:97/Submitter_Record:1
+Submitter_Name
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Submitter_Name:22
+
+
+132
+6
+/CDT Berkheimer File:97/Submitter_Record:1
+Location_Address_2
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Location_Address_2:23
+
+
+132
+7
+/CDT Berkheimer File:97/Submitter_Record:1
+Delivery_Address_2
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Delivery_Address_2:25
+
+
+132
+8
+/CDT Berkheimer File:97/Submitter_Record:1
+City_2
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/City_2:27
+
+
+132
+9
+/CDT Berkheimer File:97/Submitter_Record:1
+State_Abbreviation_2
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/State_Abbreviation_2:29
+
+
+132
+10
+/CDT Berkheimer File:97/Submitter_Record:1
+Zip_Code_2
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Zip_Code_2:31
+
+
+132
+11
+/CDT Berkheimer File:97/Submitter_Record:1
+Zip_Code_Extension_2
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Zip_Code_Extension_2:33
+
+
+132
+12
+/CDT Berkheimer File:97/Submitter_Record:1
+Blank_2
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Blank_2:35
+
+
+132
+13
+/CDT Berkheimer File:97/Submitter_Record:1
+Contact_Name
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Contact_Name:42
+
+
+132
+14
+/CDT Berkheimer File:97/Submitter_Record:1
+Contact_Phone_Number
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Contact_Phone_Number:43
+
+
+132
+15
+/CDT Berkheimer File:97/Submitter_Record:1
+Contact_Phone_Extension
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Contact_Phone_Extension:44
+
+
+132
+16
+/CDT Berkheimer File:97/Submitter_Record:1
+Blank_3
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Blank_3:45
+
+
+132
+17
+/CDT Berkheimer File:97/Submitter_Record:1
+Contact_Email_Internet
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Contact_Email_Internet:46
+
+
+132
+18
+/CDT Berkheimer File:97/Submitter_Record:1
+Blank_4
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Blank_4:47
+
+
+132
+19
+/CDT Berkheimer File:97/Submitter_Record:1
+Contact_Fax
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Contact_Fax:48
+
+
+132
+20
+/CDT Berkheimer File:97/Submitter_Record:1
+Blank_5
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Blank_5:52
+
+
+132
+21
+/CDT Berkheimer File:97/Submitter_Record:1
+CR
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/CR:443
+
+
+130
+22
+/CDT Berkheimer File:97/Submitter_Record:1
+Employer_Record
+RE
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55
+
+1
+25
+132
+23
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22
+Record_Identifier
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Record_Identifier:57
+
+
+132
+24
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22
+Tax_Year
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Tax_Year:58
+
+
+132
+25
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22
+Tax_Quarter
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Tax_Quarter:59
+
+
+132
+26
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22
+Employer_Agent_ID_Number
+EIN
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Employer_Agent_ID_Number:60
+
+
+132
+27
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22
+ER_Account_number
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/ER_Account_number:418
+
+
+132
+28
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22
+Blank
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Blank:61
+
+
+132
+29
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22
+Employer_Name
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Employer_Name:65
+
+
+132
+30
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22
+Location_Address
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Location_Address:66
+
+
+132
+31
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22
+Delivery_Address
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Delivery_Address:67
+
+
+132
+32
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22
+City
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/City:68
+
+
+132
+33
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22
+State
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State:69
+
+
+132
+34
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22
+Zip_Code
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Zip_Code:70
+
+
+132
+35
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22
+Zip_Code_Extension
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Zip_Code_Extension:71
+
+
+132
+36
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22
+Record_Change_Indicator
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Record_Change_Indicator:419
+
+
+132
+37
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22
+Blank_2
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Blank_2:72
+
+
+132
+38
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22
+ER_PSD_Code
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/ER_PSD_Code:420
+
+
+132
+39
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22
+Filing_Frequency
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Filing_Frequency:73
+
+
+132
+40
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22
+Reporting_Period
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Reporting_Period:74
+
+
+132
+41
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22
+Tax_Type
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Tax_Type:75
+
+
+132
+42
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22
+ER_Total_School_District_Only_Payments
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/ER_Total_School_District_Only_Payments:397
+
+
+132
+43
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22
+ER_Total_Number_Exemptions
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/ER_Total_Number_Exemptions:76
+
+
+132
+44
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22
+Blank_3
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Blank_3:422
+
+
+132
+45
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22
+CR
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/CR:442
+
+
+130
+46
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22
+State_Record
+RS
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200
+
+1
+34
+132
+47
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46
+Record_ID
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/Record_ID:202
+
+
+132
+48
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46
+Blank
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/Blank:204
+
+
+132
+49
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46
+SSN
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/SSN:205
+
+
+132
+50
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46
+Employee_First_Name
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/Employee_First_Name:206
+
+
+132
+51
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46
+Employee_Middle_Name_or_Initial
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/Employee_Middle_Name_or_Initial:208
+
+
+132
+52
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46
+Employee_Last_Name
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/Employee_Last_Name:210
+
+
+132
+53
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46
+Suffix
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/Suffix:211
+
+
+132
+54
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46
+Location_Address
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/Location_Address:212
+
+
+132
+55
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46
+Delivery_Address
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/Delivery_Address:213
+
+
+132
+56
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46
+City
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/City:215
+
+
+132
+57
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46
+State
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/State:216
+
+
+132
+58
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46
+Zip_Code
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/Zip_Code:217
+
+
+132
+59
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46
+Zip_Code_Extension
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/Zip_Code_Extension:219
+
+
+132
+60
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46
+Blank2
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/Blank2:220
+
+
+132
+61
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46
+EE_Foreign_State
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/EE_Foreign_State:399
+
+
+132
+62
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46
+EE_Foreign_Postal_Code
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/EE_Foreign_Postal_Code:424
+
+
+132
+63
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46
+EE_Foreign_Country_code
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/EE_Foreign_Country_code:425
+
+
+132
+64
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46
+Blank3
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/Blank3:426
+
+
+132
+65
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46
+Record_Change_Indicator
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/Record_Change_Indicator:429
+
+
+132
+66
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46
+Reporting_Period_End_Date
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/Reporting_Period_End_Date:428
+
+
+132
+67
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46
+Blank4
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/Blank4:427
+
+
+132
+68
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46
+State_Code_2
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/State_Code_2:237
+
+
+132
+69
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46
+State_Taxable_Wages
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/State_Taxable_Wages:238
+
+
+132
+70
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46
+State_Income_Tax_Withheld
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/State_Income_Tax_Withheld:239
+
+
+132
+71
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46
+Blank5
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/Blank5:240
+
+
+132
+72
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46
+Local_Tax_Type
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/Local_Tax_Type:430
+
+
+132
+73
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46
+Local_Taxable_Wages
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/Local_Taxable_Wages:242
+
+
+132
+74
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46
+Local_Income_Tax_Withheld
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/Local_Income_Tax_Withheld:244
+
+
+132
+75
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46
+State_Control_Number
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/State_Control_Number:401
+
+
+132
+76
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46
+PSD_Code_of_EE_Residence
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/PSD_Code_of_EE_Residence:245
+
+
+132
+77
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46
+School_District_only_pymnt
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/School_District_only_pymnt:432
+
+
+132
+78
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46
+Non_Resident_Flag
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/Non_Resident_Flag:403
+
+
+132
+79
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46
+Blank6
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/Blank6:250
+
+
+132
+80
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/State_Record:46
+CR
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200/CR:441
+
+
+130
+81
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22
+Total_Record
+RT
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Total_Record:254
+
+1
+6
+132
+82
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/Total_Record:81
+Record_Identifier
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Total_Record:254/Record_Identifier:256
+
+
+132
+83
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/Total_Record:81
+Number_of_RS_Records
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Total_Record:254/Number_of_RS_Records:257
+
+
+132
+84
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/Total_Record:81
+Total_Local_Wages
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Total_Record:254/Total_Local_Wages:258
+
+
+132
+85
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/Total_Record:81
+Total_Local_Tax_Withheld
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Total_Record:254/Total_Local_Tax_Withheld:264
+
+
+132
+86
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/Total_Record:81
+Blank
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Total_Record:254/Blank:434
+
+
+132
+87
+/CDT Berkheimer File:97/Submitter_Record:1/Employer_Record:22/Total_Record:81
+CR
+
+0
+16
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Total_Record:254/CR:440
+
+
+130
+95
+/CDT Berkheimer File:97
+Final_Record
+RF
+0
+16
+/CDT Berkeimer:443/Final_Record:411
+
+1
+7
+132
+96
+/CDT Berkheimer File:97/Final_Record:95
+Record_Identifier
+
+0
+16
+/CDT Berkeimer:443/Final_Record:411/Record_Identifier:412
+
+
+132
+97
+/CDT Berkheimer File:97/Final_Record:95
+Blank
+
+0
+16
+/CDT Berkeimer:443/Final_Record:411/Blank:437
+
+
+132
+98
+/CDT Berkheimer File:97/Final_Record:95
+Number_of_RS_Records
+
+0
+16
+/CDT Berkeimer:443/Final_Record:411/Number_of_RS_Records:414
+
+
+132
+99
+/CDT Berkheimer File:97/Final_Record:95
+Total_Local_Wages
+
+0
+16
+/CDT Berkeimer:443/Final_Record:411/Total_Local_Wages:415
+
+
+132
+100
+/CDT Berkheimer File:97/Final_Record:95
+Total_Local_Tax_Withheld
+
+0
+16
+/CDT Berkeimer:443/Final_Record:411/Total_Local_Tax_Withheld:416
+
+
+132
+101
+/CDT Berkheimer File:97/Final_Record:95
+Blank2
+
+0
+16
+/CDT Berkeimer:443/Final_Record:411/Blank2:436
+
+
+132
+102
+/CDT Berkheimer File:97/Final_Record:95
+CR
+
+0
+16
+/CDT Berkeimer:443/Final_Record:411/CR:438
+
+
+@0200N
+17
+475
+NULL_REF
+CDT Electronic Data Extract
+CDT Electronic Data Extract
+0
+0
+2
+10
+2
+44
+0
+0
+0
+4
+PARTNER
+
+3
+APPKEY1
+
+0
+APPKEY2
+
+0
+APPKEY3
+
+0
+cdt.app
+1
+46
+2
+18
+2
+/CDT Electronic Data Extract:475
+Submitter_record
+RA
+0
+16
+2
+10
+1
+1
+30
+20
+4
+/CDT Electronic Data Extract:475/Submitter_record:2
+Record_Identifier
+RA
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+3
+/CDT Electronic Data Extract:475/Submitter_record:2
+Report_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+5
+/CDT Electronic Data Extract:475/Submitter_record:2
+Paycor_Federal_ID
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+352
+/CDT Electronic Data Extract:475/Submitter_record:2
+Paycor_Name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+353
+/CDT Electronic Data Extract:475/Submitter_record:2
+Paycor_Location_Address
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+14
+/CDT Electronic Data Extract:475/Submitter_record:2
+Paycor_Street_Address
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+16
+/CDT Electronic Data Extract:475/Submitter_record:2
+Paycor_City
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+18
+/CDT Electronic Data Extract:475/Submitter_record:2
+Paycor_State_Abbreviation
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+20
+/CDT Electronic Data Extract:475/Submitter_record:2
+Paycor_Zip_Code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+22
+/CDT Electronic Data Extract:475/Submitter_record:2
+Paycor_Zip_Code_Extension
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+355
+/CDT Electronic Data Extract:475/Submitter_record:2
+Foreign_State
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+356
+/CDT Electronic Data Extract:475/Submitter_record:2
+Foreign_Postal_Code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+357
+/CDT Electronic Data Extract:475/Submitter_record:2
+County_Code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+24
+/CDT Electronic Data Extract:475/Submitter_record:2
+Paycor_Transmission_Contact_Name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+26
+/CDT Electronic Data Extract:475/Submitter_record:2
+Paycor_Contact_Phone_Number
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+359
+/CDT Electronic Data Extract:475/Submitter_record:2
+Paycor_Contact_Phone_Extension
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+361
+/CDT Electronic Data Extract:475/Submitter_record:2
+Paycor_Contact_Email
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+28
+/CDT Electronic Data Extract:475/Submitter_record:2
+Paycor_Contact_Fax
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+363
+/CDT Electronic Data Extract:475/Submitter_record:2
+Future_Field_1
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+365
+/CDT Electronic Data Extract:475/Submitter_record:2
+Future_Field_2
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+366
+/CDT Electronic Data Extract:475/Submitter_record:2
+Future_Field_3
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+367
+/CDT Electronic Data Extract:475/Submitter_record:2
+Future_Field_4
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+368
+/CDT Electronic Data Extract:475/Submitter_record:2
+Future_Field_5
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+369
+/CDT Electronic Data Extract:475/Submitter_record:2
+Future_Field_6
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+370
+/CDT Electronic Data Extract:475/Submitter_record:2
+Future_Field_7
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+371
+/CDT Electronic Data Extract:475/Submitter_record:2
+Future_Field_8
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+372
+/CDT Electronic Data Extract:475/Submitter_record:2
+Future_Field_9
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+373
+/CDT Electronic Data Extract:475/Submitter_record:2
+Future_Field_10
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+352
+/CDT Electronic Data Extract:475/Submitter_record:2
+Carriage_return
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+30
+/CDT Electronic Data Extract:475/Submitter_record:2
+Employer_Record
+
+0
+16
+2
+10
+1
+0
+35
+20
+32
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30
+Record_Identifier
+RE
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+33
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30
+Tax_Year
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+374
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30
+Tax_Quarter
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+34
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30
+Employer_Identification_Number
+EIN
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+35
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30
+ER_Tax_Account_Number
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+36
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30
+Employer_Name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+37
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30
+ER_Address
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+39
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30
+ER_Street_Address
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+41
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30
+City
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+42
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30
+State_Abbreviation
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+43
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30
+Zip_Code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+45
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30
+Zip_Code_Extension
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+46
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30
+Record_Change_Indicator
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+327
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30
+Foreign_State_Indicator
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+376
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30
+Foreign_Postal_code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+328
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30
+Country_code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+378
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30
+ER_PSD_Code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+379
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30
+Filing_Frequency
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+380
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30
+Reporting_Period
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+381
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30
+Tax_Type
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+382
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30
+ER_School_District
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+383
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30
+ER_Total_Exemptions
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+385
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30
+PA_8_digit_Number
+Lancaster
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+387
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30
+ER_Phone_Number
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+388
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30
+Future_Field_3
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+389
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30
+Future_Field_4
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+390
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30
+Future_Field_5
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+391
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30
+Future_Field_6
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+392
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30
+Future_Field_7
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+393
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30
+Future_Field_8
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+394
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30
+Future_Field_9
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+395
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30
+Future_Field_10
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+471
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30
+Carriage_return
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+149
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30
+State_Record
+
+0
+16
+2
+10
+0
+0
+38
+20
+151
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+Record_Identifier
+RS
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+396
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+EE_SSN
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+398
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+EE_First_Name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+399
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+EE_Middle_Name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+400
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+EE_Last_Name
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+401
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+EE_Name_Suffix
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+402
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+EE_Location_Address
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+403
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+EE_Street_Address
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+404
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+EE_City
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+405
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+EE_State
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+406
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+EE_Zip_Code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+407
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+EE_Zip_Extension
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+408
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+EE_Foreign_State
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+409
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+EE_Foreign_Postal_Code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+410
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+EE_Country_Code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+411
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+Record_Change_Indicator
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+413
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+Reporting_Period_End_Date
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+152
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+State_Code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+171
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+State_Taxable_Wages
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+173
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+State_Income_Tax_Withheld
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+176
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+Local_Tax_Type_Code
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+178
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+Local_Taxable_Wages
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+180
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+Local_Income_Tax_Withheld
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+182
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+State_Control_Number
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+183
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+PSD_Code_of_EEs_Residence
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+185
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+School_District_Only_Pymt
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+415
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+Non_resident_Flag
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+417
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+Future_Field_1
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+419
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+Future_Field_2
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+420
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+Future_Field_3
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+421
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+Future_Field_4
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+422
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+Future_Field_5
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+423
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+Future_Field_6
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+424
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+Future_Field_7
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+425
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+Future_Field_8
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+426
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+Future_Field_9
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+428
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+Future_Field_10
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+473
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/State_Record:149
+Carriage_return
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+187
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30
+Total_Record
+
+0
+16
+2
+10
+1
+0
+15
+20
+189
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Total_Record:187
+Record_Identifier
+RT
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+190
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Total_Record:187
+Number_of_RS_Records
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+340
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Total_Record:187
+Total_Local_Taxable_Wages
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+341
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Total_Record:187
+Total_Local_Income_Tax_Withheld
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+348
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Total_Record:187
+Future_Field_1
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+430
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Total_Record:187
+Future_Field_2
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+431
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Total_Record:187
+Future_Field_3
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+432
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Total_Record:187
+Future_Field_4
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+433
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Total_Record:187
+Future_Field_5
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+434
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Total_Record:187
+Future_Field_6
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+435
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Total_Record:187
+Future_Field_7
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+436
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Total_Record:187
+Future_Field_8
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+437
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Total_Record:187
+Future_Field_9
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+438
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Total_Record:187
+Future_Field_10
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+474
+/CDT Electronic Data Extract:475/Submitter_record:2/Employer_Record:30/Total_Record:187
+Carriage_return
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+455
+/CDT Electronic Data Extract:475
+Final_Record
+
+0
+16
+2
+10
+1
+1
+15
+20
+456
+/CDT Electronic Data Extract:475/Final_Record:455
+Record_Identifier
+RF
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+457
+/CDT Electronic Data Extract:475/Final_Record:455
+Number_of_RS_Records
+
+0
+16
+0
+2
+44
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+458
+/CDT Electronic Data Extract:475/Final_Record:455
+Total_Local_Taxable_Wages
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+459
+/CDT Electronic Data Extract:475/Final_Record:455
+Total_Local_Income_Tax_Withheld
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+460
+/CDT Electronic Data Extract:475/Final_Record:455
+Future_Field_1
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+461
+/CDT Electronic Data Extract:475/Final_Record:455
+Future_Field_2
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+462
+/CDT Electronic Data Extract:475/Final_Record:455
+Future_Field_3
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+463
+/CDT Electronic Data Extract:475/Final_Record:455
+Future_Field_4
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+464
+/CDT Electronic Data Extract:475/Final_Record:455
+Future_Field_5
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+465
+/CDT Electronic Data Extract:475/Final_Record:455
+Future_Field_6
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+466
+/CDT Electronic Data Extract:475/Final_Record:455
+Future_Field_7
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+467
+/CDT Electronic Data Extract:475/Final_Record:455
+Future_Field_8
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+468
+/CDT Electronic Data Extract:475/Final_Record:455
+Future_Field_9
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+469
+/CDT Electronic Data Extract:475/Final_Record:455
+Future_Field_10
+
+0
+16
+0
+2
+44
+3
+32
+1
+0
+0
+
+0
+0
+0
+0
+0
+2
+0
+0
++
+-
+20
+475
+/CDT Electronic Data Extract:475/Final_Record:455
+Carriage_return
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+@0200N
+17
+443
+NULL_REF
+CDT Berkeimer
+CDT Berkeimer
+0
+0
+2
+10
+1
+0
+10
+0
+0
+0
+4
+PARTNER
+
+0
+APPKEY1
+
+0
+APPKEY2
+
+0
+APPKEY3
+
+0
+cdt.app
+1
+46
+2
+18
+2
+/CDT Berkeimer:443
+Submitter_Record
+RA
+0
+16
+2
+10
+1
+1
+21
+20
+3
+/CDT Berkeimer:443/Submitter_Record:2
+Record_Identifier
+RA
+0
+16
+0
+1
+0
+2
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+4
+/CDT Berkeimer:443/Submitter_Record:2
+Submitter_ID_Number
+
+0
+16
+0
+1
+0
+9
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+5
+/CDT Berkeimer:443/Submitter_Record:2
+Blank
+
+0
+16
+0
+1
+0
+26
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+22
+/CDT Berkeimer:443/Submitter_Record:2
+Submitter_Name
+
+0
+16
+0
+1
+0
+57
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+23
+/CDT Berkeimer:443/Submitter_Record:2
+Location_Address_2
+
+0
+16
+0
+1
+0
+22
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+25
+/CDT Berkeimer:443/Submitter_Record:2
+Delivery_Address_2
+
+0
+16
+0
+1
+0
+22
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+27
+/CDT Berkeimer:443/Submitter_Record:2
+City_2
+
+0
+16
+0
+1
+0
+22
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+29
+/CDT Berkeimer:443/Submitter_Record:2
+State_Abbreviation_2
+
+0
+16
+0
+1
+0
+2
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+31
+/CDT Berkeimer:443/Submitter_Record:2
+Zip_Code_2
+
+0
+16
+0
+1
+0
+5
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+33
+/CDT Berkeimer:443/Submitter_Record:2
+Zip_Code_Extension_2
+
+0
+16
+0
+1
+0
+4
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+35
+/CDT Berkeimer:443/Submitter_Record:2
+Blank_2
+
+0
+16
+0
+1
+0
+224
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+42
+/CDT Berkeimer:443/Submitter_Record:2
+Contact_Name
+
+0
+16
+0
+1
+0
+27
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+43
+/CDT Berkeimer:443/Submitter_Record:2
+Contact_Phone_Number
+
+0
+16
+0
+1
+0
+15
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+44
+/CDT Berkeimer:443/Submitter_Record:2
+Contact_Phone_Extension
+
+0
+16
+0
+1
+0
+5
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+45
+/CDT Berkeimer:443/Submitter_Record:2
+Blank_3
+
+0
+16
+0
+1
+0
+3
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+46
+/CDT Berkeimer:443/Submitter_Record:2
+Contact_Email_Internet
+
+0
+16
+0
+1
+0
+40
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+47
+/CDT Berkeimer:443/Submitter_Record:2
+Blank_4
+
+0
+16
+0
+1
+0
+3
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+48
+/CDT Berkeimer:443/Submitter_Record:2
+Contact_Fax
+
+0
+16
+0
+1
+0
+10
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+52
+/CDT Berkeimer:443/Submitter_Record:2
+Blank_5
+
+0
+16
+0
+1
+0
+14
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+443
+/CDT Berkeimer:443/Submitter_Record:2
+CR
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+55
+/CDT Berkeimer:443/Submitter_Record:2
+Employer_Record
+RE
+0
+16
+2
+10
+1
+0
+25
+20
+57
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55
+Record_Identifier
+
+0
+16
+0
+1
+0
+2
+0
+32
+1
+0
+0
+
+3
+0
+0
+0
+20
+58
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55
+Tax_Year
+
+0
+16
+0
+1
+0
+4
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+59
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55
+Tax_Quarter
+
+0
+16
+0
+1
+0
+1
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+60
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55
+Employer_Agent_ID_Number
+EIN
+0
+16
+0
+1
+0
+9
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+418
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55
+ER_Account_number
+
+0
+16
+0
+1
+0
+12
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+61
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55
+Blank
+
+0
+16
+0
+1
+0
+11
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+65
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55
+Employer_Name
+
+0
+16
+0
+1
+0
+57
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+66
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55
+Location_Address
+
+0
+16
+0
+1
+0
+22
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+67
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55
+Delivery_Address
+
+0
+16
+0
+1
+0
+22
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+68
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55
+City
+
+0
+16
+0
+1
+0
+22
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+69
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55
+State
+
+0
+16
+0
+1
+0
+2
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+70
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55
+Zip_Code
+
+0
+16
+0
+1
+0
+5
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+71
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55
+Zip_Code_Extension
+
+0
+16
+0
+1
+0
+4
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+419
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55
+Record_Change_Indicator
+
+0
+16
+0
+1
+0
+1
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+72
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55
+Blank_2
+
+0
+16
+0
+1
+0
+47
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+420
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55
+ER_PSD_Code
+
+0
+16
+0
+1
+0
+6
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+73
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55
+Filing_Frequency
+
+0
+16
+0
+1
+0
+1
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+74
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55
+Reporting_Period
+
+0
+16
+0
+1
+0
+6
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+75
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55
+Tax_Type
+
+0
+16
+0
+1
+0
+1
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+397
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55
+ER_Total_School_District_Only_Payments
+
+0
+16
+0
+1
+0
+11
+0
+32
+2
+0
+0
+
+0
+0
+0
+0
+20
+76
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55
+ER_Total_Number_Exemptions
+
+0
+16
+0
+1
+0
+7
+0
+32
+2
+0
+0
+
+0
+0
+0
+0
+20
+422
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55
+Blank_3
+
+0
+16
+0
+1
+0
+259
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+442
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55
+CR
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+200
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55
+State_Record
+RS
+0
+16
+2
+10
+0
+0
+34
+20
+202
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200
+Record_ID
+
+0
+16
+0
+1
+0
+2
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+204
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200
+Blank
+
+0
+16
+0
+1
+0
+7
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+205
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200
+SSN
+
+0
+16
+0
+1
+0
+9
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+0
+0
+0
++
+-
+20
+206
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200
+Employee_First_Name
+
+0
+16
+0
+1
+0
+15
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+208
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200
+Employee_Middle_Name_or_Initial
+
+0
+16
+0
+1
+0
+15
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+210
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200
+Employee_Last_Name
+
+0
+16
+0
+1
+0
+20
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+211
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200
+Suffix
+
+0
+16
+0
+1
+0
+4
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+212
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200
+Location_Address
+
+0
+16
+0
+1
+0
+22
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+213
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200
+Delivery_Address
+
+0
+16
+0
+1
+0
+22
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+215
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200
+City
+
+0
+16
+0
+1
+0
+22
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+216
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200
+State
+
+0
+16
+0
+1
+0
+2
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+217
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200
+Zip_Code
+
+0
+16
+0
+1
+0
+5
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+219
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200
+Zip_Code_Extension
+
+0
+16
+0
+1
+0
+4
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+220
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200
+Blank2
+
+0
+16
+0
+1
+0
+5
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+399
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200
+EE_Foreign_State
+
+0
+16
+0
+1
+0
+23
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+424
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200
+EE_Foreign_Postal_Code
+
+0
+16
+0
+1
+0
+15
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+425
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200
+EE_Foreign_Country_code
+
+0
+16
+0
+1
+0
+2
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+426
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200
+Blank3
+
+0
+16
+0
+1
+0
+1
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+429
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200
+Record_Change_Indicator
+
+0
+16
+0
+1
+0
+1
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+428
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200
+Reporting_Period_End_Date
+
+0
+16
+0
+1
+0
+6
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+427
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200
+Blank4
+
+0
+16
+0
+1
+0
+71
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+237
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200
+State_Code_2
+
+0
+16
+0
+1
+0
+2
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+238
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200
+State_Taxable_Wages
+
+0
+16
+0
+1
+0
+11
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+1
+2
+0
+0
++
+-
+20
+239
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200
+State_Income_Tax_Withheld
+
+0
+16
+0
+1
+0
+11
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+1
+2
+0
+0
++
+-
+20
+240
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200
+Blank5
+
+0
+16
+0
+1
+0
+10
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+430
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200
+Local_Tax_Type
+
+0
+16
+0
+1
+0
+1
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+242
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200
+Local_Taxable_Wages
+
+0
+16
+0
+1
+0
+11
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+1
+2
+0
+0
++
+-
+20
+244
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200
+Local_Income_Tax_Withheld
+
+0
+16
+0
+1
+0
+11
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+1
+2
+0
+0
++
+-
+20
+401
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200
+State_Control_Number
+
+0
+16
+0
+1
+0
+7
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+245
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200
+PSD_Code_of_EE_Residence
+
+0
+16
+0
+1
+0
+6
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+432
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200
+School_District_only_pymnt
+
+0
+16
+0
+1
+0
+11
+0
+32
+2
+0
+0
+
+0
+0
+0
+0
+20
+403
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200
+Non_Resident_Flag
+
+0
+16
+0
+1
+0
+1
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+250
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200
+Blank6
+
+0
+16
+0
+1
+0
+157
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+441
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/State_Record:200
+CR
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+254
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55
+Total_Record
+RT
+0
+16
+2
+10
+0
+0
+6
+20
+256
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Total_Record:254
+Record_Identifier
+
+0
+16
+0
+1
+0
+2
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+257
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Total_Record:254
+Number_of_RS_Records
+
+0
+16
+0
+1
+0
+7
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+0
+0
+0
++
+-
+20
+258
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Total_Record:254
+Total_Local_Wages
+
+0
+16
+0
+1
+0
+15
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+1
+2
+0
+0
++
+-
+20
+264
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Total_Record:254
+Total_Local_Tax_Withheld
+
+0
+16
+0
+1
+0
+15
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+1
+2
+0
+0
++
+-
+20
+434
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Total_Record:254
+Blank
+
+0
+16
+0
+1
+0
+473
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+440
+/CDT Berkeimer:443/Submitter_Record:2/Employer_Record:55/Total_Record:254
+CR
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+18
+411
+/CDT Berkeimer:443
+Final_Record
+RF
+0
+16
+2
+10
+1
+1
+7
+20
+412
+/CDT Berkeimer:443/Final_Record:411
+Record_Identifier
+
+0
+16
+0
+1
+0
+2
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+437
+/CDT Berkeimer:443/Final_Record:411
+Blank
+
+0
+16
+0
+1
+0
+5
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+414
+/CDT Berkeimer:443/Final_Record:411
+Number_of_RS_Records
+
+0
+16
+0
+1
+0
+9
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+0
+0
+0
+0
++
+-
+20
+415
+/CDT Berkeimer:443/Final_Record:411
+Total_Local_Wages
+
+0
+16
+0
+1
+0
+15
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+1
+2
+0
+0
++
+-
+20
+416
+/CDT Berkeimer:443/Final_Record:411
+Total_Local_Tax_Withheld
+
+0
+16
+0
+1
+0
+15
+3
+48
+2
+0
+0
+
+0
+0
+0
+0
+1
+2
+0
+0
++
+-
+20
+436
+/CDT Berkeimer:443/Final_Record:411
+Blank2
+
+0
+16
+0
+1
+0
+466
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+20
+438
+/CDT Berkeimer:443/Final_Record:411
+CR
+
+0
+16
+0
+2
+13
+0
+32
+1
+0
+0
+
+0
+0
+0
+0
+END DATA
+
